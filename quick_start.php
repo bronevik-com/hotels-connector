@@ -6,6 +6,6 @@ use Bronevik\HotelsConnector;
 use Bronevik\HotelsConnector\Enum\Endpoints;
 use Bronevik\HotelsConnector\Enum\Languages;
 
-$client = new HotelsConnector(Endpoints::DEVELOPMENT);
-$client->setCredentials('test', 'test', '123456');
-$client->setLanguage(Languages::RUSSIAN);
+$connector = new HotelsConnector(Endpoints::DEVELOPMENT);
+$connector->setCredentials('test', 'test', '123456');
+$connector->setLanguage(Languages::RUSSIAN);
