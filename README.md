@@ -1,13 +1,13 @@
-# Клиент для SOAP-сервиса xml.bronevik.com/soap/v2.0
+# Коннектор для SOAP-сервиса xml.bronevik.com/soap/v2.0
 
 - [Установка](#Установка)
     - [Требования](#Требования)
     - [Через Composer](#Через-composer)
     - [Без Composer](#Без-composer)
 - [Подготовка](#Подготовка)
-    - [Инициализация клиента](#Инициализация-клиента)
+    - [Инициализация коннектора](#Инициализация-коннектора)
     - [Проверка подключения](#Проверка-подключения)
-- [Документация по работе с SOAP-сервером (без использования этого клиента)](#Документация-по-работе-с-soap-сервером-без-использования-этого-клиента)
+- [Документация по работе с SOAP-сервером (без использования этого коннектора)](#Документация-по-работе-с-soap-сервером-без-использования-этого-коннектора)
 - [Документация по работе с клиентом и примеры](#Документация-по-работе-с-клиентом-и-примеры)
     - [Справочники](#Справочники)
         - [Получение списка стран](#Получение-списка-стран)
@@ -40,7 +40,7 @@ PHP 5.6+
 ```json
 {
     "require": {
-        "bronevik/hotels-client": "*@dev"
+        "bronevik/hotels-connector": "*@dev"
     },
     "repositories": [
         {
@@ -60,7 +60,7 @@ PHP 5.6+
 <?php
 
 spl_autoload_register(function ($class) {
-    $file = ПУТЬ_К_ФАЙЛАМ_КОННЕКТОРА . '/src/' . strtr($class, ['Bronevik/HotelsClient/' => '', '\\' => '/']) . '.php';
+    $file = ПУТЬ_К_ФАЙЛАМ_КОННЕКТОРА . '/src/' . strtr($class, ['Bronevik/HotelsConnector/' => '', '\\' => '/']) . '.php';
     if (is_readable($file)) {
         require_once $file;
     }
@@ -69,7 +69,7 @@ spl_autoload_register(function ($class) {
 
 ## Подготовка
 
-### Инициализация клиента
+### Инициализация коннектора
 
 ```php
 <?php
@@ -81,7 +81,7 @@ $connector->setCredentials('test', 'test', '123456');
 $connector->setLanguage(\Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 ```
 
-В конструктор клиента передаётся `endpoint` SOAP-сервера и флаг `debugMode`.
+В конструктор коннектора передаётся `endpoint` SOAP-сервера и флаг `debugMode`.
 
 Для `endpoint` возможны два значения:
 
@@ -113,7 +113,7 @@ $connector->setLanguage(\Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 echo $connector->ping('Привет, Броневичок!'); // Привет, Броневичок!
 ```
 
-## Документация по работе с SOAP-сервером (без использования этого клиента)
+## Документация по работе с SOAP-сервером (без использования этого коннектора)
 
 Документация в формате PDF: https://xml.bronevik.com/soap/v2.0/ws_2.0.0.pdf.
 
@@ -361,7 +361,7 @@ $orderRequest->addServices($accommodation);
 
 // Отправка заказа
 /** @var \Bronevik\HotelsConnector\Element\Order $order */
-$order = $this->client->createOrder($orderRequest);
+$order = $connector->createOrder($orderRequest);
 ```
 
 Разбор результата:
@@ -424,7 +424,7 @@ $order = $connector->getOrder(349007);
 <?php
 
 /** @var bool $cancelResult */
-$cancelResult = $this->client->cancelOrder($order->getId());
+$cancelResult = $connector->cancelOrder($order->getId());
 ```
 
 #### Статусы заказов
