@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<ruleset name="IBC standart">
+    <rule ref="PSR2"/>
+
+    <arg value="np"/>
+    <arg name="colors"/>
+
+    <file>src/</file>
+</ruleset>
