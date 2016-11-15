@@ -73,4 +73,26 @@ class OffersSearchTest extends TestCase
             $this->assertNotFalse(stripos($hotel->getName(), $hotelName));
         }
     }
+
+    public function testSearchOffersByHotelId()
+    {
+        $arrivalDate   = date('Y-m-d', strtotime('+1 day'));
+        $departureDate = date('Y-m-d', strtotime('+2 days'));
+
+        // Поиск предложений по идентификатору отеля
+        $hotelId = $this->getRandomArrayItem($this->findHotels())->getId();
+        
+        $hotels = $this->connector->searchHotelOffers(
+            $arrivalDate,
+            $departureDate,
+            null,
+            [],
+            $hotelId
+        );
+        
+        // Проверка идентификаторов найденых отелей
+        foreach ($hotels as $hotel) {
+            $this->assertEquals($hotelId, $hotel->getId());
+        }
+    }
 }

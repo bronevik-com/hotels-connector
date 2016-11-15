@@ -218,7 +218,7 @@ class HotelsConnector
      * @param Element\SearchOfferCriterion[] $searchCriteria
      * @return Element\HotelWithOffers[]
      */
-    public function searchHotelOffers($arrivalDate, $departureDate, $cityId, $searchCriteria = [])
+    public function searchHotelOffers($arrivalDate, $departureDate, $cityId, $searchCriteria = [], $hotelId = null)
     {
         $request = new Element\SearchHotelOffersRequest();
         $this->fillRequest($request);
@@ -226,12 +226,13 @@ class HotelsConnector
         $request->setArrivalDate($arrivalDate);
         $request->setDepartureDate($departureDate);
         $request->setCityId($cityId);
+        $request->setHotelId($hotelId);
         $request->setCurrency(Currencies::RUSSIAN_RUBLE);
 
         foreach ($searchCriteria as $criterian) {
             $request->addSearchCriteria($criterian);
         }
-
+        
         return $this->soapClient->searchHotelOffers($request)->getHotels();
     }
 
@@ -306,12 +307,14 @@ class HotelsConnector
      * @param string $offerCode
      * @return Element\HotelOffer
      */
-    public function getHotelOffer($offerCode)
+    public function getHotelOffer($offerCodes)
     {
         $request = new Element\GetHotelOfferRequest();
         $this->fillRequest($request);
 
-        $request->setOfferCode($offerCode);
+        foreach ($offerCodes as $offerCode) {
+            $request->addOfferCode($offerCode);
+        }
 
         return $this->soapClient->getHotelOffer($request)->getOffer();
     }

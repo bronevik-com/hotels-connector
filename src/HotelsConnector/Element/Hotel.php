@@ -15,6 +15,13 @@ class Hotel
      * 
      * @var string
      */
+    public $cityId = null;
+
+    /**
+     * Type: xsd:string
+     * 
+     * @var string
+     */
     public $name = null;
 
     /**
@@ -77,13 +84,20 @@ class Hotel
     public $amenities = [];
 
     /**
-     * Категория отеля от 0 до 5. 
-     * 0 - категория не указана.
+     * Категория отеля от 0 до 5. 0 - категория
+     * 								не указана.
      * Type: xsd:int
      * 
      * @var int
      */
     public $category = null;
+
+    /**
+     * Type: xsd:string
+     * 
+     * @var string
+     */
+    public $type = null;
 
     /**
      * 
@@ -101,6 +115,24 @@ class Hotel
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * 
+     * @param string $cityId 
+     */
+    public function setCityId($cityId)
+    {
+        $this->cityId = $cityId;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getCityId()
+    {
+        return $this->cityId;
     }
 
     /**
@@ -299,6 +331,24 @@ class Hotel
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * 
+     * @param string $type 
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
 

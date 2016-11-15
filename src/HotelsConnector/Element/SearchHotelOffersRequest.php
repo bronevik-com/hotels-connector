@@ -8,12 +8,22 @@ namespace Bronevik\HotelsConnector\Element;
 class SearchHotelOffersRequest extends BaseRequest
 {
     /**
-     * Идентификатор города, по которому будет идти поиск
+     * Идентификатор города, по
+     * 										которому будет идти поиск
      * Type: xsd:int
      * 
      * @var int
      */
     public $cityId = null;
+
+    /**
+     * Идентификатор отеля, по
+     * 										которому будет идти поиск
+     * Type: xsd:int
+     * 
+     * @var int
+     */
+    public $hotelId = null;
 
     /**
      * Дата заезда
@@ -63,6 +73,24 @@ class SearchHotelOffersRequest extends BaseRequest
     public function getCityId()
     {
         return $this->cityId;
+    }
+
+    /**
+     * 
+     * @param int $hotelId 
+     */
+    public function setHotelId($hotelId)
+    {
+        $this->hotelId = $hotelId;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getHotelId()
+    {
+        return $this->hotelId;
     }
 
     /**
