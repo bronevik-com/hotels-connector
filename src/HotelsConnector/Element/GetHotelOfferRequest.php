@@ -6,26 +6,35 @@ class GetHotelOfferRequest extends BaseRequest
     /**
      * Type: xsd:string
      * 
-     * @var string
+     * @var string[]
      */
-    public $offerCode = null;
+    public $offerCode = [];
+
+    /**
+     * 
+     * @return bool
+     */
+    public function hasOfferCode()
+    {
+        return count($this->offerCode) > 0;
+    }
+
+    /**
+     * 
+     * @return string[]
+     */
+    public function getOfferCode()
+    {
+        return $this->offerCode;
+    }
 
     /**
      * 
      * @param string $offerCode 
      */
-    public function setOfferCode($offerCode)
+    public function addOfferCode($offerCode)
     {
-        $this->offerCode = $offerCode;
-    }
-
-    /**
-     * 
-     * @return string
-     */
-    public function getOfferCode()
-    {
-        return $this->offerCode;
+        $this->offerCode[] = $offerCode;
     }
 }
 

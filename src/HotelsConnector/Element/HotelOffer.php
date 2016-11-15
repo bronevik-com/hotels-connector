@@ -68,7 +68,8 @@ class HotelOffer
     public $breakfastInfo = null;
 
     /**
-     * Количество гостей, которых можно разместить в номере
+     * Количество гостей, которых можно
+     * 								разместить в номере
      * Type: xsd:int
      * 
      * @var int
@@ -82,6 +83,13 @@ class HotelOffer
      * @var string
      */
     public $roomType = null;
+
+    /**
+     * Type: xsd:boolean
+     * 
+     * @var boolean
+     */
+    public $isSharedRoom = null;
 
     /**
      * 
@@ -296,6 +304,24 @@ class HotelOffer
     public function getRoomType()
     {
         return $this->roomType;
+    }
+
+    /**
+     * 
+     * @param boolean $isSharedRoom 
+     */
+    public function setIsSharedRoom($isSharedRoom)
+    {
+        $this->isSharedRoom = $isSharedRoom;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getIsSharedRoom()
+    {
+        return $this->isSharedRoom;
     }
 }
 
