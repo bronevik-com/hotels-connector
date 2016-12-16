@@ -25,6 +25,13 @@ class ServiceAccommodation extends Service
     public $comment = null;
 
     /**
+     * Type: xsd:int
+     * 
+     * @var int[]
+     */
+    public $meals = [];
+
+    /**
      * 
      * @param string $offerCode 
      */
@@ -85,6 +92,33 @@ class ServiceAccommodation extends Service
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * 
+     * @return bool
+     */
+    public function hasMeals()
+    {
+        return count($this->meals) > 0;
+    }
+
+    /**
+     * 
+     * @return int[]
+     */
+    public function getMeals()
+    {
+        return $this->meals;
+    }
+
+    /**
+     * 
+     * @param int $meals 
+     */
+    public function addMeals($meals)
+    {
+        $this->meals[] = $meals;
     }
 }
 

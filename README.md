@@ -171,6 +171,43 @@ foreach ($cities as $city) {
 }
 ```
 
+#### Справочник удобств
+```php
+<?php
+
+/** @var \Bronevik\HotelsConnector\Element\City[] $cities */
+$amenities = $connector->getAmenities();
+```
+Разбор результата:
+```php
+<?php
+
+/** @var \Bronevik\HotelsConnector\Element\Amenity $amenity */
+foreach ($amenities as $amenity) {
+    $amenity->getId();
+    $amenity->getName();
+    $amenity->getGroupName();
+}
+```
+
+#### Справочник еды
+```php
+<?php
+
+/** @var \Bronevik\HotelsConnector\Element\City[] $cities */
+$meals = $connector->getMeals();
+```
+Разбор результата:
+```php
+<?php
+
+/** @var \Bronevik\HotelsConnector\Element\Meal $meal*/
+foreach ($meals as $meal) {
+    $meal->getId();
+    $meal->getName();
+}
+```
+
 ### Поиск предложений отелей
 
 #### Простой запрос
@@ -243,16 +280,19 @@ $hotelsWithOffers = $connector->searchHotelOffers(
 
 /** @var \Bronevik\HotelsConnector\Element\HotelWithOffers $hotelWithOffers */
 foreach ($hotelsWithOffers as $hotelWithOffers) {
-    $hotelWithOffers->getId();           // 716
-    $hotelWithOffers->getName();         // Октябрьская
-    $hotelWithOffers->getAddress();      // ул. Софьи Ковалевской, 17
-    $hotelWithOffers->getCategory();     // 4
-    $hotelWithOffers->getCheckinTime();  // 12:00:00
-    $hotelWithOffers->getCheckoutTime(); // 12:00:00
-    $hotelWithOffers->getDescription();  // «Октябрьская» - гостиница четыре звезды, удобно расположена ... 
-    $hotelWithOffers->getLatitude();     // 56.850036423348186
-    $hotelWithOffers->getLongitude();    // 60.65261006355184
-    $hotelWithOffers->getVATPercent();   // 18
+    $hotelWithOffers->getId();               // 716
+    $hotelWithOffers->getName();             // Октябрьская
+    $hotelWithOffers->getAddress();          // ул. Софьи Ковалевской, 17
+    $hotelWithOffers->getCategory();         // 4
+    $hotelWithOffers->getCheckinTime();      // 12:00:00
+    $hotelWithOffers->getCheckoutTime();     // 12:00:00
+    $hotelWithOffers->getDescription();      // «Октябрьская» - гостиница четыре звезды, удобно расположена ... 
+    $hotelWithOffers->getLatitude();         // 56.850036423348186
+    $hotelWithOffers->getLongitude();        // 60.65261006355184
+    $hotelWithOffers->getVATPercent();       // 18
+    $hotelWithOffers->getDistanceToCenter(); // 2
+    $hotelWithOffers->getVatApplicable();    // true
+    $hotelWithOffers->getVatIncluded();      // false
 
 	/** @var \Bronevik\HotelsConnector\Element\Image $photo */
     foreach ($hotelWithOffers->getPhotos() as $photo) {
@@ -264,6 +304,13 @@ foreach ($hotelsWithOffers as $hotelWithOffers) {
     foreach ($hotelWithOffers->getAmenities() as $amenity) {
         $amenity->getName(); // 
         $amenity->getType(); // 
+    }
+    
+    /** @var \Bronevik\HotelsConnector\Element\AvailableAmenity $amenity */
+    foreach ($hotelWithOffers->getAvailableAmenities() as $amenity) {
+        $amenity->getId(); // 1
+        $amenity->getIncluded(); // false
+        $amenity->getPrice(); // 125 
     }
 
 	/** @var \Bronevik\HotelsConnector\Element\HotelOffer $offer */
@@ -290,6 +337,19 @@ foreach ($hotelsWithOffers as $hotelWithOffers) {
         foreach ($offer->getCancellationPolicies() as $cancellationPolicy) {
             $cancellationPolicy->getPenaltyDateTime(); // 2016-01-21T10:00:00+05:00
             $cancellationPolicy->getPenaltySum();      // 8000
+        }
+        
+        /** @var \Bronevik\HotelsConnector\Element\AvailableMeal $meal */
+        foreach ($offer->getMeals() as $meal) {
+            $meal->getId(); // 2
+            $meal->getIncluded(); // true
+            $meal->getPrice(); // 0
+        }
+        
+        /** @var \Bronevik\HotelsConnector\Element\DailyPrice $dailyPrice */
+        foreach ($offer->getDailyPrices() as $dailyPrice) {
+            $dailyPrice->getDate(); // '2016-01-22'
+            $dailyPrice->getPrice(); // 250
         }
     }
 }

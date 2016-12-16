@@ -67,6 +67,13 @@ class OrderServiceAccommodation extends OrderService
     public $comment = null;
 
     /**
+     * Type: tns:AvailableMeal
+     * 
+     * @var \Bronevik\HotelsConnector\Element\AvailableMeal[]
+     */
+    public $meals = [];
+
+    /**
      * 
      * @param string $offerCode 
      */
@@ -235,6 +242,33 @@ class OrderServiceAccommodation extends OrderService
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * 
+     * @return bool
+     */
+    public function hasMeals()
+    {
+        return count($this->meals) > 0;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\AvailableMeal[]
+     */
+    public function getMeals()
+    {
+        return $this->meals;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\AvailableMeal $meals 
+     */
+    public function addMeals($meals)
+    {
+        $this->meals[] = $meals;
     }
 }
 

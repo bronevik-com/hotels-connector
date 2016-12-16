@@ -92,6 +92,20 @@ class HotelOffer
     public $isSharedRoom = null;
 
     /**
+     * Type: tns:DailyPrice
+     * 
+     * @var \Bronevik\HotelsConnector\Element\DailyPrice[]
+     */
+    public $dailyPrices = [];
+
+    /**
+     * Type: tns:AvailableMeal
+     * 
+     * @var \Bronevik\HotelsConnector\Element\AvailableMeal[]
+     */
+    public $meals = [];
+
+    /**
      * 
      */
     public function __construct()
@@ -322,6 +336,60 @@ class HotelOffer
     public function getIsSharedRoom()
     {
         return $this->isSharedRoom;
+    }
+
+    /**
+     * 
+     * @return bool
+     */
+    public function hasDailyPrices()
+    {
+        return count($this->dailyPrices) > 0;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\DailyPrice[]
+     */
+    public function getDailyPrices()
+    {
+        return $this->dailyPrices;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\DailyPrice $dailyPrices 
+     */
+    public function addDailyPrices($dailyPrices)
+    {
+        $this->dailyPrices[] = $dailyPrices;
+    }
+
+    /**
+     * 
+     * @return bool
+     */
+    public function hasMeals()
+    {
+        return count($this->meals) > 0;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\AvailableMeal[]
+     */
+    public function getMeals()
+    {
+        return $this->meals;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\AvailableMeal $meals 
+     */
+    public function addMeals($meals)
+    {
+        $this->meals[] = $meals;
     }
 }
 
