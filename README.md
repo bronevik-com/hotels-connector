@@ -292,7 +292,7 @@ foreach ($hotelsWithOffers as $hotelWithOffers) {
     $hotelWithOffers->getLatitude();         // 56.850036423348186
     $hotelWithOffers->getLongitude();        // 60.65261006355184
     $hotelWithOffers->getVATPercent();       // 18
-    $hotelWithOffers->getDistanceToCenter(); // 2
+    $hotelWithOffers->getDistanceToCenter(); // 2 (км)
     $hotelWithOffers->getVatApplicable();    // true
     $hotelWithOffers->getVatIncluded();      // false
 
