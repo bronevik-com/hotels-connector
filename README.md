@@ -312,7 +312,7 @@ foreach ($hotelsWithOffers as $hotelWithOffers) {
     foreach ($hotelWithOffers->getAvailableAmenities() as $amenity) {
         $amenity->getId(); // 1
         $amenity->getIncluded(); // false
-        $amenity->getPrice(); // 125 
+        $amenity->getPrice(); // 125.00 
     }
 
 	/** @var \Bronevik\HotelsConnector\Element\HotelOffer $offer */
@@ -345,13 +345,13 @@ foreach ($hotelsWithOffers as $hotelWithOffers) {
         foreach ($offer->getMeals() as $meal) {
             $meal->getId(); // 2
             $meal->getIncluded(); // true
-            $meal->getPrice(); // 0
+            $meal->getPrice(); // 0.00
         }
         
         /** @var \Bronevik\HotelsConnector\Element\DailyPrice $dailyPrice */
         foreach ($offer->getDailyPrices() as $dailyPrice) {
             $dailyPrice->getDate(); // '2016-01-22'
-            $dailyPrice->getPrice(); // 250
+            $dailyPrice->getPrice(); // 250.00
         }
     }
 }
