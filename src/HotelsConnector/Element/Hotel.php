@@ -32,6 +32,14 @@ class Hotel
     public $address = null;
 
     /**
+     * Расстояние до центра города (км)
+     * Type: xsd:string
+     * 
+     * @var string
+     */
+    public $distanceToCenter = null;
+
+    /**
      * Широта
      * Type: xsd:string
      * 
@@ -68,12 +76,34 @@ class Hotel
     public $description = null;
 
     /**
+     * Type: xsd:boolean
+     * 
+     * @var boolean
+     */
+    public $vatApplicable = null;
+
+    /**
+     * Type: xsd:boolean
+     * 
+     * @var boolean
+     */
+    public $vatIncluded = null;
+
+    /**
      * Фотографии отеля
      * Type: tns:Image
      * 
      * @var \Bronevik\HotelsConnector\Element\Image[]
      */
     public $photos = [];
+
+    /**
+     * Доступные в отеле удобства
+     * Type: tns:AvailableAmenity
+     * 
+     * @var \Bronevik\HotelsConnector\Element\AvailableAmenity[]
+     */
+    public $availableAmenities = [];
 
     /**
      * Услуги отеля
@@ -173,6 +203,24 @@ class Hotel
 
     /**
      * 
+     * @param string $distanceToCenter 
+     */
+    public function setDistanceToCenter($distanceToCenter)
+    {
+        $this->distanceToCenter = $distanceToCenter;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getDistanceToCenter()
+    {
+        return $this->distanceToCenter;
+    }
+
+    /**
+     * 
      * @param string $latitude 
      */
     public function setLatitude($latitude)
@@ -263,6 +311,42 @@ class Hotel
 
     /**
      * 
+     * @param boolean $vatApplicable 
+     */
+    public function setVatApplicable($vatApplicable)
+    {
+        $this->vatApplicable = $vatApplicable;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getVatApplicable()
+    {
+        return $this->vatApplicable;
+    }
+
+    /**
+     * 
+     * @param boolean $vatIncluded 
+     */
+    public function setVatIncluded($vatIncluded)
+    {
+        $this->vatIncluded = $vatIncluded;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getVatIncluded()
+    {
+        return $this->vatIncluded;
+    }
+
+    /**
+     * 
      * @return bool
      */
     public function hasPhotos()
@@ -286,6 +370,33 @@ class Hotel
     public function addPhotos($photos)
     {
         $this->photos[] = $photos;
+    }
+
+    /**
+     * 
+     * @return bool
+     */
+    public function hasAvailableAmenities()
+    {
+        return count($this->availableAmenities) > 0;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\AvailableAmenity[]
+     */
+    public function getAvailableAmenities()
+    {
+        return $this->availableAmenities;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\AvailableAmenity $availableAmenities 
+     */
+    public function addAvailableAmenities($availableAmenities)
+    {
+        $this->availableAmenities[] = $availableAmenities;
     }
 
     /**
