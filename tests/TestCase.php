@@ -15,7 +15,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        $connector = new HotelsConnector(Endpoints::DEVELOPMENT);
+        $connector = new HotelsConnector(Endpoints::LOCAL);
         $connector->setCredentials('test', 'test', '123456');
         $connector->setLanguage(Languages::RUSSIAN);
 
