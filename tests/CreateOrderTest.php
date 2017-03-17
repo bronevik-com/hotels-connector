@@ -61,4 +61,76 @@ class CreateOrderTest extends TestCase
         // Assert
         $this->assertEquals($expectedRoomName, $actualRoomName);
     }
+
+    /**
+     * Если в предложении есть включенная еда
+     * В заказе она тоже отобразится
+     *
+     * @group functional
+     */
+    public function testCreateOrder_offerContainsIncludedMeal_responseAlsoContainsIncludedMeal()
+    {
+        // Arrange
+        $offer = $this->findOfferWithIncludedMeal();
+
+        $request = new \Bronevik\HotelsConnector\Element\CreateOrderRequest();
+        $service = new \Bronevik\HotelsConnector\Element\ServiceAccommodation();
+        $service->setOfferCode($offer->getCode());
+
+        $request->addServices(
+            $service
+        );
+
+        // Act
+        $response       = $this->connector->createOrder($request);
+        $service = $response->getServices()[0];
+
+        // Assert
+        $this->assertTrue($service->hasMeals());
+    }
+
+    /**
+     * Если мы заказали еду
+     * В заказе она тоже отобразится
+     *
+     * @group functional
+     */
+    public function testCreateOrder_requestContainsOrderedMeal_responseAlsoContainsOrderedMeal()
+    {
+        // Arrange
+        $offer = $this->findOfferWithMealAvailableToOrder();
+
+        $request = new \Bronevik\HotelsConnector\Element\CreateOrderRequest();
+        $service = new \Bronevik\HotelsConnector\Element\ServiceAccommodation();
+        $service->setOfferCode($offer->getCode());
+        
+        foreach ($offer->getMeals() as $meal) {
+            if (!$meal->getIncluded()) {
+                $expectedOrderedMeal = $meal;
+                $service->addMeals($meal->id);
+                
+                break;
+            }
+        }
+
+        $request->addServices(
+            $service
+        );
+
+        // Act
+        $response = $this->connector->createOrder($request);
+        $service  = $response->getServices()[0];
+        
+        foreach ($service->getMeals() as $meal) {
+            /* @var \Bronevik\HotelsConnector\Element\AvailableMeal $meal */
+            if ( ! $meal->getIncluded()) {
+                $actualMeal = $meal;
+            }
+        }
+
+        // Assert
+        $this->assertNotNull($expectedOrderedMeal);
+        $this->assertNotEmpty($service->hasMeals());
+        $this->assertEquals($expectedOrderedMeal->getId(), $actualMeal->getId());
+    }
 }

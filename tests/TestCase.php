@@ -45,6 +45,52 @@ class TestCase extends \PHPUnit_Framework_TestCase
 
         return $hotels;
     }
+    
+    protected function findOfferWithIncludedMeal()
+    {
+        $hotels = $this->findHotels();
+
+        // Перебор всех предложений до первого подходящего
+        /** @var null|\Bronevik\HotelsConnector\Element\HotelOffer $offer */
+        $offer = null;
+        foreach ($hotels as $hotel) {
+            foreach ($hotel->getOffers() as $hotelOffer) {
+                $meals = $hotelOffer->getMeals();
+                foreach ($meals as $meal) {
+                    if ($meal->getIncluded()) {
+                        $offer = $hotelOffer;
+                        break;
+                    }
+                }
+            }
+        }
+        $this->assertNotNull($offer, 'Внезапно нет подходящих предложений.');
+        
+        return $offer;
+    }
+
+    protected function findOfferWithMealAvailableToOrder()
+    {
+        $hotels = $this->findHotels();
+
+        // Перебор всех предложений до первого подходящего
+        /** @var null|\Bronevik\HotelsConnector\Element\HotelOffer $offer */
+        $offer = null;
+        foreach ($hotels as $hotel) {
+            foreach ($hotel->getOffers() as $hotelOffer) {
+                $meals = $hotelOffer->getMeals();
+                foreach ($meals as $meal) {
+                    if (!$meal->getIncluded()) {
+                        $offer = $hotelOffer;
+                        break;
+                    }
+                }
+            }
+        }
+        $this->assertNotNull($offer, 'Внезапно нет подходящих предложений.');
+
+        return $offer;
+    }
 
     /**
      * @param \Bronevik\HotelsConnector\Element\HotelWithOffers[] $hotels
