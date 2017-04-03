@@ -353,6 +353,23 @@ class HotelsConnector
     }
 
     /**
+     * Поиск закаов по притериям
+     * @param $searchCriteria
+     * @return mixed
+     */
+    public function searchOrders($searchCriteria)
+    {
+        $request = new Element\SearchOrdersRequest();
+        $this->fillRequest($request);
+
+        foreach ($searchCriteria as $criterion) {
+            $request->addSearchCriteria($criterion);
+        }
+
+        return $this->soapClient->searchOrders($request)->getOrders();
+    }
+
+    /**
      * Заполнение запроса всем, чем нужно
      *
      * @param Element\BaseRequest $request
