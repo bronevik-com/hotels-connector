@@ -354,8 +354,8 @@ class HotelsConnector
 
     /**
      * Поиск закаов по притериям
-     * @param $searchCriteria
-     * @return mixed
+     * @param Element\SearchOrderCriterion[] $searchCriteria
+     * @return Element\Order[]
      */
     public function searchOrders($searchCriteria)
     {
