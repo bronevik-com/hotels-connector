@@ -18,6 +18,22 @@ class HotelOffer
     public $name = null;
 
     /**
+     * Флаг невозвратности предложения
+     * Type: xsd:boolean
+     * 
+     * @var boolean
+     */
+    public $nonRefundable = null;
+
+    /**
+     * Type: tns:PriceDetails
+     * 
+     * @var \Bronevik\HotelsConnector\Element\PriceDetails
+     */
+    public $priceDetails = null;
+
+    /**
+     * @deprecated
      * Type: xsd:float
      * 
      * @var float
@@ -110,6 +126,7 @@ class HotelOffer
      */
     public function __construct()
     {
+        $this->priceDetails = new \Bronevik\HotelsConnector\Element\PriceDetails;
         $this->breakfastInfo = new \Bronevik\HotelsConnector\Element\BreakfastInfo;
     }
 
@@ -147,6 +164,42 @@ class HotelOffer
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * 
+     * @param boolean $nonRefundable 
+     */
+    public function setNonRefundable($nonRefundable)
+    {
+        $this->nonRefundable = $nonRefundable;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getNonRefundable()
+    {
+        return $this->nonRefundable;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\PriceDetails $priceDetails 
+     */
+    public function setPriceDetails($priceDetails)
+    {
+        $this->priceDetails = $priceDetails;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\PriceDetails
+     */
+    public function getPriceDetails()
+    {
+        return $this->priceDetails;
     }
 
     /**

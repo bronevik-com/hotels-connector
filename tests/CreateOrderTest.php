@@ -76,6 +76,7 @@ class CreateOrderTest extends TestCase
         $request = new \Bronevik\HotelsConnector\Element\CreateOrderRequest();
         $service = new \Bronevik\HotelsConnector\Element\ServiceAccommodation();
         $service->setOfferCode($offer->getCode());
+        $service->addGuests('Test guest');
 
         $request->addServices(
             $service
@@ -103,6 +104,7 @@ class CreateOrderTest extends TestCase
         $request = new \Bronevik\HotelsConnector\Element\CreateOrderRequest();
         $service = new \Bronevik\HotelsConnector\Element\ServiceAccommodation();
         $service->setOfferCode($offer->getCode());
+        $service->addGuests('Test guest');
         
         foreach ($offer->getMeals() as $meal) {
             if (!$meal->getIncluded()) {
@@ -124,13 +126,14 @@ class CreateOrderTest extends TestCase
         foreach ($service->getMeals() as $meal) {
             /* @var \Bronevik\HotelsConnector\Element\AvailableMeal $meal */
             if ( ! $meal->getIncluded()) {
-                $actualMeal = $meal;
+                $actualOrderedMeal = $meal;
             }
         }
 
         // Assert
         $this->assertNotNull($expectedOrderedMeal);
-        $this->assertNotEmpty($service->hasMeals());
-        $this->assertEquals($expectedOrderedMeal->getId(), $actualMeal->getId());
+        $this->assertTrue($service->hasMeals());
+        $this->assertNotNull($actualOrderedMeal);
+        $this->assertEquals($expectedOrderedMeal->getId(), $actualOrderedMeal->getId());
     }
 }

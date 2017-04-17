@@ -13,7 +13,7 @@
         - [Получение списка стран](#Получение-списка-стран)
         - [Получение списка городов](#Получение-списка-городов)
         - [Получение списка удобств](#Получение-списка-удобств)
-        - [Получение списка еды](#Получение-списка-еды)
+        - [Получение списка питания](#Получение-списка-питания)
     - [Поиск предложений отелей](#Поиск-предложений-отелей)
         - [Простой запрос](#Простой-запрос)
         - [Запрос с фильтрацией предложений](#Запрос-с-фильтрацией-предложений)
@@ -192,7 +192,7 @@ foreach ($amenities as $amenity) {
 }
 ```
 
-#### Получение списка еды
+#### Получение списка питания
 ```php
 <?php
 
@@ -275,7 +275,7 @@ $hotelsWithOffers = $connector->searchHotelOffers(
 );
 ```
 
-#### Объект заказа
+#### Отельное предложение
 
 ```php
 <?php
@@ -328,12 +328,26 @@ foreach ($hotelsWithOffers as $hotelWithOffers) {
         $offer->getCurrency();              // RUB
         $offer->getCommission();            // 0
         $offer->getImmediateConfirmation(); // true
+        
+        /**
+          * Является ли предложение невозвратным 
+          * 
+          * @var boolean $isNonRefundable 
+          */
+        $isNonRefundable = $offer->getNonRefundable();
     
     	/** @var \Bronevik\HotelsConnector\Element\BreakfastInfo $offerBreafastInfo */
         $offerBreafastInfo = $offer->getBreakfastInfo();
         $offerBreafastInfo->getName();      // Завтрак шведский стол
         $offerBreafastInfo->getPrice();     // 0.00
         $offerBreafastInfo->getIncluded();  // true
+        
+        /**
+          * Детализация стоимости 
+          * 
+          * @var \Bronevik\HotelsConnector\Element\PriceDetails $priceDetails
+          */
+        $priceDetails = $offer->getPriceDetails();
     
     	/** @var \Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy $cancellationPolicy */
         foreach ($offer->getCancellationPolicies() as $cancellationPolicy) {
@@ -439,21 +453,22 @@ $order->getContactEmail();  // grigoriy@example.com
 
 /** @var \Bronevik\HotelsConnector\Element\OrderServiceAccommodation $service */
 foreach ($order->getServices() as $service) {
-    $service->getId();          // 917503
-    $service->getComment();     // Не представлять напитки из минибара.
-    $service->getCheckin();     // 2016-01-22T12:00:00+05:00
-    $service->getCheckout();    // 2016-01-24T12:00:00+05:00
-    $service->getCommission();  // 0
-    $service->getDate();        // 2015-12-11T15:07:09+05:00
-    $service->getHotelId();     // 716
-    $service->getHotelName();   // Октябрьская
-    $service->getOfferCode();   // T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=
-    $service->getOfferName();   // Люкс
-    $service->getPrice();       // 16000
-    $service->getReferenceId(); // 
-    $service->getRoomType();    // double
-    $service->getStatusId();    // 1
-    $service->getStatusName();  // Новый
+    $service->getId();            // 917503
+    $service->getNonRefundable(); // true
+    $service->getComment();       // Не представлять напитки из минибара.
+    $service->getCheckin();       // 2016-01-22T12:00:00+05:00
+    $service->getCheckout();      // 2016-01-24T12:00:00+05:00
+    $service->getCommission();    // 0
+    $service->getDate();          // 2015-12-11T15:07:09+05:00
+    $service->getHotelId();       // 716
+    $service->getHotelName();     // Октябрьская
+    $service->getOfferCode();     // T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=
+    $service->getOfferName();     // Люкс
+    $service->getPrice();         // 16000
+    $service->getReferenceId();   // 
+    $service->getRoomType();      // double
+    $service->getStatusId();      // 1
+    $service->getStatusName();    // Новый
 
     /** @var \Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy $cancellationPolicy */
     foreach ($service->getCancellationPolicies() as $cancellationPolicy) {

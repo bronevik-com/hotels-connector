@@ -39,6 +39,13 @@ abstract class OrderService
     public $commission = null;
 
     /**
+     * Type: tns:PriceDetails
+     * 
+     * @var \Bronevik\HotelsConnector\Element\PriceDetails
+     */
+    public $priceDetails = null;
+
+    /**
      * Type: tns:CancellationPolicy
      * 
      * @var \Bronevik\HotelsConnector\Element\CancellationPolicy[]
@@ -58,6 +65,14 @@ abstract class OrderService
      * @var string
      */
     public $statusName = null;
+
+    /**
+     * 
+     */
+    public function __construct()
+    {
+        $this->priceDetails = new \Bronevik\HotelsConnector\Element\PriceDetails;
+    }
 
     /**
      * 
@@ -147,6 +162,24 @@ abstract class OrderService
     public function getCommission()
     {
         return $this->commission;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\PriceDetails $priceDetails 
+     */
+    public function setPriceDetails($priceDetails)
+    {
+        $this->priceDetails = $priceDetails;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\PriceDetails
+     */
+    public function getPriceDetails()
+    {
+        return $this->priceDetails;
     }
 
     /**

@@ -83,13 +83,6 @@ class Hotel
     public $vatApplicable = null;
 
     /**
-     * Type: xsd:boolean
-     * 
-     * @var boolean
-     */
-    public $vatIncluded = null;
-
-    /**
      * Фотографии отеля
      * Type: tns:Image
      * 
@@ -325,24 +318,6 @@ class Hotel
     public function getVatApplicable()
     {
         return $this->vatApplicable;
-    }
-
-    /**
-     * 
-     * @param boolean $vatIncluded 
-     */
-    public function setVatIncluded($vatIncluded)
-    {
-        $this->vatIncluded = $vatIncluded;
-    }
-
-    /**
-     * 
-     * @return boolean
-     */
-    public function getVatIncluded()
-    {
-        return $this->vatIncluded;
     }
 
     /**
