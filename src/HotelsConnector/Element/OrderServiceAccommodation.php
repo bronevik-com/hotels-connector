@@ -67,6 +67,35 @@ class OrderServiceAccommodation extends OrderService
     public $comment = null;
 
     /**
+     * Type: xsd:boolean
+     * 
+     * @var boolean
+     */
+    public $vatApplicable = null;
+
+    /**
+     * Type: xsd:boolean
+     * 
+     * @var boolean
+     */
+    public $vatIncluded = null;
+
+    /**
+     * Type: xsd:float
+     * 
+     * @var float
+     */
+    public $vatAmount = null;
+
+    /**
+     * Флаг невозвратности предложения
+     * Type: xsd:boolean
+     * 
+     * @var boolean
+     */
+    public $nonRefundable = null;
+
+    /**
      * Type: tns:AvailableMeal
      * 
      * @var \Bronevik\HotelsConnector\Element\AvailableMeal[]
@@ -242,6 +271,78 @@ class OrderServiceAccommodation extends OrderService
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * 
+     * @param boolean $vatApplicable 
+     */
+    public function setVatApplicable($vatApplicable)
+    {
+        $this->vatApplicable = $vatApplicable;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getVatApplicable()
+    {
+        return $this->vatApplicable;
+    }
+
+    /**
+     * 
+     * @param boolean $vatIncluded 
+     */
+    public function setVatIncluded($vatIncluded)
+    {
+        $this->vatIncluded = $vatIncluded;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getVatIncluded()
+    {
+        return $this->vatIncluded;
+    }
+
+    /**
+     * 
+     * @param float $vatAmount 
+     */
+    public function setVatAmount($vatAmount)
+    {
+        $this->vatAmount = $vatAmount;
+    }
+
+    /**
+     * 
+     * @return float
+     */
+    public function getVatAmount()
+    {
+        return $this->vatAmount;
+    }
+
+    /**
+     * 
+     * @param boolean $nonRefundable 
+     */
+    public function setNonRefundable($nonRefundable)
+    {
+        $this->nonRefundable = $nonRefundable;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getNonRefundable()
+    {
+        return $this->nonRefundable;
     }
 
     /**

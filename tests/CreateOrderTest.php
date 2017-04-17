@@ -131,7 +131,6 @@ class CreateOrderTest extends TestCase
         }
 
         // Assert
-        var_dump($service->getMeals());
         $this->assertNotNull($expectedOrderedMeal);
         $this->assertTrue($service->hasMeals());
         $this->assertNotNull($actualOrderedMeal);

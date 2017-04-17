@@ -4,11 +4,11 @@ namespace Bronevik\HotelsConnector\Element;
 class HotelWithOffers extends Hotel
 {
     /**
-     * Type: tns:HotelOffer
+     * Type: xsd:boolean
      * 
-     * @var \Bronevik\HotelsConnector\Element\HotelOffer[]
+     * @var boolean
      */
-    public $offers = [];
+    public $vatIncluded = null;
 
     /**
      * Type: xsd:float
@@ -16,6 +16,49 @@ class HotelWithOffers extends Hotel
      * @var float
      */
     public $VATPercent = null;
+
+    /**
+     * Type: tns:HotelOffer
+     * 
+     * @var \Bronevik\HotelsConnector\Element\HotelOffer[]
+     */
+    public $offers = [];
+
+    /**
+     * 
+     * @param boolean $vatIncluded 
+     */
+    public function setVatIncluded($vatIncluded)
+    {
+        $this->vatIncluded = $vatIncluded;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getVatIncluded()
+    {
+        return $this->vatIncluded;
+    }
+
+    /**
+     * 
+     * @param float $VATPercent 
+     */
+    public function setVATPercent($VATPercent)
+    {
+        $this->VATPercent = $VATPercent;
+    }
+
+    /**
+     * 
+     * @return float
+     */
+    public function getVATPercent()
+    {
+        return $this->VATPercent;
+    }
 
     /**
      * 
@@ -42,24 +85,6 @@ class HotelWithOffers extends Hotel
     public function addOffers($offers)
     {
         $this->offers[] = $offers;
-    }
-
-    /**
-     * 
-     * @param float $VATPercent 
-     */
-    public function setVATPercent($VATPercent)
-    {
-        $this->VATPercent = $VATPercent;
-    }
-
-    /**
-     * 
-     * @return float
-     */
-    public function getVATPercent()
-    {
-        return $this->VATPercent;
     }
 }
 
