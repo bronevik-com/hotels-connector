@@ -4,6 +4,14 @@ namespace Bronevik\HotelsConnector\Element;
 class OrderServiceAccommodation extends OrderService
 {
     /**
+     * Сведения о договоре, на основании которого произведено бронирование
+     * Type: tns:Contract
+     * 
+     * @var \Bronevik\HotelsConnector\Element\Contract
+     */
+    public $contract = null;
+
+    /**
      * Type: xsd:string
      * 
      * @var string
@@ -101,6 +109,32 @@ class OrderServiceAccommodation extends OrderService
      * @var \Bronevik\HotelsConnector\Element\AvailableMeal[]
      */
     public $meals = [];
+
+    /**
+     * 
+     */
+    public function __construct()
+    {
+        $this->contract = new \Bronevik\HotelsConnector\Element\Contract;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\Contract $contract 
+     */
+    public function setContract($contract)
+    {
+        $this->contract = $contract;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\Contract
+     */
+    public function getContract()
+    {
+        return $this->contract;
+    }
 
     /**
      * 

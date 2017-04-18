@@ -444,7 +444,7 @@ $order = $connector->createOrder($orderRequest);
 
 ```php
 <?php
-
+/** @var \Bronevik\HotelsConnector\Element\Order $order */
 $order->getId();            // 349007
 $order->getComment();       // Гости приедут в районе 18 часов.
 $order->getContactPerson(); // Григорий
@@ -454,6 +454,12 @@ $order->getContactEmail();  // grigoriy@example.com
 /** @var \Bronevik\HotelsConnector\Element\OrderServiceAccommodation $service */
 foreach ($order->getServices() as $service) {
     $service->getId();            // 917503
+    
+    $contract = $service->getContract();
+    $contract->getId();           // 5
+    $contract->getNumber();       // 2125-СВ
+    $contract->getBeginsAt();     // 2015-01-02
+    
     $service->getNonRefundable(); // true
     $service->getComment();       // Не представлять напитки из минибара.
     $service->getCheckin();       // 2016-01-22T12:00:00+05:00
@@ -501,6 +507,7 @@ $order = $connector->getOrder(349007);
 <?php
 
 /** @var bool $cancelResult */
+/** @var \Bronevik\HotelsConnector\Element\Order $order */
 $cancelResult = $connector->cancelOrder($order->getId());
 ```
 
