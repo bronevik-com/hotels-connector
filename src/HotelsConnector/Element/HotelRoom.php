@@ -22,6 +22,14 @@ class HotelRoom
     public $name = null;
 
     /**
+     * Доступные в номере удобства
+     * Type: tns:AvailableAmenity
+     * 
+     * @var \Bronevik\HotelsConnector\Element\AvailableAmenity[]
+     */
+    public $availableAmenities = [];
+
+    /**
      * Описание номера
      * Type: xsd:string
      * 
@@ -71,6 +79,33 @@ class HotelRoom
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * 
+     * @return bool
+     */
+    public function hasAvailableAmenities()
+    {
+        return count($this->availableAmenities) > 0;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\AvailableAmenity[]
+     */
+    public function getAvailableAmenities()
+    {
+        return $this->availableAmenities;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\AvailableAmenity $availableAmenities 
+     */
+    public function addAvailableAmenities($availableAmenities)
+    {
+        $this->availableAmenities[] = $availableAmenities;
     }
 
     /**

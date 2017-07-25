@@ -18,6 +18,14 @@ class HotelOffer
     public $name = null;
 
     /**
+     * Флаг наличия lhp-цен в предложении
+     * Type: xsd:boolean
+     * 
+     * @var boolean
+     */
+    public $lhp = null;
+
+    /**
      * Флаг невозвратности предложения
      * Type: xsd:boolean
      * 
@@ -82,6 +90,13 @@ class HotelOffer
      * @var \Bronevik\HotelsConnector\Element\BreakfastInfo
      */
     public $breakfastInfo = null;
+
+    /**
+     * Type: xsd:int
+     * 
+     * @var int
+     */
+    public $roomId = null;
 
     /**
      * Количество гостей, которых можно
@@ -164,6 +179,24 @@ class HotelOffer
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * 
+     * @param boolean $lhp 
+     */
+    public function setLhp($lhp)
+    {
+        $this->lhp = $lhp;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getLhp()
+    {
+        return $this->lhp;
     }
 
     /**
@@ -335,6 +368,24 @@ class HotelOffer
     public function getBreakfastInfo()
     {
         return $this->breakfastInfo;
+    }
+
+    /**
+     * 
+     * @param int $roomId 
+     */
+    public function setRoomId($roomId)
+    {
+        $this->roomId = $roomId;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getRoomId()
+    {
+        return $this->roomId;
     }
 
     /**

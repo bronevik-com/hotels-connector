@@ -4,6 +4,14 @@ namespace Bronevik\HotelsConnector\Element;
 class OrderServiceAccommodation extends OrderService
 {
     /**
+     * Сведения о договоре, на основании которого произведено бронирование
+     * Type: tns:Contract
+     * 
+     * @var \Bronevik\HotelsConnector\Element\Contract
+     */
+    public $contract = null;
+
+    /**
      * Type: xsd:string
      * 
      * @var string
@@ -30,6 +38,13 @@ class OrderServiceAccommodation extends OrderService
      * @var string
      */
     public $hotelName = null;
+
+    /**
+     * Type: xsd:int
+     * 
+     * @var int
+     */
+    public $roomId = null;
 
     /**
      * Type: xsd:string
@@ -104,6 +119,32 @@ class OrderServiceAccommodation extends OrderService
 
     /**
      * 
+     */
+    public function __construct()
+    {
+        $this->contract = new \Bronevik\HotelsConnector\Element\Contract;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\Contract $contract 
+     */
+    public function setContract($contract)
+    {
+        $this->contract = $contract;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\Contract
+     */
+    public function getContract()
+    {
+        return $this->contract;
+    }
+
+    /**
+     * 
      * @param string $offerCode 
      */
     public function setOfferCode($offerCode)
@@ -172,6 +213,24 @@ class OrderServiceAccommodation extends OrderService
     public function getHotelName()
     {
         return $this->hotelName;
+    }
+
+    /**
+     * 
+     * @param int $roomId 
+     */
+    public function setRoomId($roomId)
+    {
+        $this->roomId = $roomId;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getRoomId()
+    {
+        return $this->roomId;
     }
 
     /**

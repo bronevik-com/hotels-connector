@@ -25,6 +25,14 @@ class PriceDetails
     public $client = null;
 
     /**
+     * Дополнительные цены
+     * Type: tns:NamedDetailedPrice
+     * 
+     * @var \Bronevik\HotelsConnector\Element\NamedDetailedPrice[]
+     */
+    public $extra = [];
+
+    /**
      * 
      */
     public function __construct()
@@ -85,6 +93,33 @@ class PriceDetails
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * 
+     * @return bool
+     */
+    public function hasExtra()
+    {
+        return count($this->extra) > 0;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\NamedDetailedPrice[]
+     */
+    public function getExtra()
+    {
+        return $this->extra;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\NamedDetailedPrice $extra 
+     */
+    public function addExtra($extra)
+    {
+        $this->extra[] = $extra;
     }
 }
 
