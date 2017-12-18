@@ -192,7 +192,7 @@ class HotelsConnector
     }
 
     /**
-     * Получение списка стран
+     * Получение списка типов питания
      *
      * @return Element\Meal[]
      */
