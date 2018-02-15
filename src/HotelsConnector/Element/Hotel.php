@@ -108,7 +108,7 @@ class Hotel
 
     /**
      * Категория отеля от 0 до 5. 0 - категория
-     * 								не указана.
+     *                                 не указана.
      * Type: xsd:int
      * 
      * @var int
@@ -121,6 +121,22 @@ class Hotel
      * @var string
      */
     public $type = null;
+
+    /**
+     * Важная информация для гостей
+     * Type: tns:InformationForGuest
+     * 
+     * @var \Bronevik\HotelsConnector\Element\InformationForGuest
+     */
+    public $informationForGuest = null;
+
+    /**
+     * 
+     */
+    public function __construct()
+    {
+        $this->informationForGuest = new \Bronevik\HotelsConnector\Element\InformationForGuest;
+    }
 
     /**
      * 
@@ -435,6 +451,24 @@ class Hotel
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\InformationForGuest $informationForGuest 
+     */
+    public function setInformationForGuest($informationForGuest)
+    {
+        $this->informationForGuest = $informationForGuest;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\InformationForGuest
+     */
+    public function getInformationForGuest()
+    {
+        return $this->informationForGuest;
     }
 }
 

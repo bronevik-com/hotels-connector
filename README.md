@@ -1,4 +1,4 @@
-# Коннектор для SOAP-сервиса xml.bronevik.com/soap/v2.0
+# Коннектор для SOAP-сервиса hotels-api.bronevik.com
 
 - [Установка](#Установка)
     - [Требования](#Требования)
@@ -117,7 +117,7 @@ echo $connector->ping('Привет, Броневичок!'); // Привет, �
 
 ## Документация по работе с SOAP-сервером (без использования этого коннектора)
 
-Документация в формате PDF: https://xml.bronevik.com/soap/v2.0/ws_2.0.0.pdf.
+Документация в формате PDF: https://hotels-api.bronevik.com/v2.0.1/api.pdf
 
 Следует упомянуть, что при вызове метода `SearchHotelOffersRequest` параметр `currency` является обязательным и сейчас
 у него только одно возможное значение: `rub`. Без заполнения этого параметра сервис вернёт сообщение об ошибке.
@@ -299,7 +299,7 @@ foreach ($hotelsWithOffers as $hotelWithOffers) {
 	/** @var \Bronevik\HotelsConnector\Element\Image $photo */
     foreach ($hotelWithOffers->getPhotos() as $photo) {
         $photo->getGuid(); // 73c7c9b97a36ac0d970990937d842417
-        $photo->getUrl();  // //dev-xml.bronevik.com/static/photo/g/250x250a/73c7c9b97a36ac0d970990937d842417
+        $photo->getUrl();  // //dev.bronevik.com/static/photo/g/250x250a/73c7c9b97a36ac0d970990937d842417
     }
 
 	/** @var \Bronevik\HotelsConnector\Element\HotelAmenity $amenity */
