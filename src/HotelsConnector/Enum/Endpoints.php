@@ -4,13 +4,11 @@ namespace Bronevik\HotelsConnector\Enum;
 
 abstract class Endpoints
 {
-    const PRODUCTION  = 'https://xml.bronevik.com/soap/v2.0/ws_2.0.0.php';
-    const DEVELOPMENT = 'https://dev-xml.bronevik.com/soap/v2.0/ws_2.0.0.php';
-    const LOCAL       = 'https://xml.bronevik.dev/soap/v2.0/ws_2.0.0.php';
-    
+    const PRODUCTION  = 'https://hotels-api.bronevik.com/v2.0.1/api.php';
+    const DEVELOPMENT = 'https://dev-hotels-api.bronevik.com/v2.0.1/api.php';
+
     public static $wsdlUrls = [
-        self::PRODUCTION  => 'https://xml.bronevik.com/soap/v2.0/ws_2.0.0.wsdl',
-        self::DEVELOPMENT => 'https://dev-xml.bronevik.com/soap/v2.0/ws_2.0.0.wsdl',
-        self::LOCAL       => 'https://xml.bronevik.dev/soap/v2.0/ws_2.0.0.wsdl',
+        self::PRODUCTION  => 'https://hotels-api.bronevik.com/v2.0.1/api.wsdl',
+        self::DEVELOPMENT => 'https://dev-hotels-api.bronevik.com/v2.0.1/api.wsdl',
     ];
 }

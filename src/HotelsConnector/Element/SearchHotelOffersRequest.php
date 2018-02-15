@@ -9,7 +9,7 @@ class SearchHotelOffersRequest extends BaseRequest
 {
     /**
      * Идентификатор города, по
-     * 										которому будет идти поиск
+     *                                         которому будет идти поиск
      * Type: xsd:int
      * 
      * @var int
@@ -18,7 +18,7 @@ class SearchHotelOffersRequest extends BaseRequest
 
     /**
      * Идентификатор отеля, по
-     * 										которому будет идти поиск
+     *                                         которому будет идти поиск
      * Type: xsd:int
      * 
      * @var int

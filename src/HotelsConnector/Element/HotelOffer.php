@@ -100,7 +100,7 @@ class HotelOffer
 
     /**
      * Количество гостей, которых можно
-     * 								разместить в номере
+     *                                 разместить в номере
      * Type: xsd:int
      * 
      * @var int
@@ -121,6 +121,22 @@ class HotelOffer
      * @var boolean
      */
     public $isSharedRoom = null;
+
+    /**
+     * Является ли номер блочным. Блочный номер - это номер с общей ванной комнатой и туалетом для
+     *                                 нескольких номеров
+     * Type: xsd:boolean
+     * 
+     * @var boolean
+     */
+    public $isBlockRoom = null;
+
+    /**
+     * Type: tns:PaymentRecipients
+     * 
+     * @var string
+     */
+    public $paymentRecipient = null;
 
     /**
      * Type: tns:DailyPrice
@@ -440,6 +456,42 @@ class HotelOffer
     public function getIsSharedRoom()
     {
         return $this->isSharedRoom;
+    }
+
+    /**
+     * 
+     * @param boolean $isBlockRoom 
+     */
+    public function setIsBlockRoom($isBlockRoom)
+    {
+        $this->isBlockRoom = $isBlockRoom;
+    }
+
+    /**
+     * 
+     * @return boolean
+     */
+    public function getIsBlockRoom()
+    {
+        return $this->isBlockRoom;
+    }
+
+    /**
+     * 
+     * @param string $paymentRecipient 
+     */
+    public function setPaymentRecipient($paymentRecipient)
+    {
+        $this->paymentRecipient = $paymentRecipient;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getPaymentRecipient()
+    {
+        return $this->paymentRecipient;
     }
 
     /**
