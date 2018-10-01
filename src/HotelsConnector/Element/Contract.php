@@ -23,7 +23,7 @@ class Contract
      * Дата начала действия договора
      * Type: xsd:date
      * 
-     * @var date
+     * @var string
      */
     public $beginsAt = null;
 
@@ -65,7 +65,7 @@ class Contract
 
     /**
      * 
-     * @param date $beginsAt 
+     * @param string $beginsAt
      */
     public function setBeginsAt($beginsAt)
     {
@@ -74,7 +74,7 @@ class Contract
 
     /**
      * 
-     * @return date
+     * @return string
      */
     public function getBeginsAt()
     {

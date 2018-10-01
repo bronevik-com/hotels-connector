@@ -83,6 +83,7 @@ class OrderServiceAccommodation extends OrderService
 
     /**
      * Type: xsd:boolean
+     * @deprecated
      * 
      * @var boolean
      */
@@ -90,6 +91,7 @@ class OrderServiceAccommodation extends OrderService
 
     /**
      * Type: xsd:boolean
+     * @deprecated
      * 
      * @var boolean
      */
@@ -97,6 +99,7 @@ class OrderServiceAccommodation extends OrderService
 
     /**
      * Type: xsd:float
+     * @deprecated
      * 
      * @var float
      */
@@ -127,11 +130,38 @@ class OrderServiceAccommodation extends OrderService
     public $paymentRecipient = null;
 
     /**
+     * Type: tns:ServiceExtraField
+     *
+     * @var ServiceExtraField[]
+     */
+    public $extraField = [];
+
+    /**
      * Type: tns:AvailableMeal
      * 
      * @var \Bronevik\HotelsConnector\Element\AvailableMeal[]
      */
     public $meals = [];
+
+    /**
+     * @var OfferPolicy[]
+     */
+    public $offerPolicies = [];
+
+    /**
+     * Type: tns:DailyPrices
+     *
+     * @var DailyPrices
+     */
+    public $dailyPrices;
+
+    /**
+     * @param OfferPolicy $policy
+     */
+    public function addOfferPolicy(OfferPolicy $policy)
+    {
+        $this->offerPolicies[] = $policy;
+    }
 
     /**
      * 
@@ -454,6 +484,33 @@ class OrderServiceAccommodation extends OrderService
     public function getPaymentRecipient()
     {
         return $this->paymentRecipient;
+    }
+
+    /**
+     *
+     * @return bool
+     */
+    public function hasExtraField()
+    {
+        return count($this->extraField) > 0;
+    }
+
+    /**
+     *
+     * @return ServiceExtraField[]
+     */
+    public function getExtraField()
+    {
+        return $this->extraField;
+    }
+
+    /**
+     *
+     * @param ServiceExtraField $extraField
+     */
+    public function addExtraField($extraField)
+    {
+        $this->extraField[] = $extraField;
     }
 
     /**

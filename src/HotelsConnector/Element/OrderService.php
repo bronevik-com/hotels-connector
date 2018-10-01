@@ -26,17 +26,45 @@ abstract class OrderService
 
     /**
      * Type: xsd:float
-     * 
+     * @deprecated
      * @var float
      */
     public $price = null;
 
     /**
      * Type: xsd:float
-     * 
+     * @deprecated
      * @var float
      */
     public $commission = null;
+
+    /**
+     * Type: xsd:string
+     *
+     * @var string
+     */
+    public $cityId = null;
+
+    /**
+     * Type: xsd:string
+     *
+     * @var string
+     */
+    public $cityName = null;
+
+    /**
+     * Type: xsd:string
+     *
+     * @var string
+     */
+    public $countryId = null;
+
+    /**
+     * Type: xsd:string
+     *
+     * @var string
+     */
+    public $countryName = null;
 
     /**
      * Type: tns:PriceDetails
@@ -165,8 +193,80 @@ abstract class OrderService
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\PriceDetails $priceDetails 
+     *
+     * @param string $cityId
+     */
+    public function setCityId($cityId)
+    {
+        $this->cityId = $cityId;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getCityId()
+    {
+        return $this->cityId;
+    }
+
+    /**
+     *
+     * @param string $cityName
+     */
+    public function setCityName($cityName)
+    {
+        $this->cityName = $cityName;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getCityName()
+    {
+        return $this->cityName;
+    }
+
+    /**
+     *
+     * @param string $countryId
+     */
+    public function setCountryId($countryId)
+    {
+        $this->countryId = $countryId;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getCountryId()
+    {
+        return $this->countryId;
+    }
+
+    /**
+     *
+     * @param string $countryName
+     */
+    public function setCountryName($countryName)
+    {
+        $this->countryName = $countryName;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getCountryName()
+    {
+        return $this->countryName;
+    }
+
+    /**
+     *
+     * @param \Bronevik\HotelsConnector\Element\PriceDetails $priceDetails
      */
     public function setPriceDetails($priceDetails)
     {

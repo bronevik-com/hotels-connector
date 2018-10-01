@@ -28,4 +28,3 @@ class SearchOrderCriterionServiceReferenceId extends SearchOrderCriterion
         return $this->referenceId;
     }
 }
-

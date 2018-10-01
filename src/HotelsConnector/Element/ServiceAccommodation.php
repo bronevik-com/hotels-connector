@@ -5,35 +5,52 @@ class ServiceAccommodation extends Service
 {
     /**
      * Type: xsd:string
-     * 
+     *
      * @var string
      */
     public $offerCode = null;
 
     /**
      * Type: xsd:string
-     * 
+     *
      * @var string[]
      */
     public $guests = [];
 
     /**
      * Type: xsd:string
-     * 
+     *
      * @var string
      */
     public $comment = null;
 
     /**
+     * Type: xsd:float
+     *
+     * @var float
+     */
+    public $sellingPrice = null;
+
+    /**
      * Type: xsd:int
-     * 
+     *
      * @var int[]
      */
     public $meals = [];
 
     /**
-     * 
-     * @param string $offerCode 
+     * @var int
+     */
+    public $checkinHour;
+
+    /**
+     * @var int
+     */
+    public $checkoutHour;
+
+    /**
+     *
+     * @param string $offerCode
      */
     public function setOfferCode($offerCode)
     {
@@ -41,7 +58,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getOfferCode()
@@ -50,7 +67,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * 
+     *
      * @return bool
      */
     public function hasGuests()
@@ -59,7 +76,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * 
+     *
      * @return string[]
      */
     public function getGuests()
@@ -68,8 +85,8 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * 
-     * @param string $guests 
+     *
+     * @param string $guests
      */
     public function addGuests($guests)
     {
@@ -77,8 +94,8 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * 
-     * @param string $comment 
+     *
+     * @param string $comment
      */
     public function setComment($comment)
     {
@@ -86,7 +103,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getComment()
@@ -95,7 +112,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * 
+     *
      * @return bool
      */
     public function hasMeals()
@@ -104,7 +121,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * 
+     *
      * @return int[]
      */
     public function getMeals()
@@ -113,8 +130,8 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * 
-     * @param int $meals 
+     *
+     * @param int $meals
      */
     public function addMeals($meals)
     {

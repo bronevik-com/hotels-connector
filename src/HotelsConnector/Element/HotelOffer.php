@@ -49,6 +49,12 @@ class HotelOffer
     public $price = null;
 
     /**
+     * Type: tns:Tax
+     *
+     * @var \Bronevik\HotelsConnector\Element\Tax[]
+     */
+    public $taxes = [];
+    /**
      * Type: tns:Currency
      * 
      * @var string
@@ -56,8 +62,7 @@ class HotelOffer
     public $currency = null;
 
     /**
-     * Type: xsd:float
-     * 
+     * @deprecated
      * @var float
      */
     public $commission = null;
@@ -85,6 +90,7 @@ class HotelOffer
 
     /**
      * Информация о завтраке
+     * @deprecated
      * Type: tns:BreakfastInfo
      * 
      * @var \Bronevik\HotelsConnector\Element\BreakfastInfo
@@ -151,6 +157,17 @@ class HotelOffer
      * @var \Bronevik\HotelsConnector\Element\AvailableMeal[]
      */
     public $meals = [];
+
+    /**
+     * @var OfferPolicy[]
+     */
+    public $offerPolicies = [];
+
+    /**
+     * Ссылка на страницу бронирования
+     * @var string
+     */
+    public $deepLink;
 
     /**
      * 
@@ -267,6 +284,33 @@ class HotelOffer
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     *
+     * @return bool
+     */
+    public function hasTaxes()
+    {
+        return count($this->Taxes) > 0;
+    }
+
+    /**
+     *
+     * @return \Bronevik\HotelsConnector\Element\Tax[]
+     */
+    public function getTaxes()
+    {
+        return $this->Taxes;
+    }
+
+    /**
+     *
+     * @param \Bronevik\HotelsConnector\Element\Tax $Taxes
+     */
+    public function addTaxes($Taxes)
+    {
+        $this->Taxes[] = $Taxes;
     }
 
     /**
