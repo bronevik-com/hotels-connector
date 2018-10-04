@@ -19,11 +19,21 @@ class GetHotelOfferPricingRequest extends BaseRequest
         return count($this->services) > 0;
     }
 
-    public function validate()
+    /**
+     *
+     * @return int[]
+     */
+    public function getServiceIds()
     {
-        /** @var ServiceAccommodation $service */
-        foreach ($this->services as $service) {
-            $service->validate();
-        }
+        return $this->services;
+    }
+
+    /**
+     *
+     * @param int $hotelId
+     */
+    public function addServiceId($hotelId)
+    {
+        $this->services[] = $hotelId;
     }
 }

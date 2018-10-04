@@ -378,6 +378,71 @@ class HotelsConnector
     }
 
     /**
+     * @param int[] $serviceIds
+     *
+     * @return Element\OrderServiceAccommodationPricing[]
+     */
+    public function GetHotelOfferPricing($serviceIds)
+    {
+        $request = new Element\GetHotelOfferPricingRequest();
+        $this->fillRequest($request);
+
+        foreach ((array) $serviceIds as $id) {
+            $request->addServiceId($id);
+        }
+
+        return $this->soapClient->GetHotelOfferPricing($request)->services;
+    }
+
+    /**
+     * @return Element\OrdersChangelogRecord[]
+     */
+    public function GetOrdersChangelog()
+    {
+        $request = new Element\GetOrdersChangelogRequest();
+        $this->fillRequest($request);
+
+        return $this->soapClient->GetOrdersChangelog($request)->ordersChangelogRecord;
+    }
+
+    /**
+     * @param int[] $recordIds
+     *
+     * @return string
+     */
+    public function RemoveOrdersChangelogRecords($recordIds)
+    {
+        $request = new Element\RemoveOrdersChangelogRecordsRequest();
+        $this->fillRequest($request);
+
+        foreach ((array) $recordIds as $id) {
+            $request->addRecordId($id);
+        }
+
+        return $this->soapClient->RemoveOrdersChangelogRecords($request)->status;
+    }
+
+    /**
+     * @param int    $cityId
+     * @param string $checkIn
+     * @param string $checkOut
+     *
+     * @return Element\HotelWithCheapestRate[]
+     */
+    public function SearchRateless($cityId, $checkIn, $checkOut)
+    {
+        $request = new Element\SearchRatelessRequest();
+        $this->fillRequest($request);
+
+        $request->cityId   = $cityId;
+        $request->checkIn  = $checkIn;
+        $request->checkOut = $checkOut;
+
+
+        return $this->soapClient->SearchRateless($request)->hotels;
+    }
+
+    /**
      * @return Element\Amenity[]
      */
     public function getAmenities()
