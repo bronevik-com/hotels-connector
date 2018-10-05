@@ -423,26 +423,6 @@ class HotelsConnector
     }
 
     /**
-     * @param int    $cityId
-     * @param string $checkIn
-     * @param string $checkOut
-     *
-     * @return Element\HotelWithCheapestRate[]
-     */
-    public function SearchRateless($cityId, $checkIn, $checkOut)
-    {
-        $request = new Element\SearchRatelessRequest();
-        $this->fillRequest($request);
-
-        $request->cityId   = $cityId;
-        $request->checkIn  = $checkIn;
-        $request->checkOut = $checkOut;
-
-
-        return $this->soapClient->SearchRateless($request)->hotels;
-    }
-
-    /**
      * @return Element\Amenity[]
      */
     public function getAmenities()
@@ -454,7 +434,7 @@ class HotelsConnector
     }
 
     /**
-     * Поиск закаов по притериям
+     * Поиск закаов по критериям
      *
      * @param Element\SearchOrderCriterion[] $searchCriteria
      *
