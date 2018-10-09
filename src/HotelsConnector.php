@@ -376,17 +376,17 @@ class HotelsConnector
     }
 
     /**
-     * @param int[] $serviceIds
+     * @param Element\ServiceAccommodation $services[]
      *
      * @return Element\OrderServiceAccommodationPricing[]
      */
-    public function GetHotelOfferPricing($serviceIds)
+    public function GetHotelOfferPricing(Element\ServiceAccommodation $services)
     {
         $request = new Element\GetHotelOfferPricingRequest();
         $this->fillRequest($request);
 
-        foreach ((array) $serviceIds as $id) {
-            $request->addServiceId($id);
+        foreach ((array) $services as $serviceAccommodation) {
+            $request->addService($serviceAccommodation);
         }
 
         return $this->soapClient->GetHotelOfferPricing($request)->services;

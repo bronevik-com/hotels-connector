@@ -30,10 +30,10 @@ class GetHotelOfferPricingRequest extends BaseRequest
 
     /**
      *
-     * @param int $hotelId
+     * @param ServiceAccommodation $service
      */
-    public function addServiceId($hotelId)
+    public function addService($service)
     {
-        $this->services[] = $hotelId;
+        $this->services[] = $service;
     }
 }
