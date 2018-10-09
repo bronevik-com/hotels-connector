@@ -155,8 +155,6 @@ class HotelsConnector
                     'SearchOrderCriterionServiceReferenceId' => \Bronevik\HotelsConnector\Element\SearchOrderCriterionServiceReferenceId::class,
                     'SearchOrdersRequest'                    => \Bronevik\HotelsConnector\Element\SearchOrdersRequest::class,
                     'SearchOrdersResponse'                   => \Bronevik\HotelsConnector\Element\SearchOrdersResponse::class,
-                    'SearchRatelessRequest'                  => \Bronevik\HotelsConnector\Element\SearchRatelessRequest::class,
-                    'SearchRatelessResponse'                 => \Bronevik\HotelsConnector\Element\SearchRatelessResponse::class,
                     'Service'                                => \Bronevik\HotelsConnector\Element\Service::class,
                     'ServiceAccommodation'                   => \Bronevik\HotelsConnector\Element\ServiceAccommodation::class,
                     'ServiceExtraField'                      => \Bronevik\HotelsConnector\Element\ServiceExtraField::class,
