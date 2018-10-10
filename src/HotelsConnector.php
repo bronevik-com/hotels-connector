@@ -376,11 +376,11 @@ class HotelsConnector
     }
 
     /**
-     * @param Element\ServiceAccommodation $services[]
+     * @param Element\ServiceAccommodation $services []
      *
      * @return Element\OrderServiceAccommodationPricing[]
      */
-    public function GetHotelOfferPricing(Element\ServiceAccommodation $services)
+    public function GetHotelOfferPricing($services)
     {
         $request = new Element\GetHotelOfferPricingRequest();
         $this->fillRequest($request);
