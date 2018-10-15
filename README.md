@@ -42,7 +42,7 @@ PHP 5.6+
 ```json
 {
     "require": {
-        "bronevik/hotels-connector": "*@dev"
+        "bronevik/hotels-connector": "dev-master"
     },
     "repositories": [
         {
