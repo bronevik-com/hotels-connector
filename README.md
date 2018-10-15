@@ -36,22 +36,9 @@ PHP 5.6+
 
 ### Через Composer
 
-Для установки через Composer необходимо добавить описание источника
-в секцию `repositories` вашего `composer.json`. Примерный вид таков:
+Для установки через Composer необходимо выполнить команду:
 
-```json
-{
-    "require": {
-        "bronevik/hotels-connector": "*@dev"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/bronevik-com/hotels-connector.git"
-        }
-    ]
-}
-```
+```composer require bronevik/hotels-connector```
 
 ### Без Composer
 
