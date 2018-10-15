@@ -1,12 +1,13 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class DailyPrice
 {
     /**
      * Type: xsd:date
-     * 
-     * @var date
+     *
+     * @var string
      */
     public $date = null;
 
@@ -14,12 +15,43 @@ class DailyPrice
      * Type: xsd:float
      * 
      * @var float
+     * @deprecated
      */
-    public $price = null;
+    public $price;
 
     /**
-     * 
-     * @param date $date 
+     * @var ClientPriceDetails|null
+     */
+    public $rate;
+
+    /**
+     * @var ClientPriceDetails|null
+     */
+    public $bookingFee;
+
+    /**
+     * @var ClientPriceDetails|null
+     */
+    public $earlyArrival;
+
+    /**
+     * @var ClientPriceDetails|null
+     */
+    public $lateDeparture;
+
+    /**
+     * @var DailyPriceMeals|null
+     */
+    public $meals;
+
+    public function __construct()
+    {
+        $this->meals = new DailyPriceMeals();
+    }
+
+    /**
+     *
+     * @param string $date
      */
     public function setDate($date)
     {
@@ -27,8 +59,8 @@ class DailyPrice
     }
 
     /**
-     * 
-     * @return date
+     *
+     * @return string
      */
     public function getDate()
     {
@@ -36,8 +68,9 @@ class DailyPrice
     }
 
     /**
-     * 
-     * @param float $price 
+     *
+     * @param float $price
+     * @deprecated
      */
     public function setPrice($price)
     {
@@ -45,8 +78,9 @@ class DailyPrice
     }
 
     /**
-     * 
+     *
      * @return float
+     * @deprecated
      */
     public function getPrice()
     {

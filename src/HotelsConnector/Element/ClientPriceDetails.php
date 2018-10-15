@@ -39,6 +39,7 @@ class ClientPriceDetails
         $this->commission = new \Bronevik\HotelsConnector\Element\DetailedPrice;
         $this->gross = new \Bronevik\HotelsConnector\Element\DetailedPrice;
         $this->net = new \Bronevik\HotelsConnector\Element\DetailedPrice;
+        $this->vatIncluded = true;
     }
 
     /**

@@ -19,6 +19,27 @@ class Hotel
 
     /**
      * Type: xsd:string
+     *
+     * @var string
+     */
+    public $cityName = null;
+
+    /**
+     * Type: xsd:string
+     *
+     * @var string
+     */
+    public $countryId = null;
+
+    /**
+     * Type: xsd:string
+     *
+     * @var string
+     */
+    public $countryName = null;
+
+    /**
+     * Type: xsd:string
      * 
      * @var string
      */
@@ -69,6 +90,13 @@ class Hotel
     public $checkoutTime = null;
 
     /**
+     * Фиксировано ли время заезда в отеле
+     *
+     * @var boolean
+     */
+    public $isFixedCheckinTime;
+
+    /**
      * Type: xsd:string
      * 
      * @var string
@@ -81,6 +109,14 @@ class Hotel
      * @var boolean
      */
     public $vatApplicable = null;
+
+    /**
+     * Наличие дополнительных платежей
+     * Type: xsd:string
+     * 
+     * @var string
+     */
+    public $hasTaxes = null;
 
     /**
      * Фотографии отеля
@@ -172,6 +208,54 @@ class Hotel
     public function getCityId()
     {
         return $this->cityId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCityName()
+    {
+        return $this->cityName;
+    }
+
+    /**
+     * @param string $cityName
+     */
+    public function setCityName($cityName)
+    {
+        $this->cityName = $cityName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryId()
+    {
+        return $this->countryId;
+    }
+
+    /**
+     * @param string $countryId
+     */
+    public function setCountryId($countryId)
+    {
+        $this->countryId = $countryId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryName()
+    {
+        return $this->countryName;
+    }
+
+    /**
+     * @param string $countryName
+     */
+    public function setCountryName($countryName)
+    {
+        $this->countryName = $countryName;
     }
 
     /**
@@ -338,6 +422,24 @@ class Hotel
 
     /**
      * 
+     * @param string $hasTaxes 
+     */
+    public function setHasTaxes($hasTaxes)
+    {
+        $this->hasTaxes = $hasTaxes;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getHasTaxes()
+    {
+        return $this->hasTaxes;
+    }
+
+    /**
+     * 
      * @return bool
      */
     public function hasPhotos()
@@ -356,7 +458,7 @@ class Hotel
 
     /**
      * 
-     * @param \Bronevik\HotelsConnector\Element\Image $photos 
+     * @param \Bronevik\HotelsConnector\Element\Image $photos
      */
     public function addPhotos($photos)
     {
@@ -383,7 +485,7 @@ class Hotel
 
     /**
      * 
-     * @param \Bronevik\HotelsConnector\Element\AvailableAmenity $availableAmenities 
+     * @param \Bronevik\HotelsConnector\Element\AvailableAmenity $availableAmenities
      */
     public function addAvailableAmenities($availableAmenities)
     {
@@ -410,7 +512,7 @@ class Hotel
 
     /**
      * 
-     * @param \Bronevik\HotelsConnector\Element\HotelAmenity $amenities 
+     * @param \Bronevik\HotelsConnector\Element\HotelAmenity $amenities
      */
     public function addAmenities($amenities)
     {
@@ -455,7 +557,7 @@ class Hotel
 
     /**
      * 
-     * @param \Bronevik\HotelsConnector\Element\InformationForGuest $informationForGuest 
+     * @param \Bronevik\HotelsConnector\Element\InformationForGuest $informationForGuest
      */
     public function setInformationForGuest($informationForGuest)
     {

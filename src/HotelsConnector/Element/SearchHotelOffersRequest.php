@@ -8,19 +8,17 @@ namespace Bronevik\HotelsConnector\Element;
 class SearchHotelOffersRequest extends BaseRequest
 {
     /**
-     * Идентификатор города, по
-     *                                         которому будет идти поиск
+     * Идентификатор города, по которому будет идти поиск
      * Type: xsd:int
-     * 
+     *
      * @var int
      */
     public $cityId = null;
 
     /**
-     * Идентификатор отеля, по
-     *                                         которому будет идти поиск
+     * Идентификатор отеля, по которому будет идти поиск
      * Type: xsd:int
-     * 
+     *
      * @var int
      */
     public $hotelId = null;
@@ -28,23 +26,23 @@ class SearchHotelOffersRequest extends BaseRequest
     /**
      * Дата заезда
      * Type: xsd:date
-     * 
-     * @var date
+     *
+     * @var string
      */
     public $arrivalDate = null;
 
     /**
      * Дата выезда
      * Type: xsd:date
-     * 
-     * @var date
+     *
+     * @var string
      */
     public $departureDate = null;
 
     /**
      * Валюта расчёта
      * Type: tns:Currency
-     * 
+     *
      * @var string
      */
     public $currency = null;
@@ -58,8 +56,13 @@ class SearchHotelOffersRequest extends BaseRequest
     public $searchCriteria = [];
 
     /**
-     * 
-     * @param int $cityId 
+     * @var bool 
+     */
+    public $enableProfitShareRates = false;
+
+    /**
+     *
+     * @param int $cityId
      */
     public function setCityId($cityId)
     {
@@ -67,7 +70,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
+     *
      * @return int
      */
     public function getCityId()
@@ -76,8 +79,8 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @param int $hotelId 
+     *
+     * @param int $hotelId
      */
     public function setHotelId($hotelId)
     {
@@ -85,7 +88,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
+     *
      * @return int
      */
     public function getHotelId()
@@ -94,8 +97,8 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @param date $arrivalDate 
+     *
+     * @param string $arrivalDate
      */
     public function setArrivalDate($arrivalDate)
     {
@@ -103,8 +106,8 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @return date
+     *
+     * @return string
      */
     public function getArrivalDate()
     {
@@ -112,8 +115,8 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @param date $departureDate 
+     *
+     * @param string $departureDate
      */
     public function setDepartureDate($departureDate)
     {
@@ -121,8 +124,8 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @return date
+     *
+     * @return string
      */
     public function getDepartureDate()
     {
@@ -130,8 +133,8 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @param string $currency 
+     *
+     * @param string $currency
      */
     public function setCurrency($currency)
     {
@@ -139,7 +142,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getCurrency()
@@ -148,7 +151,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
+     *
      * @return bool
      */
     public function hasSearchCriteria()
