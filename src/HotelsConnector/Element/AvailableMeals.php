@@ -30,7 +30,7 @@ class AvailableMeals
 
     /**
      * 
-     * @param \Bronevik\HotelsConnector\Element\AvailableMeal $meal
+     * @param \Bronevik\HotelsConnector\Element\AvailableMeal $meal 
      */
     public function addMeal($meal)
     {

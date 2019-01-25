@@ -1,9 +1,16 @@
 <?php
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Отели с предложениями
+ * The hotels with offers
+ * 
+ */
 class HotelWithOffers extends Hotel
 {
     /**
+     * Включен ли НДС в стоимость
+     * Flag of whether VAT is included in the client’s price
      * Type: xsd:boolean
      * 
      * @var boolean
@@ -11,6 +18,8 @@ class HotelWithOffers extends Hotel
     public $vatIncluded = null;
 
     /**
+     * Размер НДС
+     * The VAT amount
      * Type: xsd:float
      * 
      * @var float
@@ -18,11 +27,21 @@ class HotelWithOffers extends Hotel
     public $VATPercent = null;
 
     /**
-     * Type: tns:HotelOffer
+     * Список предложений
+     * The list of offers
+     * Type: tns:HotelOffers
      * 
-     * @var \Bronevik\HotelsConnector\Element\HotelOffer[]
+     * @var \Bronevik\HotelsConnector\Element\HotelOffers
      */
-    public $offers = [];
+    public $offers = null;
+
+    /**
+     * 
+     */
+    public function __construct()
+    {
+        $this->offers = new \Bronevik\HotelsConnector\Element\HotelOffers;
+    }
 
     /**
      * 
@@ -62,29 +81,20 @@ class HotelWithOffers extends Hotel
 
     /**
      * 
-     * @return bool
+     * @param \Bronevik\HotelsConnector\Element\HotelOffers $offers 
      */
-    public function hasOffers()
+    public function setOffers($offers)
     {
-        return count($this->offers) > 0;
+        $this->offers = $offers;
     }
 
     /**
      * 
-     * @return \Bronevik\HotelsConnector\Element\HotelOffer[]
+     * @return \Bronevik\HotelsConnector\Element\HotelOffers
      */
     public function getOffers()
     {
         return $this->offers;
-    }
-
-    /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\HotelOffer $offers 
-     */
-    public function addOffers($offers)
-    {
-        $this->offers[] = $offers;
     }
 }
 

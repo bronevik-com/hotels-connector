@@ -4,53 +4,71 @@ namespace Bronevik\HotelsConnector\Element;
 class ServiceAccommodation extends Service
 {
     /**
+     * Код предложения
+     * The offer code
      * Type: xsd:string
-     *
+     * 
      * @var string
      */
     public $offerCode = null;
 
     /**
+     * ФИО гостей
+     * The name of guests
      * Type: xsd:string
-     *
+     * 
      * @var string[]
      */
     public $guests = [];
 
     /**
+     * Комментарий к услуге
+     * An information about service
      * Type: xsd:string
-     *
+     * 
      * @var string
      */
     public $comment = null;
 
     /**
+     * Цена продажи
+     * The selling price
      * Type: xsd:float
-     *
+     * 
      * @var float
      */
     public $sellingPrice = null;
 
     /**
+     * Желаемое время заезда
+     * The desired date of check-in
      * Type: xsd:int
-     *
+     * 
+     * @var int
+     */
+    public $checkinHour = null;
+
+    /**
+     * Желаемое время выезда
+     * The desired date of check-out
+     * Type: xsd:int
+     * 
+     * @var int
+     */
+    public $checkoutHour = null;
+
+    /**
+     * Список заказанных услуг питания
+     * A list of offer's booked meals
+     * Type: xsd:int
+     * 
      * @var int[]
      */
     public $meals = [];
 
     /**
-     * @var int
-     */
-    public $checkinHour;
-
-    /**
-     * @var int
-     */
-    public $checkoutHour;
-
-    /**
-     *
-     * @param string $offerCode
+     * 
+     * @param string $offerCode 
      */
     public function setOfferCode($offerCode)
     {
@@ -58,7 +76,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
+     * 
      * @return string
      */
     public function getOfferCode()
@@ -67,7 +85,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
+     * 
      * @return bool
      */
     public function hasGuests()
@@ -76,7 +94,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
+     * 
      * @return string[]
      */
     public function getGuests()
@@ -85,8 +103,8 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
-     * @param string $guests
+     * 
+     * @param string $guests 
      */
     public function addGuests($guests)
     {
@@ -94,8 +112,8 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
-     * @param string $comment
+     * 
+     * @param string $comment 
      */
     public function setComment($comment)
     {
@@ -103,7 +121,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
+     * 
      * @return string
      */
     public function getComment()
@@ -112,7 +130,61 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
+     * 
+     * @param float $sellingPrice 
+     */
+    public function setSellingPrice($sellingPrice)
+    {
+        $this->sellingPrice = $sellingPrice;
+    }
+
+    /**
+     * 
+     * @return float
+     */
+    public function getSellingPrice()
+    {
+        return $this->sellingPrice;
+    }
+
+    /**
+     * 
+     * @param int $checkinHour 
+     */
+    public function setCheckinHour($checkinHour)
+    {
+        $this->checkinHour = $checkinHour;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getCheckinHour()
+    {
+        return $this->checkinHour;
+    }
+
+    /**
+     * 
+     * @param int $checkoutHour 
+     */
+    public function setCheckoutHour($checkoutHour)
+    {
+        $this->checkoutHour = $checkoutHour;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getCheckoutHour()
+    {
+        return $this->checkoutHour;
+    }
+
+    /**
+     * 
      * @return bool
      */
     public function hasMeals()
@@ -121,7 +193,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
+     * 
      * @return int[]
      */
     public function getMeals()
@@ -130,8 +202,8 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
-     * @param int $meals
+     * 
+     * @param int $meals 
      */
     public function addMeals($meals)
     {

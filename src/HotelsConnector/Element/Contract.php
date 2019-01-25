@@ -4,7 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class Contract
 {
     /**
-     * Внутренний идентификатор договора
+     * Идентификатор договора
+     * The contract id
      * Type: xsd:int
      * 
      * @var int
@@ -13,6 +14,7 @@ class Contract
 
     /**
      * Номер договора
+     * The contract reference number
      * Type: xsd:string
      * 
      * @var string
@@ -21,11 +23,21 @@ class Contract
 
     /**
      * Дата начала действия договора
+     * The contract start date
      * Type: xsd:date
+     * 
+     * @var date
+     */
+    public $beginsAt = null;
+
+    /**
+     * Юридическое лицо
+     * Legal entity
+     * Type: xsd:string
      * 
      * @var string
      */
-    public $beginsAt = null;
+    public $legalEntity = null;
 
     /**
      * 
@@ -65,7 +77,7 @@ class Contract
 
     /**
      * 
-     * @param string $beginsAt
+     * @param date $beginsAt 
      */
     public function setBeginsAt($beginsAt)
     {
@@ -74,11 +86,29 @@ class Contract
 
     /**
      * 
-     * @return string
+     * @return date
      */
     public function getBeginsAt()
     {
         return $this->beginsAt;
+    }
+
+    /**
+     * 
+     * @param string $legalEntity 
+     */
+    public function setLegalEntity($legalEntity)
+    {
+        $this->legalEntity = $legalEntity;
+    }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getLegalEntity()
+    {
+        return $this->legalEntity;
     }
 }
 

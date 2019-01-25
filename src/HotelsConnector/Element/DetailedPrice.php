@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class DetailedPrice
 {
     /**
+     * Стоимость
+     * Cost
      * Type: xsd:float
      * 
      * @var float
@@ -12,6 +14,7 @@ class DetailedPrice
 
     /**
      * Сумма ндс
+     * The VAT amount
      * Type: xsd:float
      * 
      * @var float
@@ -20,6 +23,7 @@ class DetailedPrice
 
     /**
      * Валюта (трекхбуквенный код)
+     * The currency (three-letter code)
      * Type: xsd:string
      * 
      * @var string

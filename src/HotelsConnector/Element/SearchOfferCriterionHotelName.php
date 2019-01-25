@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class SearchOfferCriterionHotelName extends SearchOfferCriterion
 {
     /**
+     * Название отеля, по которому производится поиск
+     * The hotel name for search
      * Type: xsd:string
      * 
      * @var string

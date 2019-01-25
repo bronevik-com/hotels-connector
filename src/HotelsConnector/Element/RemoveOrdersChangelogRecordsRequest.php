@@ -37,3 +37,4 @@ class RemoveOrdersChangelogRecordsRequest extends BaseRequest
         $this->recordId[] = $recordId;
     }
 }
+

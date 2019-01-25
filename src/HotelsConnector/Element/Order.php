@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class Order
 {
     /**
+     * Идентификатор заказа
+     * The order id
      * Type: xsd:int
      * 
      * @var int
@@ -11,6 +13,8 @@ class Order
     public $id = null;
 
     /**
+     * Контактный телефон по вопросам заказа
+     * The contact phone, we use this number in emergency cases
      * Type: xsd:string
      * 
      * @var string
@@ -18,6 +22,8 @@ class Order
     public $contactPhone = null;
 
     /**
+     * Контактное лицо по вопросам заказа
+     * A person who provides a link for information about order
      * Type: xsd:string
      * 
      * @var string
@@ -25,6 +31,8 @@ class Order
     public $contactPerson = null;
 
     /**
+     * Контактный e-mail для подтверждения бронирования
+     * The contact email, we use this address to send confirmations
      * Type: xsd:string
      * 
      * @var string
@@ -32,6 +40,8 @@ class Order
     public $contactEmail = null;
 
     /**
+     * Комментарии к заказу
+     * The comment to the order
      * Type: xsd:string
      * 
      * @var string
@@ -39,6 +49,8 @@ class Order
     public $comment = null;
 
     /**
+     * Список возможных услуг
+     * List of the services
      * Type: tns:OrderService
      * 
      * @var \Bronevik\HotelsConnector\Element\OrderService[]

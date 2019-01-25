@@ -5,6 +5,7 @@ class NamedDetailedPrice extends DetailedPrice
 {
     /**
      * Наименование цены
+     * The price name
      * Type: xsd:string
      * 
      * @var string

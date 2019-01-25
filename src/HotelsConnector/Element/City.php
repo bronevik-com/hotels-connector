@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class City
 {
     /**
+     * Идентификатор города
+     * The city id
      * Type: xsd:int
      * 
      * @var int
@@ -11,6 +13,8 @@ class City
     public $id = null;
 
     /**
+     * Название города
+     * The city name
      * Type: xsd:string
      * 
      * @var string
@@ -18,6 +22,8 @@ class City
     public $name = null;
 
     /**
+     * Широта (географические координаты)
+     * The latitude (geographic coordinate)
      * Type: xsd:string
      * 
      * @var string
@@ -25,6 +31,8 @@ class City
     public $latitude = null;
 
     /**
+     * Долгота (географические координаты)
+     * The longitude (geographic coordinate)
      * Type: xsd:string
      * 
      * @var string
@@ -32,6 +40,8 @@ class City
     public $longitude = null;
 
     /**
+     * Идентификатор региона города
+     * The city's region id
      * Type: xsd:int
      * 
      * @var int
@@ -39,6 +49,8 @@ class City
     public $regionId = null;
 
     /**
+     * Название региона города
+     * The city's region name
      * Type: xsd:string
      * 
      * @var string

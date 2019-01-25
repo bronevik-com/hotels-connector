@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class AvailableMeal
 {
     /**
+     * Идентификатор услуги питания
+     * The meal service id
      * Type: xsd:int
      * 
      * @var int
@@ -11,6 +13,8 @@ class AvailableMeal
     public $id = null;
 
     /**
+     * Стоимость услуги питания
+     * The meal service cost
      * Type: xsd:float
      * 
      * @var float
@@ -18,6 +22,8 @@ class AvailableMeal
     public $price = null;
 
     /**
+     * Включена ли услуга в предложение
+     * Whether the service is included in the offer
      * Type: xsd:boolean
      * 
      * @var boolean

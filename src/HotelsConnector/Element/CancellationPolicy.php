@@ -3,12 +3,14 @@ namespace Bronevik\HotelsConnector\Element;
 
 /**
  * Правила аннуляции
+ * A cancellation policy
  * 
  */
 abstract class CancellationPolicy
 {
     /**
      * Время наступления штрафных санкций.
+     * Cancellation date and time (hotel time)
      * Type: xsd:dateTime
      * 
      * @var string
@@ -17,6 +19,7 @@ abstract class CancellationPolicy
 
     /**
      * Размер штрафа
+     * An amount of penalty
      * Type: xsd:float
      * 
      * @var float

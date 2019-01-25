@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class ClientPriceDetails
 {
     /**
+     * Включен ли НДС в клиентскую стоимость
+     * Whether VAT is included in the client’s price
      * Type: xsd:boolean
      * 
      * @var boolean
@@ -11,6 +13,8 @@ class ClientPriceDetails
     public $vatIncluded = null;
 
     /**
+     * Информация о комиссии
+     * The information about commission
      * Type: tns:DetailedPrice
      * 
      * @var \Bronevik\HotelsConnector\Element\DetailedPrice
@@ -18,6 +22,8 @@ class ClientPriceDetails
     public $commission = null;
 
     /**
+     * Брутто-стоимость
+     * The gross-cost value
      * Type: tns:DetailedPrice
      * 
      * @var \Bronevik\HotelsConnector\Element\DetailedPrice
@@ -25,6 +31,8 @@ class ClientPriceDetails
     public $gross = null;
 
     /**
+     * Нетто-стоимость
+     * The net-cost value
      * Type: tns:DetailedPrice
      * 
      * @var \Bronevik\HotelsConnector\Element\DetailedPrice
@@ -39,7 +47,6 @@ class ClientPriceDetails
         $this->commission = new \Bronevik\HotelsConnector\Element\DetailedPrice;
         $this->gross = new \Bronevik\HotelsConnector\Element\DetailedPrice;
         $this->net = new \Bronevik\HotelsConnector\Element\DetailedPrice;
-        $this->vatIncluded = true;
     }
 
     /**

@@ -1,6 +1,11 @@
 <?php
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Поиск по именам гостей
+ * The order search by guest name
+ * 
+ */
 class SearchOrderCriterionGuest extends SearchOrderCriterion
 {
     /**

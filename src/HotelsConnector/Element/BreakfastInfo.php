@@ -5,6 +5,7 @@ class BreakfastInfo
 {
     /**
      * Название завтрака
+     * The breakfast name
      * Type: xsd:string
      * 
      * @var string
@@ -13,14 +14,16 @@ class BreakfastInfo
 
     /**
      * Стоимость
-     * Type: xsd:string
+     * The breakfast price
+     * Type: xsd:float
      * 
-     * @var string
+     * @var float
      */
     public $price = null;
 
     /**
      * Включен в стоимость проживания
+     * True if breakfast included in offer price
      * Type: xsd:boolean
      * 
      * @var boolean
@@ -47,7 +50,7 @@ class BreakfastInfo
 
     /**
      * 
-     * @param string $price 
+     * @param float $price 
      */
     public function setPrice($price)
     {
@@ -56,7 +59,7 @@ class BreakfastInfo
 
     /**
      * 
-     * @return string
+     * @return float
      */
     public function getPrice()
     {

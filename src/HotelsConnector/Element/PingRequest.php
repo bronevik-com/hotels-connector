@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class PingRequest extends BaseRequest
 {
     /**
+     * Передаваемые в запросе данные
+     * The data that passed in request and returned in response
      * Type: xsd:string
      * 
      * @var string

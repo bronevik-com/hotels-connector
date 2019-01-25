@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class Credentials
 {
     /**
+     * Ключ клиента
+     * The client key
      * Type: xsd:string
      * 
      * @var string
@@ -11,6 +13,8 @@ class Credentials
     public $clientKey = null;
 
     /**
+     * Логин пользователя
+     * The client login
      * Type: xsd:string
      * 
      * @var string
@@ -18,6 +22,8 @@ class Credentials
     public $login = null;
 
     /**
+     * Пароль пользователя
+     * The client password
      * Type: xsd:string
      * 
      * @var string

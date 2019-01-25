@@ -3,11 +3,14 @@ namespace Bronevik\HotelsConnector\Element;
 
 /**
  * Запрос на создание заказа
+ * The request for create the order
  * 
  */
 class CreateOrderRequest extends BaseRequest
 {
     /**
+     * Контактное лицо по вопросам заказа
+     * A person who provides a link for information about order
      * Type: xsd:string
      * 
      * @var string
@@ -15,6 +18,8 @@ class CreateOrderRequest extends BaseRequest
     public $contactPerson = null;
 
     /**
+     * Контактный e-mail для подтверждения бронирования
+     * The contact email, we use this address to send confirmations
      * Type: xsd:string
      * 
      * @var string
@@ -22,6 +27,8 @@ class CreateOrderRequest extends BaseRequest
     public $contactEmail = null;
 
     /**
+     * Контактный телефон по вопросам заказа
+     * The contact phone, we use this number in emergency cases
      * Type: xsd:string
      * 
      * @var string
@@ -29,6 +36,8 @@ class CreateOrderRequest extends BaseRequest
     public $contactPhone = null;
 
     /**
+     * Комментарии к заказу
+     * The comment to the order
      * Type: xsd:string
      * 
      * @var string
@@ -36,6 +45,8 @@ class CreateOrderRequest extends BaseRequest
     public $comment = null;
 
     /**
+     * Список возможных услуг
+     * List of the services
      * Type: tns:Service
      * 
      * @var \Bronevik\HotelsConnector\Element\Service[]

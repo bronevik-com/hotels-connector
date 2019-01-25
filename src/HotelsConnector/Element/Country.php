@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class Country
 {
     /**
+     * Идентификатор страны
+     * The country id
      * Type: xsd:int
      * 
      * @var int
@@ -11,6 +13,8 @@ class Country
     public $id = null;
 
     /**
+     * Название страны
+     * The country name
      * Type: xsd:string
      * 
      * @var string
@@ -18,6 +22,8 @@ class Country
     public $name = null;
 
     /**
+     * Код страны (трекхбуквенный)
+     * The country code (three-letter)
      * Type: xsd:string
      * 
      * @var string

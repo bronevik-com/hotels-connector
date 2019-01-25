@@ -1,19 +1,36 @@
 <?php
-
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Правила предоставления предложения
+ * A policy of granting current offer
+ * 
+ */
 class OfferPolicy
 {
     /**
+     * Type: xsd:string
+     * 
      * @var string
      */
-    public $description;
+    public $description = null;
 
     /**
-     * @param string $description
+     * 
+     * @param string $description 
      */
-    public function __construct($description)
+    public function setDescription($description)
     {
         $this->description = $description;
     }
+
+    /**
+     * 
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 }
+

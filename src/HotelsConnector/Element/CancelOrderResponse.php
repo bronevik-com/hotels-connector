@@ -1,10 +1,6 @@
 <?php
 namespace Bronevik\HotelsConnector\Element;
 
-/**
- * Ответ на запрос создания ордера
- * 
- */
 class CancelOrderResponse extends BaseResponse
 {
     /**

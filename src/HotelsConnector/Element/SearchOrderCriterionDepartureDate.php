@@ -2,11 +2,11 @@
 namespace Bronevik\HotelsConnector\Element;
 
 /**
- * Поиск по дате заезда
- * The order search by check-in date
+ * Поиск заказа по дате выезда
+ * The order search by end date
  * 
  */
-class SearchOrderCriterionArrivalDate extends SearchOrderCriterion
+class SearchOrderCriterionDepartureDate extends SearchOrderCriterion
 {
     /**
      * Type: xsd:date

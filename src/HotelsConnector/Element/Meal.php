@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class Meal
 {
     /**
+     * Идентификатор услуги питания
+     * The meal service id
      * Type: xsd:int
      * 
      * @var int
@@ -11,6 +13,8 @@ class Meal
     public $id = null;
 
     /**
+     * Наименование услуги питания
+     * The meal service name
      * Type: xsd:string
      * 
      * @var string

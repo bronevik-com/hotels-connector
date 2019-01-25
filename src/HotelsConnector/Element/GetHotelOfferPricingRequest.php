@@ -20,20 +20,21 @@ class GetHotelOfferPricingRequest extends BaseRequest
     }
 
     /**
-     *
-     * @return int[]
+     * 
+     * @return \Bronevik\HotelsConnector\Element\Service[]
      */
-    public function getServiceIds()
+    public function getServices()
     {
         return $this->services;
     }
 
     /**
-     *
-     * @param ServiceAccommodation $service
+     * 
+     * @param \Bronevik\HotelsConnector\Element\Service $services 
      */
-    public function addService($service)
+    public function addServices($services)
     {
-        $this->services[] = $service;
+        $this->services[] = $services;
     }
 }
+

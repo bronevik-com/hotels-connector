@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class PriceDetails
 {
     /**
+     * Применим ли к отелю НДС
+     * Whether VAT is applicable
      * Type: xsd:boolean
      * 
      * @var boolean
@@ -11,6 +13,8 @@ class PriceDetails
     public $vatApplicable = null;
 
     /**
+     * Детализация отельной стоимости
+     * Detailed hotel prices
      * Type: tns:HotelPriceDetails
      * 
      * @var \Bronevik\HotelsConnector\Element\HotelPriceDetails
@@ -18,6 +22,8 @@ class PriceDetails
     public $hotel = null;
 
     /**
+     * Детализация клиентской стоимости
+     * The detailed client prices
      * Type: tns:ClientPriceDetails
      * 
      * @var \Bronevik\HotelsConnector\Element\ClientPriceDetails
@@ -26,6 +32,7 @@ class PriceDetails
 
     /**
      * Дополнительные цены
+     * The extra prices
      * Type: tns:NamedDetailedPrice
      * 
      * @var \Bronevik\HotelsConnector\Element\NamedDetailedPrice[]

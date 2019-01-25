@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 abstract class OrderService
 {
     /**
+     * Идентификатор услуги
+     * The service id
      * Type: xsd:int
      * 
      * @var int
@@ -11,6 +13,8 @@ abstract class OrderService
     public $id = null;
 
     /**
+     * Дата создания услуги
+     * The creating order date
      * Type: xsd:dateTime
      * 
      * @var string
@@ -18,6 +22,8 @@ abstract class OrderService
     public $date = null;
 
     /**
+     * Номер услуги в системе клиента
+     * The service number in the client’s system
      * Type: xsd:string
      * 
      * @var string
@@ -25,48 +31,44 @@ abstract class OrderService
     public $referenceId = null;
 
     /**
-     * Type: xsd:float
-     * @deprecated
-     * @var float
-     */
-    public $price = null;
-
-    /**
-     * Type: xsd:float
-     * @deprecated
-     * @var float
-     */
-    public $commission = null;
-
-    /**
-     * Type: xsd:string
-     *
-     * @var string
+     * Идентификатор города, где находится отель
+     * The id of the city where the hotel is located
+     * Type: xsd:int
+     * 
+     * @var int
      */
     public $cityId = null;
 
     /**
+     * Название города
+     * The name of the city where the hotel is located
      * Type: xsd:string
-     *
+     * 
      * @var string
      */
     public $cityName = null;
 
     /**
-     * Type: xsd:string
-     *
-     * @var string
+     * Идентификатор страны, где находится отель
+     * The id of the country where the hotel is located
+     * Type: xsd:int
+     * 
+     * @var int
      */
     public $countryId = null;
 
     /**
+     * Название страны
+     * The name of the country where the hotel is located
      * Type: xsd:string
-     *
+     * 
      * @var string
      */
     public $countryName = null;
 
     /**
+     * Детализация стоимости заказа
+     * The detailed order price
      * Type: tns:PriceDetails
      * 
      * @var \Bronevik\HotelsConnector\Element\PriceDetails
@@ -74,6 +76,8 @@ abstract class OrderService
     public $priceDetails = null;
 
     /**
+     * Правила отмены брони
+     * The policies of booking cancellation
      * Type: tns:CancellationPolicy
      * 
      * @var \Bronevik\HotelsConnector\Element\CancellationPolicy[]
@@ -81,6 +85,8 @@ abstract class OrderService
     public $cancellationPolicies = [];
 
     /**
+     * Статус услуги
+     * The service status
      * Type: xsd:int
      * 
      * @var int
@@ -88,6 +94,8 @@ abstract class OrderService
     public $statusId = null;
 
     /**
+     * Название статуса услуги
+     * The service name
      * Type: xsd:string
      * 
      * @var string
@@ -158,43 +166,7 @@ abstract class OrderService
 
     /**
      * 
-     * @param float $price 
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    /**
-     * 
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * 
-     * @param float $commission 
-     */
-    public function setCommission($commission)
-    {
-        $this->commission = $commission;
-    }
-
-    /**
-     * 
-     * @return float
-     */
-    public function getCommission()
-    {
-        return $this->commission;
-    }
-
-    /**
-     *
-     * @param string $cityId
+     * @param int $cityId 
      */
     public function setCityId($cityId)
     {
@@ -202,8 +174,8 @@ abstract class OrderService
     }
 
     /**
-     *
-     * @return string
+     * 
+     * @return int
      */
     public function getCityId()
     {
@@ -211,8 +183,8 @@ abstract class OrderService
     }
 
     /**
-     *
-     * @param string $cityName
+     * 
+     * @param string $cityName 
      */
     public function setCityName($cityName)
     {
@@ -220,7 +192,7 @@ abstract class OrderService
     }
 
     /**
-     *
+     * 
      * @return string
      */
     public function getCityName()
@@ -229,8 +201,8 @@ abstract class OrderService
     }
 
     /**
-     *
-     * @param string $countryId
+     * 
+     * @param int $countryId 
      */
     public function setCountryId($countryId)
     {
@@ -238,8 +210,8 @@ abstract class OrderService
     }
 
     /**
-     *
-     * @return string
+     * 
+     * @return int
      */
     public function getCountryId()
     {
@@ -247,8 +219,8 @@ abstract class OrderService
     }
 
     /**
-     *
-     * @param string $countryName
+     * 
+     * @param string $countryName 
      */
     public function setCountryName($countryName)
     {
@@ -256,7 +228,7 @@ abstract class OrderService
     }
 
     /**
-     *
+     * 
      * @return string
      */
     public function getCountryName()
@@ -265,8 +237,8 @@ abstract class OrderService
     }
 
     /**
-     *
-     * @param \Bronevik\HotelsConnector\Element\PriceDetails $priceDetails
+     * 
+     * @param \Bronevik\HotelsConnector\Element\PriceDetails $priceDetails 
      */
     public function setPriceDetails($priceDetails)
     {

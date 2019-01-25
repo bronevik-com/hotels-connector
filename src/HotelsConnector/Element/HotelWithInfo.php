@@ -1,6 +1,11 @@
 <?php
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Описание номеров
+ * The hotel room description
+ * 
+ */
 class HotelWithInfo extends Hotel
 {
     /**

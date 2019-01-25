@@ -1,6 +1,11 @@
 <?php
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Поиск заказа по номеру услуги проживания
+ * The order search by service ID
+ * 
+ */
 class SearchOrderCriterionServiceId extends SearchOrderCriterion
 {
     /**

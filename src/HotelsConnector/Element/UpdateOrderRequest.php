@@ -20,7 +20,7 @@ class UpdateOrderRequest extends BaseRequest
 
     /**
      * 
-     * @param \Bronevik\HotelsConnector\Element\Order $order
+     * @param \Bronevik\HotelsConnector\Element\Order $order 
      */
     public function setOrder($order)
     {

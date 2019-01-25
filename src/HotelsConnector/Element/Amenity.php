@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class Amenity
 {
     /**
+     * Идентификатор доп. услуги
+     * The amenity id
      * Type: xsd:int
      * 
      * @var int
@@ -11,6 +13,8 @@ class Amenity
     public $id = null;
 
     /**
+     * Название доп. услуги
+     * The amenity name
      * Type: xsd:string
      * 
      * @var string
@@ -18,6 +22,8 @@ class Amenity
     public $name = null;
 
     /**
+     * Название группы услуг
+     * The amenity group name
      * Type: xsd:string
      * 
      * @var string

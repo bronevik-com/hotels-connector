@@ -3,12 +3,14 @@ namespace Bronevik\HotelsConnector\Element;
 
 /**
  * Критерий поиска отеля по категории
+ * The criterion by hotel star rating
  * 
  */
 class SearchOfferCriterionHotelCategory extends SearchOfferCriterion
 {
     /**
-     * Номер категории отеля от 0 до 5
+     * Категория отеля
+     * The hotel star rating
      * Type: xsd:int
      * 
      * @var int[]

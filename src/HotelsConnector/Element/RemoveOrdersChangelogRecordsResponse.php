@@ -1,5 +1,4 @@
 <?php
-
 namespace Bronevik\HotelsConnector\Element;
 
 class RemoveOrdersChangelogRecordsResponse extends BaseResponse
@@ -29,3 +28,4 @@ class RemoveOrdersChangelogRecordsResponse extends BaseResponse
         return $this->status;
     }
 }
+

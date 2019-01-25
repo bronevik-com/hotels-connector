@@ -5,7 +5,7 @@ class GetOrdersChangelogResponse extends BaseResponse
 {
     /**
      * Type: tns:OrdersChangelogRecord
-     *
+     * 
      * @var \Bronevik\HotelsConnector\Element\OrdersChangelogRecord[]
      */
     public $ordersChangelogRecord = [];
@@ -30,10 +30,11 @@ class GetOrdersChangelogResponse extends BaseResponse
 
     /**
      * 
-     * @param \Bronevik\HotelsConnector\Element\OrdersChangelogRecord $ordersChangelogRecord
+     * @param \Bronevik\HotelsConnector\Element\OrdersChangelogRecord $ordersChangelogRecord 
      */
     public function addOrdersChangelogRecord($ordersChangelogRecord)
     {
         $this->ordersChangelogRecord[] = $ordersChangelogRecord;
     }
 }
+

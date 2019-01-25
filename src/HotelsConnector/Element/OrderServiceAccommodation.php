@@ -4,7 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 class OrderServiceAccommodation extends OrderService
 {
     /**
-     * Сведения о договоре, на основании которого произведено бронирование
+     * Договор, на который оформлено бронирование
+     * The information about contract of booking
      * Type: tns:Contract
      * 
      * @var \Bronevik\HotelsConnector\Element\Contract
@@ -12,6 +13,8 @@ class OrderServiceAccommodation extends OrderService
     public $contract = null;
 
     /**
+     * Код предложения
+     * The offer code
      * Type: xsd:string
      * 
      * @var string
@@ -19,6 +22,8 @@ class OrderServiceAccommodation extends OrderService
     public $offerCode = null;
 
     /**
+     * Название предложения
+     * The offer name
      * Type: xsd:string
      * 
      * @var string
@@ -26,13 +31,17 @@ class OrderServiceAccommodation extends OrderService
     public $offerName = null;
 
     /**
-     * Type: xsd:string
+     * Идентификатор отеля
+     * The hotel id
+     * Type: xsd:int
      * 
-     * @var string
+     * @var int
      */
     public $hotelId = null;
 
     /**
+     * Название отеля
+     * The hotel name
      * Type: xsd:string
      * 
      * @var string
@@ -40,6 +49,8 @@ class OrderServiceAccommodation extends OrderService
     public $hotelName = null;
 
     /**
+     * Идентификатор номера
+     * The room id
      * Type: xsd:int
      * 
      * @var int
@@ -47,6 +58,8 @@ class OrderServiceAccommodation extends OrderService
     public $roomId = null;
 
     /**
+     * Тип размещения в номере
+     * The room type
      * Type: xsd:string
      * 
      * @var string
@@ -54,6 +67,8 @@ class OrderServiceAccommodation extends OrderService
     public $roomType = null;
 
     /**
+     * Дата и время заезда
+     * The check-in date and time
      * Type: xsd:dateTime
      * 
      * @var string
@@ -61,6 +76,8 @@ class OrderServiceAccommodation extends OrderService
     public $checkin = null;
 
     /**
+     * Дата и время выезда
+     * The check-out date and time
      * Type: xsd:dateTime
      * 
      * @var string
@@ -68,6 +85,8 @@ class OrderServiceAccommodation extends OrderService
     public $checkout = null;
 
     /**
+     * ФИО гостей
+     * The name of guests
      * Type: xsd:string
      * 
      * @var string[]
@@ -75,6 +94,8 @@ class OrderServiceAccommodation extends OrderService
     public $guests = [];
 
     /**
+     * Комментарии
+     * An important information about accommodation
      * Type: xsd:string
      * 
      * @var string
@@ -82,31 +103,8 @@ class OrderServiceAccommodation extends OrderService
     public $comment = null;
 
     /**
-     * Type: xsd:boolean
-     * @deprecated
-     * 
-     * @var boolean
-     */
-    public $vatApplicable = null;
-
-    /**
-     * Type: xsd:boolean
-     * @deprecated
-     * 
-     * @var boolean
-     */
-    public $vatIncluded = null;
-
-    /**
-     * Type: xsd:float
-     * @deprecated
-     * 
-     * @var float
-     */
-    public $vatAmount = null;
-
-    /**
      * Флаг невозвратности предложения
+     * Whether the offer is non-refundable
      * Type: xsd:boolean
      * 
      * @var boolean
@@ -114,8 +112,8 @@ class OrderServiceAccommodation extends OrderService
     public $nonRefundable = null;
 
     /**
-     * Номер является блочным. Блочный номер - это номер с общей ванной комнатой и
-     *                                         туалетом для нескольких номеров
+     * Является ли номер блочным. Блочный номер - это номер с общей ванной комнатой и туалетом для нескольких номеров
+     * Specifies whether the bathroom is located in the hallway and shared by all of the guests on that floor
      * Type: xsd:boolean
      * 
      * @var boolean
@@ -123,6 +121,8 @@ class OrderServiceAccommodation extends OrderService
     public $isBlockRoom = null;
 
     /**
+     * Место оплаты
+     * Specifies the payment scheme
      * Type: tns:PaymentRecipients
      * 
      * @var string
@@ -130,13 +130,17 @@ class OrderServiceAccommodation extends OrderService
     public $paymentRecipient = null;
 
     /**
+     * Доп. поля услуг
+     * Extra fields for services
      * Type: tns:ServiceExtraField
-     *
-     * @var ServiceExtraField[]
+     * 
+     * @var \Bronevik\HotelsConnector\Element\ServiceExtraField[]
      */
     public $extraField = [];
 
     /**
+     * Информация о питании
+     * An information about meal service
      * Type: tns:AvailableMeal
      * 
      * @var \Bronevik\HotelsConnector\Element\AvailableMeal[]
@@ -144,24 +148,22 @@ class OrderServiceAccommodation extends OrderService
     public $meals = [];
 
     /**
-     * @var OfferPolicy[]
+     * Правила предоставления заказа
+     * A policies of granting current offer
+     * Type: tns:OfferPolicy
+     * 
+     * @var \Bronevik\HotelsConnector\Element\OfferPolicy[]
      */
     public $offerPolicies = [];
 
     /**
+     * Детализация стоимости на каждый день проживания
+     * The detailed daily cost of accommodation
      * Type: tns:DailyPrices
-     *
-     * @var DailyPrices
+     * 
+     * @var \Bronevik\HotelsConnector\Element\DailyPrices
      */
-    public $dailyPrices;
-
-    /**
-     * @param OfferPolicy $policy
-     */
-    public function addOfferPolicy(OfferPolicy $policy)
-    {
-        $this->offerPolicies[] = $policy;
-    }
+    public $dailyPrices = null;
 
     /**
      * 
@@ -169,6 +171,7 @@ class OrderServiceAccommodation extends OrderService
     public function __construct()
     {
         $this->contract = new \Bronevik\HotelsConnector\Element\Contract;
+        $this->dailyPrices = new \Bronevik\HotelsConnector\Element\DailyPrices;
     }
 
     /**
@@ -227,7 +230,7 @@ class OrderServiceAccommodation extends OrderService
 
     /**
      * 
-     * @param string $hotelId 
+     * @param int $hotelId 
      */
     public function setHotelId($hotelId)
     {
@@ -236,7 +239,7 @@ class OrderServiceAccommodation extends OrderService
 
     /**
      * 
-     * @return string
+     * @return int
      */
     public function getHotelId()
     {
@@ -380,60 +383,6 @@ class OrderServiceAccommodation extends OrderService
 
     /**
      * 
-     * @param boolean $vatApplicable 
-     */
-    public function setVatApplicable($vatApplicable)
-    {
-        $this->vatApplicable = $vatApplicable;
-    }
-
-    /**
-     * 
-     * @return boolean
-     */
-    public function getVatApplicable()
-    {
-        return $this->vatApplicable;
-    }
-
-    /**
-     * 
-     * @param boolean $vatIncluded 
-     */
-    public function setVatIncluded($vatIncluded)
-    {
-        $this->vatIncluded = $vatIncluded;
-    }
-
-    /**
-     * 
-     * @return boolean
-     */
-    public function getVatIncluded()
-    {
-        return $this->vatIncluded;
-    }
-
-    /**
-     * 
-     * @param float $vatAmount 
-     */
-    public function setVatAmount($vatAmount)
-    {
-        $this->vatAmount = $vatAmount;
-    }
-
-    /**
-     * 
-     * @return float
-     */
-    public function getVatAmount()
-    {
-        return $this->vatAmount;
-    }
-
-    /**
-     * 
      * @param boolean $nonRefundable 
      */
     public function setNonRefundable($nonRefundable)
@@ -487,7 +436,7 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     *
+     * 
      * @return bool
      */
     public function hasExtraField()
@@ -496,8 +445,8 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     *
-     * @return ServiceExtraField[]
+     * 
+     * @return \Bronevik\HotelsConnector\Element\ServiceExtraField[]
      */
     public function getExtraField()
     {
@@ -505,8 +454,8 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     *
-     * @param ServiceExtraField $extraField
+     * 
+     * @param \Bronevik\HotelsConnector\Element\ServiceExtraField $extraField 
      */
     public function addExtraField($extraField)
     {
@@ -538,6 +487,51 @@ class OrderServiceAccommodation extends OrderService
     public function addMeals($meals)
     {
         $this->meals[] = $meals;
+    }
+
+    /**
+     * 
+     * @return bool
+     */
+    public function hasOfferPolicies()
+    {
+        return count($this->offerPolicies) > 0;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\OfferPolicy[]
+     */
+    public function getOfferPolicies()
+    {
+        return $this->offerPolicies;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\OfferPolicy $offerPolicies 
+     */
+    public function addOfferPolicies($offerPolicies)
+    {
+        $this->offerPolicies[] = $offerPolicies;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\DailyPrices $dailyPrices 
+     */
+    public function setDailyPrices($dailyPrices)
+    {
+        $this->dailyPrices = $dailyPrices;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\DailyPrices
+     */
+    public function getDailyPrices()
+    {
+        return $this->dailyPrices;
     }
 }
 

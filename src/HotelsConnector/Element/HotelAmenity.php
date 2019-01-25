@@ -1,9 +1,16 @@
 <?php
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Услуги отеля
+ * Hotel's amenities
+ * 
+ */
 class HotelAmenity
 {
     /**
+     * Название услуги
+     * The amenity name
      * Type: xsd:string
      * 
      * @var string
@@ -11,6 +18,8 @@ class HotelAmenity
     public $name = null;
 
     /**
+     * Тип услуги
+     * The amenity type
      * Type: xsd:string
      * 
      * @var string

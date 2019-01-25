@@ -1,9 +1,16 @@
 <?php
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Запись об изменении в услуге
+ * The record of change in order
+ * 
+ */
 class OrdersChangelogRecord
 {
     /**
+     * Идентификатор записи об изменении
+     * The change record id
      * Type: xsd:int
      * 
      * @var int
@@ -11,6 +18,8 @@ class OrdersChangelogRecord
     public $id = null;
 
     /**
+     * Идентификатор заказа
+     * The order id
      * Type: xsd:int
      * 
      * @var int
@@ -18,6 +27,8 @@ class OrdersChangelogRecord
     public $orderId = null;
 
     /**
+     * Идентификатор услуги
+     * The service id
      * Type: xsd:int
      * 
      * @var int
@@ -25,13 +36,17 @@ class OrdersChangelogRecord
     public $serviceId = null;
 
     /**
+     * Номер услуги в системе клиента
+     * The service number in the client system
      * Type: xsd:string
-     *
+     * 
      * @var string
      */
     public $referenceId = null;
 
     /**
+     * Источник создания услуги
+     * The source of booking creation
      * Type: xsd:string
      * 
      * @var string
@@ -39,6 +54,8 @@ class OrdersChangelogRecord
     public $serviceCreationSource = null;
 
     /**
+     * Дата и время изменения
+     * Date and time of the change
      * Type: xsd:dateTime
      * 
      * @var string
@@ -46,6 +63,8 @@ class OrdersChangelogRecord
     public $createdAt = null;
 
     /**
+     * Список изменений
+     * The list of changes
      * Type: tns:ChangeList
      * 
      * @var \Bronevik\HotelsConnector\Element\ChangeList
@@ -116,7 +135,7 @@ class OrdersChangelogRecord
 
     /**
      * 
-     * @param string $referenceId
+     * @param string $referenceId 
      */
     public function setReferenceId($referenceId)
     {
@@ -169,8 +188,8 @@ class OrdersChangelogRecord
     }
 
     /**
-     *
-     * @param \Bronevik\HotelsConnector\Element\ChangeList $changeList
+     * 
+     * @param \Bronevik\HotelsConnector\Element\ChangeList $changeList 
      */
     public function setChangeList($changeList)
     {
@@ -186,3 +205,4 @@ class OrdersChangelogRecord
         return $this->changeList;
     }
 }
+

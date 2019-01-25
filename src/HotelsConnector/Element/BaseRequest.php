@@ -1,9 +1,16 @@
 <?php
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Базовая структура запроса
+ * The base structure of request
+ * 
+ */
 abstract class BaseRequest
 {
     /**
+     * Идентификационные данные
+     * The identification data
      * Type: tns:Credentials
      * 
      * @var \Bronevik\HotelsConnector\Element\Credentials
@@ -11,6 +18,8 @@ abstract class BaseRequest
     public $credentials = null;
 
     /**
+     * Язык, используемый в ответе
+     * The response language
      * Type: 
      * 
      * @var 

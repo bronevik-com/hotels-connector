@@ -1,6 +1,11 @@
 <?php
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Базовая структура ответа
+ * The base structure of response
+ * 
+ */
 abstract class BaseResponse
 {
     /**

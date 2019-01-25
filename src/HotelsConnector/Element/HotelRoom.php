@@ -2,7 +2,8 @@
 namespace Bronevik\HotelsConnector\Element;
 
 /**
- * Номер отеля
+ * Описание номера отеля
+ * The hotel room description
  * 
  */
 class HotelRoom
@@ -23,6 +24,7 @@ class HotelRoom
 
     /**
      * Доступные в номере удобства
+     * Available amenities in room
      * Type: tns:AvailableAmenity
      * 
      * @var \Bronevik\HotelsConnector\Element\AvailableAmenity[]
@@ -31,6 +33,7 @@ class HotelRoom
 
     /**
      * Описание номера
+     * The text room description
      * Type: xsd:string
      * 
      * @var string
@@ -39,11 +42,21 @@ class HotelRoom
 
     /**
      * Фотографии номера
+     * Room's photos
      * Type: tns:Image
      * 
      * @var \Bronevik\HotelsConnector\Element\Image[]
      */
     public $photos = [];
+
+    /**
+     * Количество гостей, которых можно разместить в номере
+     * An amount of guests that can be accommodated in the room
+     * Type: xsd:int
+     * 
+     * @var int
+     */
+    public $roomCapacity = null;
 
     /**
      * 
@@ -151,6 +164,24 @@ class HotelRoom
     public function addPhotos($photos)
     {
         $this->photos[] = $photos;
+    }
+
+    /**
+     * 
+     * @param int $roomCapacity 
+     */
+    public function setRoomCapacity($roomCapacity)
+    {
+        $this->roomCapacity = $roomCapacity;
+    }
+
+    /**
+     * 
+     * @return int
+     */
+    public function getRoomCapacity()
+    {
+        return $this->roomCapacity;
     }
 }
 

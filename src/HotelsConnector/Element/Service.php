@@ -4,6 +4,8 @@ namespace Bronevik\HotelsConnector\Element;
 abstract class Service
 {
     /**
+     * Номер услуги в системе клиента
+     * The service number in the client’s system
      * Type: xsd:string
      * 
      * @var string
@@ -11,9 +13,11 @@ abstract class Service
     public $referenceId = null;
 
     /**
+     * Список доп. полей для создания услуг
+     * The list of extra fields for the services
      * Type: tns:ServiceExtraField
-     *
-     * @var ServiceExtraField[]
+     * 
+     * @var \Bronevik\HotelsConnector\Element\ServiceExtraField[]
      */
     public $extraField = [];
 
@@ -36,7 +40,7 @@ abstract class Service
     }
 
     /**
-     *
+     * 
      * @return bool
      */
     public function hasExtraField()
@@ -45,8 +49,8 @@ abstract class Service
     }
 
     /**
-     *
-     * @return ServiceExtraField[]
+     * 
+     * @return \Bronevik\HotelsConnector\Element\ServiceExtraField[]
      */
     public function getExtraField()
     {
@@ -54,8 +58,8 @@ abstract class Service
     }
 
     /**
-     *
-     * @param ServiceExtraField $extraField
+     * 
+     * @param \Bronevik\HotelsConnector\Element\ServiceExtraField $extraField 
      */
     public function addExtraField($extraField)
     {
