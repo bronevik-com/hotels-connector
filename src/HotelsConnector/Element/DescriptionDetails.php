@@ -4,6 +4,7 @@ namespace Bronevik\HotelsConnector\Element;
 class DescriptionDetails
 {
     /**
+     * Идентификатор страны
      * The country id
      * Type: xsd:int
      * 
@@ -23,9 +24,9 @@ class DescriptionDetails
     /**
      * Расстояние до центра города (км)
      * The distance to center from hotel (in km)
-     * Type: xsd:string
+     * Type: xsd:float
      * 
-     * @var string
+     * @var float
      */
     public $distanceToCenter = null;
 
@@ -120,7 +121,7 @@ class DescriptionDetails
 
     /**
      * 
-     * @param string $distanceToCenter 
+     * @param float $distanceToCenter 
      */
     public function setDistanceToCenter($distanceToCenter)
     {
@@ -129,7 +130,7 @@ class DescriptionDetails
 
     /**
      * 
-     * @return string
+     * @return float
      */
     public function getDistanceToCenter()
     {

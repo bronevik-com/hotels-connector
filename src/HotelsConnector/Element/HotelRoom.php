@@ -59,6 +59,15 @@ class HotelRoom
     public $roomCapacity = null;
 
     /**
+     * Площадь номера
+     * Room size
+     * Type: xsd:float
+     * 
+     * @var float
+     */
+    public $size = null;
+
+    /**
      * 
      * @param int $id 
      */
@@ -182,6 +191,24 @@ class HotelRoom
     public function getRoomCapacity()
     {
         return $this->roomCapacity;
+    }
+
+    /**
+     * 
+     * @param float $size 
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    }
+
+    /**
+     * 
+     * @return float
+     */
+    public function getSize()
+    {
+        return $this->size;
     }
 }
 

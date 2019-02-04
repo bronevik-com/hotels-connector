@@ -18,13 +18,24 @@ class SearchHotelOffersRequest extends BaseRequest
     public $cityId = null;
 
     /**
-     * Идентификатор отеля, по которому будет идти поиск
-     * The hotel id for search
+     * @deprecated
+     *                                         Идентификатор отеля, по которому будет идти поиск
+     * @deprecated
+     *                                         The hotel id for search
      * Type: xsd:int
      * 
      * @var int
      */
     public $hotelId = null;
+
+    /**
+     * Идентификаторы отелей, по которым будет идти поиск
+     * The hotel ids for search
+     * Type: tns:HotelIdsList
+     * 
+     * @var \Bronevik\HotelsConnector\Element\HotelIdsList
+     */
+    public $hotelIdsList = null;
 
     /**
      * Дата заезда
@@ -63,6 +74,22 @@ class SearchHotelOffersRequest extends BaseRequest
     public $searchCriteria = [];
 
     /**
+     * Type: tns:SkipElements
+     * 
+     * @var \Bronevik\HotelsConnector\Element\SkipElements
+     */
+    public $skipElements = null;
+
+    /**
+     * 
+     */
+    public function __construct()
+    {
+        $this->hotelIdsList = new \Bronevik\HotelsConnector\Element\HotelIdsList;
+        $this->skipElements = new \Bronevik\HotelsConnector\Element\SkipElements;
+    }
+
+    /**
      * 
      * @param int $cityId 
      */
@@ -96,6 +123,24 @@ class SearchHotelOffersRequest extends BaseRequest
     public function getHotelId()
     {
         return $this->hotelId;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\HotelIdsList $hotelIdsList 
+     */
+    public function setHotelIdsList($hotelIdsList)
+    {
+        $this->hotelIdsList = $hotelIdsList;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\HotelIdsList
+     */
+    public function getHotelIdsList()
+    {
+        return $this->hotelIdsList;
     }
 
     /**
@@ -177,6 +222,24 @@ class SearchHotelOffersRequest extends BaseRequest
     public function addSearchCriteria($searchCriteria)
     {
         $this->searchCriteria[] = $searchCriteria;
+    }
+
+    /**
+     * 
+     * @param \Bronevik\HotelsConnector\Element\SkipElements $skipElements 
+     */
+    public function setSkipElements($skipElements)
+    {
+        $this->skipElements = $skipElements;
+    }
+
+    /**
+     * 
+     * @return \Bronevik\HotelsConnector\Element\SkipElements
+     */
+    public function getSkipElements()
+    {
+        return $this->skipElements;
     }
 }
 
