@@ -1,194 +1,179 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class HotelOffer
 {
     /**
-     * Type: xsd:string
-     * 
+     * Код предложения
+     * The offer code
+     *
      * @var string
      */
-    public $code = null;
+    public $code;
 
     /**
-     * Type: xsd:string
-     * 
+     * Название предложения
+     * The offer name
+     *
      * @var string
      */
-    public $name = null;
+    public $name;
 
     /**
      * Флаг наличия lhp-цен в предложении
-     * Type: xsd:boolean
-     * 
+     * Specifies LHP-rate in the offer
+     *
      * @var boolean
      */
-    public $lhp = null;
+    public $lhp;
 
     /**
      * Флаг невозвратности предложения
-     * Type: xsd:boolean
-     * 
+     * Whether the offer is non-refundable
+     *
      * @var boolean
      */
-    public $nonRefundable = null;
+    public $nonRefundable;
 
     /**
-     * Type: tns:PriceDetails
-     * 
-     * @var \Bronevik\HotelsConnector\Element\PriceDetails
-     */
-    public $priceDetails = null;
-
-    /**
-     * @deprecated
-     * Type: xsd:float
-     * 
-     * @var float
-     */
-    public $price = null;
-
-    /**
-     * Type: tns:Tax
+     * Детализация стоимости
+     * The offer price details
      *
-     * @var \Bronevik\HotelsConnector\Element\Tax[]
+     * @var PriceDetails
+     */
+    public $priceDetails;
+
+    /**
+     * Дополнительные сборы при заселении
+     * The additional fees at check-in
+     *
+     * @var Tax[]
      */
     public $taxes = [];
+
     /**
-     * Type: tns:Currency
-     * 
+     * Валюта оплаты
+     * The payment currency
+     *
      * @var string
      */
-    public $currency = null;
+    public $currency;
 
     /**
-     * @deprecated
-     * @var float
-     */
-    public $commission = null;
-
-    /**
-     * Type: xsd:boolean
-     * 
+     * Возможность мгновенного подтверждения
+     * Whether immediate confirmation is possible
+     *
      * @var boolean
      */
-    public $immediateConfirmation = null;
+    public $immediateConfirmation;
 
     /**
-     * Type: xsd:int
-     * 
+     * Количество доступных номеров
+     * The amount of available rooms within this offer
+     *
      * @var int
      */
-    public $freeRooms = null;
+    public $freeRooms;
 
     /**
-     * Type: tns:HotelOfferCancellationPolicy
-     * 
-     * @var \Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy[]
+     * Список политик аннуляций
+     * The list of cancellation policies
+     *
+     * @var HotelOfferCancellationPolicy[]
      */
     public $cancellationPolicies = [];
 
     /**
-     * Информация о завтраке
-     * @deprecated
-     * Type: tns:BreakfastInfo
-     * 
-     * @var \Bronevik\HotelsConnector\Element\BreakfastInfo
-     */
-    public $breakfastInfo = null;
-
-    /**
-     * Type: xsd:int
-     * 
+     * Идентификатор номера
+     * The room id
+     *
      * @var int
      */
-    public $roomId = null;
+    public $roomId;
 
     /**
-     * Количество гостей, которых можно
-     *                                 разместить в номере
-     * Type: xsd:int
-     * 
+     * deprecated - перенесено в элемент 'HotelRoom'.
+     *                                Количество гостей, которых можно разместить в номере
+     * deprecated - currently available in 'HotelRoom' element.
+     *                                The basic room capacity
+     *
      * @var int
      */
-    public $roomCapacity = null;
+    public $roomCapacity;
 
     /**
-     * тип номера
-     * Type: xsd:string
-     * 
+     * Тип размещения в номере
+     * The room type
+     *
      * @var string
      */
-    public $roomType = null;
+    public $roomType;
 
     /**
-     * Type: xsd:boolean
-     * 
+     * Является ли номер номером с подселением
+     * Specifies whether the room is dorm or private
+     *
      * @var boolean
      */
-    public $isSharedRoom = null;
+    public $isSharedRoom;
 
     /**
-     * Является ли номер блочным. Блочный номер - это номер с общей ванной комнатой и туалетом для
-     *                                 нескольких номеров
-     * Type: xsd:boolean
-     * 
+     * Является ли номер блочным (Блочный номер - это номер с общей ванной комнатой и туалетом для нескольких номеров)
+     * Specifies whether the bathroom is located in the hallway and shared by all of the guests on that floor
+     *
      * @var boolean
      */
-    public $isBlockRoom = null;
+    public $isBlockRoom;
 
     /**
-     * Type: tns:PaymentRecipients
-     * 
+     * Место оплаты
+     * Specifies the payment scheme
+     *
      * @var string
      */
-    public $paymentRecipient = null;
+    public $paymentRecipient;
 
     /**
-     * Type: tns:DailyPrice
-     * 
-     * @var \Bronevik\HotelsConnector\Element\DailyPrice[]
-     */
-    public $dailyPrices = [];
-
-    /**
-     * Type: tns:AvailableMeal
-     * 
-     * @var \Bronevik\HotelsConnector\Element\AvailableMeal[]
-     */
-    public $meals = [];
-
-    /**
-     * @var OfferPolicy[]
-     */
-    public $offerPolicies = [];
-
-    /**
-     * Ссылка на страницу бронирования
+     * ​Элемент для работы метапоисковых систем
+     * The element for metasearch engines
+     *
      * @var string
      */
     public $deepLink;
 
     /**
-     * 
+     * Ежедневная детализация стоимости проживания
+     * The detailed daily cost of accommodation
+     *
+     * @var DailyPrices
      */
+    public $dailyPrices;
+
+    /**
+     * Список доступных типов питания
+     * The list of available meal services
+     *
+     * @var AvailableMeals
+     */
+    public $meals;
+
+    /**
+     * Правила предоставления предложения
+     * A policies of granting current offer
+     *
+     * @var OfferPolicy[]
+     */
+    public $offerPolicies = [];
+
     public function __construct()
     {
-        $this->priceDetails = new \Bronevik\HotelsConnector\Element\PriceDetails;
-        $this->breakfastInfo = new \Bronevik\HotelsConnector\Element\BreakfastInfo;
+        $this->priceDetails = new PriceDetails();
+        $this->dailyPrices  = new DailyPrices();
+        $this->meals        = new AvailableMeals();
     }
 
     /**
-     * 
-     * @param string $code 
-     */
-    public function setCode($code)
-    {
-        $this->code = $code;
-    }
-
-    /**
-     * 
      * @return string
      */
     public function getCode()
@@ -197,16 +182,14 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param string $name 
+     * @param string $code
      */
-    public function setName($name)
+    public function setCode($code)
     {
-        $this->name = $name;
+        $this->code = $code;
     }
 
     /**
-     * 
      * @return string
      */
     public function getName()
@@ -215,16 +198,14 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param boolean $lhp 
+     * @param string $name
      */
-    public function setLhp($lhp)
+    public function setName($name)
     {
-        $this->lhp = $lhp;
+        $this->name = $name;
     }
 
     /**
-     * 
      * @return boolean
      */
     public function getLhp()
@@ -233,16 +214,14 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param boolean $nonRefundable 
+     * @param boolean $lhp
      */
-    public function setNonRefundable($nonRefundable)
+    public function setLhp($lhp)
     {
-        $this->nonRefundable = $nonRefundable;
+        $this->lhp = $lhp;
     }
 
     /**
-     * 
      * @return boolean
      */
     public function getNonRefundable()
@@ -251,17 +230,15 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\PriceDetails $priceDetails 
+     * @param boolean $nonRefundable
      */
-    public function setPriceDetails($priceDetails)
+    public function setNonRefundable($nonRefundable)
     {
-        $this->priceDetails = $priceDetails;
+        $this->nonRefundable = $nonRefundable;
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\PriceDetails
+     * @return PriceDetails
      */
     public function getPriceDetails()
     {
@@ -269,61 +246,38 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param float $price 
+     * @param PriceDetails $priceDetails
      */
-    public function setPrice($price)
+    public function setPriceDetails($priceDetails)
     {
-        $this->price = $price;
+        $this->priceDetails = $priceDetails;
     }
 
     /**
-     * 
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     *
      * @return bool
      */
     public function hasTaxes()
     {
-        return count($this->Taxes) > 0;
+        return count($this->taxes) > 0;
     }
 
     /**
-     *
-     * @return \Bronevik\HotelsConnector\Element\Tax[]
+     * @return Tax[]
      */
     public function getTaxes()
     {
-        return $this->Taxes;
+        return $this->taxes;
     }
 
     /**
-     *
-     * @param \Bronevik\HotelsConnector\Element\Tax $Taxes
+     * @param Tax $taxes
      */
-    public function addTaxes($Taxes)
+    public function addTaxes($taxes)
     {
-        $this->Taxes[] = $Taxes;
+        $this->taxes[] = $taxes;
     }
 
     /**
-     * 
-     * @param string $currency 
-     */
-    public function setCurrency($currency)
-    {
-        $this->currency = $currency;
-    }
-
-    /**
-     * 
      * @return string
      */
     public function getCurrency()
@@ -332,34 +286,14 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param float $commission 
+     * @param string $currency
      */
-    public function setCommission($commission)
+    public function setCurrency($currency)
     {
-        $this->commission = $commission;
+        $this->currency = $currency;
     }
 
     /**
-     * 
-     * @return float
-     */
-    public function getCommission()
-    {
-        return $this->commission;
-    }
-
-    /**
-     * 
-     * @param boolean $immediateConfirmation 
-     */
-    public function setImmediateConfirmation($immediateConfirmation)
-    {
-        $this->immediateConfirmation = $immediateConfirmation;
-    }
-
-    /**
-     * 
      * @return boolean
      */
     public function getImmediateConfirmation()
@@ -368,16 +302,14 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param int $freeRooms 
+     * @param boolean $immediateConfirmation
      */
-    public function setFreeRooms($freeRooms)
+    public function setImmediateConfirmation($immediateConfirmation)
     {
-        $this->freeRooms = $freeRooms;
+        $this->immediateConfirmation = $immediateConfirmation;
     }
 
     /**
-     * 
      * @return int
      */
     public function getFreeRooms()
@@ -386,7 +318,14 @@ class HotelOffer
     }
 
     /**
-     * 
+     * @param int $freeRooms
+     */
+    public function setFreeRooms($freeRooms)
+    {
+        $this->freeRooms = $freeRooms;
+    }
+
+    /**
      * @return bool
      */
     public function hasCancellationPolicies()
@@ -395,8 +334,7 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy[]
+     * @return HotelOfferCancellationPolicy[]
      */
     public function getCancellationPolicies()
     {
@@ -404,8 +342,7 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy $cancellationPolicies 
+     * @param HotelOfferCancellationPolicy $cancellationPolicies
      */
     public function addCancellationPolicies($cancellationPolicies)
     {
@@ -413,34 +350,6 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\BreakfastInfo $breakfastInfo 
-     */
-    public function setBreakfastInfo($breakfastInfo)
-    {
-        $this->breakfastInfo = $breakfastInfo;
-    }
-
-    /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\BreakfastInfo
-     */
-    public function getBreakfastInfo()
-    {
-        return $this->breakfastInfo;
-    }
-
-    /**
-     * 
-     * @param int $roomId 
-     */
-    public function setRoomId($roomId)
-    {
-        $this->roomId = $roomId;
-    }
-
-    /**
-     * 
      * @return int
      */
     public function getRoomId()
@@ -449,16 +358,14 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param int $roomCapacity 
+     * @param int $roomId
      */
-    public function setRoomCapacity($roomCapacity)
+    public function setRoomId($roomId)
     {
-        $this->roomCapacity = $roomCapacity;
+        $this->roomId = $roomId;
     }
 
     /**
-     * 
      * @return int
      */
     public function getRoomCapacity()
@@ -467,16 +374,14 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param string $roomType 
+     * @param int $roomCapacity
      */
-    public function setRoomType($roomType)
+    public function setRoomCapacity($roomCapacity)
     {
-        $this->roomType = $roomType;
+        $this->roomCapacity = $roomCapacity;
     }
 
     /**
-     * 
      * @return string
      */
     public function getRoomType()
@@ -485,16 +390,14 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param boolean $isSharedRoom 
+     * @param string $roomType
      */
-    public function setIsSharedRoom($isSharedRoom)
+    public function setRoomType($roomType)
     {
-        $this->isSharedRoom = $isSharedRoom;
+        $this->roomType = $roomType;
     }
 
     /**
-     * 
      * @return boolean
      */
     public function getIsSharedRoom()
@@ -503,16 +406,14 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param boolean $isBlockRoom 
+     * @param boolean $isSharedRoom
      */
-    public function setIsBlockRoom($isBlockRoom)
+    public function setIsSharedRoom($isSharedRoom)
     {
-        $this->isBlockRoom = $isBlockRoom;
+        $this->isSharedRoom = $isSharedRoom;
     }
 
     /**
-     * 
      * @return boolean
      */
     public function getIsBlockRoom()
@@ -521,16 +422,14 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param string $paymentRecipient 
+     * @param boolean $isBlockRoom
      */
-    public function setPaymentRecipient($paymentRecipient)
+    public function setIsBlockRoom($isBlockRoom)
     {
-        $this->paymentRecipient = $paymentRecipient;
+        $this->isBlockRoom = $isBlockRoom;
     }
 
     /**
-     * 
      * @return string
      */
     public function getPaymentRecipient()
@@ -539,17 +438,31 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @return bool
+     * @param string $paymentRecipient
      */
-    public function hasDailyPrices()
+    public function setPaymentRecipient($paymentRecipient)
     {
-        return count($this->dailyPrices) > 0;
+        $this->paymentRecipient = $paymentRecipient;
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\DailyPrice[]
+     * @return string
+     */
+    public function getDeepLink()
+    {
+        return $this->deepLink;
+    }
+
+    /**
+     * @param string $deepLink
+     */
+    public function setDeepLink($deepLink)
+    {
+        $this->deepLink = $deepLink;
+    }
+
+    /**
+     * @return DailyPrices
      */
     public function getDailyPrices()
     {
@@ -557,26 +470,15 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\DailyPrice $dailyPrices 
+     * @param DailyPrices $dailyPrices
      */
-    public function addDailyPrices($dailyPrices)
+    public function setDailyPrices($dailyPrices)
     {
-        $this->dailyPrices[] = $dailyPrices;
+        $this->dailyPrices = $dailyPrices;
     }
 
     /**
-     * 
-     * @return bool
-     */
-    public function hasMeals()
-    {
-        return count($this->meals) > 0;
-    }
-
-    /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\AvailableMeal[]
+     * @return AvailableMeals
      */
     public function getMeals()
     {
@@ -584,12 +486,34 @@ class HotelOffer
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\AvailableMeal $meals 
+     * @param AvailableMeals $meals
      */
-    public function addMeals($meals)
+    public function setMeals($meals)
     {
-        $this->meals[] = $meals;
+        $this->meals = $meals;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasOfferPolicies()
+    {
+        return count($this->offerPolicies) > 0;
+    }
+
+    /**
+     * @return OfferPolicy[]
+     */
+    public function getOfferPolicies()
+    {
+        return $this->offerPolicies;
+    }
+
+    /**
+     * @param OfferPolicy $offerPolicies
+     */
+    public function addOfferPolicies($offerPolicies)
+    {
+        $this->offerPolicies[] = $offerPolicies;
     }
 }
-

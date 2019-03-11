@@ -1,61 +1,58 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class Order
 {
     /**
-     * Type: xsd:int
-     * 
+     * Идентификатор заказа
+     * The order id
+     *
      * @var int
      */
-    public $id = null;
+    public $id;
 
     /**
-     * Type: xsd:string
-     * 
+     * Контактный телефон по вопросам заказа
+     * The contact phone, we use this number in emergency cases
+     *
      * @var string
      */
-    public $contactPhone = null;
+    public $contactPhone;
 
     /**
-     * Type: xsd:string
-     * 
+     * Контактное лицо по вопросам заказа
+     * A person who provides a link for information about order
+     *
      * @var string
      */
-    public $contactPerson = null;
+    public $contactPerson;
 
     /**
-     * Type: xsd:string
-     * 
+     * Контактный e-mail для подтверждения бронирования
+     * The contact email, we use this address to send confirmations
+     *
      * @var string
      */
-    public $contactEmail = null;
+    public $contactEmail;
 
     /**
-     * Type: xsd:string
-     * 
+     * Комментарии к заказу
+     * The comment to the order
+     *
      * @var string
      */
-    public $comment = null;
+    public $comment;
 
     /**
-     * Type: tns:OrderService
-     * 
-     * @var \Bronevik\HotelsConnector\Element\OrderService[]
+     * Список возможных услуг
+     * List of the services
+     *
+     * @var OrderService[]
      */
     public $services = [];
 
     /**
-     * 
-     * @param int $id 
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * 
      * @return int
      */
     public function getId()
@@ -64,16 +61,14 @@ class Order
     }
 
     /**
-     * 
-     * @param string $contactPhone 
+     * @param int $id
      */
-    public function setContactPhone($contactPhone)
+    public function setId($id)
     {
-        $this->contactPhone = $contactPhone;
+        $this->id = $id;
     }
 
     /**
-     * 
      * @return string
      */
     public function getContactPhone()
@@ -82,16 +77,14 @@ class Order
     }
 
     /**
-     * 
-     * @param string $contactPerson 
+     * @param string $contactPhone
      */
-    public function setContactPerson($contactPerson)
+    public function setContactPhone($contactPhone)
     {
-        $this->contactPerson = $contactPerson;
+        $this->contactPhone = $contactPhone;
     }
 
     /**
-     * 
      * @return string
      */
     public function getContactPerson()
@@ -100,16 +93,14 @@ class Order
     }
 
     /**
-     * 
-     * @param string $contactEmail 
+     * @param string $contactPerson
      */
-    public function setContactEmail($contactEmail)
+    public function setContactPerson($contactPerson)
     {
-        $this->contactEmail = $contactEmail;
+        $this->contactPerson = $contactPerson;
     }
 
     /**
-     * 
      * @return string
      */
     public function getContactEmail()
@@ -118,16 +109,14 @@ class Order
     }
 
     /**
-     * 
-     * @param string $comment 
+     * @param string $contactEmail
      */
-    public function setComment($comment)
+    public function setContactEmail($contactEmail)
     {
-        $this->comment = $comment;
+        $this->contactEmail = $contactEmail;
     }
 
     /**
-     * 
      * @return string
      */
     public function getComment()
@@ -136,7 +125,14 @@ class Order
     }
 
     /**
-     * 
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    /**
      * @return bool
      */
     public function hasServices()
@@ -145,8 +141,7 @@ class Order
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\OrderService[]
+     * @return OrderService[]
      */
     public function getServices()
     {
@@ -154,12 +149,10 @@ class Order
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\OrderService $services 
+     * @param OrderService $services
      */
     public function addServices($services)
     {
         $this->services[] = $services;
     }
 }
-

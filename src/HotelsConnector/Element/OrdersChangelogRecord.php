@@ -1,76 +1,75 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Запись об изменении в услуге
+ * The record of change in order
+ */
 class OrdersChangelogRecord
 {
     /**
-     * Type: xsd:int
-     * 
+     * Идентификатор записи об изменении
+     * The change record id
+     *
      * @var int
      */
-    public $id = null;
+    public $id;
 
     /**
-     * Type: xsd:int
-     * 
+     * Идентификатор заказа
+     * The order id
+     *
      * @var int
      */
-    public $orderId = null;
+    public $orderId;
 
     /**
-     * Type: xsd:int
-     * 
+     * Идентификатор услуги
+     * The service id
+     *
      * @var int
      */
-    public $serviceId = null;
+    public $serviceId;
 
     /**
-     * Type: xsd:string
+     * Номер услуги в системе клиента
+     * The service number in the client system
      *
      * @var string
      */
-    public $referenceId = null;
+    public $referenceId;
 
     /**
-     * Type: xsd:string
-     * 
+     * Источник создания услуги
+     * The source of booking creation
+     *
      * @var string
      */
-    public $serviceCreationSource = null;
+    public $serviceCreationSource;
 
     /**
-     * Type: xsd:dateTime
-     * 
+     * Дата и время изменения
+     * Date and time of the change
+     *
      * @var string
      */
-    public $createdAt = null;
+    public $createdAt;
 
     /**
-     * Type: tns:ChangeList
-     * 
-     * @var \Bronevik\HotelsConnector\Element\ChangeList
+     * Список изменений
+     * The list of changes
+     *
+     * @var ChangeList
      */
-    public $changeList = null;
+    public $changeList;
 
-    /**
-     * 
-     */
     public function __construct()
     {
-        $this->changeList = new \Bronevik\HotelsConnector\Element\ChangeList;
+        $this->changeList = new ChangeList();
     }
 
     /**
-     * 
-     * @param int $id 
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * 
      * @return int
      */
     public function getId()
@@ -79,16 +78,14 @@ class OrdersChangelogRecord
     }
 
     /**
-     * 
-     * @param int $orderId 
+     * @param int $id
      */
-    public function setOrderId($orderId)
+    public function setId($id)
     {
-        $this->orderId = $orderId;
+        $this->id = $id;
     }
 
     /**
-     * 
      * @return int
      */
     public function getOrderId()
@@ -97,16 +94,14 @@ class OrdersChangelogRecord
     }
 
     /**
-     * 
-     * @param int $serviceId 
+     * @param int $orderId
      */
-    public function setServiceId($serviceId)
+    public function setOrderId($orderId)
     {
-        $this->serviceId = $serviceId;
+        $this->orderId = $orderId;
     }
 
     /**
-     * 
      * @return int
      */
     public function getServiceId()
@@ -115,16 +110,14 @@ class OrdersChangelogRecord
     }
 
     /**
-     * 
-     * @param string $referenceId
+     * @param int $serviceId
      */
-    public function setReferenceId($referenceId)
+    public function setServiceId($serviceId)
     {
-        $this->referenceId = $referenceId;
+        $this->serviceId = $serviceId;
     }
 
     /**
-     * 
      * @return string
      */
     public function getReferenceId()
@@ -133,16 +126,14 @@ class OrdersChangelogRecord
     }
 
     /**
-     * 
-     * @param string $serviceCreationSource 
+     * @param string $referenceId
      */
-    public function setServiceCreationSource($serviceCreationSource)
+    public function setReferenceId($referenceId)
     {
-        $this->serviceCreationSource = $serviceCreationSource;
+        $this->referenceId = $referenceId;
     }
 
     /**
-     * 
      * @return string
      */
     public function getServiceCreationSource()
@@ -151,16 +142,14 @@ class OrdersChangelogRecord
     }
 
     /**
-     * 
-     * @param string $createdAt 
+     * @param string $serviceCreationSource
      */
-    public function setCreatedAt($createdAt)
+    public function setServiceCreationSource($serviceCreationSource)
     {
-        $this->createdAt = $createdAt;
+        $this->serviceCreationSource = $serviceCreationSource;
     }
 
     /**
-     * 
      * @return string
      */
     public function getCreatedAt()
@@ -169,20 +158,26 @@ class OrdersChangelogRecord
     }
 
     /**
-     *
-     * @param \Bronevik\HotelsConnector\Element\ChangeList $changeList
+     * @param string $createdAt
      */
-    public function setChangeList($changeList)
+    public function setCreatedAt($createdAt)
     {
-        $this->changeList = $changeList;
+        $this->createdAt = $createdAt;
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\ChangeList
+     * @return ChangeList
      */
     public function getChangeList()
     {
         return $this->changeList;
+    }
+
+    /**
+     * @param ChangeList $changeList
+     */
+    public function setChangeList($changeList)
+    {
+        $this->changeList = $changeList;
     }
 }

@@ -1,33 +1,20 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class Change
 {
     /**
-     * Type: xsd:string
-     * 
      * @var string
      */
-    public $element = null;
+    public $element;
 
     /**
-     * Type: xsd:string
-     * 
      * @var string
      */
-    public $newValue = null;
+    public $newValue;
 
     /**
-     * 
-     * @param string $element 
-     */
-    public function setElement($element)
-    {
-        $this->element = $element;
-    }
-
-    /**
-     * 
      * @return string
      */
     public function getElement()
@@ -36,21 +23,26 @@ class Change
     }
 
     /**
-     * 
-     * @param string $newValue 
+     * @param string $element
      */
-    public function setNewValue($newValue)
+    public function setElement($element)
     {
-        $this->newValue = $newValue;
+        $this->element = $element;
     }
 
     /**
-     * 
      * @return string
      */
     public function getNewValue()
     {
         return $this->newValue;
     }
-}
 
+    /**
+     * @param string $newValue
+     */
+    public function setNewValue($newValue)
+    {
+        $this->newValue = $newValue;
+    }
+}

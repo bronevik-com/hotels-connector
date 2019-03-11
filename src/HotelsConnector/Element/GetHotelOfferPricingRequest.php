@@ -1,17 +1,26 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class GetHotelOfferPricingRequest extends BaseRequest
 {
     /**
-     * Type: tns:Service
-     * 
-     * @var \Bronevik\HotelsConnector\Element\Service[]
+     * @var Service[]
      */
     public $services = [];
 
     /**
-     * 
+     * @var SkipElements
+     */
+    public $skipElements;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->skipElements = new SkipElements();
+    }
+
+    /**
      * @return bool
      */
     public function hasServices()
@@ -20,20 +29,34 @@ class GetHotelOfferPricingRequest extends BaseRequest
     }
 
     /**
-     *
-     * @return int[]
+     * @return Service[]
      */
-    public function getServiceIds()
+    public function getServices()
     {
         return $this->services;
     }
 
     /**
-     *
-     * @param ServiceAccommodation $service
+     * @param Service $services
      */
-    public function addService($service)
+    public function addServices($services)
     {
-        $this->services[] = $service;
+        $this->services[] = $services;
+    }
+
+    /**
+     * @return SkipElements
+     */
+    public function getSkipElements()
+    {
+        return $this->skipElements;
+    }
+
+    /**
+     * @param SkipElements $skipElements
+     */
+    public function setSkipElements($skipElements)
+    {
+        $this->skipElements = $skipElements;
     }
 }

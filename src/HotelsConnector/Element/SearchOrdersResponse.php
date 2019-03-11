@@ -1,17 +1,15 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class SearchOrdersResponse extends BaseResponse
 {
     /**
-     * Type: tns:Order
-     * 
-     * @var \Bronevik\HotelsConnector\Element\Order[]
+     * @var Order[]
      */
     public $orders = [];
 
     /**
-     * 
      * @return bool
      */
     public function hasOrders()
@@ -20,8 +18,7 @@ class SearchOrdersResponse extends BaseResponse
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\Order[]
+     * @return Order[]
      */
     public function getOrders()
     {
@@ -29,12 +26,10 @@ class SearchOrdersResponse extends BaseResponse
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\Order $orders 
+     * @param Order $orders
      */
     public function addOrders($orders)
     {
         $this->orders[] = $orders;
     }
 }
-

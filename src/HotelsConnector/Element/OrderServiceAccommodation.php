@@ -1,188 +1,161 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class OrderServiceAccommodation extends OrderService
 {
     /**
-     * Сведения о договоре, на основании которого произведено бронирование
-     * Type: tns:Contract
-     * 
-     * @var \Bronevik\HotelsConnector\Element\Contract
+     * Договор, на который оформлено бронирование
+     * The information about contract of booking
+     *
+     * @var Contract
      */
-    public $contract = null;
+    public $contract;
 
     /**
-     * Type: xsd:string
-     * 
+     * Код предложения
+     * The offer code
+     *
      * @var string
      */
-    public $offerCode = null;
+    public $offerCode;
 
     /**
-     * Type: xsd:string
-     * 
+     * Название предложения
+     * The offer name
+     *
      * @var string
      */
-    public $offerName = null;
+    public $offerName;
 
     /**
-     * Type: xsd:string
-     * 
-     * @var string
-     */
-    public $hotelId = null;
-
-    /**
-     * Type: xsd:string
-     * 
-     * @var string
-     */
-    public $hotelName = null;
-
-    /**
-     * Type: xsd:int
-     * 
+     * Идентификатор отеля
+     * The hotel id
+     *
      * @var int
      */
-    public $roomId = null;
+    public $hotelId;
 
     /**
-     * Type: xsd:string
-     * 
+     * Название отеля
+     * The hotel name
+     *
      * @var string
      */
-    public $roomType = null;
+    public $hotelName;
 
     /**
-     * Type: xsd:dateTime
-     * 
+     * Идентификатор номера
+     * The room id
+     *
+     * @var int
+     */
+    public $roomId;
+
+    /**
+     * Тип размещения в номере
+     * The room type
+     *
      * @var string
      */
-    public $checkin = null;
+    public $roomType;
 
     /**
-     * Type: xsd:dateTime
-     * 
+     * Дата и время заезда
+     * The check-in date and time
+     *
      * @var string
      */
-    public $checkout = null;
+    public $checkin;
 
     /**
-     * Type: xsd:string
-     * 
+     * Дата и время выезда
+     * The check-out date and time
+     *
+     * @var string
+     */
+    public $checkout;
+
+    /**
+     * ФИО гостей
+     * The name of guests
+     *
      * @var string[]
      */
     public $guests = [];
 
     /**
-     * Type: xsd:string
-     * 
+     * Комментарии
+     * An important information about accommodation
+     *
      * @var string
      */
-    public $comment = null;
-
-    /**
-     * Type: xsd:boolean
-     * @deprecated
-     * 
-     * @var boolean
-     */
-    public $vatApplicable = null;
-
-    /**
-     * Type: xsd:boolean
-     * @deprecated
-     * 
-     * @var boolean
-     */
-    public $vatIncluded = null;
-
-    /**
-     * Type: xsd:float
-     * @deprecated
-     * 
-     * @var float
-     */
-    public $vatAmount = null;
+    public $comment;
 
     /**
      * Флаг невозвратности предложения
-     * Type: xsd:boolean
-     * 
+     * Whether the offer is non-refundable
+     *
      * @var boolean
      */
-    public $nonRefundable = null;
+    public $nonRefundable;
 
     /**
-     * Номер является блочным. Блочный номер - это номер с общей ванной комнатой и
-     *                                         туалетом для нескольких номеров
-     * Type: xsd:boolean
-     * 
+     * Является ли номер блочным. Блочный номер - это номер с общей ванной комнатой и туалетом для нескольких номеров
+     * Specifies whether the bathroom is located in the hallway and shared by all of the guests on that floor
+     *
      * @var boolean
      */
-    public $isBlockRoom = null;
+    public $isBlockRoom;
 
     /**
-     * Type: tns:PaymentRecipients
-     * 
+     * Место оплаты
+     * Specifies the payment scheme
+     *
      * @var string
      */
-    public $paymentRecipient = null;
+    public $paymentRecipient;
 
     /**
-     * Type: tns:ServiceExtraField
+     * Доп. поля услуг
+     * Extra fields for services
      *
      * @var ServiceExtraField[]
      */
     public $extraField = [];
 
     /**
-     * Type: tns:AvailableMeal
-     * 
-     * @var \Bronevik\HotelsConnector\Element\AvailableMeal[]
+     * Информация о питании
+     * An information about meal service
+     *
+     * @var AvailableMeal[]
      */
     public $meals = [];
 
     /**
+     * Правила предоставления заказа
+     * A policies of granting current offer
+     *
      * @var OfferPolicy[]
      */
     public $offerPolicies = [];
 
     /**
-     * Type: tns:DailyPrices
+     * Детализация стоимости на каждый день проживания
+     * The detailed daily cost of accommodation
      *
      * @var DailyPrices
      */
     public $dailyPrices;
 
-    /**
-     * @param OfferPolicy $policy
-     */
-    public function addOfferPolicy(OfferPolicy $policy)
-    {
-        $this->offerPolicies[] = $policy;
-    }
-
-    /**
-     * 
-     */
     public function __construct()
     {
-        $this->contract = new \Bronevik\HotelsConnector\Element\Contract;
+        $this->contract    = new Contract();
+        $this->dailyPrices = new DailyPrices();
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\Contract $contract 
-     */
-    public function setContract($contract)
-    {
-        $this->contract = $contract;
-    }
-
-    /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\Contract
+     * @return Contract
      */
     public function getContract()
     {
@@ -190,16 +163,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param string $offerCode 
+     * @param Contract $contract
      */
-    public function setOfferCode($offerCode)
+    public function setContract($contract)
     {
-        $this->offerCode = $offerCode;
+        $this->contract = $contract;
     }
 
     /**
-     * 
      * @return string
      */
     public function getOfferCode()
@@ -208,16 +179,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param string $offerName 
+     * @param string $offerCode
      */
-    public function setOfferName($offerName)
+    public function setOfferCode($offerCode)
     {
-        $this->offerName = $offerName;
+        $this->offerCode = $offerCode;
     }
 
     /**
-     * 
      * @return string
      */
     public function getOfferName()
@@ -226,17 +195,15 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param string $hotelId 
+     * @param string $offerName
      */
-    public function setHotelId($hotelId)
+    public function setOfferName($offerName)
     {
-        $this->hotelId = $hotelId;
+        $this->offerName = $offerName;
     }
 
     /**
-     * 
-     * @return string
+     * @return int
      */
     public function getHotelId()
     {
@@ -244,16 +211,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param string $hotelName 
+     * @param int $hotelId
      */
-    public function setHotelName($hotelName)
+    public function setHotelId($hotelId)
     {
-        $this->hotelName = $hotelName;
+        $this->hotelId = $hotelId;
     }
 
     /**
-     * 
      * @return string
      */
     public function getHotelName()
@@ -262,16 +227,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param int $roomId 
+     * @param string $hotelName
      */
-    public function setRoomId($roomId)
+    public function setHotelName($hotelName)
     {
-        $this->roomId = $roomId;
+        $this->hotelName = $hotelName;
     }
 
     /**
-     * 
      * @return int
      */
     public function getRoomId()
@@ -280,16 +243,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param string $roomType 
+     * @param int $roomId
      */
-    public function setRoomType($roomType)
+    public function setRoomId($roomId)
     {
-        $this->roomType = $roomType;
+        $this->roomId = $roomId;
     }
 
     /**
-     * 
      * @return string
      */
     public function getRoomType()
@@ -298,16 +259,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param string $checkin 
+     * @param string $roomType
      */
-    public function setCheckin($checkin)
+    public function setRoomType($roomType)
     {
-        $this->checkin = $checkin;
+        $this->roomType = $roomType;
     }
 
     /**
-     * 
      * @return string
      */
     public function getCheckin()
@@ -316,16 +275,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param string $checkout 
+     * @param string $checkin
      */
-    public function setCheckout($checkout)
+    public function setCheckin($checkin)
     {
-        $this->checkout = $checkout;
+        $this->checkin = $checkin;
     }
 
     /**
-     * 
      * @return string
      */
     public function getCheckout()
@@ -334,7 +291,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
+     * @param string $checkout
+     */
+    public function setCheckout($checkout)
+    {
+        $this->checkout = $checkout;
+    }
+
+    /**
      * @return bool
      */
     public function hasGuests()
@@ -343,7 +307,6 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
      * @return string[]
      */
     public function getGuests()
@@ -352,8 +315,7 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param string $guests 
+     * @param string $guests
      */
     public function addGuests($guests)
     {
@@ -361,16 +323,6 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param string $comment 
-     */
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-    }
-
-    /**
-     * 
      * @return string
      */
     public function getComment()
@@ -379,70 +331,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param boolean $vatApplicable 
+     * @param string $comment
      */
-    public function setVatApplicable($vatApplicable)
+    public function setComment($comment)
     {
-        $this->vatApplicable = $vatApplicable;
+        $this->comment = $comment;
     }
 
     /**
-     * 
-     * @return boolean
-     */
-    public function getVatApplicable()
-    {
-        return $this->vatApplicable;
-    }
-
-    /**
-     * 
-     * @param boolean $vatIncluded 
-     */
-    public function setVatIncluded($vatIncluded)
-    {
-        $this->vatIncluded = $vatIncluded;
-    }
-
-    /**
-     * 
-     * @return boolean
-     */
-    public function getVatIncluded()
-    {
-        return $this->vatIncluded;
-    }
-
-    /**
-     * 
-     * @param float $vatAmount 
-     */
-    public function setVatAmount($vatAmount)
-    {
-        $this->vatAmount = $vatAmount;
-    }
-
-    /**
-     * 
-     * @return float
-     */
-    public function getVatAmount()
-    {
-        return $this->vatAmount;
-    }
-
-    /**
-     * 
-     * @param boolean $nonRefundable 
-     */
-    public function setNonRefundable($nonRefundable)
-    {
-        $this->nonRefundable = $nonRefundable;
-    }
-
-    /**
-     * 
      * @return boolean
      */
     public function getNonRefundable()
@@ -451,16 +347,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param boolean $isBlockRoom 
+     * @param boolean $nonRefundable
      */
-    public function setIsBlockRoom($isBlockRoom)
+    public function setNonRefundable($nonRefundable)
     {
-        $this->isBlockRoom = $isBlockRoom;
+        $this->nonRefundable = $nonRefundable;
     }
 
     /**
-     * 
      * @return boolean
      */
     public function getIsBlockRoom()
@@ -469,16 +363,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param string $paymentRecipient 
+     * @param boolean $isBlockRoom
      */
-    public function setPaymentRecipient($paymentRecipient)
+    public function setIsBlockRoom($isBlockRoom)
     {
-        $this->paymentRecipient = $paymentRecipient;
+        $this->isBlockRoom = $isBlockRoom;
     }
 
     /**
-     * 
      * @return string
      */
     public function getPaymentRecipient()
@@ -487,7 +379,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     *
+     * @param string $paymentRecipient
+     */
+    public function setPaymentRecipient($paymentRecipient)
+    {
+        $this->paymentRecipient = $paymentRecipient;
+    }
+
+    /**
      * @return bool
      */
     public function hasExtraField()
@@ -496,7 +395,6 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     *
      * @return ServiceExtraField[]
      */
     public function getExtraField()
@@ -505,7 +403,6 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     *
      * @param ServiceExtraField $extraField
      */
     public function addExtraField($extraField)
@@ -514,7 +411,6 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
      * @return bool
      */
     public function hasMeals()
@@ -523,8 +419,7 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\AvailableMeal[]
+     * @return AvailableMeal[]
      */
     public function getMeals()
     {
@@ -532,12 +427,50 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\AvailableMeal $meals 
+     * @param AvailableMeal $meals
      */
     public function addMeals($meals)
     {
         $this->meals[] = $meals;
     }
-}
 
+    /**
+     * @return bool
+     */
+    public function hasOfferPolicies()
+    {
+        return count($this->offerPolicies) > 0;
+    }
+
+    /**
+     * @return OfferPolicy[]
+     */
+    public function getOfferPolicies()
+    {
+        return $this->offerPolicies;
+    }
+
+    /**
+     * @param OfferPolicy $offerPolicies
+     */
+    public function addOfferPolicies($offerPolicies)
+    {
+        $this->offerPolicies[] = $offerPolicies;
+    }
+
+    /**
+     * @return DailyPrices
+     */
+    public function getDailyPrices()
+    {
+        return $this->dailyPrices;
+    }
+
+    /**
+     * @param DailyPrices $dailyPrices
+     */
+    public function setDailyPrices($dailyPrices)
+    {
+        $this->dailyPrices = $dailyPrices;
+    }
+}

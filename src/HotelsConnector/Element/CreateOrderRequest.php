@@ -1,58 +1,54 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 /**
  * Запрос на создание заказа
- * 
+ * The request for create the order
  */
 class CreateOrderRequest extends BaseRequest
 {
     /**
-     * Type: xsd:string
-     * 
+     * Контактное лицо по вопросам заказа
+     * A person who provides a link for information about order
+     *
      * @var string
      */
-    public $contactPerson = null;
+    public $contactPerson;
 
     /**
-     * Type: xsd:string
-     * 
+     * Контактный e-mail для подтверждения бронирования
+     * The contact email, we use this address to send confirmations
+     *
      * @var string
      */
-    public $contactEmail = null;
+    public $contactEmail;
 
     /**
-     * Type: xsd:string
-     * 
+     * Контактный телефон по вопросам заказа
+     * The contact phone, we use this number in emergency cases
+     *
      * @var string
      */
-    public $contactPhone = null;
+    public $contactPhone;
 
     /**
-     * Type: xsd:string
-     * 
+     * Комментарии к заказу
+     * The comment to the order
+     *
      * @var string
      */
-    public $comment = null;
+    public $comment;
 
     /**
-     * Type: tns:Service
-     * 
-     * @var \Bronevik\HotelsConnector\Element\Service[]
+     * Список возможных услуг
+     * List of the services
+     *
+     * @var Service[]
      */
     public $services = [];
 
     /**
-     * 
-     * @param string $contactPerson 
-     */
-    public function setContactPerson($contactPerson)
-    {
-        $this->contactPerson = $contactPerson;
-    }
-
-    /**
-     * 
      * @return string
      */
     public function getContactPerson()
@@ -61,16 +57,14 @@ class CreateOrderRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @param string $contactEmail 
+     * @param string $contactPerson
      */
-    public function setContactEmail($contactEmail)
+    public function setContactPerson($contactPerson)
     {
-        $this->contactEmail = $contactEmail;
+        $this->contactPerson = $contactPerson;
     }
 
     /**
-     * 
      * @return string
      */
     public function getContactEmail()
@@ -79,16 +73,14 @@ class CreateOrderRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @param string $contactPhone 
+     * @param string $contactEmail
      */
-    public function setContactPhone($contactPhone)
+    public function setContactEmail($contactEmail)
     {
-        $this->contactPhone = $contactPhone;
+        $this->contactEmail = $contactEmail;
     }
 
     /**
-     * 
      * @return string
      */
     public function getContactPhone()
@@ -97,16 +89,14 @@ class CreateOrderRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @param string $comment 
+     * @param string $contactPhone
      */
-    public function setComment($comment)
+    public function setContactPhone($contactPhone)
     {
-        $this->comment = $comment;
+        $this->contactPhone = $contactPhone;
     }
 
     /**
-     * 
      * @return string
      */
     public function getComment()
@@ -115,7 +105,14 @@ class CreateOrderRequest extends BaseRequest
     }
 
     /**
-     * 
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    /**
      * @return bool
      */
     public function hasServices()
@@ -124,8 +121,7 @@ class CreateOrderRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\Service[]
+     * @return Service[]
      */
     public function getServices()
     {
@@ -133,12 +129,10 @@ class CreateOrderRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\Service $services 
+     * @param Service $services
      */
     public function addServices($services)
     {
         $this->services[] = $services;
     }
 }
-

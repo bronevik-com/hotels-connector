@@ -1,40 +1,44 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Отели с предложениями
+ * The hotels with offers
+ */
 class HotelWithOffers extends Hotel
 {
     /**
-     * Type: xsd:boolean
-     * 
+     * Включен ли НДС в стоимость
+     * Flag of whether VAT is included in the client’s price
+     *
      * @var boolean
      */
-    public $vatIncluded = null;
+    public $vatIncluded;
 
     /**
-     * Type: xsd:float
-     * 
+     * Размер НДС
+     * The VAT amount
+     *
      * @var float
      */
-    public $VATPercent = null;
+    public $VATPercent;
 
     /**
-     * Type: tns:HotelOffer
-     * 
-     * @var \Bronevik\HotelsConnector\Element\HotelOffer[]
+     * Список предложений
+     * The list of offers
+     *
+     * @var HotelOffers
      */
-    public $offers = [];
+    public $offers;
 
-    /**
-     * 
-     * @param boolean $vatIncluded 
-     */
-    public function setVatIncluded($vatIncluded)
+    public function __construct()
     {
-        $this->vatIncluded = $vatIncluded;
+        parent::__construct();
+        $this->offers = new HotelOffers();
     }
 
     /**
-     * 
      * @return boolean
      */
     public function getVatIncluded()
@@ -43,16 +47,14 @@ class HotelWithOffers extends Hotel
     }
 
     /**
-     * 
-     * @param float $VATPercent 
+     * @param boolean $vatIncluded
      */
-    public function setVATPercent($VATPercent)
+    public function setVatIncluded($vatIncluded)
     {
-        $this->VATPercent = $VATPercent;
+        $this->vatIncluded = $vatIncluded;
     }
 
     /**
-     * 
      * @return float
      */
     public function getVATPercent()
@@ -61,17 +63,15 @@ class HotelWithOffers extends Hotel
     }
 
     /**
-     * 
-     * @return bool
+     * @param float $VATPercent
      */
-    public function hasOffers()
+    public function setVATPercent($VATPercent)
     {
-        return count($this->offers) > 0;
+        $this->VATPercent = $VATPercent;
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\HotelOffer[]
+     * @return HotelOffers
      */
     public function getOffers()
     {
@@ -79,12 +79,10 @@ class HotelWithOffers extends Hotel
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\HotelOffer $offers 
+     * @param HotelOffers $offers
      */
-    public function addOffers($offers)
+    public function setOffers($offers)
     {
-        $this->offers[] = $offers;
+        $this->offers = $offers;
     }
 }
-

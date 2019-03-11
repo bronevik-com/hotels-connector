@@ -1,17 +1,15 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class RemoveOrdersChangelogRecordsRequest extends BaseRequest
 {
     /**
-     * Type: xsd:int
-     * 
      * @var int[]
      */
     public $recordId = [];
 
     /**
-     * 
      * @return bool
      */
     public function hasRecordId()
@@ -20,7 +18,6 @@ class RemoveOrdersChangelogRecordsRequest extends BaseRequest
     }
 
     /**
-     * 
      * @return int[]
      */
     public function getRecordId()
@@ -29,8 +26,7 @@ class RemoveOrdersChangelogRecordsRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @param int $recordId 
+     * @param int $recordId
      */
     public function addRecordId($recordId)
     {

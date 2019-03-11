@@ -1,61 +1,58 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class City
 {
     /**
-     * Type: xsd:int
-     * 
+     * Идентификатор города
+     * The city id
+     *
      * @var int
      */
-    public $id = null;
+    public $id;
 
     /**
-     * Type: xsd:string
-     * 
+     * Название города
+     * The city name
+     *
      * @var string
      */
-    public $name = null;
+    public $name;
 
     /**
-     * Type: xsd:string
-     * 
+     * Широта (географические координаты)
+     * The latitude (geographic coordinate)
+     *
      * @var string
      */
-    public $latitude = null;
+    public $latitude;
 
     /**
-     * Type: xsd:string
-     * 
+     * Долгота (географические координаты)
+     * The longitude (geographic coordinate)
+     *
      * @var string
      */
-    public $longitude = null;
+    public $longitude;
 
     /**
-     * Type: xsd:int
-     * 
+     * Идентификатор региона города
+     * The city's region id
+     *
      * @var int
      */
-    public $regionId = null;
+    public $regionId;
 
     /**
-     * Type: xsd:string
-     * 
+     * Название региона города
+     * The city's region name
+     *
      * @var string
      */
-    public $regionName = null;
+    public $regionName;
 
     /**
-     * 
-     * @param int $id 
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * 
      * @return int
      */
     public function getId()
@@ -64,16 +61,14 @@ class City
     }
 
     /**
-     * 
-     * @param string $name 
+     * @param int $id
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = $id;
     }
 
     /**
-     * 
      * @return string
      */
     public function getName()
@@ -82,16 +77,14 @@ class City
     }
 
     /**
-     * 
-     * @param string $latitude 
+     * @param string $name
      */
-    public function setLatitude($latitude)
+    public function setName($name)
     {
-        $this->latitude = $latitude;
+        $this->name = $name;
     }
 
     /**
-     * 
      * @return string
      */
     public function getLatitude()
@@ -100,16 +93,14 @@ class City
     }
 
     /**
-     * 
-     * @param string $longitude 
+     * @param string $latitude
      */
-    public function setLongitude($longitude)
+    public function setLatitude($latitude)
     {
-        $this->longitude = $longitude;
+        $this->latitude = $latitude;
     }
 
     /**
-     * 
      * @return string
      */
     public function getLongitude()
@@ -118,16 +109,14 @@ class City
     }
 
     /**
-     * 
-     * @param int $regionId 
+     * @param string $longitude
      */
-    public function setRegionId($regionId)
+    public function setLongitude($longitude)
     {
-        $this->regionId = $regionId;
+        $this->longitude = $longitude;
     }
 
     /**
-     * 
      * @return int
      */
     public function getRegionId()
@@ -136,21 +125,26 @@ class City
     }
 
     /**
-     * 
-     * @param string $regionName 
+     * @param int $regionId
      */
-    public function setRegionName($regionName)
+    public function setRegionId($regionId)
     {
-        $this->regionName = $regionName;
+        $this->regionId = $regionId;
     }
 
     /**
-     * 
      * @return string
      */
     public function getRegionName()
     {
         return $this->regionName;
     }
-}
 
+    /**
+     * @param string $regionName
+     */
+    public function setRegionName($regionName)
+    {
+        $this->regionName = $regionName;
+    }
+}

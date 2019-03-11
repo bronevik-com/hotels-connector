@@ -1,40 +1,34 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class Amenity
 {
     /**
-     * Type: xsd:int
-     * 
+     * Идентификатор доп. услуги
+     * The amenity id
+     *
      * @var int
      */
-    public $id = null;
+    public $id;
 
     /**
-     * Type: xsd:string
-     * 
+     * Название доп. услуги
+     * The amenity name
+     *
      * @var string
      */
-    public $name = null;
+    public $name;
 
     /**
-     * Type: xsd:string
-     * 
+     * Название группы услуг
+     * The amenity group name
+     *
      * @var string
      */
-    public $groupName = null;
+    public $groupName;
 
     /**
-     * 
-     * @param int $id 
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * 
      * @return int
      */
     public function getId()
@@ -43,16 +37,14 @@ class Amenity
     }
 
     /**
-     * 
-     * @param string $name 
+     * @param int $id
      */
-    public function setName($name)
+    public function setId($id)
     {
-        $this->name = $name;
+        $this->id = $id;
     }
 
     /**
-     * 
      * @return string
      */
     public function getName()
@@ -61,21 +53,26 @@ class Amenity
     }
 
     /**
-     * 
-     * @param string $groupName 
+     * @param string $name
      */
-    public function setGroupName($groupName)
+    public function setName($name)
     {
-        $this->groupName = $groupName;
+        $this->name = $name;
     }
 
     /**
-     * 
      * @return string
      */
     public function getGroupName()
     {
         return $this->groupName;
     }
-}
 
+    /**
+     * @param string $groupName
+     */
+    public function setGroupName($groupName)
+    {
+        $this->groupName = $groupName;
+    }
+}

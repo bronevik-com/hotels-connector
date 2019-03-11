@@ -5,14 +5,11 @@ namespace Bronevik\HotelsConnector\Element;
 class ChangeList
 {
     /**
-     * Type: tns:Change
-     *
-     * @var \HBA\Core\Element\Change[]
+     * @var Change[]
      */
     public $change = [];
 
     /**
-     *
      * @return bool
      */
     public function hasChange()
@@ -21,8 +18,7 @@ class ChangeList
     }
 
     /**
-     *
-     * @return \HBA\Core\Element\Change[]
+     * @return Change[]
      */
     public function getChange()
     {
@@ -30,12 +26,10 @@ class ChangeList
     }
 
     /**
-     *
-     * @param \HBA\Core\Element\Change $change
+     * @param Change $change
      */
     public function addChange($change)
     {
         $this->change[] = $change;
     }
 }
-

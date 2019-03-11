@@ -1,40 +1,38 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class DailyPrices
 {
     /**
-     * Type: tns:DailyPrice
-     * 
+     * Детализация стоимости
+     * The detailed daily price
+     *
      * @var DailyPrice[]
      */
-    public $prices = [];
+    public $dailyPrice = [];
 
     /**
-     * 
      * @return bool
      */
-    public function hasPrices()
+    public function hasDailyPrice()
     {
-        return count($this->prices) > 0;
+        return count($this->dailyPrice) > 0;
     }
 
     /**
-     * 
      * @return DailyPrice[]
      */
-    public function getPrices()
+    public function getDailyPrice()
     {
-        return $this->prices;
+        return $this->dailyPrice;
     }
 
     /**
-     * 
-     * @param DailyPrice $prices
+     * @param DailyPrice $dailyPrice
      */
-    public function addPrices($prices)
+    public function addDailyPrice($dailyPrice)
     {
-        $this->prices[] = $prices;
+        $this->dailyPrice[] = $dailyPrice;
     }
 }
-

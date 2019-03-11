@@ -1,17 +1,15 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class AvailableMeals
 {
     /**
-     * Type: tns:AvailableMeal
-     * 
-     * @var \Bronevik\HotelsConnector\Element\AvailableMeal[]
+     * @var AvailableMeal[]
      */
     public $meal = [];
 
     /**
-     * 
      * @return bool
      */
     public function hasMeal()
@@ -20,8 +18,7 @@ class AvailableMeals
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\AvailableMeal[]
+     * @return AvailableMeal[]
      */
     public function getMeal()
     {
@@ -29,12 +26,10 @@ class AvailableMeals
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\AvailableMeal $meal
+     * @param AvailableMeal $meal
      */
     public function addMeal($meal)
     {
         $this->meal[] = $meal;
     }
 }
-

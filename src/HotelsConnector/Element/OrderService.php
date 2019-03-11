@@ -1,118 +1,103 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 abstract class OrderService
 {
     /**
-     * Type: xsd:int
-     * 
+     * Идентификатор услуги
+     * The service id
+     *
      * @var int
      */
-    public $id = null;
+    public $id;
 
     /**
-     * Type: xsd:dateTime
-     * 
-     * @var string
-     */
-    public $date = null;
-
-    /**
-     * Type: xsd:string
-     * 
-     * @var string
-     */
-    public $referenceId = null;
-
-    /**
-     * Type: xsd:float
-     * @deprecated
-     * @var float
-     */
-    public $price = null;
-
-    /**
-     * Type: xsd:float
-     * @deprecated
-     * @var float
-     */
-    public $commission = null;
-
-    /**
-     * Type: xsd:string
+     * Дата создания услуги
+     * The creating order date
      *
      * @var string
      */
-    public $cityId = null;
+    public $date;
 
     /**
-     * Type: xsd:string
+     * Номер услуги в системе клиента
+     * The service number in the client’s system
      *
      * @var string
      */
-    public $cityName = null;
+    public $referenceId;
 
     /**
-     * Type: xsd:string
+     * Идентификатор города, где находится отель
+     * The id of the city where the hotel is located
+     *
+     * @var int
+     */
+    public $cityId;
+
+    /**
+     * Название города
+     * The name of the city where the hotel is located
      *
      * @var string
      */
-    public $countryId = null;
+    public $cityName;
 
     /**
-     * Type: xsd:string
+     * Идентификатор страны, где находится отель
+     * The id of the country where the hotel is located
+     *
+     * @var int
+     */
+    public $countryId;
+
+    /**
+     * Название страны
+     * The name of the country where the hotel is located
      *
      * @var string
      */
-    public $countryName = null;
+    public $countryName;
 
     /**
-     * Type: tns:PriceDetails
-     * 
-     * @var \Bronevik\HotelsConnector\Element\PriceDetails
+     * Детализация стоимости заказа
+     * The detailed order price
+     *
+     * @var PriceDetails
      */
-    public $priceDetails = null;
+    public $priceDetails;
 
     /**
-     * Type: tns:CancellationPolicy
-     * 
-     * @var \Bronevik\HotelsConnector\Element\CancellationPolicy[]
+     * Правила отмены брони
+     * The policies of booking cancellation
+     *
+     * @var CancellationPolicy[]
      */
     public $cancellationPolicies = [];
 
     /**
-     * Type: xsd:int
-     * 
+     * Статус услуги
+     * The service status
+     *
      * @var int
      */
-    public $statusId = null;
+    public $statusId;
 
     /**
-     * Type: xsd:string
-     * 
+     * Название статуса услуги
+     * The service name
+     *
      * @var string
      */
-    public $statusName = null;
+    public $statusName;
 
-    /**
-     * 
-     */
     public function __construct()
     {
-        $this->priceDetails = new \Bronevik\HotelsConnector\Element\PriceDetails;
+        $this->priceDetails = new PriceDetails();
     }
 
     /**
-     * 
-     * @param int $id 
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * 
      * @return int
      */
     public function getId()
@@ -121,16 +106,14 @@ abstract class OrderService
     }
 
     /**
-     * 
-     * @param string $date 
+     * @param int $id
      */
-    public function setDate($date)
+    public function setId($id)
     {
-        $this->date = $date;
+        $this->id = $id;
     }
 
     /**
-     * 
      * @return string
      */
     public function getDate()
@@ -139,16 +122,14 @@ abstract class OrderService
     }
 
     /**
-     * 
-     * @param string $referenceId 
+     * @param string $date
      */
-    public function setReferenceId($referenceId)
+    public function setDate($date)
     {
-        $this->referenceId = $referenceId;
+        $this->date = $date;
     }
 
     /**
-     * 
      * @return string
      */
     public function getReferenceId()
@@ -157,53 +138,15 @@ abstract class OrderService
     }
 
     /**
-     * 
-     * @param float $price 
+     * @param string $referenceId
      */
-    public function setPrice($price)
+    public function setReferenceId($referenceId)
     {
-        $this->price = $price;
+        $this->referenceId = $referenceId;
     }
 
     /**
-     * 
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * 
-     * @param float $commission 
-     */
-    public function setCommission($commission)
-    {
-        $this->commission = $commission;
-    }
-
-    /**
-     * 
-     * @return float
-     */
-    public function getCommission()
-    {
-        return $this->commission;
-    }
-
-    /**
-     *
-     * @param string $cityId
-     */
-    public function setCityId($cityId)
-    {
-        $this->cityId = $cityId;
-    }
-
-    /**
-     *
-     * @return string
+     * @return int
      */
     public function getCityId()
     {
@@ -211,16 +154,14 @@ abstract class OrderService
     }
 
     /**
-     *
-     * @param string $cityName
+     * @param int $cityId
      */
-    public function setCityName($cityName)
+    public function setCityId($cityId)
     {
-        $this->cityName = $cityName;
+        $this->cityId = $cityId;
     }
 
     /**
-     *
      * @return string
      */
     public function getCityName()
@@ -229,17 +170,15 @@ abstract class OrderService
     }
 
     /**
-     *
-     * @param string $countryId
+     * @param string $cityName
      */
-    public function setCountryId($countryId)
+    public function setCityName($cityName)
     {
-        $this->countryId = $countryId;
+        $this->cityName = $cityName;
     }
 
     /**
-     *
-     * @return string
+     * @return int
      */
     public function getCountryId()
     {
@@ -247,16 +186,14 @@ abstract class OrderService
     }
 
     /**
-     *
-     * @param string $countryName
+     * @param int $countryId
      */
-    public function setCountryName($countryName)
+    public function setCountryId($countryId)
     {
-        $this->countryName = $countryName;
+        $this->countryId = $countryId;
     }
 
     /**
-     *
      * @return string
      */
     public function getCountryName()
@@ -265,17 +202,15 @@ abstract class OrderService
     }
 
     /**
-     *
-     * @param \Bronevik\HotelsConnector\Element\PriceDetails $priceDetails
+     * @param string $countryName
      */
-    public function setPriceDetails($priceDetails)
+    public function setCountryName($countryName)
     {
-        $this->priceDetails = $priceDetails;
+        $this->countryName = $countryName;
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\PriceDetails
+     * @return PriceDetails
      */
     public function getPriceDetails()
     {
@@ -283,7 +218,14 @@ abstract class OrderService
     }
 
     /**
-     * 
+     * @param PriceDetails $priceDetails
+     */
+    public function setPriceDetails($priceDetails)
+    {
+        $this->priceDetails = $priceDetails;
+    }
+
+    /**
      * @return bool
      */
     public function hasCancellationPolicies()
@@ -292,8 +234,7 @@ abstract class OrderService
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\CancellationPolicy[]
+     * @return CancellationPolicy[]
      */
     public function getCancellationPolicies()
     {
@@ -301,8 +242,7 @@ abstract class OrderService
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\CancellationPolicy $cancellationPolicies 
+     * @param CancellationPolicy $cancellationPolicies
      */
     public function addCancellationPolicies($cancellationPolicies)
     {
@@ -310,16 +250,6 @@ abstract class OrderService
     }
 
     /**
-     * 
-     * @param int $statusId 
-     */
-    public function setStatusId($statusId)
-    {
-        $this->statusId = $statusId;
-    }
-
-    /**
-     * 
      * @return int
      */
     public function getStatusId()
@@ -328,21 +258,26 @@ abstract class OrderService
     }
 
     /**
-     * 
-     * @param string $statusName 
+     * @param int $statusId
      */
-    public function setStatusName($statusName)
+    public function setStatusId($statusId)
     {
-        $this->statusName = $statusName;
+        $this->statusId = $statusId;
     }
 
     /**
-     * 
      * @return string
      */
     public function getStatusName()
     {
         return $this->statusName;
     }
-}
 
+    /**
+     * @param string $statusName
+     */
+    public function setStatusName($statusName)
+    {
+        $this->statusName = $statusName;
+    }
+}

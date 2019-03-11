@@ -1,64 +1,66 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class ServiceAccommodation extends Service
 {
     /**
-     * Type: xsd:string
+     * Код предложения
+     * The offer code
      *
      * @var string
      */
-    public $offerCode = null;
+    public $offerCode;
 
     /**
-     * Type: xsd:string
+     * ФИО гостей
+     * The name of guests
      *
      * @var string[]
      */
     public $guests = [];
 
     /**
-     * Type: xsd:string
+     * Комментарий к услуге
+     * An information about service
      *
      * @var string
      */
-    public $comment = null;
+    public $comment;
 
     /**
-     * Type: xsd:float
+     * Цена продажи
+     * The selling price
      *
      * @var float
      */
-    public $sellingPrice = null;
+    public $sellingPrice;
 
     /**
-     * Type: xsd:int
+     * Желаемое время заезда
+     * The desired date of check-in
+     *
+     * @var int
+     */
+    public $checkinHour;
+
+    /**
+     * Желаемое время выезда
+     * The desired date of check-out
+     *
+     * @var int
+     */
+    public $checkoutHour;
+
+    /**
+     * Список заказанных услуг питания
+     * A list of offer's booked meals
      *
      * @var int[]
      */
     public $meals = [];
 
     /**
-     * @var int
-     */
-    public $checkinHour;
-
-    /**
-     * @var int
-     */
-    public $checkoutHour;
-
-    /**
-     *
-     * @param string $offerCode
-     */
-    public function setOfferCode($offerCode)
-    {
-        $this->offerCode = $offerCode;
-    }
-
-    /**
-     *
      * @return string
      */
     public function getOfferCode()
@@ -67,7 +69,14 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
+     * @param string $offerCode
+     */
+    public function setOfferCode($offerCode)
+    {
+        $this->offerCode = $offerCode;
+    }
+
+    /**
      * @return bool
      */
     public function hasGuests()
@@ -76,7 +85,6 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
      * @return string[]
      */
     public function getGuests()
@@ -85,7 +93,6 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
      * @param string $guests
      */
     public function addGuests($guests)
@@ -94,16 +101,6 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
-     * @param string $comment
-     */
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-    }
-
-    /**
-     *
      * @return string
      */
     public function getComment()
@@ -112,7 +109,62 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSellingPrice()
+    {
+        return $this->sellingPrice;
+    }
+
+    /**
+     * @param float $sellingPrice
+     */
+    public function setSellingPrice($sellingPrice)
+    {
+        $this->sellingPrice = $sellingPrice;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCheckinHour()
+    {
+        return $this->checkinHour;
+    }
+
+    /**
+     * @param int $checkinHour
+     */
+    public function setCheckinHour($checkinHour)
+    {
+        $this->checkinHour = $checkinHour;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCheckoutHour()
+    {
+        return $this->checkoutHour;
+    }
+
+    /**
+     * @param int $checkoutHour
+     */
+    public function setCheckoutHour($checkoutHour)
+    {
+        $this->checkoutHour = $checkoutHour;
+    }
+
+    /**
      * @return bool
      */
     public function hasMeals()
@@ -121,7 +173,6 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
      * @return int[]
      */
     public function getMeals()
@@ -130,7 +181,6 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     *
      * @param int $meals
      */
     public function addMeals($meals)
@@ -138,4 +188,3 @@ class ServiceAccommodation extends Service
         $this->meals[] = $meals;
     }
 }
-

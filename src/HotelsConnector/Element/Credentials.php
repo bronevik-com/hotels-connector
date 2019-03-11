@@ -1,40 +1,34 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class Credentials
 {
     /**
-     * Type: xsd:string
-     * 
+     * Ключ клиента
+     * The client key
+     *
      * @var string
      */
-    public $clientKey = null;
+    public $clientKey;
 
     /**
-     * Type: xsd:string
-     * 
+     * Логин пользователя
+     * The client login
+     *
      * @var string
      */
-    public $login = null;
+    public $login;
 
     /**
-     * Type: xsd:string
-     * 
+     * Пароль пользователя
+     * The client password
+     *
      * @var string
      */
-    public $password = null;
+    public $password;
 
     /**
-     * 
-     * @param string $clientKey 
-     */
-    public function setClientKey($clientKey)
-    {
-        $this->clientKey = $clientKey;
-    }
-
-    /**
-     * 
      * @return string
      */
     public function getClientKey()
@@ -43,16 +37,14 @@ class Credentials
     }
 
     /**
-     * 
-     * @param string $login 
+     * @param string $clientKey
      */
-    public function setLogin($login)
+    public function setClientKey($clientKey)
     {
-        $this->login = $login;
+        $this->clientKey = $clientKey;
     }
 
     /**
-     * 
      * @return string
      */
     public function getLogin()
@@ -61,21 +53,26 @@ class Credentials
     }
 
     /**
-     * 
-     * @param string $password 
+     * @param string $login
      */
-    public function setPassword($password)
+    public function setLogin($login)
     {
-        $this->password = $password;
+        $this->login = $login;
     }
 
     /**
-     * 
      * @return string
      */
     public function getPassword()
     {
         return $this->password;
     }
-}
 
+    /**
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+}

@@ -1,43 +1,42 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class Contract
 {
     /**
-     * Внутренний идентификатор договора
-     * Type: xsd:int
-     * 
+     * Идентификатор договора
+     * The contract id
+     *
      * @var int
      */
-    public $id = null;
+    public $id;
 
     /**
      * Номер договора
-     * Type: xsd:string
-     * 
+     * The contract reference number
+     *
      * @var string
      */
-    public $number = null;
+    public $number;
 
     /**
      * Дата начала действия договора
-     * Type: xsd:date
-     * 
+     * The contract start date
+     *
      * @var string
      */
-    public $beginsAt = null;
+    public $beginsAt;
 
     /**
-     * 
-     * @param int $id 
+     * Юридическое лицо
+     * Legal entity
+     *
+     * @var string
      */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
+    public $legalEntity;
 
     /**
-     * 
      * @return int
      */
     public function getId()
@@ -46,16 +45,14 @@ class Contract
     }
 
     /**
-     * 
-     * @param string $number 
+     * @param int $id
      */
-    public function setNumber($number)
+    public function setId($id)
     {
-        $this->number = $number;
+        $this->id = $id;
     }
 
     /**
-     * 
      * @return string
      */
     public function getNumber()
@@ -64,7 +61,22 @@ class Contract
     }
 
     /**
-     * 
+     * @param string $number
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBeginsAt()
+    {
+        return $this->beginsAt;
+    }
+
+    /**
      * @param string $beginsAt
      */
     public function setBeginsAt($beginsAt)
@@ -73,12 +85,18 @@ class Contract
     }
 
     /**
-     * 
      * @return string
      */
-    public function getBeginsAt()
+    public function getLegalEntity()
     {
-        return $this->beginsAt;
+        return $this->legalEntity;
+    }
+
+    /**
+     * @param string $legalEntity
+     */
+    public function setLegalEntity($legalEntity)
+    {
+        $this->legalEntity = $legalEntity;
     }
 }
-

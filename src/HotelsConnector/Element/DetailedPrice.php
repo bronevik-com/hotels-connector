@@ -1,42 +1,34 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class DetailedPrice
 {
     /**
-     * Type: xsd:float
-     * 
+     * Стоимость
+     * Cost
+     *
      * @var float
      */
-    public $price = null;
+    public $price;
 
     /**
      * Сумма ндс
-     * Type: xsd:float
-     * 
+     * The VAT amount
+     *
      * @var float
      */
-    public $vatAmount = null;
+    public $vatAmount;
 
     /**
      * Валюта (трекхбуквенный код)
-     * Type: xsd:string
-     * 
+     * The currency (three-letter code)
+     *
      * @var string
      */
-    public $currency = null;
+    public $currency;
 
     /**
-     * 
-     * @param float $price 
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    /**
-     * 
      * @return float
      */
     public function getPrice()
@@ -45,16 +37,14 @@ class DetailedPrice
     }
 
     /**
-     * 
-     * @param float $vatAmount 
+     * @param float $price
      */
-    public function setVatAmount($vatAmount)
+    public function setPrice($price)
     {
-        $this->vatAmount = $vatAmount;
+        $this->price = $price;
     }
 
     /**
-     * 
      * @return float
      */
     public function getVatAmount()
@@ -63,21 +53,26 @@ class DetailedPrice
     }
 
     /**
-     * 
-     * @param string $currency 
+     * @param float $vatAmount
      */
-    public function setCurrency($currency)
+    public function setVatAmount($vatAmount)
     {
-        $this->currency = $currency;
+        $this->vatAmount = $vatAmount;
     }
 
     /**
-     * 
      * @return string
      */
     public function getCurrency()
     {
         return $this->currency;
     }
-}
 
+    /**
+     * @param string $currency
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
+    }
+}
