@@ -98,14 +98,6 @@ abstract class OrderService
     }
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -114,11 +106,11 @@ abstract class OrderService
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getDate()
+    public function getId()
     {
-        return $this->date;
+        return $this->id;
     }
 
     /**
@@ -132,9 +124,9 @@ abstract class OrderService
     /**
      * @return string
      */
-    public function getReferenceId()
+    public function getDate()
     {
-        return $this->referenceId;
+        return $this->date;
     }
 
     /**
@@ -146,11 +138,11 @@ abstract class OrderService
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getCityId()
+    public function getReferenceId()
     {
-        return $this->cityId;
+        return $this->referenceId;
     }
 
     /**
@@ -162,11 +154,11 @@ abstract class OrderService
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getCityName()
+    public function getCityId()
     {
-        return $this->cityName;
+        return $this->cityId;
     }
 
     /**
@@ -178,11 +170,11 @@ abstract class OrderService
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getCountryId()
+    public function getCityName()
     {
-        return $this->countryId;
+        return $this->cityName;
     }
 
     /**
@@ -194,11 +186,11 @@ abstract class OrderService
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getCountryName()
+    public function getCountryId()
     {
-        return $this->countryName;
+        return $this->countryId;
     }
 
     /**
@@ -210,11 +202,11 @@ abstract class OrderService
     }
 
     /**
-     * @return PriceDetails
+     * @return string
      */
-    public function getPriceDetails()
+    public function getCountryName()
     {
-        return $this->priceDetails;
+        return $this->countryName;
     }
 
     /**
@@ -223,6 +215,14 @@ abstract class OrderService
     public function setPriceDetails($priceDetails)
     {
         $this->priceDetails = $priceDetails;
+    }
+
+    /**
+     * @return PriceDetails
+     */
+    public function getPriceDetails()
+    {
+        return $this->priceDetails;
     }
 
     /**
@@ -250,14 +250,6 @@ abstract class OrderService
     }
 
     /**
-     * @return int
-     */
-    public function getStatusId()
-    {
-        return $this->statusId;
-    }
-
-    /**
      * @param int $statusId
      */
     public function setStatusId($statusId)
@@ -266,11 +258,11 @@ abstract class OrderService
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getStatusName()
+    public function getStatusId()
     {
-        return $this->statusName;
+        return $this->statusId;
     }
 
     /**
@@ -279,5 +271,13 @@ abstract class OrderService
     public function setStatusName($statusName)
     {
         $this->statusName = $statusName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatusName()
+    {
+        return $this->statusName;
     }
 }

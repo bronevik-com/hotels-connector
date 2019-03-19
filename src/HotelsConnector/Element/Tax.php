@@ -45,14 +45,6 @@ class Tax
     public $comment;
 
     /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * @param string $type
      */
     public function setType($type)
@@ -61,11 +53,11 @@ class Tax
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getAmount()
+    public function getType()
     {
-        return $this->amount;
+        return $this->type;
     }
 
     /**
@@ -77,11 +69,11 @@ class Tax
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getCurrency()
+    public function getAmount()
     {
-        return $this->currency;
+        return $this->amount;
     }
 
     /**
@@ -93,11 +85,11 @@ class Tax
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function getIncluded()
+    public function getCurrency()
     {
-        return $this->included;
+        return $this->currency;
     }
 
     /**
@@ -109,11 +101,11 @@ class Tax
     }
 
     /**
-     * @return string
+     * @return boolean
      */
-    public function getComment()
+    public function getIncluded()
     {
-        return $this->comment;
+        return $this->included;
     }
 
     /**
@@ -122,5 +114,13 @@ class Tax
     public function setComment($comment)
     {
         $this->comment = $comment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 }

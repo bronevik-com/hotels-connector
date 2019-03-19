@@ -21,14 +21,6 @@ class MealPriceDetails extends ClientPriceDetails
     public $included;
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -37,11 +29,11 @@ class MealPriceDetails extends ClientPriceDetails
     }
 
     /**
-     * @return boolean
+     * @return int
      */
-    public function getIncluded()
+    public function getId()
     {
-        return $this->included;
+        return $this->id;
     }
 
     /**
@@ -50,5 +42,13 @@ class MealPriceDetails extends ClientPriceDetails
     public function setIncluded($included)
     {
         $this->included = $included;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIncluded()
+    {
+        return $this->included;
     }
 }

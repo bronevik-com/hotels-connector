@@ -70,14 +70,6 @@ class OrdersChangelogRecord
     }
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -88,9 +80,9 @@ class OrdersChangelogRecord
     /**
      * @return int
      */
-    public function getOrderId()
+    public function getId()
     {
-        return $this->orderId;
+        return $this->id;
     }
 
     /**
@@ -104,9 +96,9 @@ class OrdersChangelogRecord
     /**
      * @return int
      */
-    public function getServiceId()
+    public function getOrderId()
     {
-        return $this->serviceId;
+        return $this->orderId;
     }
 
     /**
@@ -118,11 +110,11 @@ class OrdersChangelogRecord
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getReferenceId()
+    public function getServiceId()
     {
-        return $this->referenceId;
+        return $this->serviceId;
     }
 
     /**
@@ -136,9 +128,9 @@ class OrdersChangelogRecord
     /**
      * @return string
      */
-    public function getServiceCreationSource()
+    public function getReferenceId()
     {
-        return $this->serviceCreationSource;
+        return $this->referenceId;
     }
 
     /**
@@ -152,9 +144,9 @@ class OrdersChangelogRecord
     /**
      * @return string
      */
-    public function getCreatedAt()
+    public function getServiceCreationSource()
     {
-        return $this->createdAt;
+        return $this->serviceCreationSource;
     }
 
     /**
@@ -166,11 +158,11 @@ class OrdersChangelogRecord
     }
 
     /**
-     * @return ChangeList
+     * @return string
      */
-    public function getChangeList()
+    public function getCreatedAt()
     {
-        return $this->changeList;
+        return $this->createdAt;
     }
 
     /**
@@ -179,5 +171,13 @@ class OrdersChangelogRecord
     public function setChangeList($changeList)
     {
         $this->changeList = $changeList;
+    }
+
+    /**
+     * @return ChangeList
+     */
+    public function getChangeList()
+    {
+        return $this->changeList;
     }
 }

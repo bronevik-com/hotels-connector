@@ -2,6 +2,8 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\SkipElementTypes;
+
 /**
  * Запрос на поиск предложений по определённому городу
  * The offers search by the city
@@ -71,6 +73,7 @@ class SearchHotelOffersRequest extends BaseRequest
     public $enableProfitShareRates = false;
 
     /**
+     * @see SkipElementTypes::$availableSkipElementsForSearchHotelOffers
      * @var SkipElements
      */
     public $skipElements;
@@ -80,14 +83,6 @@ class SearchHotelOffersRequest extends BaseRequest
         parent::__construct();
         $this->hotelIds     = new HotelIds();
         $this->skipElements = new SkipElements();
-    }
-
-    /**
-     * @return int
-     */
-    public function getCityId()
-    {
-        return $this->cityId;
     }
 
     /**
@@ -101,9 +96,9 @@ class SearchHotelOffersRequest extends BaseRequest
     /**
      * @return int
      */
-    public function getHotelId()
+    public function getCityId()
     {
-        return $this->hotelId;
+        return $this->cityId;
     }
 
     /**
@@ -115,11 +110,11 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * @return HotelIds
+     * @return int
      */
-    public function getHotelIds()
+    public function getHotelId()
     {
-        return $this->hotelIds;
+        return $this->hotelId;
     }
 
     /**
@@ -131,11 +126,11 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * @return string
+     * @return HotelIds
      */
-    public function getArrivalDate()
+    public function getHotelIds()
     {
-        return $this->arrivalDate;
+        return $this->hotelIds;
     }
 
     /**
@@ -149,9 +144,9 @@ class SearchHotelOffersRequest extends BaseRequest
     /**
      * @return string
      */
-    public function getDepartureDate()
+    public function getArrivalDate()
     {
-        return $this->departureDate;
+        return $this->arrivalDate;
     }
 
     /**
@@ -165,9 +160,9 @@ class SearchHotelOffersRequest extends BaseRequest
     /**
      * @return string
      */
-    public function getCurrency()
+    public function getDepartureDate()
     {
-        return $this->currency;
+        return $this->departureDate;
     }
 
     /**
@@ -176,6 +171,14 @@ class SearchHotelOffersRequest extends BaseRequest
     public function setCurrency($currency)
     {
         $this->currency = $currency;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
     }
 
     /**
@@ -203,18 +206,18 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * @return SkipElements
-     */
-    public function getSkipElements()
-    {
-        return $this->skipElements;
-    }
-
-    /**
      * @param SkipElements $skipElements
      */
     public function setSkipElements($skipElements)
     {
         $this->skipElements = $skipElements;
+    }
+
+    /**
+     * @return SkipElements
+     */
+    public function getSkipElements()
+    {
+        return $this->skipElements;
     }
 }

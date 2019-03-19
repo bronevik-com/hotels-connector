@@ -29,14 +29,6 @@ class AvailableAmenity
     public $included;
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -45,11 +37,11 @@ class AvailableAmenity
     }
 
     /**
-     * @return float
+     * @return int
      */
-    public function getPrice()
+    public function getId()
     {
-        return $this->price;
+        return $this->id;
     }
 
     /**
@@ -61,11 +53,11 @@ class AvailableAmenity
     }
 
     /**
-     * @return boolean
+     * @return float
      */
-    public function getIncluded()
+    public function getPrice()
     {
-        return $this->included;
+        return $this->price;
     }
 
     /**
@@ -74,5 +66,13 @@ class AvailableAmenity
     public function setIncluded($included)
     {
         $this->included = $included;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIncluded()
+    {
+        return $this->included;
     }
 }

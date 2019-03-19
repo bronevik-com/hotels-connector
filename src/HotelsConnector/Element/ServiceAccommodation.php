@@ -61,19 +61,19 @@ class ServiceAccommodation extends Service
     public $meals = [];
 
     /**
-     * @return string
-     */
-    public function getOfferCode()
-    {
-        return $this->offerCode;
-    }
-
-    /**
      * @param string $offerCode
      */
     public function setOfferCode($offerCode)
     {
         $this->offerCode = $offerCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOfferCode()
+    {
+        return $this->offerCode;
     }
 
     /**
@@ -101,14 +101,6 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * @return string
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    /**
      * @param string $comment
      */
     public function setComment($comment)
@@ -117,11 +109,11 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getSellingPrice()
+    public function getComment()
     {
-        return $this->sellingPrice;
+        return $this->comment;
     }
 
     /**
@@ -133,11 +125,11 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getCheckinHour()
+    public function getSellingPrice()
     {
-        return $this->checkinHour;
+        return $this->sellingPrice;
     }
 
     /**
@@ -151,9 +143,9 @@ class ServiceAccommodation extends Service
     /**
      * @return int
      */
-    public function getCheckoutHour()
+    public function getCheckinHour()
     {
-        return $this->checkoutHour;
+        return $this->checkinHour;
     }
 
     /**
@@ -162,6 +154,14 @@ class ServiceAccommodation extends Service
     public function setCheckoutHour($checkoutHour)
     {
         $this->checkoutHour = $checkoutHour;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCheckoutHour()
+    {
+        return $this->checkoutHour;
     }
 
     /**

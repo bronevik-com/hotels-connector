@@ -130,14 +130,6 @@ class Hotel
     }
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -148,9 +140,9 @@ class Hotel
     /**
      * @return int
      */
-    public function getCityId()
+    public function getId()
     {
-        return $this->cityId;
+        return $this->id;
     }
 
     /**
@@ -162,11 +154,11 @@ class Hotel
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getCityName()
+    public function getCityId()
     {
-        return $this->cityName;
+        return $this->cityId;
     }
 
     /**
@@ -180,9 +172,9 @@ class Hotel
     /**
      * @return string
      */
-    public function getName()
+    public function getCityName()
     {
-        return $this->name;
+        return $this->cityName;
     }
 
     /**
@@ -196,9 +188,9 @@ class Hotel
     /**
      * @return string
      */
-    public function getAddress()
+    public function getName()
     {
-        return $this->address;
+        return $this->name;
     }
 
     /**
@@ -212,9 +204,9 @@ class Hotel
     /**
      * @return string
      */
-    public function getCheckinTime()
+    public function getAddress()
     {
-        return $this->checkinTime;
+        return $this->address;
     }
 
     /**
@@ -228,9 +220,9 @@ class Hotel
     /**
      * @return string
      */
-    public function getCheckoutTime()
+    public function getCheckinTime()
     {
-        return $this->checkoutTime;
+        return $this->checkinTime;
     }
 
     /**
@@ -242,11 +234,11 @@ class Hotel
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function getIsFixedCheckinTime()
+    public function getCheckoutTime()
     {
-        return $this->isFixedCheckinTime;
+        return $this->checkoutTime;
     }
 
     /**
@@ -258,11 +250,11 @@ class Hotel
     }
 
     /**
-     * @return DescriptionDetails
+     * @return boolean
      */
-    public function getDescriptionDetails()
+    public function getIsFixedCheckinTime()
     {
-        return $this->descriptionDetails;
+        return $this->isFixedCheckinTime;
     }
 
     /**
@@ -274,11 +266,11 @@ class Hotel
     }
 
     /**
-     * @return boolean
+     * @return DescriptionDetails
      */
-    public function getVatApplicable()
+    public function getDescriptionDetails()
     {
-        return $this->vatApplicable;
+        return $this->descriptionDetails;
     }
 
     /**
@@ -292,9 +284,9 @@ class Hotel
     /**
      * @return boolean
      */
-    public function getHasTaxes()
+    public function getVatApplicable()
     {
-        return $this->hasTaxes;
+        return $this->vatApplicable;
     }
 
     /**
@@ -303,6 +295,14 @@ class Hotel
     public function setHasTaxes($hasTaxes)
     {
         $this->hasTaxes = $hasTaxes;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getHasTaxes()
+    {
+        return $this->hasTaxes;
     }
 
     /**
@@ -330,14 +330,6 @@ class Hotel
     }
 
     /**
-     * @return int
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * @param int $category
      */
     public function setCategory($category)
@@ -346,11 +338,11 @@ class Hotel
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getType()
+    public function getCategory()
     {
-        return $this->type;
+        return $this->category;
     }
 
     /**
@@ -362,11 +354,11 @@ class Hotel
     }
 
     /**
-     * @return InformationForGuest
+     * @return string
      */
-    public function getInformationForGuest()
+    public function getType()
     {
-        return $this->informationForGuest;
+        return $this->type;
     }
 
     /**
@@ -375,5 +367,13 @@ class Hotel
     public function setInformationForGuest($informationForGuest)
     {
         $this->informationForGuest = $informationForGuest;
+    }
+
+    /**
+     * @return InformationForGuest
+     */
+    public function getInformationForGuest()
+    {
+        return $this->informationForGuest;
     }
 }

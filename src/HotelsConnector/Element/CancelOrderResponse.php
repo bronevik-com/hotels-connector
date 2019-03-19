@@ -2,6 +2,9 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Ответ на запрос аннуляции заказа
+ */
 class CancelOrderResponse extends BaseResponse
 {
     /**
@@ -10,18 +13,18 @@ class CancelOrderResponse extends BaseResponse
     public $result;
 
     /**
-     * @return boolean
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
      * @param boolean $result
      */
     public function setResult($result)
     {
         $this->result = $result;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getResult()
+    {
+        return $this->result;
     }
 }

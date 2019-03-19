@@ -29,14 +29,6 @@ class DetailedPrice
     public $currency;
 
     /**
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
      * @param float $price
      */
     public function setPrice($price)
@@ -47,9 +39,9 @@ class DetailedPrice
     /**
      * @return float
      */
-    public function getVatAmount()
+    public function getPrice()
     {
-        return $this->vatAmount;
+        return $this->price;
     }
 
     /**
@@ -61,11 +53,11 @@ class DetailedPrice
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getCurrency()
+    public function getVatAmount()
     {
-        return $this->currency;
+        return $this->vatAmount;
     }
 
     /**
@@ -74,5 +66,13 @@ class DetailedPrice
     public function setCurrency($currency)
     {
         $this->currency = $currency;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
     }
 }

@@ -25,14 +25,6 @@ class HotelAmenity
     public $type;
 
     /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * @param string $name
      */
     public function setName($name)
@@ -43,9 +35,9 @@ class HotelAmenity
     /**
      * @return string
      */
-    public function getType()
+    public function getName()
     {
-        return $this->type;
+        return $this->name;
     }
 
     /**
@@ -54,5 +46,13 @@ class HotelAmenity
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

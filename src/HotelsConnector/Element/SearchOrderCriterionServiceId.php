@@ -14,18 +14,18 @@ class SearchOrderCriterionServiceId extends SearchOrderCriterion
     public $serviceId;
 
     /**
-     * @return int
-     */
-    public function getServiceId()
-    {
-        return $this->serviceId;
-    }
-
-    /**
      * @param int $serviceId
      */
     public function setServiceId($serviceId)
     {
         $this->serviceId = $serviceId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getServiceId()
+    {
+        return $this->serviceId;
     }
 }

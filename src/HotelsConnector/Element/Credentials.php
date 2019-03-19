@@ -29,14 +29,6 @@ class Credentials
     public $password;
 
     /**
-     * @return string
-     */
-    public function getClientKey()
-    {
-        return $this->clientKey;
-    }
-
-    /**
      * @param string $clientKey
      */
     public function setClientKey($clientKey)
@@ -47,9 +39,9 @@ class Credentials
     /**
      * @return string
      */
-    public function getLogin()
+    public function getClientKey()
     {
-        return $this->login;
+        return $this->clientKey;
     }
 
     /**
@@ -63,9 +55,9 @@ class Credentials
     /**
      * @return string
      */
-    public function getPassword()
+    public function getLogin()
     {
-        return $this->password;
+        return $this->login;
     }
 
     /**
@@ -74,5 +66,13 @@ class Credentials
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 }

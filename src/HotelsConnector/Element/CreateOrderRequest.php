@@ -49,14 +49,6 @@ class CreateOrderRequest extends BaseRequest
     public $services = [];
 
     /**
-     * @return string
-     */
-    public function getContactPerson()
-    {
-        return $this->contactPerson;
-    }
-
-    /**
      * @param string $contactPerson
      */
     public function setContactPerson($contactPerson)
@@ -67,9 +59,9 @@ class CreateOrderRequest extends BaseRequest
     /**
      * @return string
      */
-    public function getContactEmail()
+    public function getContactPerson()
     {
-        return $this->contactEmail;
+        return $this->contactPerson;
     }
 
     /**
@@ -83,9 +75,9 @@ class CreateOrderRequest extends BaseRequest
     /**
      * @return string
      */
-    public function getContactPhone()
+    public function getContactEmail()
     {
-        return $this->contactPhone;
+        return $this->contactEmail;
     }
 
     /**
@@ -99,9 +91,9 @@ class CreateOrderRequest extends BaseRequest
     /**
      * @return string
      */
-    public function getComment()
+    public function getContactPhone()
     {
-        return $this->comment;
+        return $this->contactPhone;
     }
 
     /**
@@ -110,6 +102,14 @@ class CreateOrderRequest extends BaseRequest
     public function setComment($comment)
     {
         $this->comment = $comment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 
     /**

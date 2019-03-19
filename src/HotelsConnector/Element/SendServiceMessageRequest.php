@@ -21,14 +21,6 @@ class SendServiceMessageRequest extends BaseRequest
     public $text;
 
     /**
-     * @return int
-     */
-    public function getServiceId()
-    {
-        return $this->serviceId;
-    }
-
-    /**
      * @param int $serviceId
      */
     public function setServiceId($serviceId)
@@ -37,11 +29,11 @@ class SendServiceMessageRequest extends BaseRequest
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getText()
+    public function getServiceId()
     {
-        return $this->text;
+        return $this->serviceId;
     }
 
     /**
@@ -50,5 +42,13 @@ class SendServiceMessageRequest extends BaseRequest
     public function setText($text)
     {
         $this->text = $text;
+    }
+
+    /**
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
     }
 }

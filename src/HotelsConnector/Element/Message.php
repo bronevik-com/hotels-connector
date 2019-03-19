@@ -53,14 +53,6 @@ class Message
     public $text;
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -71,9 +63,9 @@ class Message
     /**
      * @return int
      */
-    public function getServiceId()
+    public function getId()
     {
-        return $this->serviceId;
+        return $this->id;
     }
 
     /**
@@ -85,11 +77,11 @@ class Message
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getSenderType()
+    public function getServiceId()
     {
-        return $this->senderType;
+        return $this->serviceId;
     }
 
     /**
@@ -103,9 +95,9 @@ class Message
     /**
      * @return string
      */
-    public function getDate()
+    public function getSenderType()
     {
-        return $this->date;
+        return $this->senderType;
     }
 
     /**
@@ -119,9 +111,9 @@ class Message
     /**
      * @return string
      */
-    public function getSenderName()
+    public function getDate()
     {
-        return $this->senderName;
+        return $this->date;
     }
 
     /**
@@ -135,9 +127,9 @@ class Message
     /**
      * @return string
      */
-    public function getText()
+    public function getSenderName()
     {
-        return $this->text;
+        return $this->senderName;
     }
 
     /**
@@ -146,5 +138,13 @@ class Message
     public function setText($text)
     {
         $this->text = $text;
+    }
+
+    /**
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
     }
 }

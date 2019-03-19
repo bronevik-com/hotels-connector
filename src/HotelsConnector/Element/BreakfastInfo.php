@@ -29,14 +29,6 @@ class BreakfastInfo
     public $included;
 
     /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * @param string $name
      */
     public function setName($name)
@@ -45,11 +37,11 @@ class BreakfastInfo
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getPrice()
+    public function getName()
     {
-        return $this->price;
+        return $this->name;
     }
 
     /**
@@ -61,11 +53,11 @@ class BreakfastInfo
     }
 
     /**
-     * @return boolean
+     * @return float
      */
-    public function getIncluded()
+    public function getPrice()
     {
-        return $this->included;
+        return $this->price;
     }
 
     /**
@@ -74,5 +66,13 @@ class BreakfastInfo
     public function setIncluded($included)
     {
         $this->included = $included;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getIncluded()
+    {
+        return $this->included;
     }
 }

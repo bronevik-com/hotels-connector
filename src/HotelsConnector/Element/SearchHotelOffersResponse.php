@@ -19,18 +19,18 @@ class SearchHotelOffersResponse extends BaseResponse
     }
 
     /**
-     * @return Hotels
-     */
-    public function getHotels()
-    {
-        return $this->hotels;
-    }
-
-    /**
      * @param Hotels $hotels
      */
     public function setHotels($hotels)
     {
         $this->hotels = $hotels;
+    }
+
+    /**
+     * @return Hotels
+     */
+    public function getHotels()
+    {
+        return $this->hotels;
     }
 }

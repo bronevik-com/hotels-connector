@@ -174,14 +174,6 @@ class HotelOffer
     }
 
     /**
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
      * @param string $code
      */
     public function setCode($code)
@@ -192,9 +184,9 @@ class HotelOffer
     /**
      * @return string
      */
-    public function getName()
+    public function getCode()
     {
-        return $this->name;
+        return $this->code;
     }
 
     /**
@@ -206,11 +198,11 @@ class HotelOffer
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function getLhp()
+    public function getName()
     {
-        return $this->lhp;
+        return $this->name;
     }
 
     /**
@@ -224,9 +216,9 @@ class HotelOffer
     /**
      * @return boolean
      */
-    public function getNonRefundable()
+    public function getLhp()
     {
-        return $this->nonRefundable;
+        return $this->lhp;
     }
 
     /**
@@ -238,11 +230,11 @@ class HotelOffer
     }
 
     /**
-     * @return PriceDetails
+     * @return boolean
      */
-    public function getPriceDetails()
+    public function getNonRefundable()
     {
-        return $this->priceDetails;
+        return $this->nonRefundable;
     }
 
     /**
@@ -251,6 +243,14 @@ class HotelOffer
     public function setPriceDetails($priceDetails)
     {
         $this->priceDetails = $priceDetails;
+    }
+
+    /**
+     * @return PriceDetails
+     */
+    public function getPriceDetails()
+    {
+        return $this->priceDetails;
     }
 
     /**
@@ -278,14 +278,6 @@ class HotelOffer
     }
 
     /**
-     * @return string
-     */
-    public function getCurrency()
-    {
-        return $this->currency;
-    }
-
-    /**
      * @param string $currency
      */
     public function setCurrency($currency)
@@ -294,11 +286,11 @@ class HotelOffer
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function getImmediateConfirmation()
+    public function getCurrency()
     {
-        return $this->immediateConfirmation;
+        return $this->currency;
     }
 
     /**
@@ -310,11 +302,11 @@ class HotelOffer
     }
 
     /**
-     * @return int
+     * @return boolean
      */
-    public function getFreeRooms()
+    public function getImmediateConfirmation()
     {
-        return $this->freeRooms;
+        return $this->immediateConfirmation;
     }
 
     /**
@@ -323,6 +315,14 @@ class HotelOffer
     public function setFreeRooms($freeRooms)
     {
         $this->freeRooms = $freeRooms;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFreeRooms()
+    {
+        return $this->freeRooms;
     }
 
     /**
@@ -350,14 +350,6 @@ class HotelOffer
     }
 
     /**
-     * @return int
-     */
-    public function getRoomId()
-    {
-        return $this->roomId;
-    }
-
-    /**
      * @param int $roomId
      */
     public function setRoomId($roomId)
@@ -368,9 +360,9 @@ class HotelOffer
     /**
      * @return int
      */
-    public function getRoomCapacity()
+    public function getRoomId()
     {
-        return $this->roomCapacity;
+        return $this->roomId;
     }
 
     /**
@@ -382,11 +374,11 @@ class HotelOffer
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getRoomType()
+    public function getRoomCapacity()
     {
-        return $this->roomType;
+        return $this->roomCapacity;
     }
 
     /**
@@ -398,11 +390,11 @@ class HotelOffer
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function getIsSharedRoom()
+    public function getRoomType()
     {
-        return $this->isSharedRoom;
+        return $this->roomType;
     }
 
     /**
@@ -416,9 +408,9 @@ class HotelOffer
     /**
      * @return boolean
      */
-    public function getIsBlockRoom()
+    public function getIsSharedRoom()
     {
-        return $this->isBlockRoom;
+        return $this->isSharedRoom;
     }
 
     /**
@@ -430,11 +422,11 @@ class HotelOffer
     }
 
     /**
-     * @return string
+     * @return boolean
      */
-    public function getPaymentRecipient()
+    public function getIsBlockRoom()
     {
-        return $this->paymentRecipient;
+        return $this->isBlockRoom;
     }
 
     /**
@@ -448,9 +440,9 @@ class HotelOffer
     /**
      * @return string
      */
-    public function getDeepLink()
+    public function getPaymentRecipient()
     {
-        return $this->deepLink;
+        return $this->paymentRecipient;
     }
 
     /**
@@ -462,11 +454,11 @@ class HotelOffer
     }
 
     /**
-     * @return DailyPrices
+     * @return string
      */
-    public function getDailyPrices()
+    public function getDeepLink()
     {
-        return $this->dailyPrices;
+        return $this->deepLink;
     }
 
     /**
@@ -475,6 +467,14 @@ class HotelOffer
     public function setDailyPrices($dailyPrices)
     {
         $this->dailyPrices = $dailyPrices;
+    }
+
+    /**
+     * @return DailyPrices
+     */
+    public function getDailyPrices()
+    {
+        return $this->dailyPrices;
     }
 
     /**

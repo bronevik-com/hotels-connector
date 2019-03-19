@@ -45,14 +45,6 @@ class ClientPriceDetails
     }
 
     /**
-     * @return boolean
-     */
-    public function getVatIncluded()
-    {
-        return $this->vatIncluded;
-    }
-
-    /**
      * @param boolean $vatIncluded
      */
     public function setVatIncluded($vatIncluded)
@@ -61,11 +53,11 @@ class ClientPriceDetails
     }
 
     /**
-     * @return DetailedPrice
+     * @return boolean
      */
-    public function getCommission()
+    public function getVatIncluded()
     {
-        return $this->commission;
+        return $this->vatIncluded;
     }
 
     /**
@@ -79,9 +71,9 @@ class ClientPriceDetails
     /**
      * @return DetailedPrice
      */
-    public function getGross()
+    public function getCommission()
     {
-        return $this->gross;
+        return $this->commission;
     }
 
     /**
@@ -95,9 +87,9 @@ class ClientPriceDetails
     /**
      * @return DetailedPrice
      */
-    public function getNet()
+    public function getGross()
     {
-        return $this->net;
+        return $this->gross;
     }
 
     /**
@@ -106,5 +98,13 @@ class ClientPriceDetails
     public function setNet($net)
     {
         $this->net = $net;
+    }
+
+    /**
+     * @return DetailedPrice
+     */
+    public function getNet()
+    {
+        return $this->net;
     }
 }

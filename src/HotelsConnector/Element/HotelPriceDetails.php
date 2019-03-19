@@ -13,18 +13,18 @@ class HotelPriceDetails
     public $vatIncluded;
 
     /**
-     * @return boolean
-     */
-    public function getVatIncluded()
-    {
-        return $this->vatIncluded;
-    }
-
-    /**
      * @param boolean $vatIncluded
      */
     public function setVatIncluded($vatIncluded)
     {
         $this->vatIncluded = $vatIncluded;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getVatIncluded()
+    {
+        return $this->vatIncluded;
     }
 }

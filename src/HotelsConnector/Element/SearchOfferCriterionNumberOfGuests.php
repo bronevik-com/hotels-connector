@@ -16,16 +16,16 @@ class SearchOfferCriterionNumberOfGuests extends SearchOfferCriterion
      */
     public $adults;
 
-    public function getAdults()
-    {
-        return $this->adults;
-    }
-
     /**
      * @param int $adults
      */
     public function setAdults($adults)
     {
         $this->adults = $adults;
+    }
+
+    public function getAdults()
+    {
+        return $this->adults;
     }
 }

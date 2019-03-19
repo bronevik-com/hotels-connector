@@ -74,14 +74,6 @@ class DescriptionDetails
     }
 
     /**
-     * @return int
-     */
-    public function getCountryId()
-    {
-        return $this->countryId;
-    }
-
-    /**
      * @param int $countryId
      */
     public function setCountryId($countryId)
@@ -90,11 +82,11 @@ class DescriptionDetails
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getCountryName()
+    public function getCountryId()
     {
-        return $this->countryName;
+        return $this->countryId;
     }
 
     /**
@@ -106,11 +98,11 @@ class DescriptionDetails
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getDistanceToCenter()
+    public function getCountryName()
     {
-        return $this->distanceToCenter;
+        return $this->countryName;
     }
 
     /**
@@ -122,11 +114,11 @@ class DescriptionDetails
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getLatitude()
+    public function getDistanceToCenter()
     {
-        return $this->latitude;
+        return $this->distanceToCenter;
     }
 
     /**
@@ -140,9 +132,9 @@ class DescriptionDetails
     /**
      * @return string
      */
-    public function getLongitude()
+    public function getLatitude()
     {
-        return $this->longitude;
+        return $this->latitude;
     }
 
     /**
@@ -156,9 +148,9 @@ class DescriptionDetails
     /**
      * @return string
      */
-    public function getDescription()
+    public function getLongitude()
     {
-        return $this->description;
+        return $this->longitude;
     }
 
     /**
@@ -167,6 +159,14 @@ class DescriptionDetails
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**
@@ -194,18 +194,18 @@ class DescriptionDetails
     }
 
     /**
-     * @return AvailableAmenities
-     */
-    public function getAvailableAmenities()
-    {
-        return $this->availableAmenities;
-    }
-
-    /**
      * @param AvailableAmenities $availableAmenities
      */
     public function setAvailableAmenities($availableAmenities)
     {
         $this->availableAmenities = $availableAmenities;
+    }
+
+    /**
+     * @return AvailableAmenities
+     */
+    public function getAvailableAmenities()
+    {
+        return $this->availableAmenities;
     }
 }

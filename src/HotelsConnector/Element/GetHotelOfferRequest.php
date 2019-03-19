@@ -10,6 +10,7 @@ class GetHotelOfferRequest extends BaseRequest
     public $offerCode = [];
 
     /**
+     * @see SkipElementTypes::$availableSkipElementsForGetHotelOffer
      * @var SkipElements
      */
     public $skipElements;
@@ -45,18 +46,18 @@ class GetHotelOfferRequest extends BaseRequest
     }
 
     /**
-     * @return SkipElements
-     */
-    public function getSkipElements()
-    {
-        return $this->skipElements;
-    }
-
-    /**
      * @param SkipElements $skipElements
      */
     public function setSkipElements($skipElements)
     {
         $this->skipElements = $skipElements;
+    }
+
+    /**
+     * @return SkipElements
+     */
+    public function getSkipElements()
+    {
+        return $this->skipElements;
     }
 }

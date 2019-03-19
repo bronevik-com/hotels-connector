@@ -53,14 +53,6 @@ class City
     public $regionName;
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -69,11 +61,11 @@ class City
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getName()
+    public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
 
     /**
@@ -87,9 +79,9 @@ class City
     /**
      * @return string
      */
-    public function getLatitude()
+    public function getName()
     {
-        return $this->latitude;
+        return $this->name;
     }
 
     /**
@@ -103,9 +95,9 @@ class City
     /**
      * @return string
      */
-    public function getLongitude()
+    public function getLatitude()
     {
-        return $this->longitude;
+        return $this->latitude;
     }
 
     /**
@@ -117,11 +109,11 @@ class City
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getRegionId()
+    public function getLongitude()
     {
-        return $this->regionId;
+        return $this->longitude;
     }
 
     /**
@@ -133,11 +125,11 @@ class City
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getRegionName()
+    public function getRegionId()
     {
-        return $this->regionName;
+        return $this->regionId;
     }
 
     /**
@@ -146,5 +138,13 @@ class City
     public function setRegionName($regionName)
     {
         $this->regionName = $regionName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegionName()
+    {
+        return $this->regionName;
     }
 }

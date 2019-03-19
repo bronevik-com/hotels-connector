@@ -27,14 +27,6 @@ class GetServiceMessagesRequest extends BaseRequest
     }
 
     /**
-     * @return int
-     */
-    public function getServiceId()
-    {
-        return $this->serviceId;
-    }
-
-    /**
      * @param int $serviceId
      */
     public function setServiceId($serviceId)
@@ -43,11 +35,11 @@ class GetServiceMessagesRequest extends BaseRequest
     }
 
     /**
-     * @return ServiceMessages
+     * @return int
      */
-    public function getServiceMessages()
+    public function getServiceId()
     {
-        return $this->serviceMessages;
+        return $this->serviceId;
     }
 
     /**
@@ -56,5 +48,13 @@ class GetServiceMessagesRequest extends BaseRequest
     public function setServiceMessages($serviceMessages)
     {
         $this->serviceMessages = $serviceMessages;
+    }
+
+    /**
+     * @return ServiceMessages
+     */
+    public function getServiceMessages()
+    {
+        return $this->serviceMessages;
     }
 }

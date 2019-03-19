@@ -33,14 +33,6 @@ abstract class BaseRequest
     }
 
     /**
-     * @return Credentials
-     */
-    public function getCredentials()
-    {
-        return $this->credentials;
-    }
-
-    /**
      * @param Credentials $credentials
      */
     public function setCredentials($credentials)
@@ -49,11 +41,11 @@ abstract class BaseRequest
     }
 
     /**
-     * @return string
+     * @return Credentials
      */
-    public function getLanguage()
+    public function getCredentials()
     {
-        return $this->language;
+        return $this->credentials;
     }
 
     /**
@@ -62,5 +54,13 @@ abstract class BaseRequest
     public function setLanguage($language)
     {
         $this->language = $language;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
     }
 }

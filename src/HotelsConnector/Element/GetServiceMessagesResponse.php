@@ -18,18 +18,18 @@ class GetServiceMessagesResponse extends BaseResponse
     }
 
     /**
-     * @return Messages
-     */
-    public function getMessages()
-    {
-        return $this->messages;
-    }
-
-    /**
      * @param Messages $messages
      */
     public function setMessages($messages)
     {
         $this->messages = $messages;
+    }
+
+    /**
+     * @return Messages
+     */
+    public function getMessages()
+    {
+        return $this->messages;
     }
 }

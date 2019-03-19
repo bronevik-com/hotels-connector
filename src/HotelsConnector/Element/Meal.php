@@ -21,14 +21,6 @@ class Meal
     public $name;
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -37,11 +29,11 @@ class Meal
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getName()
+    public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
 
     /**
@@ -50,5 +42,13 @@ class Meal
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

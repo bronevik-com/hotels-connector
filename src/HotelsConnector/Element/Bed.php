@@ -21,14 +21,6 @@ class Bed
     public $amount;
 
     /**
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * @param string $type
      */
     public function setType($type)
@@ -37,11 +29,11 @@ class Bed
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getAmount()
+    public function getType()
     {
-        return $this->amount;
+        return $this->type;
     }
 
     /**
@@ -50,5 +42,13 @@ class Bed
     public function setAmount($amount)
     {
         $this->amount = $amount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmount()
+    {
+        return $this->amount;
     }
 }

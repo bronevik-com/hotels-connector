@@ -21,19 +21,19 @@ abstract class Service
     public $extraField = [];
 
     /**
-     * @return string
-     */
-    public function getReferenceId()
-    {
-        return $this->referenceId;
-    }
-
-    /**
      * @param string $referenceId
      */
     public function setReferenceId($referenceId)
     {
         $this->referenceId = $referenceId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReferenceId()
+    {
+        return $this->referenceId;
     }
 
     /**

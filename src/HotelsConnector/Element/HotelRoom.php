@@ -72,14 +72,6 @@ class HotelRoom
     }
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -88,11 +80,11 @@ class HotelRoom
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getName()
+    public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
 
     /**
@@ -101,6 +93,14 @@ class HotelRoom
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -128,19 +128,19 @@ class HotelRoom
     }
 
     /**
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
      * @param string $description
      */
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**
@@ -168,14 +168,6 @@ class HotelRoom
     }
 
     /**
-     * @return int
-     */
-    public function getRoomCapacity()
-    {
-        return $this->roomCapacity;
-    }
-
-    /**
      * @param int $roomCapacity
      */
     public function setRoomCapacity($roomCapacity)
@@ -184,11 +176,11 @@ class HotelRoom
     }
 
     /**
-     * @return float
+     * @return int
      */
-    public function getSize()
+    public function getRoomCapacity()
     {
-        return $this->size;
+        return $this->roomCapacity;
     }
 
     /**
@@ -197,6 +189,14 @@ class HotelRoom
     public function setSize($size)
     {
         $this->size = $size;
+    }
+
+    /**
+     * @return float
+     */
+    public function getSize()
+    {
+        return $this->size;
     }
 
     /**

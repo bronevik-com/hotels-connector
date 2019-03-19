@@ -43,14 +43,6 @@ class PriceDetails
     }
 
     /**
-     * @return boolean
-     */
-    public function getVatApplicable()
-    {
-        return $this->vatApplicable;
-    }
-
-    /**
      * @param boolean $vatApplicable
      */
     public function setVatApplicable($vatApplicable)
@@ -59,11 +51,11 @@ class PriceDetails
     }
 
     /**
-     * @return HotelPriceDetails
+     * @return boolean
      */
-    public function getHotel()
+    public function getVatApplicable()
     {
-        return $this->hotel;
+        return $this->vatApplicable;
     }
 
     /**
@@ -75,11 +67,11 @@ class PriceDetails
     }
 
     /**
-     * @return ClientPriceDetails
+     * @return HotelPriceDetails
      */
-    public function getClient()
+    public function getHotel()
     {
-        return $this->client;
+        return $this->hotel;
     }
 
     /**
@@ -88,6 +80,14 @@ class PriceDetails
     public function setClient($client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * @return ClientPriceDetails
+     */
+    public function getClient()
+    {
+        return $this->client;
     }
 
     /**

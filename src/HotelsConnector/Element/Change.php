@@ -15,14 +15,6 @@ class Change
     public $newValue;
 
     /**
-     * @return string
-     */
-    public function getElement()
-    {
-        return $this->element;
-    }
-
-    /**
      * @param string $element
      */
     public function setElement($element)
@@ -33,9 +25,9 @@ class Change
     /**
      * @return string
      */
-    public function getNewValue()
+    public function getElement()
     {
-        return $this->newValue;
+        return $this->element;
     }
 
     /**
@@ -44,5 +36,13 @@ class Change
     public function setNewValue($newValue)
     {
         $this->newValue = $newValue;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNewValue()
+    {
+        return $this->newValue;
     }
 }

@@ -63,15 +63,6 @@ class DailyPrice
 
     /**
      *
-     * @return string
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
-     *
      * @param string $date
      */
     public function setDate($date)
@@ -81,15 +72,14 @@ class DailyPrice
 
     /**
      *
-     * @return ClientPriceDetails
+     * @return string
      */
-    public function getRate()
+    public function getDate()
     {
-        return $this->rate;
+        return $this->date;
     }
 
     /**
-     *
      * @param ClientPriceDetails $rate
      */
     public function setRate($rate)
@@ -98,16 +88,14 @@ class DailyPrice
     }
 
     /**
-     *
      * @return ClientPriceDetails
      */
-    public function getBookingFee()
+    public function getRate()
     {
-        return $this->bookingFee;
+        return $this->rate;
     }
 
     /**
-     *
      * @param ClientPriceDetails $bookingFee
      */
     public function setBookingFee($bookingFee)
@@ -116,16 +104,14 @@ class DailyPrice
     }
 
     /**
-     *
      * @return ClientPriceDetails
      */
-    public function getEarlyArrival()
+    public function getBookingFee()
     {
-        return $this->earlyArrival;
+        return $this->bookingFee;
     }
 
     /**
-     *
      * @param ClientPriceDetails $earlyArrival
      */
     public function setEarlyArrival($earlyArrival)
@@ -134,16 +120,14 @@ class DailyPrice
     }
 
     /**
-     *
      * @return ClientPriceDetails
      */
-    public function getLateDeparture()
+    public function getEarlyArrival()
     {
-        return $this->lateDeparture;
+        return $this->earlyArrival;
     }
 
     /**
-     *
      * @param ClientPriceDetails $lateDeparture
      */
     public function setLateDeparture($lateDeparture)
@@ -152,20 +136,26 @@ class DailyPrice
     }
 
     /**
-     *
-     * @return DailyPriceMeals
+     * @return ClientPriceDetails
      */
-    public function getMeals()
+    public function getLateDeparture()
     {
-        return $this->meals;
+        return $this->lateDeparture;
     }
 
     /**
-     *
      * @param DailyPriceMeals $meals
      */
     public function setMeals($meals)
     {
         $this->meals = $meals;
+    }
+
+    /**
+     * @return DailyPriceMeals
+     */
+    public function getMeals()
+    {
+        return $this->meals;
     }
 }

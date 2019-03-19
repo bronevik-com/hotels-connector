@@ -45,18 +45,18 @@ class GetHotelOfferPricingRequest extends BaseRequest
     }
 
     /**
-     * @return SkipElements
-     */
-    public function getSkipElements()
-    {
-        return $this->skipElements;
-    }
-
-    /**
      * @param SkipElements $skipElements
      */
     public function setSkipElements($skipElements)
     {
         $this->skipElements = $skipElements;
+    }
+
+    /**
+     * @return SkipElements
+     */
+    public function getSkipElements()
+    {
+        return $this->skipElements;
     }
 }

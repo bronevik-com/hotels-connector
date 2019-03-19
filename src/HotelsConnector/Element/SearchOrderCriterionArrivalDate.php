@@ -19,14 +19,6 @@ class SearchOrderCriterionArrivalDate extends SearchOrderCriterion
     public $dateEnd;
 
     /**
-     * @return string
-     */
-    public function getDateStart()
-    {
-        return $this->dateStart;
-    }
-
-    /**
      * @param string $dateStart
      */
     public function setDateStart($dateStart)
@@ -37,9 +29,9 @@ class SearchOrderCriterionArrivalDate extends SearchOrderCriterion
     /**
      * @return string
      */
-    public function getDateEnd()
+    public function getDateStart()
     {
-        return $this->dateEnd;
+        return $this->dateStart;
     }
 
     /**
@@ -48,5 +40,13 @@ class SearchOrderCriterionArrivalDate extends SearchOrderCriterion
     public function setDateEnd($dateEnd)
     {
         $this->dateEnd = $dateEnd;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDateEnd()
+    {
+        return $this->dateEnd;
     }
 }

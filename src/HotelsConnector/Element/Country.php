@@ -29,14 +29,6 @@ class Country
     public $code;
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -45,11 +37,11 @@ class Country
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getName()
+    public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
 
     /**
@@ -63,9 +55,9 @@ class Country
     /**
      * @return string
      */
-    public function getCode()
+    public function getName()
     {
-        return $this->code;
+        return $this->name;
     }
 
     /**
@@ -74,5 +66,13 @@ class Country
     public function setCode($code)
     {
         $this->code = $code;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }

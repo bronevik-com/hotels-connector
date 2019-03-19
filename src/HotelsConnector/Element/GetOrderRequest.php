@@ -10,18 +10,18 @@ class GetOrderRequest extends BaseRequest
     public $orderId;
 
     /**
-     * @return int
-     */
-    public function getOrderId()
-    {
-        return $this->orderId;
-    }
-
-    /**
      * @param int $orderId
      */
     public function setOrderId($orderId)
     {
         $this->orderId = $orderId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrderId()
+    {
+        return $this->orderId;
     }
 }

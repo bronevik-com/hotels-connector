@@ -150,16 +150,9 @@ class OrderServiceAccommodation extends OrderService
 
     public function __construct()
     {
+        parent::__construct();
         $this->contract    = new Contract();
         $this->dailyPrices = new DailyPrices();
-    }
-
-    /**
-     * @return Contract
-     */
-    public function getContract()
-    {
-        return $this->contract;
     }
 
     /**
@@ -171,11 +164,11 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return string
+     * @return Contract
      */
-    public function getOfferCode()
+    public function getContract()
     {
-        return $this->offerCode;
+        return $this->contract;
     }
 
     /**
@@ -189,9 +182,9 @@ class OrderServiceAccommodation extends OrderService
     /**
      * @return string
      */
-    public function getOfferName()
+    public function getOfferCode()
     {
-        return $this->offerName;
+        return $this->offerCode;
     }
 
     /**
@@ -203,11 +196,11 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getHotelId()
+    public function getOfferName()
     {
-        return $this->hotelId;
+        return $this->offerName;
     }
 
     /**
@@ -219,11 +212,11 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getHotelName()
+    public function getHotelId()
     {
-        return $this->hotelName;
+        return $this->hotelId;
     }
 
     /**
@@ -235,11 +228,11 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getRoomId()
+    public function getHotelName()
     {
-        return $this->roomId;
+        return $this->hotelName;
     }
 
     /**
@@ -251,11 +244,11 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getRoomType()
+    public function getRoomId()
     {
-        return $this->roomType;
+        return $this->roomId;
     }
 
     /**
@@ -269,9 +262,9 @@ class OrderServiceAccommodation extends OrderService
     /**
      * @return string
      */
-    public function getCheckin()
+    public function getRoomType()
     {
-        return $this->checkin;
+        return $this->roomType;
     }
 
     /**
@@ -285,9 +278,9 @@ class OrderServiceAccommodation extends OrderService
     /**
      * @return string
      */
-    public function getCheckout()
+    public function getCheckin()
     {
-        return $this->checkout;
+        return $this->checkin;
     }
 
     /**
@@ -296,6 +289,14 @@ class OrderServiceAccommodation extends OrderService
     public function setCheckout($checkout)
     {
         $this->checkout = $checkout;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCheckout()
+    {
+        return $this->checkout;
     }
 
     /**
@@ -323,14 +324,6 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return string
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
-
-    /**
      * @param string $comment
      */
     public function setComment($comment)
@@ -339,11 +332,11 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return boolean
+     * @return string
      */
-    public function getNonRefundable()
+    public function getComment()
     {
-        return $this->nonRefundable;
+        return $this->comment;
     }
 
     /**
@@ -357,9 +350,9 @@ class OrderServiceAccommodation extends OrderService
     /**
      * @return boolean
      */
-    public function getIsBlockRoom()
+    public function getNonRefundable()
     {
-        return $this->isBlockRoom;
+        return $this->nonRefundable;
     }
 
     /**
@@ -371,11 +364,11 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return string
+     * @return boolean
      */
-    public function getPaymentRecipient()
+    public function getIsBlockRoom()
     {
-        return $this->paymentRecipient;
+        return $this->isBlockRoom;
     }
 
     /**
@@ -384,6 +377,14 @@ class OrderServiceAccommodation extends OrderService
     public function setPaymentRecipient($paymentRecipient)
     {
         $this->paymentRecipient = $paymentRecipient;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentRecipient()
+    {
+        return $this->paymentRecipient;
     }
 
     /**
@@ -459,18 +460,18 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return DailyPrices
-     */
-    public function getDailyPrices()
-    {
-        return $this->dailyPrices;
-    }
-
-    /**
      * @param DailyPrices $dailyPrices
      */
     public function setDailyPrices($dailyPrices)
     {
         $this->dailyPrices = $dailyPrices;
+    }
+
+    /**
+     * @return DailyPrices
+     */
+    public function getDailyPrices()
+    {
+        return $this->dailyPrices;
     }
 }

@@ -25,14 +25,6 @@ abstract class CancellationPolicy
     public $penaltySum;
 
     /**
-     * @return string
-     */
-    public function getPenaltyDateTime()
-    {
-        return $this->penaltyDateTime;
-    }
-
-    /**
      * @param string $penaltyDateTime
      */
     public function setPenaltyDateTime($penaltyDateTime)
@@ -41,11 +33,11 @@ abstract class CancellationPolicy
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getPenaltySum()
+    public function getPenaltyDateTime()
     {
-        return $this->penaltySum;
+        return $this->penaltyDateTime;
     }
 
     /**
@@ -54,5 +46,13 @@ abstract class CancellationPolicy
     public function setPenaltySum($penaltySum)
     {
         $this->penaltySum = $penaltySum;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPenaltySum()
+    {
+        return $this->penaltySum;
     }
 }

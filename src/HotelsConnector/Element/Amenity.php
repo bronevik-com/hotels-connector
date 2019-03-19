@@ -29,14 +29,6 @@ class Amenity
     public $groupName;
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -45,11 +37,11 @@ class Amenity
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getName()
+    public function getId()
     {
-        return $this->name;
+        return $this->id;
     }
 
     /**
@@ -63,9 +55,9 @@ class Amenity
     /**
      * @return string
      */
-    public function getGroupName()
+    public function getName()
     {
-        return $this->groupName;
+        return $this->name;
     }
 
     /**
@@ -74,5 +66,13 @@ class Amenity
     public function setGroupName($groupName)
     {
         $this->groupName = $groupName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGroupName()
+    {
+        return $this->groupName;
     }
 }

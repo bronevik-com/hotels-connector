@@ -53,14 +53,6 @@ class Order
     public $services = [];
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -69,11 +61,11 @@ class Order
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getContactPhone()
+    public function getId()
     {
-        return $this->contactPhone;
+        return $this->id;
     }
 
     /**
@@ -87,9 +79,9 @@ class Order
     /**
      * @return string
      */
-    public function getContactPerson()
+    public function getContactPhone()
     {
-        return $this->contactPerson;
+        return $this->contactPhone;
     }
 
     /**
@@ -103,9 +95,9 @@ class Order
     /**
      * @return string
      */
-    public function getContactEmail()
+    public function getContactPerson()
     {
-        return $this->contactEmail;
+        return $this->contactPerson;
     }
 
     /**
@@ -119,9 +111,9 @@ class Order
     /**
      * @return string
      */
-    public function getComment()
+    public function getContactEmail()
     {
-        return $this->comment;
+        return $this->contactEmail;
     }
 
     /**
@@ -130,6 +122,14 @@ class Order
     public function setComment($comment)
     {
         $this->comment = $comment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 
     /**

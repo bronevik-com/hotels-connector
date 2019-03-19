@@ -15,14 +15,6 @@ class Image
     public $url;
 
     /**
-     * @return string
-     */
-    public function getGuid()
-    {
-        return $this->guid;
-    }
-
-    /**
      * @param string $guid
      */
     public function setGuid($guid)
@@ -33,9 +25,9 @@ class Image
     /**
      * @return string
      */
-    public function getUrl()
+    public function getGuid()
     {
-        return $this->url;
+        return $this->guid;
     }
 
     /**
@@ -44,5 +36,13 @@ class Image
     public function setUrl($url)
     {
         $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

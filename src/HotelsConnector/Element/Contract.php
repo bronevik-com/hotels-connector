@@ -37,14 +37,6 @@ class Contract
     public $legalEntity;
 
     /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -53,11 +45,11 @@ class Contract
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getNumber()
+    public function getId()
     {
-        return $this->number;
+        return $this->id;
     }
 
     /**
@@ -71,9 +63,9 @@ class Contract
     /**
      * @return string
      */
-    public function getBeginsAt()
+    public function getNumber()
     {
-        return $this->beginsAt;
+        return $this->number;
     }
 
     /**
@@ -87,9 +79,9 @@ class Contract
     /**
      * @return string
      */
-    public function getLegalEntity()
+    public function getBeginsAt()
     {
-        return $this->legalEntity;
+        return $this->beginsAt;
     }
 
     /**
@@ -98,5 +90,13 @@ class Contract
     public function setLegalEntity($legalEntity)
     {
         $this->legalEntity = $legalEntity;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLegalEntity()
+    {
+        return $this->legalEntity;
     }
 }

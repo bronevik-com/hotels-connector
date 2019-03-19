@@ -21,14 +21,6 @@ class Info
     public $value;
 
     /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * @param string $name
      */
     public function setName($name)
@@ -39,9 +31,9 @@ class Info
     /**
      * @return string
      */
-    public function getValue()
+    public function getName()
     {
-        return $this->value;
+        return $this->name;
     }
 
     /**
@@ -50,5 +42,13 @@ class Info
     public function setValue($value)
     {
         $this->value = $value;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValue()
+    {
+        return $this->value;
     }
 }
