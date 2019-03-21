@@ -414,21 +414,16 @@ class HotelsConnector
 
     /**
      * @param Element\ServiceAccommodation $services []
-     * @param string[]                     $skipElements
      *
      * @return Element\OrderServiceAccommodation[]
      */
-    public function GetHotelOfferPricing($services, $skipElements = [])
+    public function GetHotelOfferPricing($services)
     {
         $request = new Element\GetHotelOfferPricingRequest();
         $this->fillRequest($request);
 
         foreach ((array) $services as $serviceAccommodation) {
-            $request->addService($serviceAccommodation);
-        }
-
-        if ($skipElements) {
-            $request->skipElements->element = $skipElements;
+            $request->addServices($serviceAccommodation);
         }
 
         return $this->soapClient->GetHotelOfferPricing($request)->services;

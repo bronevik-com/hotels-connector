@@ -10,17 +10,6 @@ class GetHotelOfferPricingRequest extends BaseRequest
     public $services = [];
 
     /**
-     * @var SkipElements
-     */
-    public $skipElements;
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->skipElements = new SkipElements();
-    }
-
-    /**
      * @return bool
      */
     public function hasServices()
@@ -42,21 +31,5 @@ class GetHotelOfferPricingRequest extends BaseRequest
     public function addServices($services)
     {
         $this->services[] = $services;
-    }
-
-    /**
-     * @param SkipElements $skipElements
-     */
-    public function setSkipElements($skipElements)
-    {
-        $this->skipElements = $skipElements;
-    }
-
-    /**
-     * @return SkipElements
-     */
-    public function getSkipElements()
-    {
-        return $this->skipElements;
     }
 }
