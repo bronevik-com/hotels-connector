@@ -1,0 +1,55 @@
+<?php
+
+namespace Bronevik\HotelsConnector\Enum;
+
+class ExceptionCodes
+{
+    const INCORRECT_AUTH_PARAMS_CODE = 1000;
+    const UNKNOWN_REQUEST_CODE       = 1001;
+    const ACCESS_DENIED_CODE         = 1002;
+    const UNKNOWN_CURRENCY_CODE      = 1003;
+    const CAN_NOT_SAVE_ORDER_CODE    = 1004;
+
+    const UNKNOWN_SERVICE_TYPE_EXCEPTION            = 2000;
+    const NOT_SPECIFIED_OFFER_CODE_CODE             = 2001;
+    const COMMENT_TEXT_IS_EMPTY_CODE                = 2002;
+    const INVALID_MEAL_ID_CODE                      = 2003;
+    const INVALID_COUNT_OF_GUESTS_CODE              = 2004;
+    const GUESTS_NOT_SPECIFIED_CODE                 = 2005;
+    const INCORRECT_CHECKIN_OR_CHECKOUT_CODE        = 2006;
+    const INVALID_ORDER_ID_CODE                     = 2007;
+    const MAX_COUNT_ORDER_MORE_THAN_LIMIT_CODE      = 2008;
+    const SERVICE_NOT_FOUND_CODE                    = 2009;
+    const COUNT_OF_SERVICE_IDS_MORE_THAN_LIMIT_CODE = 2010;
+    const ALL_PARAMS_SELECTED_CODE                  = 2011;
+    const MAX_COUNT_OF_HOTEL_IDS_EXCEEDED_CODE      = 2012;
+    const UNKNOWN_SKIP_ELEMENT_CODE                 = 2013;
+    const INCORRECT_DATE_IN_SEARCH_OFFERS_CODE      = 2014;
+    const WRONG_DATE_FORMAT_CODE                    = 2015;
+    const DATE_IS__LESS_THAN_YESTERDAY_CODE         = 2016;
+    const SEARCH_DURATION_IS_TOO_LONG_CODE          = 2017;
+    const UNKNOWN_COMMENT_ID_CODE                   = 2018;
+    const INCORRECT_ORDER_SERVICES_COUNT_CODE       = 2019;
+    const NOT_SPECIFIED_SEARCH_ORDERS_CRITERIA_CODE = 2020;
+    const NOT_FOUND_RECORD_ID_CODE                  = 2021;
+    const COUNT_OF_MESSAGE_IDS_MORE_THAN_LIMIT_CODE = 2022;
+    const INCORRECT_PAYMENT_CRITERIA_VALUE_CODE     = 2023;
+
+    const MEAL_IS_NOT_AVAILABLE_IN_OFFER_CODE  = 3000;
+    const EARLY_ARRIVAL_IS_NOT_AVAILABLE_CODE  = 3001;
+    const LATE_DEPARTURE_IS_NOT_AVAILABLE_CODE = 3002;
+    const HOTEL_NOT_FOUND_CODE                 = 3003;
+
+    const EXTRA_FIELD_IS_NOT_SPECIFIED_CODE = 4000;
+    const EXTRA_FIELD_INCORRECT_VALUE_CODE  = 4001;
+    const UNKNOWN_EXTRA_FIELD_CODE          = 4002;
+
+    const INCORRECT_OFFER_CODE                    = 5000;
+    const NO_LONGER_AVAILABLE_OFFER_CODE          = 5001;
+    const SPECIFIED_VALUES_ARE_NOT_AVAILABLE_CODE = 5002;
+
+    const SELLING_PRICE_HAS_WRONG_FORMAT_CODE  = 6000;
+    const CLIENT_SELLING_PRICE_DISABLED_CODE   = 6001;
+    const SELLING_PRICE_NOT_WITHIN_LIMITS_CODE = 6002;
+    const SELLING_PRICE_IS_ONLY_IN_RUSSIA_CODE = 6003;
+}
