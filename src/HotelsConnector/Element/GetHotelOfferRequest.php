@@ -15,12 +15,6 @@ class GetHotelOfferRequest extends BaseRequest
      */
     public $skipElements;
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->skipElements = new SkipElements();
-    }
-
     /**
      * @return bool
      */

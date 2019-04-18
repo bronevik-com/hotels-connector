@@ -78,13 +78,6 @@ class SearchHotelOffersRequest extends BaseRequest
      */
     public $skipElements;
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->hotelIds     = new HotelIds();
-        $this->skipElements = new SkipElements();
-    }
-
     /**
      * @param int $cityId
      */

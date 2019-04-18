@@ -309,9 +309,11 @@ class HotelsConnector
             $request->setCityId($cityId);
         }
         if ($hotelIds) {
+            $request->hotelIds = new Element\HotelIds();
             $request->hotelIds->id = $hotelIds;
         }
         if ($skipElements) {
+            $request->skipElements = new Element\SkipElements();
             $request->skipElements->element = $skipElements;
         }
 
@@ -406,6 +408,7 @@ class HotelsConnector
         $request->addOfferCode($offerCode);
 
         if ($skipElements) {
+            $request->skipElements = new Element\SkipElements();
             $request->skipElements->element = $skipElements;
         }
 
