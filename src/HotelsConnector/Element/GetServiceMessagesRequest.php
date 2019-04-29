@@ -20,12 +20,6 @@ class GetServiceMessagesRequest extends BaseRequest
      */
     public $serviceMessages;
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->serviceMessages = new ServiceMessages();
-    }
-
     /**
      * @param int $serviceId
      */

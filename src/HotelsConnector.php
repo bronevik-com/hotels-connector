@@ -503,8 +503,13 @@ class HotelsConnector
         $request = new Element\GetServiceMessagesRequest();
         $this->fillRequest($request);
 
-        $request->serviceId           = $serviceId;
-        $request->serviceMessages->id = $messageIds;
+        if ($serviceId) {
+            $request->serviceId           = $serviceId;
+        }
+        if ($messageIds) {
+            $request->serviceMessages = new Element\ServiceMessages();
+            $request->serviceMessages->id = $messageIds;
+        }
 
         return $this->soapClient->getServiceMessages($request)->getMessages();
     }
