@@ -93,9 +93,9 @@ class HotelOffer
     public $roomId;
 
     /**
-     * deprecated - перенесено в элемент 'HotelRoom'.
+     * @deprecated - перенесено в элемент 'HotelRoom'.
      *                                Количество гостей, которых можно разместить в номере
-     * deprecated - currently available in 'HotelRoom' element.
+     * @deprecated - currently available in 'HotelRoom' element.
      *                                The basic room capacity
      *
      * @var int
