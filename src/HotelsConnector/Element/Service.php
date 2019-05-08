@@ -1,25 +1,27 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 abstract class Service
 {
     /**
-     * Type: xsd:string
-     * 
+     * Номер услуги в системе клиента
+     * The service number in the client’s system
+     *
      * @var string
      */
-    public $referenceId = null;
+    public $referenceId;
 
     /**
-     * Type: tns:ServiceExtraField
+     * Список доп. полей для создания услуг
+     * The list of extra fields for the services
      *
      * @var ServiceExtraField[]
      */
     public $extraField = [];
 
     /**
-     * 
-     * @param string $referenceId 
+     * @param string $referenceId
      */
     public function setReferenceId($referenceId)
     {
@@ -27,7 +29,6 @@ abstract class Service
     }
 
     /**
-     * 
      * @return string
      */
     public function getReferenceId()
@@ -36,7 +37,6 @@ abstract class Service
     }
 
     /**
-     *
      * @return bool
      */
     public function hasExtraField()
@@ -45,7 +45,6 @@ abstract class Service
     }
 
     /**
-     *
      * @return ServiceExtraField[]
      */
     public function getExtraField()
@@ -54,7 +53,6 @@ abstract class Service
     }
 
     /**
-     *
      * @param ServiceExtraField $extraField
      */
     public function addExtraField($extraField)
@@ -62,4 +60,3 @@ abstract class Service
         $this->extraField[] = $extraField;
     }
 }
-

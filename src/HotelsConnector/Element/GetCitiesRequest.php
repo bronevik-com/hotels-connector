@@ -1,18 +1,16 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class GetCitiesRequest extends BaseRequest
 {
     /**
-     * Type: xsd:int
-     * 
      * @var int
      */
-    public $countryId = null;
+    public $countryId;
 
     /**
-     * 
-     * @param int $countryId 
+     * @param int $countryId
      */
     public function setCountryId($countryId)
     {
@@ -20,7 +18,6 @@ class GetCitiesRequest extends BaseRequest
     }
 
     /**
-     * 
      * @return int
      */
     public function getCountryId()
@@ -28,4 +25,3 @@ class GetCitiesRequest extends BaseRequest
         return $this->countryId;
     }
 }
-

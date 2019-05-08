@@ -1,32 +1,35 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class Country
 {
     /**
-     * Type: xsd:int
-     * 
+     * Идентификатор страны
+     * The country id
+     *
      * @var int
      */
-    public $id = null;
+    public $id;
 
     /**
-     * Type: xsd:string
-     * 
+     * Название страны
+     * The country name
+     *
      * @var string
      */
-    public $name = null;
+    public $name;
 
     /**
-     * Type: xsd:string
-     * 
+     * Код страны (трекхбуквенный)
+     * The country code (three-letter)
+     *
      * @var string
      */
-    public $code = null;
+    public $code;
 
     /**
-     * 
-     * @param int $id 
+     * @param int $id
      */
     public function setId($id)
     {
@@ -34,7 +37,6 @@ class Country
     }
 
     /**
-     * 
      * @return int
      */
     public function getId()
@@ -43,8 +45,7 @@ class Country
     }
 
     /**
-     * 
-     * @param string $name 
+     * @param string $name
      */
     public function setName($name)
     {
@@ -52,7 +53,6 @@ class Country
     }
 
     /**
-     * 
      * @return string
      */
     public function getName()
@@ -61,8 +61,7 @@ class Country
     }
 
     /**
-     * 
-     * @param string $code 
+     * @param string $code
      */
     public function setCode($code)
     {
@@ -70,7 +69,6 @@ class Country
     }
 
     /**
-     * 
      * @return string
      */
     public function getCode()
@@ -78,4 +76,3 @@ class Country
         return $this->code;
     }
 }
-

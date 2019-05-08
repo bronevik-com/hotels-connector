@@ -1,67 +1,84 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
+
+use Bronevik\HotelsConnector\Enum\SkipElementTypes;
 
 /**
  * Запрос на поиск предложений по определённому городу
- * 
+ * The offers search by the city
  */
 class SearchHotelOffersRequest extends BaseRequest
 {
     /**
      * Идентификатор города, по которому будет идти поиск
-     * Type: xsd:int
+     * The city id for search
      *
      * @var int
      */
-    public $cityId = null;
+    public $cityId;
 
     /**
+     * @deprecated
      * Идентификатор отеля, по которому будет идти поиск
-     * Type: xsd:int
+     * The hotel id for search
      *
      * @var int
      */
-    public $hotelId = null;
+    public $hotelId;
+
+    /**
+     * Идентификаторы отелей, по которым будет идти поиск
+     * The hotel ids for search
+     *
+     * @var HotelIds
+     */
+    public $hotelIds;
 
     /**
      * Дата заезда
-     * Type: xsd:date
+     * The date of arrival
      *
      * @var string
      */
-    public $arrivalDate = null;
+    public $arrivalDate;
 
     /**
      * Дата выезда
-     * Type: xsd:date
+     * The date of departure
      *
      * @var string
      */
-    public $departureDate = null;
+    public $departureDate;
 
     /**
-     * Валюта расчёта
-     * Type: tns:Currency
+     * Валюта расчета
+     * The payment currency
      *
      * @var string
      */
-    public $currency = null;
+    public $currency;
 
     /**
      * Критерии поиска
-     * Type: tns:SearchOfferCriterion
-     * 
-     * @var \Bronevik\HotelsConnector\Element\SearchOfferCriterion[]
+     * The search criteria
+     *
+     * @var SearchOfferCriterion[]
      */
     public $searchCriteria = [];
 
     /**
-     * @var bool 
+     * @var bool
      */
     public $enableProfitShareRates = false;
 
     /**
-     *
+     * @see SkipElementTypes::$availableSkipElementsForSearchHotelOffers
+     * @var SkipElements
+     */
+    public $skipElements;
+
+    /**
      * @param int $cityId
      */
     public function setCityId($cityId)
@@ -70,7 +87,6 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     *
      * @return int
      */
     public function getCityId()
@@ -79,7 +95,6 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     *
      * @param int $hotelId
      */
     public function setHotelId($hotelId)
@@ -88,7 +103,6 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     *
      * @return int
      */
     public function getHotelId()
@@ -97,7 +111,22 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     *
+     * @param HotelIds $hotelIds
+     */
+    public function setHotelIds($hotelIds)
+    {
+        $this->hotelIds = $hotelIds;
+    }
+
+    /**
+     * @return HotelIds
+     */
+    public function getHotelIds()
+    {
+        return $this->hotelIds;
+    }
+
+    /**
      * @param string $arrivalDate
      */
     public function setArrivalDate($arrivalDate)
@@ -106,7 +135,6 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     *
      * @return string
      */
     public function getArrivalDate()
@@ -115,7 +143,6 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     *
      * @param string $departureDate
      */
     public function setDepartureDate($departureDate)
@@ -124,7 +151,6 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     *
      * @return string
      */
     public function getDepartureDate()
@@ -133,7 +159,6 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     *
      * @param string $currency
      */
     public function setCurrency($currency)
@@ -142,7 +167,6 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     *
      * @return string
      */
     public function getCurrency()
@@ -151,7 +175,6 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     *
      * @return bool
      */
     public function hasSearchCriteria()
@@ -160,8 +183,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\SearchOfferCriterion[]
+     * @return SearchOfferCriterion[]
      */
     public function getSearchCriteria()
     {
@@ -169,12 +191,26 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\SearchOfferCriterion $searchCriteria 
+     * @param SearchOfferCriterion $searchCriteria
      */
     public function addSearchCriteria($searchCriteria)
     {
         $this->searchCriteria[] = $searchCriteria;
     }
-}
 
+    /**
+     * @param SkipElements $skipElements
+     */
+    public function setSkipElements($skipElements)
+    {
+        $this->skipElements = $skipElements;
+    }
+
+    /**
+     * @return SkipElements
+     */
+    public function getSkipElements()
+    {
+        return $this->skipElements;
+    }
+}

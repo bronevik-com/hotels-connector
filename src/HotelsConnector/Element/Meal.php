@@ -1,25 +1,27 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class Meal
 {
     /**
-     * Type: xsd:int
-     * 
+     * Идентификатор услуги питания
+     * The meal service id
+     *
      * @var int
      */
-    public $id = null;
+    public $id;
 
     /**
-     * Type: xsd:string
-     * 
+     * Наименование услуги питания
+     * The meal service name
+     *
      * @var string
      */
-    public $name = null;
+    public $name;
 
     /**
-     * 
-     * @param int $id 
+     * @param int $id
      */
     public function setId($id)
     {
@@ -27,7 +29,6 @@ class Meal
     }
 
     /**
-     * 
      * @return int
      */
     public function getId()
@@ -36,8 +37,7 @@ class Meal
     }
 
     /**
-     * 
-     * @param string $name 
+     * @param string $name
      */
     public function setName($name)
     {
@@ -45,7 +45,6 @@ class Meal
     }
 
     /**
-     * 
      * @return string
      */
     public function getName()
@@ -53,4 +52,3 @@ class Meal
         return $this->name;
     }
 }
-

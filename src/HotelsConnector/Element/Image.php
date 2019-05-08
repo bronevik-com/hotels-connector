@@ -1,25 +1,21 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class Image
 {
     /**
-     * Type: xsd:string
-     * 
      * @var string
      */
-    public $guid = null;
+    public $guid;
 
     /**
-     * Type: xsd:string
-     * 
      * @var string
      */
-    public $url = null;
+    public $url;
 
     /**
-     * 
-     * @param string $guid 
+     * @param string $guid
      */
     public function setGuid($guid)
     {
@@ -27,7 +23,6 @@ class Image
     }
 
     /**
-     * 
      * @return string
      */
     public function getGuid()
@@ -36,8 +31,7 @@ class Image
     }
 
     /**
-     * 
-     * @param string $url 
+     * @param string $url
      */
     public function setUrl($url)
     {
@@ -45,7 +39,6 @@ class Image
     }
 
     /**
-     * 
      * @return string
      */
     public function getUrl()
@@ -53,4 +46,3 @@ class Image
         return $this->url;
     }
 }
-

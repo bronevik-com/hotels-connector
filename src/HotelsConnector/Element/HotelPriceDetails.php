@@ -1,18 +1,19 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class HotelPriceDetails
 {
     /**
-     * Type: xsd:boolean
-     * 
+     * Включен ли НДС в отельную стоимость
+     * Whether VAT is included in the property’s price
+     *
      * @var boolean
      */
-    public $vatIncluded = null;
+    public $vatIncluded;
 
     /**
-     * 
-     * @param boolean $vatIncluded 
+     * @param boolean $vatIncluded
      */
     public function setVatIncluded($vatIncluded)
     {
@@ -20,7 +21,6 @@ class HotelPriceDetails
     }
 
     /**
-     * 
      * @return boolean
      */
     public function getVatIncluded()
@@ -28,4 +28,3 @@ class HotelPriceDetails
         return $this->vatIncluded;
     }
 }
-

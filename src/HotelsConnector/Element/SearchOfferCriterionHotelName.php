@@ -1,18 +1,19 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class SearchOfferCriterionHotelName extends SearchOfferCriterion
 {
     /**
-     * Type: xsd:string
-     * 
+     * Название отеля, по которому производится поиск
+     * The hotel name for search
+     *
      * @var string
      */
-    public $name = null;
+    public $name;
 
     /**
-     * 
-     * @param string $name 
+     * @param string $name
      */
     public function setName($name)
     {
@@ -20,7 +21,6 @@ class SearchOfferCriterionHotelName extends SearchOfferCriterion
     }
 
     /**
-     * 
      * @return string
      */
     public function getName()
@@ -28,4 +28,3 @@ class SearchOfferCriterionHotelName extends SearchOfferCriterion
         return $this->name;
     }
 }
-

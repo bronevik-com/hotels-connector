@@ -1,18 +1,20 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Поиск заказа по номеру услуги проживания
+ * The order search by service ID
+ */
 class SearchOrderCriterionServiceId extends SearchOrderCriterion
 {
     /**
-     * Type: xsd:int
-     * 
      * @var int
      */
-    public $serviceId = null;
+    public $serviceId;
 
     /**
-     * 
-     * @param int $serviceId 
+     * @param int $serviceId
      */
     public function setServiceId($serviceId)
     {
@@ -20,7 +22,6 @@ class SearchOrderCriterionServiceId extends SearchOrderCriterion
     }
 
     /**
-     * 
      * @return int
      */
     public function getServiceId()
@@ -28,4 +29,3 @@ class SearchOrderCriterionServiceId extends SearchOrderCriterion
         return $this->serviceId;
     }
 }
-

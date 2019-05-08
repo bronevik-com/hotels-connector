@@ -1,17 +1,19 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Описание номеров
+ * The hotel room description
+ */
 class HotelWithInfo extends Hotel
 {
     /**
-     * Type: tns:HotelRoom
-     * 
-     * @var \Bronevik\HotelsConnector\Element\HotelRoom[]
+     * @var HotelRoom[]
      */
     public $rooms = [];
 
     /**
-     * 
      * @return bool
      */
     public function hasRooms()
@@ -20,8 +22,7 @@ class HotelWithInfo extends Hotel
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\HotelRoom[]
+     * @return HotelRoom[]
      */
     public function getRooms()
     {
@@ -29,12 +30,10 @@ class HotelWithInfo extends Hotel
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\HotelRoom $rooms 
+     * @param HotelRoom $rooms
      */
     public function addRooms($rooms)
     {
         $this->rooms[] = $rooms;
     }
 }
-

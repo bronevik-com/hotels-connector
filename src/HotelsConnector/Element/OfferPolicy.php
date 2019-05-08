@@ -2,6 +2,10 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Правила предоставления предложения
+ * A policy of granting current offer
+ */
 class OfferPolicy
 {
     /**

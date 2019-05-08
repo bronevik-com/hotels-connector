@@ -5,48 +5,60 @@ namespace Bronevik\HotelsConnector\Element;
 class DailyPrice
 {
     /**
-     * Type: xsd:date
+     * Дата, на которую рассчитана цена
+     * The date of stay
      *
      * @var string
      */
-    public $date = null;
+    public $date;
 
     /**
-     * Type: xsd:float
-     * 
-     * @var float
-     * @deprecated
-     */
-    public $price;
-
-    /**
-     * @var ClientPriceDetails|null
+     * Стоимость номера
+     * The price's detailing of accommodation per day
+     *
+     * @var ClientPriceDetails
      */
     public $rate;
 
     /**
-     * @var ClientPriceDetails|null
+     * Стоимость брони в отеле
+     * The booking fee’s price detailing
+     *
+     * @var ClientPriceDetails
      */
     public $bookingFee;
 
     /**
-     * @var ClientPriceDetails|null
+     * Стоимость раннего заезда
+     * The cost of early arrival
+     *
+     * @var ClientPriceDetails
      */
     public $earlyArrival;
 
     /**
-     * @var ClientPriceDetails|null
+     * Стоимость позднего выезда
+     * The cost of last departure
+     *
+     * @var ClientPriceDetails
      */
     public $lateDeparture;
 
     /**
-     * @var DailyPriceMeals|null
+     * Стоимость платного питания
+     * The cost of meal service
+     *
+     * @var DailyPriceMeals
      */
     public $meals;
 
     public function __construct()
     {
-        $this->meals = new DailyPriceMeals();
+        $this->rate          = new ClientPriceDetails();
+        $this->bookingFee    = new ClientPriceDetails();
+        $this->earlyArrival  = new ClientPriceDetails();
+        $this->lateDeparture = new ClientPriceDetails();
+        $this->meals         = new DailyPriceMeals();
     }
 
     /**
@@ -68,23 +80,82 @@ class DailyPrice
     }
 
     /**
-     *
-     * @param float $price
-     * @deprecated
+     * @param ClientPriceDetails $rate
      */
-    public function setPrice($price)
+    public function setRate($rate)
     {
-        $this->price = $price;
+        $this->rate = $rate;
     }
 
     /**
-     *
-     * @return float
-     * @deprecated
+     * @return ClientPriceDetails
      */
-    public function getPrice()
+    public function getRate()
     {
-        return $this->price;
+        return $this->rate;
+    }
+
+    /**
+     * @param ClientPriceDetails $bookingFee
+     */
+    public function setBookingFee($bookingFee)
+    {
+        $this->bookingFee = $bookingFee;
+    }
+
+    /**
+     * @return ClientPriceDetails
+     */
+    public function getBookingFee()
+    {
+        return $this->bookingFee;
+    }
+
+    /**
+     * @param ClientPriceDetails $earlyArrival
+     */
+    public function setEarlyArrival($earlyArrival)
+    {
+        $this->earlyArrival = $earlyArrival;
+    }
+
+    /**
+     * @return ClientPriceDetails
+     */
+    public function getEarlyArrival()
+    {
+        return $this->earlyArrival;
+    }
+
+    /**
+     * @param ClientPriceDetails $lateDeparture
+     */
+    public function setLateDeparture($lateDeparture)
+    {
+        $this->lateDeparture = $lateDeparture;
+    }
+
+    /**
+     * @return ClientPriceDetails
+     */
+    public function getLateDeparture()
+    {
+        return $this->lateDeparture;
+    }
+
+    /**
+     * @param DailyPriceMeals $meals
+     */
+    public function setMeals($meals)
+    {
+        $this->meals = $meals;
+    }
+
+    /**
+     * @return DailyPriceMeals
+     */
+    public function getMeals()
+    {
+        return $this->meals;
     }
 }
-

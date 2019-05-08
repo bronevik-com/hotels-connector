@@ -1,40 +1,36 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
+/**
+ * Ответ на запрос по поиску предложений
+ * The search hotel offers response
+ */
 class SearchHotelOffersResponse extends BaseResponse
 {
     /**
-     * Type: tns:HotelWithOffers
-     * 
-     * @var \Bronevik\HotelsConnector\Element\HotelWithOffers[]
+     * @var Hotels
      */
-    public $hotels = [];
+    public $hotels;
 
-    /**
-     * 
-     * @return bool
-     */
-    public function hasHotels()
+    public function __construct()
     {
-        return count($this->hotels) > 0;
+        $this->hotels = new Hotels();
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\HotelWithOffers[]
+     * @param Hotels $hotels
+     */
+    public function setHotels($hotels)
+    {
+        $this->hotels = $hotels;
+    }
+
+    /**
+     * @return Hotels
      */
     public function getHotels()
     {
         return $this->hotels;
     }
-
-    /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\HotelWithOffers $hotels 
-     */
-    public function addHotels($hotels)
-    {
-        $this->hotels[] = $hotels;
-    }
 }
-

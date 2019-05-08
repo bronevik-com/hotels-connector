@@ -5,15 +5,12 @@ namespace Bronevik\HotelsConnector\Element;
 class RemoveOrdersChangelogRecordsResponse extends BaseResponse
 {
     /**
-     * Type: xsd:string
-     * 
      * @var string
      */
-    public $status = null;
+    public $status;
 
     /**
-     * 
-     * @param string $status 
+     * @param string $status
      */
     public function setStatus($status)
     {
@@ -21,7 +18,6 @@ class RemoveOrdersChangelogRecordsResponse extends BaseResponse
     }
 
     /**
-     * 
      * @return string
      */
     public function getStatus()

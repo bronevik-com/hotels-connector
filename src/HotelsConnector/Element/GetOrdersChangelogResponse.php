@@ -1,17 +1,15 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class GetOrdersChangelogResponse extends BaseResponse
 {
     /**
-     * Type: tns:OrdersChangelogRecord
-     *
-     * @var \Bronevik\HotelsConnector\Element\OrdersChangelogRecord[]
+     * @var OrdersChangelogRecord[]
      */
     public $ordersChangelogRecord = [];
 
     /**
-     * 
      * @return bool
      */
     public function hasOrdersChangelogRecord()
@@ -20,8 +18,7 @@ class GetOrdersChangelogResponse extends BaseResponse
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\OrdersChangelogRecord[]
+     * @return OrdersChangelogRecord[]
      */
     public function getOrdersChangelogRecord()
     {
@@ -29,8 +26,7 @@ class GetOrdersChangelogResponse extends BaseResponse
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\OrdersChangelogRecord $ordersChangelogRecord
+     * @param OrdersChangelogRecord $ordersChangelogRecord
      */
     public function addOrdersChangelogRecord($ordersChangelogRecord)
     {

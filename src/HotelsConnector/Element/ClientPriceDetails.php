@@ -1,50 +1,51 @@
 <?php
+
 namespace Bronevik\HotelsConnector\Element;
 
 class ClientPriceDetails
 {
     /**
-     * Type: xsd:boolean
-     * 
+     * Включен ли НДС в клиентскую стоимость
+     * Whether VAT is included in the client’s price
+     *
      * @var boolean
      */
-    public $vatIncluded = null;
+    public $vatIncluded;
 
     /**
-     * Type: tns:DetailedPrice
-     * 
-     * @var \Bronevik\HotelsConnector\Element\DetailedPrice
+     * Информация о комиссии
+     * The information about commission
+     *
+     * @var DetailedPrice
      */
-    public $commission = null;
+    public $commission;
 
     /**
-     * Type: tns:DetailedPrice
-     * 
-     * @var \Bronevik\HotelsConnector\Element\DetailedPrice
+     * Брутто-стоимость
+     * The gross-cost value
+     *
+     * @var DetailedPrice
      */
-    public $gross = null;
+    public $gross;
 
     /**
-     * Type: tns:DetailedPrice
-     * 
-     * @var \Bronevik\HotelsConnector\Element\DetailedPrice
+     * Нетто-стоимость
+     * The net-cost value
+     *
+     * @var DetailedPrice
      */
-    public $net = null;
+    public $net;
 
-    /**
-     * 
-     */
     public function __construct()
     {
-        $this->commission = new \Bronevik\HotelsConnector\Element\DetailedPrice;
-        $this->gross = new \Bronevik\HotelsConnector\Element\DetailedPrice;
-        $this->net = new \Bronevik\HotelsConnector\Element\DetailedPrice;
+        $this->commission  = new DetailedPrice();
+        $this->gross       = new DetailedPrice();
+        $this->net         = new DetailedPrice();
         $this->vatIncluded = true;
     }
 
     /**
-     * 
-     * @param boolean $vatIncluded 
+     * @param boolean $vatIncluded
      */
     public function setVatIncluded($vatIncluded)
     {
@@ -52,7 +53,6 @@ class ClientPriceDetails
     }
 
     /**
-     * 
      * @return boolean
      */
     public function getVatIncluded()
@@ -61,8 +61,7 @@ class ClientPriceDetails
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\DetailedPrice $commission 
+     * @param DetailedPrice $commission
      */
     public function setCommission($commission)
     {
@@ -70,8 +69,7 @@ class ClientPriceDetails
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\DetailedPrice
+     * @return DetailedPrice
      */
     public function getCommission()
     {
@@ -79,8 +77,7 @@ class ClientPriceDetails
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\DetailedPrice $gross 
+     * @param DetailedPrice $gross
      */
     public function setGross($gross)
     {
@@ -88,8 +85,7 @@ class ClientPriceDetails
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\DetailedPrice
+     * @return DetailedPrice
      */
     public function getGross()
     {
@@ -97,8 +93,7 @@ class ClientPriceDetails
     }
 
     /**
-     * 
-     * @param \Bronevik\HotelsConnector\Element\DetailedPrice $net 
+     * @param DetailedPrice $net
      */
     public function setNet($net)
     {
@@ -106,12 +101,10 @@ class ClientPriceDetails
     }
 
     /**
-     * 
-     * @return \Bronevik\HotelsConnector\Element\DetailedPrice
+     * @return DetailedPrice
      */
     public function getNet()
     {
         return $this->net;
     }
 }
-
