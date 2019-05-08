@@ -123,10 +123,19 @@ class Hotel
      */
     public $informationForGuest;
 
+    /**
+     * Дополнительная информация
+     * Additional info
+     *
+     * @var AdditionalInfo
+     */
+    public $additionalInfo;
+
     public function __construct()
     {
         $this->descriptionDetails  = new DescriptionDetails();
         $this->informationForGuest = new InformationForGuest();
+        $this->additionalInfo      = new AdditionalInfo();
     }
 
     /**
@@ -375,5 +384,21 @@ class Hotel
     public function getInformationForGuest()
     {
         return $this->informationForGuest;
+    }
+
+    /**
+     * @param AdditionalInfo $additionalInfo
+     */
+    public function setAdditionalInfo($additionalInfo)
+    {
+        $this->additionalInfo = $additionalInfo;
+    }
+
+    /**
+     * @return AdditionalInfo
+     */
+    public function getAdditionalInfo()
+    {
+        return $this->additionalInfo;
     }
 }
