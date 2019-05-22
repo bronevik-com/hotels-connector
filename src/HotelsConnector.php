@@ -416,7 +416,7 @@ class HotelsConnector
     }
 
     /**
-     * @param Element\ServiceAccommodation $services []
+     * @param Element\ServiceAccommodation[] $services
      *
      * @return Element\OrderServiceAccommodation[]
      */
