@@ -7,7 +7,7 @@
 - [Подготовка](#Подготовка)
     - [Инициализация коннектора](#Инициализация-коннектора)
     - [Проверка подключения](#Проверка-подключения)
-- [Документация по работе с SOAP-сервером (без использования этого коннектора)](#Документация-по-работе-с-soap-сервером-без-использования-этого-коннектора)
+- [Документация по работе с SOAP сервером (без использования этого коннектора)](#Документация-по-работе-с-SOAP-сервером-(без-использования-этого-коннектора))
 - [Документация по работе с клиентом и примеры](#Документация-по-работе-с-клиентом-и-примеры)
     - [Справочники](#Справочники)
         - [Получение списка стран](#Получение-списка-стран)
@@ -59,7 +59,7 @@ ext-soap
 <?php
 
 spl_autoload_register(function ($class) {
-    $file = ПУТЬ_К_ФАЙЛАМ_КОННЕКТОРА . '/src/' . strtr($class, ['Bronevik/HotelsConnector/' => '', '\\' => '/']) . '.php';
+    $file = 'ПУТЬ_К_ФАЙЛАМ_КОННЕКТОРА' . '/src/' . strtr($class, ['Bronevik/HotelsConnector/' => '', '\\' => '/']) . '.php';
     if (is_readable($file)) {
         require_once $file;
     }
@@ -73,11 +73,9 @@ spl_autoload_register(function ($class) {
 ```php
 <?php
 
-use Bronevik\HotelsConnector;
-
-$connector = new HotelsConnector(\Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT, true);
+$connector = new Bronevik\HotelsConnector(Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT, true);
 $connector->setCredentials('login', 'password', 'privateKey');
-$connector->setLanguage(\Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
+$connector->setLanguage(Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 ```
 
 В конструктор коннектора передаётся `endpoint` SOAP-сервера и флаг `debugMode`.
@@ -111,7 +109,7 @@ $connector->setLanguage(\Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 echo $connector->ping('Привет, Броневичок!'); // Привет, Броневичок!
 ```
 
-## Документация по работе с SOAP-сервером (без использования этого коннектора)
+## Документация по работе с SOAP сервером (без использования этого коннектора)
 
 Документация в формате PDF: https://hotels-api.bronevik.com/v2.2.0/api.pdf
 
@@ -129,14 +127,14 @@ echo $connector->ping('Привет, Броневичок!'); // Привет, �
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\Country[] $countries */
+/** @var Bronevik\HotelsConnector\Element\Country[] $countries */
 $countries = $connector->getCountries();
 ```
 Разбор результата:
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\Country $country */
+/** @var Bronevik\HotelsConnector\Element\Country[] $countries */
 foreach ($countries as $country) {
     $country->getId();   // 1
     $country->getCode(); // RUS
@@ -151,14 +149,14 @@ foreach ($countries as $country) {
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\City[] $cities */
+/** @var Bronevik\HotelsConnector\Element\City[] $cities */
 $cities = $connector->getCities(1);
 ```
 Разбор результата:
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\City[] $cities */
+/** @var Bronevik\HotelsConnector\Element\City[] $cities */
 foreach ($cities as $city) {
     $city->getId();         // 539
     $city->getName();       // Абаза
@@ -175,14 +173,14 @@ foreach ($cities as $city) {
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\Amenity[] $amenities */
+/** @var Bronevik\HotelsConnector\Element\Amenity[] $amenities */
 $amenities = $connector->getAmenities();
 ```
 Разбор результата:
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\Amenity[] $amenities */
+/** @var Bronevik\HotelsConnector\Element\Amenity[] $amenities */
 foreach ($amenities as $amenity) {
     $amenity->getId();        // 5
     $amenity->getName();      // Трансфер
@@ -194,14 +192,14 @@ foreach ($amenities as $amenity) {
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\Meal[] $meals */
+/** @var Bronevik\HotelsConnector\Element\Meal[] $meals */
 $meals = $connector->getMeals();
 ```
 Разбор результата:
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\Meal[] $meals */
+/** @var Bronevik\HotelsConnector\Element\Meal[] $meals */
 foreach ($meals as $meal) {
     $meal->getId();   // 2
     $meal->getName(); // Завтрак континентальный
@@ -232,34 +230,34 @@ $hotelsWithOffers = $connector->searchHotelOffers(
 $criteria = [];
 
 // Фильтр предложений по категории отеля (количеству звёзд)
-$criterion = new \Bronevik\HotelsConnector\Element\SearchOfferCriterionHotelCategory;
+$criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionHotelCategory();
 $criterion->addCategory(4);
 $criterion->addCategory(5);
 $criteria[] = $criterion;
 
 // Фильтр предложений по количеству гостей
-$criterion = new \Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests;
+$criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
 $criterion->setAdults(2);
 $criteria[] = $criterion;
 
 // Фильтр предложений по возможности моментального подтверждения бронирования (онлайн)
-$criterion  = new \Bronevik\HotelsConnector\Element\SearchOfferCriterionOnlyOnline;
+$criterion  = new Bronevik\HotelsConnector\Element\SearchOfferCriterionOnlyOnline();
 $criteria[] = $criterion;
 
 // фильтр по названию отеля
-$criterion  = new \Bronevik\HotelsConnector\Element\SearchOfferCriterionHotelName();
+$criterion  = new Bronevik\HotelsConnector\Element\SearchOfferCriterionHotelName();
 $criterion->setName('Название отеля');
 $criteria[] = $criterion;
 
 // фильтр предложений по включенному завтраку
-$criterion  = new \Bronevik\HotelsConnector\Element\SearchOfferCriterionBreakfastIncluded();
+$criterion  = new Bronevik\HotelsConnector\Element\SearchOfferCriterionBreakfastIncluded();
 $criteria[] = $criterion;
 
 // фильтр предложений по способу оплаты
-$criterion  = new \Bronevik\HotelsConnector\Element\SearchOfferCriterionPaymentRecipient();
+$criterion  = new Bronevik\HotelsConnector\Element\SearchOfferCriterionPaymentRecipient();
 // в качестве paymentRecipient можно использовать только константы \Bronevik\HotelsConnector\Enum\PaymentRecipients
-$criterion->addPaymentRecipient(\Bronevik\HotelsConnector\Enum\PaymentRecipients::HOTEL); // оплата в отеле
-$criterion->addPaymentRecipient(\Bronevik\HotelsConnector\Enum\PaymentRecipients::AGENCY); // безналичный расчёт
+$criterion->addPaymentRecipient(Bronevik\HotelsConnector\Enum\PaymentRecipients::HOTEL); // оплата в отеле
+$criterion->addPaymentRecipient(Bronevik\HotelsConnector\Enum\PaymentRecipients::AGENCY); // безналичный расчёт
 $criteria[] = $criterion;
 
 /** @var Bronevik\HotelsConnector\Element\Hotels $hotelsWithOffers */
@@ -301,8 +299,8 @@ $hotelsWithOffers = $connector->searchHotelOffers(
 <?php
 
 $skipElements = [
-    \Bronevik\HotelsConnector\Enum\SkipElementTypes::DAILY_PRICES, // ежедневные цены
-    \Bronevik\HotelsConnector\Enum\SkipElementTypes::DESCRIPTION_DETAILS, // описание отеля
+    Bronevik\HotelsConnector\Enum\SkipElementTypes::DAILY_PRICES, // ежедневные цены
+    Bronevik\HotelsConnector\Enum\SkipElementTypes::DESCRIPTION_DETAILS, // описание отеля
 ];
 
 // Все доступные для пропуска элементы для SearchHotelOffers - \Bronevik\HotelsConnector\Enum\SkipElementTypes::$availableSkipElementsForSearchHotelOffers
@@ -344,14 +342,14 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
     $hotelWithOffers->getInformationForGuest()->getComment();
 
     // Услуги отеля
-	/** @var \Bronevik\HotelsConnector\Element\HotelAmenity $amenity */
+	/** @var Bronevik\HotelsConnector\Element\HotelAmenity $amenity */
     foreach ($hotelWithOffers->getAmenities() as $amenity) {
         $amenity->getName(); // Название услуги
         $amenity->getType(); // Тип услуги
     }
 
     // Описание отеля
-    /** @var \Bronevik\HotelsConnector\Element\DescriptionDetails $descriptionDetails */
+    /** @var Bronevik\HotelsConnector\Element\DescriptionDetails $descriptionDetails */
     /**
      * Примечание: если в skipElements одним из элементов указать
      * @see \Bronevik\HotelsConnector\Enum\SkipElementTypes::DESCRIPTION_DETAILS
@@ -367,13 +365,13 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
     $descriptionDetails->getDescription();      // Описание отеля
 
 	// Фотографии отеля
-	/** @var \Bronevik\HotelsConnector\Element\Image $photo */
+	/** @var Bronevik\HotelsConnector\Element\Image $photo */
     foreach ($descriptionDetails->getPhotos() as $photo) {
         $photo->getGuid(); // 73c7c9b97a36ac0d970990937d842417
         $photo->getUrl();  // //dev.bronevik.com/static/photo/g/250x250a/73c7c9b97a36ac0d970990937d842417
     }
 
-    /** @var \Bronevik\HotelsConnector\Element\AvailableAmenity $amenity */
+    /** @var Bronevik\HotelsConnector\Element\AvailableAmenity $amenity */
     foreach ($descriptionDetails->getAvailableAmenities() as $amenity) {
         $amenity->getId(); // 1
         $amenity->getIncluded(); // false
@@ -383,7 +381,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
     // предложения
     $offers = $hotelWithOffers->getOffers();
 
-	/** @var \Bronevik\HotelsConnector\Element\HotelOffer $offer */
+	/** @var Bronevik\HotelsConnector\Element\HotelOffer $offer */
     foreach ($offers->getOffer() as $offer) {
         $offer->getCode();                  // Код предложения (например, T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=)
         $offer->getName();                  // Название предложения (например, Люкс)
@@ -403,7 +401,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         /**
           * Детализация стоимости 
           * 
-          * @var \Bronevik\HotelsConnector\Element\PriceDetails $priceDetails
+          * @var Bronevik\HotelsConnector\Element\PriceDetails $priceDetails
           */
         $priceDetails = $offer->getPriceDetails();
         $priceDetails->getVatApplicable();              // Применим ли к отелю НДС
@@ -417,7 +415,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         $clientDetails->getNet();         // Нетто-стоимость
 
         /**
-         * @var \Bronevik\HotelsConnector\Element\ClientPriceDetails $clientDetails
+         * @var Bronevik\HotelsConnector\Element\ClientPriceDetails $clientDetails
          * getGross, getNet, getCommission возвращают объект DetailedPrice, который содержит в себе:
          */
         $clientDetails->getGross()->getCurrency();  // Валюта
@@ -433,7 +431,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
             $detailedPrice->getCurrency();  // Валюта
         }
 
-        /** @var \Bronevik\HotelsConnector\Element\Tax $tax */
+        /** @var Bronevik\HotelsConnector\Element\Tax $tax */
         // Дополнительные сборы при заселении
         foreach ($offer->getTaxes() as $tax) {
             $tax->getCurrency(); // Валюта оплаты
@@ -443,14 +441,14 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
             $tax->getIncluded(); // Включен ли сбор в стоимость предложения
         }
 
-    	/** @var \Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy $cancellationPolicy */
+    	/** @var Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy $cancellationPolicy */
     	// политика аннуляции
         foreach ($offer->getCancellationPolicies() as $cancellationPolicy) {
             $cancellationPolicy->getPenaltyDateTime(); // Дата наступления штрафа
             $cancellationPolicy->getPenaltySum();      // Размер штрафа
         }
 
-        /** @var \Bronevik\HotelsConnector\Element\AvailableMeal $meal */
+        /** @var Bronevik\HotelsConnector\Element\AvailableMeal $meal */
         // питание
         foreach ($offer->getMeals() as $meal) {
             $meal->getId();       // Идентификатор услуги питания
@@ -459,7 +457,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         }
 
         // ежедневные цены
-        /** @var \Bronevik\HotelsConnector\Element\DailyPrice $dailyPrice */
+        /** @var Bronevik\HotelsConnector\Element\DailyPrice $dailyPrice */
         /**
          * Примечание: если в skipElements одним из элементов указать
          * @see \Bronevik\HotelsConnector\Enum\SkipElementTypes::DAILY_PRICES
@@ -473,7 +471,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
             $dailyPrice->getRate();          // Стоимость номера
          
             // Стоимость платного питания
-            /** @var \Bronevik\HotelsConnector\Element\MealPriceDetails $mealPriceDetails */
+            /** @var Bronevik\HotelsConnector\Element\MealPriceDetails $mealPriceDetails */
             foreach ($dailyPrice->getMeals()->meal as $mealPriceDetails) {
                 $mealPriceDetails->getId();          // Идентификатор услуги питания
                 $mealPriceDetails->getCommission();  // Информация о комиссии
@@ -489,7 +487,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         }
 
         // Правила предоставления предложения
-        /** @var \Bronevik\HotelsConnector\Element\OfferPolicy $offerPolicy */
+        /** @var Bronevik\HotelsConnector\Element\OfferPolicy $offerPolicy */
         foreach ($offer->getOfferPolicies() as $offerPolicy) {
             $offerPolicy->description; // описание
         }
@@ -506,7 +504,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\HotelWithInfo[] $hotelsWithInfo */
+/** @var Bronevik\HotelsConnector\Element\HotelWithInfo[] $hotelsWithInfo */
 $hotelsWithInfo = $connector->getHotelInfo([716, 901]);
 ```
 
@@ -524,9 +522,9 @@ $hotelsWithInfo = $connector->getHotelInfo([716, 901]);
  * Все возможные элементы, которые можно пропустить здесь:
  * @see \Bronevik\HotelsConnector\Enum\SkipElementTypes::$availableSkipElementsForGetHotelOffer
  */
-$skipElements = [\Bronevik\HotelsConnector\Enum\SkipElementTypes::DAILY_PRICES];
+$skipElements = [Bronevik\HotelsConnector\Enum\SkipElementTypes::DAILY_PRICES];
 
-/** @var \Bronevik\HotelsConnector\Element\HotelOffer $offer */
+/** @var Bronevik\HotelsConnector\Element\HotelOffer $offer */
 $offer = $connector->getHotelOffer(
     'T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=',
     $skipElements
@@ -545,18 +543,18 @@ $offer = $connector->getHotelOffer(
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\HotelOffer $offer */
+/** @var Bronevik\HotelsConnector\Element\HotelOffer $offer */
 $offer = $connector->getHotelOffer('T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=');
 
 // Создание запроса на бронирование номеров
-$orderRequest = new \Bronevik\HotelsConnector\Element\CreateOrderRequest();
+$orderRequest = new Bronevik\HotelsConnector\Element\CreateOrderRequest();
 $orderRequest->setContactPerson('Григорий');
 $orderRequest->setContactEmail('grigoriy@example.com');
 $orderRequest->setContactPhone('+79991234567');
 $orderRequest->setComment('Гости приедут в районе 18 часов.');
 
 // Создание услуг проживания и привязка их к заказу.
-$accommodation = new \Bronevik\HotelsConnector\Element\ServiceAccommodation;
+$accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
 $accommodation->setOfferCode($offer->getCode());
 $accommodation->setComment('Гостям потребуется высокоскоростное подключение к Интернет.');
 $accommodation->addGuests('Валентин');
@@ -567,7 +565,7 @@ $accommodation->setCheckoutHour(8);     // Установить час выез�
 $accommodation->setSellingPrice(1000);  // Установить желаемую цену продажи
 $accommodation->setReferenceId('test'); // Установить номер услуги в системе клиента
 // также можно добавить доп. поля для создания услуг
-$serviceExtraFieild = new \Bronevik\HotelsConnector\Element\ServiceExtraField();
+$serviceExtraFieild = new Bronevik\HotelsConnector\Element\ServiceExtraField();
 $serviceExtraFieild->setName('name');
 $serviceExtraFieild->setValue('value');
 $accommodation->addExtraField($serviceExtraFieild);
@@ -575,7 +573,7 @@ $accommodation->addExtraField($serviceExtraFieild);
 $orderRequest->addServices($accommodation);
 
 // Нужно создавать по услуге на каждый бронируемый номер.
-$accommodation = new \Bronevik\HotelsConnector\Element\ServiceAccommodation;
+$accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
 $accommodation->setOfferCode($offer->getCode());
 $accommodation->setComment('Не представлять напитки из минибара.');
 $accommodation->addGuests('Николай');
@@ -583,7 +581,7 @@ $accommodation->addGuests('Эльдар');
 $orderRequest->addServices($accommodation);
 
 // Отправка заказа
-/** @var \Bronevik\HotelsConnector\Element\Order $order */
+/** @var Bronevik\HotelsConnector\Element\Order $order */
 $order = $connector->createOrder($orderRequest);
 ```
 
@@ -592,14 +590,14 @@ $order = $connector->createOrder($orderRequest);
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\Order $order */
+/** @var Bronevik\HotelsConnector\Element\Order $order */
 $order->getId();            // Id заказа
 $order->getComment();       // Комментарий к заказу, который был указан при создании
 $order->getContactPerson(); // Контактное лицо
 $order->getContactPhone();  // Контактный телефон
 $order->getContactEmail();  // Контактный email
 
-/** @var \Bronevik\HotelsConnector\Element\OrderServiceAccommodation $service */
+/** @var Bronevik\HotelsConnector\Element\OrderServiceAccommodation $service */
 foreach ($order->getServices() as $service) {
     $service->getId();               // Id услуги
     $service->getDate();             // Дата создания услуги
@@ -623,7 +621,7 @@ foreach ($order->getServices() as $service) {
     $service->getOfferName();        // Название предложения
     $service->getRoomType();         // Тип размещения
 
-    /** @var \Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
+    /** @var Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
     // доп. поля для создания услуг
     foreach ($service->getExtraField() as $serviceExtraField) {
         $serviceExtraField->getName();  // Название
@@ -631,18 +629,24 @@ foreach ($order->getServices() as $service) {
     }
 
     // ежедневные цены
-    /** @var \Bronevik\HotelsConnector\Element\DailyPrice $dailyPrice */
+    /** @var Bronevik\HotelsConnector\Element\DailyPrice $dailyPrice */
     foreach ($service->getDailyPrices()->dailyPrice as $dailyPrice) {
         // аналогично dailyPrice в SearchHotelOffers
+        $dailyPrice->getDate();          // Дата, на которую рассчитана цена
+        $dailyPrice->getBookingFee();    // Стоимость брони в отеле
+        $dailyPrice->getEarlyArrival();  // Стоимость раннего заезда
+        $dailyPrice->getLateDeparture(); // Стоимость позднего выезда
+        $dailyPrice->getRate();          // Стоимость номера
     }
 
     // гости
     foreach ($service->getGuests() as $guest) {
         /** @var string $guest */
+        echo $guest;
     }
 
     // договор, привязанный к услуге
-    /** @var \Bronevik\HotelsConnector\Element\Contract $contract */
+    /** @var Bronevik\HotelsConnector\Element\Contract $contract */
     $contract = $service->getContract();
     $contract->getId();          // Id договора
     $contract->getNumber();      // Номер договора
@@ -665,7 +669,7 @@ foreach ($order->getServices() as $service) {
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\Order $order */
+/** @var Bronevik\HotelsConnector\Element\Order $order */
 $order = $connector->getOrder(349007);
 ```
 
@@ -674,7 +678,7 @@ $order = $connector->getOrder(349007);
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\Order $order */
+/** @var Bronevik\HotelsConnector\Element\Order $order */
 /** @var bool $cancelResult */
 $cancelResult = $connector->cancelOrder($order->getId());
 ```
@@ -688,40 +692,40 @@ $cancelResult = $connector->cancelOrder($order->getId());
 $criteria = [];
 
 // поиск по id заказа
-$criterion = new \Bronevik\HotelsConnector\Element\SearchOrderCriterionOrderId();
+$criterion = new Bronevik\HotelsConnector\Element\SearchOrderCriterionOrderId();
 $criterion->setOrderId(123); // id заказа
 $criteria[] = $criterion;
 
 // поиск по id услуги
-$criterion = new \Bronevik\HotelsConnector\Element\SearchOrderCriterionServiceId();
+$criterion = new Bronevik\HotelsConnector\Element\SearchOrderCriterionServiceId();
 $criterion->setServiceId(123); // id услуги
 $criteria[] = $criterion;
 
 // поиск по номеру услуги в системе клиента
-$criterion = new \Bronevik\HotelsConnector\Element\SearchOrderCriterionServiceReferenceId();
+$criterion = new Bronevik\HotelsConnector\Element\SearchOrderCriterionServiceReferenceId();
 $criterion->setReferenceId(123); // номер услуги в системе клиента
 $criteria[] = $criterion;
 
 // поиск по дате создания заказа
-$criterion = new \Bronevik\HotelsConnector\Element\SearchOrderCriterionCreateDate();
+$criterion = new Bronevik\HotelsConnector\Element\SearchOrderCriterionCreateDate();
 $criterion->setDateStart('2019-01-01'); // начальная дата периода поиска
 $criterion->setDateEnd('2019-01-10');   // конечная дата периода поиска
 $criteria[] = $criterion;
 
 // поиск по дате заезда
-$criterion = new \Bronevik\HotelsConnector\Element\SearchOrderCriterionArrivalDate();
+$criterion = new Bronevik\HotelsConnector\Element\SearchOrderCriterionArrivalDate();
 $criterion->setDateStart('2019-01-01'); // начальная дата периода поиска
 $criterion->setDateEnd('2019-01-10');   // конечная дата периода поиска
 $criteria[] = $criterion;
 
 // поиск по дате выезда
-$criterion = new \Bronevik\HotelsConnector\Element\SearchOrderCriterionDepartureDate();
+$criterion = new Bronevik\HotelsConnector\Element\SearchOrderCriterionDepartureDate();
 $criterion->setDateStart('2019-01-01'); // начальная дата периода поиска
 $criterion->setDateEnd('2019-01-10');   // конечная дата периода поиска
 $criteria[] = $criterion;
 
 // поиск по имени гостя
-$criterion = new \Bronevik\HotelsConnector\Element\SearchOrderCriterionGuest();
+$criterion = new Bronevik\HotelsConnector\Element\SearchOrderCriterionGuest();
 $criterion->setName('Имя гостя'); // Имя гостя
 $criteria[] = $criterion;
 
@@ -739,10 +743,10 @@ $orders = $connector->searchOrders($criteria);
 ```php
 <?php
 
-/** @var \Bronevik\HotelsConnector\Element\OrdersChangelogRecord[] $changelogRecords */
+/** @var Bronevik\HotelsConnector\Element\OrdersChangelogRecord[] $changelogRecords */
 $changelogRecords = $connector->GetOrdersChangelog();
 
-/** @var \Bronevik\HotelsConnector\Element\OrdersChangelogRecord $changelogRecord */
+/** @var Bronevik\HotelsConnector\Element\OrdersChangelogRecord[] $changelogRecords */
 foreach ($changelogRecords as $changelogRecord) {
     $changelogRecord->getId();                    // идентификатор записи
     $changelogRecord->getOrderId();               // номер заказа
@@ -751,10 +755,10 @@ foreach ($changelogRecords as $changelogRecord) {
     $changelogRecord->getCreatedAt();             // дата создания записи об изменениях
     $changelogRecord->getServiceCreationSource(); // ресурс, откуда создана услуга
 
-    /** @var \Bronevik\HotelsConnector\Element\ChangeList $changes */
+    /** @var Bronevik\HotelsConnector\Element\ChangeList $changes */
     $changes = $changelogRecord->getChangeList();
     
-    /** @var \Bronevik\HotelsConnector\Element\Change $change */
+    /** @var Bronevik\HotelsConnector\Element\Change $change */
     foreach ($changes->change as $change) {
         $change->getElement();  // Название элемента
         $change->getNewValue(); // Его новое значение
@@ -796,13 +800,13 @@ $status = $connector->RemoveOrdersChangelogRecords($ids);
 $serviceId  = 123;       // id услуги
 $messageIds = [1, 2, 3]; // ids сообщений
 
-/** @var \Bronevik\HotelsConnector\Element\Messages $messages */
+/** @var Bronevik\HotelsConnector\Element\Messages $messages */
 $messages = $connector->getServiceMessages(
     $serviceId,
     $messageIds
 );
 
-/** @var \Bronevik\HotelsConnector\Element\Message $message */
+/** @var Bronevik\HotelsConnector\Element\Message $message */
 foreach ($messages->getMessage() as $message) {
     $message->getId();         // id сообщения
     $message->getServiceId();  // id услуги
@@ -845,7 +849,7 @@ $messageId = $connector->sendServiceMessage(
 $services = [];
 
 // Проживание создается также как и для создания заказа
-$accommodation = new \Bronevik\HotelsConnector\Element\ServiceAccommodation;
+$accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
 $accommodation->setOfferCode('offer-code');
 $accommodation->setComment('Гостям потребуется высокоскоростное подключение к Интернет.');
 $accommodation->addGuests('Валентин');
@@ -853,13 +857,13 @@ $accommodation->addGuests('Валентин');
 $services[] = $accommodation;
 
 // Нужно создавать по услуге на каждый бронируемый номер.
-$accommodation = new \Bronevik\HotelsConnector\Element\ServiceAccommodation;
+$accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
 $accommodation->setOfferCode('offer-code');
 $accommodation->setComment('Не представлять напитки из минибара.');
 $accommodation->addGuests('Николай');
 $services[] = $accommodation;
 
-/** @var \Bronevik\HotelsConnector\Element\OrderServiceAccommodation[] $orderServices */
+/** @var Bronevik\HotelsConnector\Element\OrderServiceAccommodation[] $orderServices */
 $orderServices = $connector->GetHotelOfferPricing($services);
 
 // объект услуги в ответе точно такой же как и при создании заказа
