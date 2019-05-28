@@ -613,10 +613,10 @@ $accommodation->setCheckoutHour(8);     // Установить час выез�
 $accommodation->setSellingPrice(1000);  // Установить желаемую цену продажи
 $accommodation->setReferenceId('test'); // Установить номер услуги в системе клиента
 // также можно добавить доп. поля для создания услуг
-$serviceExtraFieild = new Bronevik\HotelsConnector\Element\ServiceExtraField();
-$serviceExtraFieild->setName('name');
-$serviceExtraFieild->setValue('value');
-$accommodation->addExtraField($serviceExtraFieild);
+$serviceExtraField = new Bronevik\HotelsConnector\Element\ServiceExtraField();
+$serviceExtraField->setName('name');
+$serviceExtraField->setValue('value');
+$accommodation->addExtraField($serviceExtraField);
 
 $orderRequest->addServices($accommodation);
 
@@ -915,4 +915,24 @@ $services[] = $accommodation;
 $orderServices = $connector->GetHotelOfferPricing($services);
 
 // объект услуги в ответе точно такой же как и при создании заказа
+```
+
+#### Ошибки
+
+В случае внутренней ошибки API, возвращается SoapFault
+
+>Примечание. Описания ошибок (коды, описания ошибок и их текст) можно найти в документации в разделе `Коды ошибок`
+```php
+<?php
+
+try {
+    $connector->getMeals();
+}
+catch (SoapFault $e) {
+    /** @var \StdClass $detail */
+    $detail = $e->detail->Fault;
+
+    $detail->traceId; // Id запроса
+    $detail->code;    // Код ошибки
+}
 ```
