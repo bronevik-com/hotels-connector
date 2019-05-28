@@ -499,13 +499,61 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
 
 Метод `getHotelInfo()` принимает массив идентификаторов отелей.
 
-Возвращает те же данные, что и метод `searchHotelOffers()`, но без информации о предложениях.
+Возвращает те же данные, что и метод `searchHotelOffers()`, но без информации о предложениях, с информацией о номерах в отеле.
 
 ```php
 <?php
 
 /** @var Bronevik\HotelsConnector\Element\HotelWithInfo[] $hotelsWithInfo */
 $hotelsWithInfo = $connector->getHotelInfo([716, 901]);
+```
+
+Ответ:
+
+```php
+<?php
+
+/** @var Bronevik\HotelsConnector\Element\HotelWithInfo[] $hotelsWithInfo */
+foreach ($hotelsWithInfo as $hotelWithInfo) {
+    /** @var Bronevik\HotelsConnector\Element\HotelRoom $hotelRoom */
+    foreach ($hotelWithInfo->getRooms() as $hotelRoom) {
+        $hotelRoom->getId();           // Id номера
+        $hotelRoom->getName();         // Название номера
+        $hotelRoom->getDescription();  // Описание номера
+        $hotelRoom->getRoomCapacity(); // Количество гостей, которых можно разместить в номере
+        $hotelRoom->getSize();         // Площадь номера
+
+        // Удобства в номере
+        /** @var Bronevik\HotelsConnector\Element\AvailableAmenity $availableAmenity */
+        foreach ($hotelRoom->getAvailableAmenities() as $availableAmenity) {
+            $availableAmenity->getId();
+            $availableAmenity->getPrice();
+            $availableAmenity->getIncluded();
+        }
+
+        // Фотограции номера
+        /** @var Bronevik\HotelsConnector\Element\Image $photo */
+        foreach ($hotelRoom->getPhotos() as $photo) {
+            $photo->getUrl();
+            $photo->getGuid();
+        }
+
+        // размещения кроватей в номере
+        /** @var Bronevik\HotelsConnector\Element\BedSets $bedSets */
+        $bedSets = $hotelRoom->getBedSets();
+
+        // Массив вариантов комбинаций кроватей
+        /** @var Bronevik\HotelsConnector\Element\BedSet $bedSet */
+        foreach ($bedSets->getBedSet() as $bedSet) {
+            // Вариант размещения кроватей
+            /** @var Bronevik\HotelsConnector\Element\Bed $bed */
+            foreach ($bedSet->getBed() as $bed) {
+                $bed->getType();   // Тип размещения в номере
+                $bed->getAmount(); // Количество кроватей
+            }
+        }
+    }
+}
 ```
 
 ### Получение информации о предложении отеля
