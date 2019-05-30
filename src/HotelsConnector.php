@@ -229,6 +229,7 @@ class HotelsConnector
      * @param string $data
      *
      * @return string $data;
+     * @throws SoapFault
      */
     public function ping($data)
     {
@@ -244,6 +245,7 @@ class HotelsConnector
      * Получение списка стран
      *
      * @return Element\Meal[]
+     * @throws SoapFault
      */
     public function getMeals()
     {
@@ -257,6 +259,7 @@ class HotelsConnector
      * Получение списка стран
      *
      * @return Element\Country[]
+     * @throws SoapFault
      */
     public function getCountries()
     {
@@ -272,6 +275,7 @@ class HotelsConnector
      * @param string $countryId
      *
      * @return Element\City[]
+     * @throws SoapFault
      */
     public function getCities($countryId)
     {
@@ -294,6 +298,7 @@ class HotelsConnector
      * @param string[]                       $skipElements
      *
      * @return Element\HotelWithOffers[]
+     * @throws SoapFault
      */
     public function searchHotelOffers(
         $arrivalDate,
@@ -336,6 +341,7 @@ class HotelsConnector
      * @param Element\CreateOrderRequest $request
      *
      * @return Element\Order
+     * @throws SoapFault
      */
     public function createOrder(Element\CreateOrderRequest $request)
     {
@@ -352,6 +358,7 @@ class HotelsConnector
      * @param int $orderId
      *
      * @return Element\Order
+     * @throws SoapFault
      */
     public function getOrder($orderId)
     {
@@ -369,6 +376,7 @@ class HotelsConnector
      * @param int $orderId
      *
      * @return bool
+     * @throws SoapFault
      */
     public function cancelOrder($orderId)
     {
@@ -386,6 +394,7 @@ class HotelsConnector
      * @param array $hotelIds
      *
      * @return Element\HotelWithInfo[]
+     * @throws SoapFault
      */
     public function getHotelInfo($hotelIds)
     {
@@ -405,6 +414,7 @@ class HotelsConnector
      * @param string[] $skipElements
      *
      * @return Element\HotelOffer
+     * @throws SoapFault
      */
     public function getHotelOffer($offerCode, $skipElements = [])
     {
@@ -425,6 +435,7 @@ class HotelsConnector
      * @param Element\ServiceAccommodation[] $services
      *
      * @return Element\OrderServiceAccommodation[]
+     * @throws SoapFault
      */
     public function GetHotelOfferPricing($services)
     {
@@ -440,6 +451,7 @@ class HotelsConnector
 
     /**
      * @return Element\OrdersChangelogRecord[]
+     * @throws SoapFault
      */
     public function GetOrdersChangelog()
     {
@@ -453,6 +465,7 @@ class HotelsConnector
      * @param int[] $recordIds
      *
      * @return string
+     * @throws SoapFault
      */
     public function RemoveOrdersChangelogRecords($recordIds)
     {
@@ -468,6 +481,7 @@ class HotelsConnector
 
     /**
      * @return Element\Amenity[]
+     * @throws SoapFault
      */
     public function getAmenities()
     {
@@ -483,6 +497,7 @@ class HotelsConnector
      * @param Element\SearchOrderCriterion[] $searchCriteria
      *
      * @return Element\Order[]
+     * @throws SoapFault
      */
     public function searchOrders($searchCriteria)
     {
@@ -503,6 +518,7 @@ class HotelsConnector
      * @param int[] $messageIds
      *
      * @return Element\Messages
+     * @throws SoapFault
      */
     public function getServiceMessages($serviceId = null, array $messageIds = [])
     {
@@ -527,6 +543,7 @@ class HotelsConnector
      * @param string $text
      *
      * @return int
+     * @throws SoapFault
      */
     public function sendServiceMessage($serviceId, $text)
     {
