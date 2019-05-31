@@ -4,7 +4,10 @@ namespace Bronevik\HotelsConnector\Enum;
 
 abstract class SkipElementTypes
 {
-    const DAILY_PRICES        = 'dailyPrices';
+    // ежедневные цены
+    const DAILY_PRICES = 'dailyPrices';
+
+    // описание отеля
     const DESCRIPTION_DETAILS = 'descriptionDetails';
 
     /**
