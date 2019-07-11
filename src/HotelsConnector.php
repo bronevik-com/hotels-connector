@@ -5,13 +5,15 @@ namespace Bronevik;
 use Bronevik\HotelsConnector\Element as Element;
 use Bronevik\HotelsConnector\Enum\Currencies;
 use Bronevik\HotelsConnector\Enum\Endpoints;
+use SoapClient;
+use SoapFault;
 
 class HotelsConnector
 {
     /**
      * Клиент
      *
-     * @var \SoapClient
+     * @var SoapClient
      */
     public $soapClient;
 
@@ -39,6 +41,8 @@ class HotelsConnector
     /**
      * @param string $endpoint
      * @param bool   $debugMode
+     *
+     * @throws SoapFault
      */
     public function __construct($endpoint, $debugMode = false)
     {
@@ -57,10 +61,12 @@ class HotelsConnector
 
     /**
      * @param string $endpoint
+     *
+     * @throws SoapFault
      */
     protected function createSoapClient($endpoint)
     {
-        $this->soapClient = new \SoapClient(
+        $this->soapClient = new SoapClient(
             Endpoints::$wsdlUrls[$endpoint],
             [
                 'location'    => $endpoint,
@@ -69,114 +75,114 @@ class HotelsConnector
                 'trace'       => $this->isDebugMode(),
                 'features'    => SOAP_SINGLE_ELEMENT_ARRAYS,
                 'classmap'    => [
-                    'AdditionalInfo'                         => \Bronevik\HotelsConnector\Element\AdditionalInfo::class,
-                    'Amenity'                                => \Bronevik\HotelsConnector\Element\Amenity::class,
-                    'AvailableAmenities'                     => \Bronevik\HotelsConnector\Element\AvailableAmenities::class,
-                    'AvailableAmenity'                       => \Bronevik\HotelsConnector\Element\AvailableAmenity::class,
-                    'AvailableMeal'                          => \Bronevik\HotelsConnector\Element\AvailableMeal::class,
-                    'AvailableMeals'                         => \Bronevik\HotelsConnector\Element\AvailableMeals::class,
-                    'BaseRequest'                            => \Bronevik\HotelsConnector\Element\BaseRequest::class,
-                    'BaseResponse'                           => \Bronevik\HotelsConnector\Element\BaseResponse::class,
-                    'Bed'                                    => \Bronevik\HotelsConnector\Element\Bed::class,
-                    'BedSet'                                 => \Bronevik\HotelsConnector\Element\BedSet::class,
-                    'BedSets'                                => \Bronevik\HotelsConnector\Element\BedSets::class,
-                    'BreakfastInfo'                          => \Bronevik\HotelsConnector\Element\BreakfastInfo::class,
-                    'CancelOrderRequest'                     => \Bronevik\HotelsConnector\Element\CancelOrderRequest::class,
-                    'CancelOrderResponse'                    => \Bronevik\HotelsConnector\Element\CancelOrderResponse::class,
-                    'CancellationPolicy'                     => \Bronevik\HotelsConnector\Element\CancellationPolicy::class,
-                    'Change'                                 => \Bronevik\HotelsConnector\Element\Change::class,
-                    'ChangeList'                             => \Bronevik\HotelsConnector\Element\ChangeList::class,
-                    'City'                                   => \Bronevik\HotelsConnector\Element\City::class,
-                    'ClientPriceDetails'                     => \Bronevik\HotelsConnector\Element\ClientPriceDetails::class,
-                    'Contract'                               => \Bronevik\HotelsConnector\Element\Contract::class,
-                    'Country'                                => \Bronevik\HotelsConnector\Element\Country::class,
-                    'CreateOrderRequest'                     => \Bronevik\HotelsConnector\Element\CreateOrderRequest::class,
-                    'CreateOrderResponse'                    => \Bronevik\HotelsConnector\Element\CreateOrderResponse::class,
-                    'Credentials'                            => \Bronevik\HotelsConnector\Element\Credentials::class,
-                    'DailyPrice'                             => \Bronevik\HotelsConnector\Element\DailyPrice::class,
-                    'DailyPriceMeals'                        => \Bronevik\HotelsConnector\Element\DailyPriceMeals::class,
-                    'DailyPrices'                            => \Bronevik\HotelsConnector\Element\DailyPrices::class,
-                    'DescriptionDetails'                     => \Bronevik\HotelsConnector\Element\DescriptionDetails::class,
-                    'DetailedPrice'                          => \Bronevik\HotelsConnector\Element\DetailedPrice::class,
-                    'FaultDetail'                            => \Bronevik\HotelsConnector\Element\FaultDetail::class,
-                    'GetAmenitiesRequest'                    => \Bronevik\HotelsConnector\Element\GetAmenitiesRequest::class,
-                    'GetAmenitiesResponse'                   => \Bronevik\HotelsConnector\Element\GetAmenitiesResponse::class,
-                    'GetCitiesRequest'                       => \Bronevik\HotelsConnector\Element\GetCitiesRequest::class,
-                    'GetCitiesResponse'                      => \Bronevik\HotelsConnector\Element\GetCitiesResponse::class,
-                    'GetCountriesRequest'                    => \Bronevik\HotelsConnector\Element\GetCountriesRequest::class,
-                    'GetCountriesResponse'                   => \Bronevik\HotelsConnector\Element\GetCountriesResponse::class,
-                    'GetHotelInfoRequest'                    => \Bronevik\HotelsConnector\Element\GetHotelInfoRequest::class,
-                    'GetHotelInfoResponse'                   => \Bronevik\HotelsConnector\Element\GetHotelInfoResponse::class,
-                    'GetHotelOfferPricingRequest'            => \Bronevik\HotelsConnector\Element\GetHotelOfferPricingRequest::class,
-                    'GetHotelOfferPricingResponse'           => \Bronevik\HotelsConnector\Element\GetHotelOfferPricingResponse::class,
-                    'GetHotelOfferRequest'                   => \Bronevik\HotelsConnector\Element\GetHotelOfferRequest::class,
-                    'GetHotelOfferResponse'                  => \Bronevik\HotelsConnector\Element\GetHotelOfferResponse::class,
-                    'GetMealsRequest'                        => \Bronevik\HotelsConnector\Element\GetMealsRequest::class,
-                    'GetMealsResponse'                       => \Bronevik\HotelsConnector\Element\GetMealsResponse::class,
-                    'GetOrderRequest'                        => \Bronevik\HotelsConnector\Element\GetOrderRequest::class,
-                    'GetOrderResponse'                       => \Bronevik\HotelsConnector\Element\GetOrderResponse::class,
-                    'GetOrdersChangelogRequest'              => \Bronevik\HotelsConnector\Element\GetOrdersChangelogRequest::class,
-                    'GetOrdersChangelogResponse'             => \Bronevik\HotelsConnector\Element\GetOrdersChangelogResponse::class,
-                    'GetServiceMessagesRequest'              => \Bronevik\HotelsConnector\Element\GetServiceMessagesRequest::class,
-                    'GetServiceMessagesResponse'             => \Bronevik\HotelsConnector\Element\GetServiceMessagesResponse::class,
-                    'Hotel'                                  => \Bronevik\HotelsConnector\Element\Hotel::class,
-                    'HotelAmenity'                           => \Bronevik\HotelsConnector\Element\HotelAmenity::class,
-                    'HotelIds'                               => \Bronevik\HotelsConnector\Element\HotelIds::class,
-                    'HotelOffer'                             => \Bronevik\HotelsConnector\Element\HotelOffer::class,
-                    'HotelOfferCancellationPolicy'           => \Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy::class,
-                    'HotelOffers'                            => \Bronevik\HotelsConnector\Element\HotelOffers::class,
-                    'HotelPriceDetails'                      => \Bronevik\HotelsConnector\Element\HotelPriceDetails::class,
-                    'HotelRoom'                              => \Bronevik\HotelsConnector\Element\HotelRoom::class,
-                    'HotelWithInfo'                          => \Bronevik\HotelsConnector\Element\HotelWithInfo::class,
-                    'HotelWithOffers'                        => \Bronevik\HotelsConnector\Element\HotelWithOffers::class,
-                    'Hotels'                                 => \Bronevik\HotelsConnector\Element\Hotels::class,
-                    'Image'                                  => \Bronevik\HotelsConnector\Element\Image::class,
-                    'Info'                                   => \Bronevik\HotelsConnector\Element\Info::class,
-                    'InformationForGuest'                    => \Bronevik\HotelsConnector\Element\InformationForGuest::class,
-                    'Meal'                                   => \Bronevik\HotelsConnector\Element\Meal::class,
-                    'MealPriceDetails'                       => \Bronevik\HotelsConnector\Element\MealPriceDetails::class,
-                    'Message'                                => \Bronevik\HotelsConnector\Element\Message::class,
-                    'Messages'                               => \Bronevik\HotelsConnector\Element\Messages::class,
-                    'NamedDetailedPrice'                     => \Bronevik\HotelsConnector\Element\NamedDetailedPrice::class,
-                    'OfferPolicy'                            => \Bronevik\HotelsConnector\Element\OfferPolicy::class,
-                    'Order'                                  => \Bronevik\HotelsConnector\Element\Order::class,
-                    'OrderService'                           => \Bronevik\HotelsConnector\Element\OrderService::class,
-                    'OrderServiceAccommodation'              => \Bronevik\HotelsConnector\Element\OrderServiceAccommodation::class,
-                    'OrdersChangelogRecord'                  => \Bronevik\HotelsConnector\Element\OrdersChangelogRecord::class,
-                    'PingRequest'                            => \Bronevik\HotelsConnector\Element\PingRequest::class,
-                    'PingResponse'                           => \Bronevik\HotelsConnector\Element\PingResponse::class,
-                    'PriceDetails'                           => \Bronevik\HotelsConnector\Element\PriceDetails::class,
-                    'RemoveOrdersChangelogRecordsRequest'    => \Bronevik\HotelsConnector\Element\RemoveOrdersChangelogRecordsRequest::class,
-                    'RemoveOrdersChangelogRecordsResponse'   => \Bronevik\HotelsConnector\Element\RemoveOrdersChangelogRecordsResponse::class,
-                    'SearchHotelOffersRequest'               => \Bronevik\HotelsConnector\Element\SearchHotelOffersRequest::class,
-                    'SearchHotelOffersResponse'              => \Bronevik\HotelsConnector\Element\SearchHotelOffersResponse::class,
-                    'SearchOfferCriterion'                   => \Bronevik\HotelsConnector\Element\SearchOfferCriterion::class,
-                    'SearchOfferCriterionBreakfastIncluded'  => \Bronevik\HotelsConnector\Element\SearchOfferCriterionBreakfastIncluded::class,
-                    'SearchOfferCriterionHotelCategory'      => \Bronevik\HotelsConnector\Element\SearchOfferCriterionHotelCategory::class,
-                    'SearchOfferCriterionHotelName'          => \Bronevik\HotelsConnector\Element\SearchOfferCriterionHotelName::class,
-                    'SearchOfferCriterionNumberOfGuests'     => \Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests::class,
-                    'SearchOfferCriterionOnlyOnline'         => \Bronevik\HotelsConnector\Element\SearchOfferCriterionOnlyOnline::class,
-                    'SearchOfferCriterionPaymentRecipient'   => \Bronevik\HotelsConnector\Element\SearchOfferCriterionPaymentRecipient::class,
-                    'SearchOrderCriterion'                   => \Bronevik\HotelsConnector\Element\SearchOrderCriterion::class,
-                    'SearchOrderCriterionArrivalDate'        => \Bronevik\HotelsConnector\Element\SearchOrderCriterionArrivalDate::class,
-                    'SearchOrderCriterionCreateDate'         => \Bronevik\HotelsConnector\Element\SearchOrderCriterionCreateDate::class,
-                    'SearchOrderCriterionDepartureDate'      => \Bronevik\HotelsConnector\Element\SearchOrderCriterionDepartureDate::class,
-                    'SearchOrderCriterionGuest'              => \Bronevik\HotelsConnector\Element\SearchOrderCriterionGuest::class,
-                    'SearchOrderCriterionOrderId'            => \Bronevik\HotelsConnector\Element\SearchOrderCriterionOrderId::class,
-                    'SearchOrderCriterionServiceId'          => \Bronevik\HotelsConnector\Element\SearchOrderCriterionServiceId::class,
-                    'SearchOrderCriterionServiceReferenceId' => \Bronevik\HotelsConnector\Element\SearchOrderCriterionServiceReferenceId::class,
-                    'SearchOrdersRequest'                    => \Bronevik\HotelsConnector\Element\SearchOrdersRequest::class,
-                    'SearchOrdersResponse'                   => \Bronevik\HotelsConnector\Element\SearchOrdersResponse::class,
-                    'SendServiceMessageRequest'              => \Bronevik\HotelsConnector\Element\SendServiceMessageRequest::class,
-                    'SendServiceMessageResponse'             => \Bronevik\HotelsConnector\Element\SendServiceMessageResponse::class,
-                    'Service'                                => \Bronevik\HotelsConnector\Element\Service::class,
-                    'ServiceAccommodation'                   => \Bronevik\HotelsConnector\Element\ServiceAccommodation::class,
-                    'ServiceExtraField'                      => \Bronevik\HotelsConnector\Element\ServiceExtraField::class,
-                    'ServiceMessages'                        => \Bronevik\HotelsConnector\Element\ServiceMessages::class,
-                    'SkipElements'                           => \Bronevik\HotelsConnector\Element\SkipElements::class,
-                    'Tax'                                    => \Bronevik\HotelsConnector\Element\Tax::class,
-                    'UpdateOrderRequest'                     => \Bronevik\HotelsConnector\Element\UpdateOrderRequest::class,
-                    'UpdateOrderResponse'                    => \Bronevik\HotelsConnector\Element\UpdateOrderResponse::class,
+                    'AdditionalInfo'                         => Element\AdditionalInfo::class,
+                    'Amenity'                                => Element\Amenity::class,
+                    'AvailableAmenities'                     => Element\AvailableAmenities::class,
+                    'AvailableAmenity'                       => Element\AvailableAmenity::class,
+                    'AvailableMeal'                          => Element\AvailableMeal::class,
+                    'AvailableMeals'                         => Element\AvailableMeals::class,
+                    'BaseRequest'                            => Element\BaseRequest::class,
+                    'BaseResponse'                           => Element\BaseResponse::class,
+                    'Bed'                                    => Element\Bed::class,
+                    'BedSet'                                 => Element\BedSet::class,
+                    'BedSets'                                => Element\BedSets::class,
+                    'BreakfastInfo'                          => Element\BreakfastInfo::class,
+                    'CancelOrderRequest'                     => Element\CancelOrderRequest::class,
+                    'CancelOrderResponse'                    => Element\CancelOrderResponse::class,
+                    'CancellationPolicy'                     => Element\CancellationPolicy::class,
+                    'Change'                                 => Element\Change::class,
+                    'ChangeList'                             => Element\ChangeList::class,
+                    'City'                                   => Element\City::class,
+                    'ClientPriceDetails'                     => Element\ClientPriceDetails::class,
+                    'Contract'                               => Element\Contract::class,
+                    'Country'                                => Element\Country::class,
+                    'CreateOrderRequest'                     => Element\CreateOrderRequest::class,
+                    'CreateOrderResponse'                    => Element\CreateOrderResponse::class,
+                    'Credentials'                            => Element\Credentials::class,
+                    'DailyPrice'                             => Element\DailyPrice::class,
+                    'DailyPriceMeals'                        => Element\DailyPriceMeals::class,
+                    'DailyPrices'                            => Element\DailyPrices::class,
+                    'DescriptionDetails'                     => Element\DescriptionDetails::class,
+                    'DetailedPrice'                          => Element\DetailedPrice::class,
+                    'FaultDetail'                            => Element\FaultDetail::class,
+                    'GetAmenitiesRequest'                    => Element\GetAmenitiesRequest::class,
+                    'GetAmenitiesResponse'                   => Element\GetAmenitiesResponse::class,
+                    'GetCitiesRequest'                       => Element\GetCitiesRequest::class,
+                    'GetCitiesResponse'                      => Element\GetCitiesResponse::class,
+                    'GetCountriesRequest'                    => Element\GetCountriesRequest::class,
+                    'GetCountriesResponse'                   => Element\GetCountriesResponse::class,
+                    'GetHotelInfoRequest'                    => Element\GetHotelInfoRequest::class,
+                    'GetHotelInfoResponse'                   => Element\GetHotelInfoResponse::class,
+                    'GetHotelOfferPricingRequest'            => Element\GetHotelOfferPricingRequest::class,
+                    'GetHotelOfferPricingResponse'           => Element\GetHotelOfferPricingResponse::class,
+                    'GetHotelOfferRequest'                   => Element\GetHotelOfferRequest::class,
+                    'GetHotelOfferResponse'                  => Element\GetHotelOfferResponse::class,
+                    'GetMealsRequest'                        => Element\GetMealsRequest::class,
+                    'GetMealsResponse'                       => Element\GetMealsResponse::class,
+                    'GetOrderRequest'                        => Element\GetOrderRequest::class,
+                    'GetOrderResponse'                       => Element\GetOrderResponse::class,
+                    'GetOrdersChangelogRequest'              => Element\GetOrdersChangelogRequest::class,
+                    'GetOrdersChangelogResponse'             => Element\GetOrdersChangelogResponse::class,
+                    'GetServiceMessagesRequest'              => Element\GetServiceMessagesRequest::class,
+                    'GetServiceMessagesResponse'             => Element\GetServiceMessagesResponse::class,
+                    'Hotel'                                  => Element\Hotel::class,
+                    'HotelAmenity'                           => Element\HotelAmenity::class,
+                    'HotelIds'                               => Element\HotelIds::class,
+                    'HotelOffer'                             => Element\HotelOffer::class,
+                    'HotelOfferCancellationPolicy'           => Element\HotelOfferCancellationPolicy::class,
+                    'HotelOffers'                            => Element\HotelOffers::class,
+                    'HotelPriceDetails'                      => Element\HotelPriceDetails::class,
+                    'HotelRoom'                              => Element\HotelRoom::class,
+                    'HotelWithInfo'                          => Element\HotelWithInfo::class,
+                    'HotelWithOffers'                        => Element\HotelWithOffers::class,
+                    'Hotels'                                 => Element\Hotels::class,
+                    'Image'                                  => Element\Image::class,
+                    'Info'                                   => Element\Info::class,
+                    'InformationForGuest'                    => Element\InformationForGuest::class,
+                    'Meal'                                   => Element\Meal::class,
+                    'MealPriceDetails'                       => Element\MealPriceDetails::class,
+                    'Message'                                => Element\Message::class,
+                    'Messages'                               => Element\Messages::class,
+                    'NamedDetailedPrice'                     => Element\NamedDetailedPrice::class,
+                    'OfferPolicy'                            => Element\OfferPolicy::class,
+                    'Order'                                  => Element\Order::class,
+                    'OrderService'                           => Element\OrderService::class,
+                    'OrderServiceAccommodation'              => Element\OrderServiceAccommodation::class,
+                    'OrdersChangelogRecord'                  => Element\OrdersChangelogRecord::class,
+                    'PingRequest'                            => Element\PingRequest::class,
+                    'PingResponse'                           => Element\PingResponse::class,
+                    'PriceDetails'                           => Element\PriceDetails::class,
+                    'RemoveOrdersChangelogRecordsRequest'    => Element\RemoveOrdersChangelogRecordsRequest::class,
+                    'RemoveOrdersChangelogRecordsResponse'   => Element\RemoveOrdersChangelogRecordsResponse::class,
+                    'SearchHotelOffersRequest'               => Element\SearchHotelOffersRequest::class,
+                    'SearchHotelOffersResponse'              => Element\SearchHotelOffersResponse::class,
+                    'SearchOfferCriterion'                   => Element\SearchOfferCriterion::class,
+                    'SearchOfferCriterionBreakfastIncluded'  => Element\SearchOfferCriterionBreakfastIncluded::class,
+                    'SearchOfferCriterionHotelCategory'      => Element\SearchOfferCriterionHotelCategory::class,
+                    'SearchOfferCriterionHotelName'          => Element\SearchOfferCriterionHotelName::class,
+                    'SearchOfferCriterionNumberOfGuests'     => Element\SearchOfferCriterionNumberOfGuests::class,
+                    'SearchOfferCriterionOnlyOnline'         => Element\SearchOfferCriterionOnlyOnline::class,
+                    'SearchOfferCriterionPaymentRecipient'   => Element\SearchOfferCriterionPaymentRecipient::class,
+                    'SearchOrderCriterion'                   => Element\SearchOrderCriterion::class,
+                    'SearchOrderCriterionArrivalDate'        => Element\SearchOrderCriterionArrivalDate::class,
+                    'SearchOrderCriterionCreateDate'         => Element\SearchOrderCriterionCreateDate::class,
+                    'SearchOrderCriterionDepartureDate'      => Element\SearchOrderCriterionDepartureDate::class,
+                    'SearchOrderCriterionGuest'              => Element\SearchOrderCriterionGuest::class,
+                    'SearchOrderCriterionOrderId'            => Element\SearchOrderCriterionOrderId::class,
+                    'SearchOrderCriterionServiceId'          => Element\SearchOrderCriterionServiceId::class,
+                    'SearchOrderCriterionServiceReferenceId' => Element\SearchOrderCriterionServiceReferenceId::class,
+                    'SearchOrdersRequest'                    => Element\SearchOrdersRequest::class,
+                    'SearchOrdersResponse'                   => Element\SearchOrdersResponse::class,
+                    'SendServiceMessageRequest'              => Element\SendServiceMessageRequest::class,
+                    'SendServiceMessageResponse'             => Element\SendServiceMessageResponse::class,
+                    'Service'                                => Element\Service::class,
+                    'ServiceAccommodation'                   => Element\ServiceAccommodation::class,
+                    'ServiceExtraField'                      => Element\ServiceExtraField::class,
+                    'ServiceMessages'                        => Element\ServiceMessages::class,
+                    'SkipElements'                           => Element\SkipElements::class,
+                    'Tax'                                    => Element\Tax::class,
+                    'UpdateOrderRequest'                     => Element\UpdateOrderRequest::class,
+                    'UpdateOrderResponse'                    => Element\UpdateOrderResponse::class,
                 ],
             ]);
     }
@@ -223,6 +229,7 @@ class HotelsConnector
      * @param string $data
      *
      * @return string $data;
+     * @throws SoapFault
      */
     public function ping($data)
     {
@@ -235,9 +242,10 @@ class HotelsConnector
     }
 
     /**
-     * Получение списка стран
+     * Получение списка типов питания
      *
      * @return Element\Meal[]
+     * @throws SoapFault
      */
     public function getMeals()
     {
@@ -251,6 +259,7 @@ class HotelsConnector
      * Получение списка стран
      *
      * @return Element\Country[]
+     * @throws SoapFault
      */
     public function getCountries()
     {
@@ -266,6 +275,7 @@ class HotelsConnector
      * @param string $countryId
      *
      * @return Element\City[]
+     * @throws SoapFault
      */
     public function getCities($countryId)
     {
@@ -288,6 +298,7 @@ class HotelsConnector
      * @param string[]                       $skipElements
      *
      * @return Element\HotelWithOffers[]
+     * @throws SoapFault
      */
     public function searchHotelOffers(
         $arrivalDate,
@@ -330,6 +341,7 @@ class HotelsConnector
      * @param Element\CreateOrderRequest $request
      *
      * @return Element\Order
+     * @throws SoapFault
      */
     public function createOrder(Element\CreateOrderRequest $request)
     {
@@ -346,6 +358,7 @@ class HotelsConnector
      * @param int $orderId
      *
      * @return Element\Order
+     * @throws SoapFault
      */
     public function getOrder($orderId)
     {
@@ -363,6 +376,7 @@ class HotelsConnector
      * @param int $orderId
      *
      * @return bool
+     * @throws SoapFault
      */
     public function cancelOrder($orderId)
     {
@@ -380,6 +394,7 @@ class HotelsConnector
      * @param array $hotelIds
      *
      * @return Element\HotelWithInfo[]
+     * @throws SoapFault
      */
     public function getHotelInfo($hotelIds)
     {
@@ -399,6 +414,7 @@ class HotelsConnector
      * @param string[] $skipElements
      *
      * @return Element\HotelOffer
+     * @throws SoapFault
      */
     public function getHotelOffer($offerCode, $skipElements = [])
     {
@@ -416,9 +432,10 @@ class HotelsConnector
     }
 
     /**
-     * @param Element\ServiceAccommodation $services []
+     * @param Element\ServiceAccommodation[] $services
      *
      * @return Element\OrderServiceAccommodation[]
+     * @throws SoapFault
      */
     public function GetHotelOfferPricing($services)
     {
@@ -434,6 +451,7 @@ class HotelsConnector
 
     /**
      * @return Element\OrdersChangelogRecord[]
+     * @throws SoapFault
      */
     public function GetOrdersChangelog()
     {
@@ -447,6 +465,7 @@ class HotelsConnector
      * @param int[] $recordIds
      *
      * @return string
+     * @throws SoapFault
      */
     public function RemoveOrdersChangelogRecords($recordIds)
     {
@@ -462,6 +481,7 @@ class HotelsConnector
 
     /**
      * @return Element\Amenity[]
+     * @throws SoapFault
      */
     public function getAmenities()
     {
@@ -477,6 +497,7 @@ class HotelsConnector
      * @param Element\SearchOrderCriterion[] $searchCriteria
      *
      * @return Element\Order[]
+     * @throws SoapFault
      */
     public function searchOrders($searchCriteria)
     {
@@ -497,6 +518,7 @@ class HotelsConnector
      * @param int[] $messageIds
      *
      * @return Element\Messages
+     * @throws SoapFault
      */
     public function getServiceMessages($serviceId = null, array $messageIds = [])
     {
@@ -521,6 +543,7 @@ class HotelsConnector
      * @param string $text
      *
      * @return int
+     * @throws SoapFault
      */
     public function sendServiceMessage($serviceId, $text)
     {
