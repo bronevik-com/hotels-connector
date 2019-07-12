@@ -771,7 +771,7 @@ foreach ($order->getServices() as $service) {
     $service->getOfferCode();        // Код предложения, с помощью которого оформлена услуга
     $service->getOfferName();        // Название предложения
     $service->getRoomType();         // Тип размещения
-    $service->getVATPercent();       // Процент НДС
+    $service->getVATPercent();       // Ставка НДС
 
     /** @var Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
     // доп. поля для создания услуг
@@ -1023,12 +1023,12 @@ $orderServices = $connector->GetHotelOfferPricing($services);
 
 #### Обновление referenceId услуги
 
-Для обновления услуги нужно воспользоваться методом updateService, который принмает на вход идентификатор услуги и referenceId.
+Для обновления услуги нужно воспользоваться методом updateService, который принимает на вход идентификатор услуги и referenceId.
 ```php
 <?php
 
 $serviceId   = 123;           // идентификатор услуги
-$referenceId = 'referenceId'; // referenceId
+$referenceId = 'referenceId'; // идентификатор услуги в системе клиента
 
 $response = $connector->updateService($serviceId, $referenceId);
 
@@ -1038,7 +1038,7 @@ $response->getResult();      // результат обновления referenc
 
 #### Аннуляция услуг
 
-Для аннуляции услуг нужно воспользоваться методом cancelServices, который принмает на вход массив идентификаторов услуг.
+Для аннуляции услуг нужно воспользоваться методом cancelServices, который принимает на вход массив идентификаторов услуг.
 ```php
 <?php
 
@@ -1050,7 +1050,7 @@ $cancelledServices = $connector->cancelServices($serviceIds);
 foreach ($cancelledServices as $cancelledService) {
 /** @var Bronevik\HotelsConnector\Element\CancelledService $cancelledService */
     $cancelledService->getId();     // идентификатор услуги
-    $cancelledService->getStatus(); // статус услуги (есть в документации)
+    $cancelledService->getStatus(); // статус услуги (Описание статусов есть в документации)
     $cancelledService->getResult(); // результат аннуляции услуги
 }
 ```
@@ -1304,7 +1304,7 @@ foreach ($offerCheckinCheckoutPrices as $offerCheckinCheckoutPrice) {
     
     foreach ($earlyArrival->hourPrice as $offerHourPrice) {
         $offerHourPrice->getHour();             // час
-        $offerHourPrice->getAvailabilityCode(); // код доступности
+        $offerHourPrice->getAvailabilityCode(); // код доступности (Описание кодов доступно в документации)
         /** 
          * @see \Bronevik\HotelsConnector\Enum\AvailabilityCodes
          */
