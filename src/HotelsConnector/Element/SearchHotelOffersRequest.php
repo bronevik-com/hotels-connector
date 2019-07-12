@@ -36,8 +36,8 @@ class SearchHotelOffersRequest extends BaseRequest
     public $hotelIds;
 
     /**
-     * Идентификаторы отелей, по которым будет осуществлен поиск.
-     * The identifiers of the hotels that will be searched.
+     * Координаты и радиус для поиска.
+     * Coordinates and radius for search.
      *
      * @var GeoLocation
      */

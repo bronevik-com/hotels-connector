@@ -447,6 +447,7 @@ class HotelsConnector
      *
      * @return Element\HotelOffer
      * @throws SoapFault
+     * @deprecated
      */
     public function getHotelOffer($offerCode, $skipElements = [])
     {
