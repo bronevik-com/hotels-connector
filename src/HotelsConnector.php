@@ -613,18 +613,18 @@ class HotelsConnector
      * Обновление referenceId для услуг
      *
      * @param int    $serviceId
-     * @param string $referenseId
+     * @param string $referenсeId
      *
      * @return Element\UpdateServiceResponse
      * @throws SoapFault
      */
-    public function updateService($serviceId, $referenseId)
+    public function updateService($serviceId, $referenсeId)
     {
         $request = new Element\UpdateServiceRequest();
         $this->fillRequest($request);
 
         $request->serviceId   = $serviceId;
-        $request->referenceId = $referenseId;
+        $request->referenceId = $referenсeId;
 
         /** @var Element\UpdateServiceResponse $response */
         $response = $this->soapClient->updateService($request);
@@ -662,19 +662,19 @@ class HotelsConnector
      * @param int[]                          $hotelIds
      * @param Element\GeoLocation|null       $geolocation
      * @param string[]                       $addElements
-     * @param Element\SearchOfferCriterion[] $searchCriterias
+     * @param Element\SearchOfferCriterion[] $searchCriteria
      *
      * @return Element\HotelWithCheapestOffer[]
      * @throws SoapFault
      */
-    public function searhHotelAvailability(
+    public function searchHotelAvailability(
         $checkinDate,
         $checkOutDate,
         $cityId = null,
         array $hotelIds = [],
-        $geolocation = null,
+        Element\GeoLocation $geolocation = null,
         array $addElements = [],
-        array $searchCriterias = []
+        array $searchCriteria = []
     )
     {
         $request = new Element\SearchHotelAvailabilityRequest();
@@ -687,7 +687,7 @@ class HotelsConnector
         $request->hotelIds       = $hotelIds;
         $request->geolocation    = $geolocation;
         $request->addElements    = $addElements;
-        $request->searchCriteria = $searchCriterias;
+        $request->searchCriteria = $searchCriteria;
 
         /** @var Element\SearchHotelAvailabilityResponse $response */
         $response = $this->soapClient->searchHotelAvailability($request);
