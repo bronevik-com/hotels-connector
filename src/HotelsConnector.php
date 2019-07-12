@@ -613,18 +613,18 @@ class HotelsConnector
      * Обновление referenceId для услуг
      *
      * @param int    $serviceId
-     * @param string $referenсeId
+     * @param string $referenceId
      *
      * @return Element\UpdateServiceResponse
      * @throws SoapFault
      */
-    public function updateService($serviceId, $referenсeId)
+    public function updateService($serviceId, $referenceId)
     {
         $request = new Element\UpdateServiceRequest();
         $this->fillRequest($request);
 
         $request->serviceId   = $serviceId;
-        $request->referenceId = $referenсeId;
+        $request->referenceId = $referenceId;
 
         /** @var Element\UpdateServiceResponse $response */
         $response = $this->soapClient->updateService($request);
