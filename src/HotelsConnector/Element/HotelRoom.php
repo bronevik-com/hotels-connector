@@ -66,9 +66,43 @@ class HotelRoom
      */
     public $bedSets;
 
+    /**
+     * Часть здания, в которой находится номер.
+     * The part of the building where the room is located.
+     *
+     * @var string
+     */
+    public $buildingPart;
+
+    /**
+     * Количество комнат в номере.
+     * The number of apartment in the room.
+     *
+     * @var int
+     */
+    public $bedroomAmount;
+
+    /**
+     * Информация о наличии окна в номере.
+     * Information about the availability of windows in the room.
+     *
+     * @var boolean
+     */
+    public $withWindow;
+
+    /**
+     * Информация видах из окна в номере.
+     * Information views from the window in the room.
+     * Type: tns:WindowViews
+     *
+     * @var WindowViews
+     */
+    public $windowViews;
+
     public function __construct()
     {
-        $this->bedSets = new BedSets();
+        $this->bedSets     = new BedSets();
+        $this->windowViews = new WindowViews();
     }
 
     /**
@@ -200,6 +234,14 @@ class HotelRoom
     }
 
     /**
+     * @param BedSets $bedSets
+     */
+    public function setBedSets($bedSets)
+    {
+        $this->bedSets = $bedSets;
+    }
+
+    /**
      * @return BedSets
      */
     public function getBedSets()
@@ -208,10 +250,67 @@ class HotelRoom
     }
 
     /**
-     * @param BedSets $bedSets
+     * @param string $buildingPart
      */
-    public function setBedSets($bedSets)
+    public function setBuildingPart($buildingPart)
     {
-        $this->bedSets = $bedSets;
+        $this->buildingPart = $buildingPart;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBuildingPart()
+    {
+        return $this->buildingPart;
+    }
+
+    /**
+     * @param int $bedroomAmount
+     */
+    public function setBedroomAmount($bedroomAmount)
+    {
+        $this->bedroomAmount = $bedroomAmount;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBedroomAmount()
+    {
+        return $this->bedroomAmount;
+    }
+
+    /**
+     * @param boolean $withWindow
+     */
+    public function setWithWindow($withWindow)
+    {
+        $this->withWindow = $withWindow;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getWithWindow()
+    {
+        return $this->withWindow;
+    }
+
+    /**
+     * @param WindowViews $windowViews
+     */
+    public function setWindowViews($windowViews)
+    {
+        $this->windowViews = $windowViews;
+    }
+
+    /**
+     * @return WindowViews
+     */
+    public function getWindowViews()
+    {
+        return $this->windowViews;
     }
 }
+

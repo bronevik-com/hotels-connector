@@ -75,12 +75,14 @@ class HotelsConnector
                 'trace'       => $this->isDebugMode(),
                 'features'    => SOAP_SINGLE_ELEMENT_ARRAYS,
                 'classmap'    => [
+                    'AddElements'                            => Element\AddElements::class,
                     'AdditionalInfo'                         => Element\AdditionalInfo::class,
                     'Amenity'                                => Element\Amenity::class,
                     'AvailableAmenities'                     => Element\AvailableAmenities::class,
                     'AvailableAmenity'                       => Element\AvailableAmenity::class,
                     'AvailableMeal'                          => Element\AvailableMeal::class,
                     'AvailableMeals'                         => Element\AvailableMeals::class,
+                    'BaseOffer'                              => Element\BaseOffer::class,
                     'BaseRequest'                            => Element\BaseRequest::class,
                     'BaseResponse'                           => Element\BaseResponse::class,
                     'Bed'                                    => Element\Bed::class,
@@ -89,13 +91,19 @@ class HotelsConnector
                     'BreakfastInfo'                          => Element\BreakfastInfo::class,
                     'CancelOrderRequest'                     => Element\CancelOrderRequest::class,
                     'CancelOrderResponse'                    => Element\CancelOrderResponse::class,
+                    'CancelServicesRequest'                  => Element\CancelServicesRequest::class,
+                    'CancelServicesResponse'                 => Element\CancelServicesResponse::class,
                     'CancellationPolicy'                     => Element\CancellationPolicy::class,
+                    'CancelledService'                       => Element\CancelledService::class,
+                    'CancelledServices'                      => Element\CancelledServices::class,
                     'Change'                                 => Element\Change::class,
                     'ChangeList'                             => Element\ChangeList::class,
                     'City'                                   => Element\City::class,
                     'ClientPriceDetails'                     => Element\ClientPriceDetails::class,
                     'Contract'                               => Element\Contract::class,
+                    'Coordinates'                            => Element\Coordinates::class,
                     'Country'                                => Element\Country::class,
+                    'CountryCodes'                           => Element\CountryCodes::class,
                     'CreateOrderRequest'                     => Element\CreateOrderRequest::class,
                     'CreateOrderResponse'                    => Element\CreateOrderResponse::class,
                     'Credentials'                            => Element\Credentials::class,
@@ -105,8 +113,11 @@ class HotelsConnector
                     'DescriptionDetails'                     => Element\DescriptionDetails::class,
                     'DetailedPrice'                          => Element\DetailedPrice::class,
                     'FaultDetail'                            => Element\FaultDetail::class,
+                    'GeoLocation'                            => Element\GeoLocation::class,
                     'GetAmenitiesRequest'                    => Element\GetAmenitiesRequest::class,
                     'GetAmenitiesResponse'                   => Element\GetAmenitiesResponse::class,
+                    'GetCheckinCheckoutPricingRequest'       => Element\GetCheckinCheckoutPricingRequest::class,
+                    'GetCheckinCheckoutPricingResponse'      => Element\GetCheckinCheckoutPricingResponse::class,
                     'GetCitiesRequest'                       => Element\GetCitiesRequest::class,
                     'GetCitiesResponse'                      => Element\GetCitiesResponse::class,
                     'GetCountriesRequest'                    => Element\GetCountriesRequest::class,
@@ -127,15 +138,20 @@ class HotelsConnector
                     'GetServiceMessagesResponse'             => Element\GetServiceMessagesResponse::class,
                     'Hotel'                                  => Element\Hotel::class,
                     'HotelAmenity'                           => Element\HotelAmenity::class,
+                    'HotelGeo'                               => Element\HotelGeo::class,
                     'HotelIds'                               => Element\HotelIds::class,
+                    'HotelInfo'                              => Element\HotelInfo::class,
                     'HotelOffer'                             => Element\HotelOffer::class,
                     'HotelOfferCancellationPolicy'           => Element\HotelOfferCancellationPolicy::class,
                     'HotelOffers'                            => Element\HotelOffers::class,
                     'HotelPriceDetails'                      => Element\HotelPriceDetails::class,
                     'HotelRoom'                              => Element\HotelRoom::class,
+                    'HotelVatInfo'                           => Element\HotelVatInfo::class,
+                    'HotelWithCheapestOffer'                 => Element\HotelWithCheapestOffer::class,
                     'HotelWithInfo'                          => Element\HotelWithInfo::class,
                     'HotelWithOffers'                        => Element\HotelWithOffers::class,
                     'Hotels'                                 => Element\Hotels::class,
+                    'HotelsWithCheapestOffer'                => Element\HotelsWithCheapestOffer::class,
                     'Image'                                  => Element\Image::class,
                     'Info'                                   => Element\Info::class,
                     'InformationForGuest'                    => Element\InformationForGuest::class,
@@ -144,7 +160,12 @@ class HotelsConnector
                     'Message'                                => Element\Message::class,
                     'Messages'                               => Element\Messages::class,
                     'NamedDetailedPrice'                     => Element\NamedDetailedPrice::class,
+                    'OfferCheckinCheckoutPrices'             => Element\OfferCheckinCheckoutPrices::class,
+                    'OfferCodes'                             => Element\OfferCodes::class,
+                    'OfferHourPrice'                         => Element\OfferHourPrice::class,
+                    'OfferHourPrices'                        => Element\OfferHourPrices::class,
                     'OfferPolicy'                            => Element\OfferPolicy::class,
+                    'OffersCheckinCheckoutPrices'            => Element\OffersCheckinCheckoutPrices::class,
                     'Order'                                  => Element\Order::class,
                     'OrderService'                           => Element\OrderService::class,
                     'OrderServiceAccommodation'              => Element\OrderServiceAccommodation::class,
@@ -154,6 +175,9 @@ class HotelsConnector
                     'PriceDetails'                           => Element\PriceDetails::class,
                     'RemoveOrdersChangelogRecordsRequest'    => Element\RemoveOrdersChangelogRecordsRequest::class,
                     'RemoveOrdersChangelogRecordsResponse'   => Element\RemoveOrdersChangelogRecordsResponse::class,
+                    'SearchAvailabilityHotelOffer'           => Element\SearchAvailabilityHotelOffer::class,
+                    'SearchHotelAvailabilityRequest'         => Element\SearchHotelAvailabilityRequest::class,
+                    'SearchHotelAvailabilityResponse'        => Element\SearchHotelAvailabilityResponse::class,
                     'SearchHotelOffersRequest'               => Element\SearchHotelOffersRequest::class,
                     'SearchHotelOffersResponse'              => Element\SearchHotelOffersResponse::class,
                     'SearchOfferCriterion'                   => Element\SearchOfferCriterion::class,
@@ -178,11 +202,15 @@ class HotelsConnector
                     'Service'                                => Element\Service::class,
                     'ServiceAccommodation'                   => Element\ServiceAccommodation::class,
                     'ServiceExtraField'                      => Element\ServiceExtraField::class,
+                    'ServiceIdsForCancellation'              => Element\ServiceIdsForCancellation::class,
                     'ServiceMessages'                        => Element\ServiceMessages::class,
                     'SkipElements'                           => Element\SkipElements::class,
                     'Tax'                                    => Element\Tax::class,
                     'UpdateOrderRequest'                     => Element\UpdateOrderRequest::class,
                     'UpdateOrderResponse'                    => Element\UpdateOrderResponse::class,
+                    'UpdateServiceRequest'                   => Element\UpdateServiceRequest::class,
+                    'UpdateServiceResponse'                  => Element\UpdateServiceResponse::class,
+                    'WindowViews'                            => Element\WindowViews::class,
                 ],
             ]);
     }
@@ -296,9 +324,9 @@ class HotelsConnector
      * @param Element\SearchOfferCriterion[] $searchCriteria
      * @param int[]                          $hotelIds
      * @param string[]                       $skipElements
+     * @param Element\GeoLocation|null       $geolocation
      *
      * @return Element\HotelWithOffers[]
-     * @throws SoapFault
      */
     public function searchHotelOffers(
         $arrivalDate,
@@ -306,7 +334,8 @@ class HotelsConnector
         $cityId = null,
         $searchCriteria = [],
         $hotelIds = [],
-        $skipElements = []
+        $skipElements = [],
+        $geolocation = null
     )
     {
         $request = new Element\SearchHotelOffersRequest();
@@ -320,13 +349,15 @@ class HotelsConnector
             $request->setCityId($cityId);
         }
         if ($hotelIds) {
-            $request->hotelIds = new Element\HotelIds();
+            $request->hotelIds     = new Element\HotelIds();
             $request->hotelIds->id = $hotelIds;
         }
         if ($skipElements) {
-            $request->skipElements = new Element\SkipElements();
+            $request->skipElements          = new Element\SkipElements();
             $request->skipElements->element = $skipElements;
         }
+
+        $request->geolocation = $geolocation;
 
         foreach ($searchCriteria as $criterian) {
             $request->addSearchCriteria($criterian);
@@ -395,6 +426,7 @@ class HotelsConnector
      *
      * @return Element\HotelWithInfo[]
      * @throws SoapFault
+     * @deprecated
      */
     public function getHotelInfo($hotelIds)
     {
@@ -424,7 +456,7 @@ class HotelsConnector
         $request->addOfferCode($offerCode);
 
         if ($skipElements) {
-            $request->skipElements = new Element\SkipElements();
+            $request->skipElements          = new Element\SkipElements();
             $request->skipElements->element = $skipElements;
         }
 
@@ -526,10 +558,10 @@ class HotelsConnector
         $this->fillRequest($request);
 
         if ($serviceId) {
-            $request->serviceId           = $serviceId;
+            $request->serviceId = $serviceId;
         }
         if ($messageIds) {
-            $request->serviceMessages = new Element\ServiceMessages();
+            $request->serviceMessages     = new Element\ServiceMessages();
             $request->serviceMessages->id = $messageIds;
         }
 
@@ -554,6 +586,113 @@ class HotelsConnector
         $request->text      = $text;
 
         return $this->soapClient->sendServiceMessage($request)->getId();
+    }
+
+    /**
+     * Аннуляция услуг
+     *
+     * @param int[] $serviceIds
+     *
+     * @return Element\CancelledService[]
+     * @throws SoapFault
+     */
+    public function cancelServices(array $serviceIds)
+    {
+        $request = new Element\CancelServicesRequest();
+        $this->fillRequest($request);
+
+        $request->serviceIds = $serviceIds;
+
+        /** @var Element\CancelServicesResponse $response */
+        $response = $this->soapClient->cancelServices($request);
+
+        return $response->services->service;
+    }
+
+    /**
+     * Обновление referenceId для услуг
+     *
+     * @param int    $serviceId
+     * @param string $referenseId
+     *
+     * @return Element\UpdateServiceResponse
+     * @throws SoapFault
+     */
+    public function updateService($serviceId, $referenseId)
+    {
+        $request = new Element\UpdateServiceRequest();
+        $this->fillRequest($request);
+
+        $request->serviceId   = $serviceId;
+        $request->referenceId = $referenseId;
+
+        /** @var Element\UpdateServiceResponse $response */
+        $response = $this->soapClient->updateService($request);
+
+        return $response;
+    }
+
+    /**
+     * Получить цены за ранный заезд и поздний выезд
+     *
+     * @param string[] $offerCodes
+     *
+     * @return Element\OfferCheckinCheckoutPrices[]
+     * @throws SoapFault
+     */
+    public function getCheckinCheckoutPricing(array $offerCodes)
+    {
+        $request = new Element\GetCheckinCheckoutPricingRequest();
+        $this->fillRequest($request);
+
+        $request->offerCodes = $offerCodes;
+
+        /** @var Element\GetCheckinCheckoutPricingResponse $response */
+        $response = $this->soapClient->getCheckinCheckoutPricing($request);
+
+        return $response->checkinCheckoutPrices->offerPrices;
+    }
+
+    /**
+     * Безрейтовый поиск
+     *
+     * @param string                         $checkinDate
+     * @param string                         $checkOutDate
+     * @param int|null                       $cityId
+     * @param int[]                          $hotelIds
+     * @param Element\GeoLocation|null       $geolocation
+     * @param string[]                       $addElements
+     * @param Element\SearchOfferCriterion[] $searchCriterias
+     *
+     * @return Element\HotelWithCheapestOffer[]
+     * @throws SoapFault
+     */
+    public function searhHotelAvailability(
+        $checkinDate,
+        $checkOutDate,
+        $cityId = null,
+        array $hotelIds = [],
+        $geolocation = null,
+        array $addElements = [],
+        array $searchCriterias = []
+    )
+    {
+        $request = new Element\SearchHotelAvailabilityRequest();
+        $this->fillRequest($request);
+
+        $request->checkInDate    = $checkinDate;
+        $request->checkOutDate   = $checkOutDate;
+        $request->currency       = Currencies::RUSSIAN_RUBLE;
+        $request->cityId         = $cityId;
+        $request->hotelIds       = $hotelIds;
+        $request->geolocation    = $geolocation;
+        $request->addElements    = $addElements;
+        $request->searchCriteria = $searchCriterias;
+
+        /** @var Element\SearchHotelAvailabilityResponse $response */
+        $response = $this->soapClient->searchHotelAvailability($request);
+
+        return $response->hotels->hotel;
     }
 
     /**

@@ -18,6 +18,7 @@
         - [Простой запрос](#Простой-запрос)
         - [Запрос с фильтрацией предложений](#Запрос-с-фильтрацией-предложений)
         - [Запрос предложений конкретных отелей](#Запрос-предложений-конкретных-отелей)
+        - [Поиск предложений по геокоординатам и радиусу](#Поиск-предложений-по-геокоординатам-и-радиусу)
         - [Управление содержимым ответа](#Управление-содержимым-ответа)
         - [Объект отельного предложения](#Отельное-предложение)
     - [Получение информации об отелях](#Получение-информации-об-отелях)
@@ -35,6 +36,16 @@
                 - [Получение комментариев](#Получение-комментариев)
                 - [Отправка комментариев](#Отправка-комментариев)
     - [Детализация предложения](#Детализация-предложения)
+    - [Обновление referenceId услуги](#Обновление-referenceId-услуги)
+    - [Аннуляция услуг](#Аннуляция-услуг)
+    - [Безрейтовый поиск](#Безрейтовый-поиск)
+        - [Поиск по городу](#Поиск-по-городу)
+        - [Поиск по отелям](#Поиск-по-отелям)
+        - [Поиск по координатам и радиусу](#Поиск-по-координатам-и-радиусу)
+        - [Поиск с критериями](#Поиск-с-критериями)
+        - [Управление содержимым ответа поиска](#Управление-содержимым-ответа-поиска)
+        - [Ответ безрейтового поиска](#Ответ-безрейтового-поиска)
+    - [Запрос цен за РЗПВ](#Запрос-цен-за-РЗПВ)
     - [Ошибки](#Ошибки)
 
 ## Установка
@@ -138,8 +149,13 @@ $countries = $connector->getCountries();
 /** @var Bronevik\HotelsConnector\Element\Country[] $countries */
 foreach ($countries as $country) {
     $country->getId();   // 1
-    $country->getCode(); // RUS
     $country->getName(); // Россия
+
+    /** @var Bronevik\HotelsConnector\Element\CountryCodes $codes */
+    $codes = $country->getCodes();
+    
+    $codes->getAlpha2(); // RU
+    $codes->getAlpha3(); // RUS
 }
 ```
 
@@ -292,6 +308,33 @@ $hotelsWithOffers = $connector->searchHotelOffers(
 );
 ```
 
+#### Поиск предложений по геокоординатам и радиусу
+
+```php
+<?php
+
+$latitude  = 30.1234; // широта
+$longitude = 30.1234; // долгота
+$radius    = 12.1;    // радиус в км (от 0 до 30 км, точность до 1 десятой)
+
+$geolocation = new Bronevik\HotelsConnector\Element\GeoLocation();
+
+$geolocation->latitude  = $latitude;
+$geolocation->longitude = $longitude;
+$geolocation->radius    = $radius;
+
+/** @var Bronevik\HotelsConnector\Element\Hotels $hotelsWithOffers */
+$hotelsWithOffers = $connector->searchHotelOffers(
+    '2016-01-22', // дата заезда
+    '2016-01-24', // дата выезда
+    null,         // Id города
+    [],           // массив фильтров
+    [],           // ids отелей
+    [],           // skipElements
+    $geolocation
+);
+```
+
 #### Управление содержимым ответа
 
 Вы можете пропустить некоторые элементы в поиске:
@@ -364,6 +407,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
     $descriptionDetails->getLatitude();         // Широта (например, 56.8499105)
     $descriptionDetails->getLongitude();        // Долгота (например, 60.6525664)
     $descriptionDetails->getDescription();      // Описание отеля
+    $descriptionDetails->getZipCode();          // Почтовый адрес отеля
 
 	// Фотографии отеля
 	/** @var Bronevik\HotelsConnector\Element\Image $photo */
@@ -397,6 +441,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         $offer->getIsBlockRoom();           // Является ли номер блочным (например, false)
         $offer->getPaymentRecipient();      // Способ оплаты (например, \Bronevik\HotelsConnector\Enum\PaymentRecipients::AGENCY)
         $offer->getDeepLink();              // ​Элемент для работы метапоисковых систем (например, http://dev.bronevik.com/ru/hotel/russia/yekaterinburg/oktyabrskaya?sd=2019-06-01&ed=2019-06-02&code=T1I3MTYjOTgxNSNzaW5nbGUjMjQjMjAxOS0wNi0wMSMyMDE5LTA2LTAyIzIjMA==&currency=RUB&spk=Corteos)
+        $offer->getRoomWithWindow();        // Наличие окна в номере (например, true)
 
 
         /**
@@ -445,8 +490,31 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
     	/** @var Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy $cancellationPolicy */
     	// политика аннуляции
         foreach ($offer->getCancellationPolicies() as $cancellationPolicy) {
-            $cancellationPolicy->getPenaltyDateTime(); // Дата наступления штрафа
-            $cancellationPolicy->getPenaltySum();      // Размер штрафа
+            $cancellationPolicy->getPenaltyDateTime();     // Дата наступления штрафа
+            $cancellationPolicy->getPenaltySum();          // Размер штрафа
+
+            /** @var Bronevik\HotelsConnector\Element\ClientPriceDetails $cancellationPriceDetails */
+            $cancellationPriceDetails = $cancellationPolicy->getPenaltyPriceDetails();
+
+            /** @var Bronevik\HotelsConnector\Element\DetailedPrice $commission */
+            $commission = $cancellationPriceDetails->getCommission();
+            $commission->getPrice();     // стоимость
+            $commission->getVatAmount(); // сумма НДС
+            $commission->getCurrency();  // валюта
+
+            /** @var Bronevik\HotelsConnector\Element\DetailedPrice $net */
+            $net = $cancellationPriceDetails->getNet();
+            $net->getPrice();     // стоимость
+            $net->getVatAmount(); // сумма НДС
+            $net->getCurrency();  // валюта
+
+            /** @var Bronevik\HotelsConnector\Element\DetailedPrice $gross */
+            $gross = $cancellationPriceDetails->getGross();
+            $gross->getPrice();     // стоимость
+            $gross->getVatAmount(); // сумма НДС
+            $gross->getCurrency();  // валюта
+
+            $cancellationPriceDetails->getVatIncluded(); // включен ли в стоимость НДС
         }
 
         /** @var Bronevik\HotelsConnector\Element\AvailableMeal $meal */
@@ -454,7 +522,29 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         foreach ($offer->getMeals() as $meal) {
             $meal->getId();       // Идентификатор услуги питания
             $meal->getIncluded(); // Включена ли услуга в предложение
-            $meal->getPrice();    // Стоимость услуги питания
+
+            /** @var Bronevik\HotelsConnector\Element\ClientPriceDetails $mealPriceDetails */
+            $mealPriceDetails = $meal->getPriceDetails();
+            
+            /** @var Bronevik\HotelsConnector\Element\DetailedPrice $commission */
+            $commission = $mealPriceDetails->getCommission();
+            $commission->getPrice();     // стоимость
+            $commission->getVatAmount(); // сумма НДС
+            $commission->getCurrency();  // валюта
+            
+            /** @var Bronevik\HotelsConnector\Element\DetailedPrice $net */
+            $net = $mealPriceDetails->getNet();
+            $net->getPrice();     // стоимость
+            $net->getVatAmount(); // сумма НДС
+            $net->getCurrency();  // валюта
+            
+            /** @var Bronevik\HotelsConnector\Element\DetailedPrice $gross */
+            $gross = $mealPriceDetails->getGross();
+            $gross->getPrice();     // стоимость
+            $gross->getVatAmount(); // сумма НДС
+            $gross->getCurrency();  // валюта
+
+            $mealPriceDetails->getVatIncluded(); // включен ли в стоимость НДС
         }
 
         // ежедневные цены
@@ -518,11 +608,14 @@ $hotelsWithInfo = $connector->getHotelInfo([716, 901]);
 foreach ($hotelsWithInfo as $hotelWithInfo) {
     /** @var Bronevik\HotelsConnector\Element\HotelRoom $hotelRoom */
     foreach ($hotelWithInfo->getRooms() as $hotelRoom) {
-        $hotelRoom->getId();           // Id номера
-        $hotelRoom->getName();         // Название номера
-        $hotelRoom->getDescription();  // Описание номера
-        $hotelRoom->getRoomCapacity(); // Количество гостей, которых можно разместить в номере
-        $hotelRoom->getSize();         // Площадь номера
+        $hotelRoom->getId();            // Id номера
+        $hotelRoom->getName();          // Название номера
+        $hotelRoom->getDescription();   // Описание номера
+        $hotelRoom->getRoomCapacity();  // Количество гостей, которых можно разместить в номере
+        $hotelRoom->getSize();          // Площадь номера
+        $hotelRoom->getWithWindow();    // Есть ли окно в номере
+        $hotelRoom->getBuildingPart();  // Часть здания, в которой расположен номер
+        $hotelRoom->getBedroomAmount(); // Кол-во комнат в номере
 
         // Удобства в номере
         /** @var Bronevik\HotelsConnector\Element\AvailableAmenity $availableAmenity */
@@ -552,6 +645,15 @@ foreach ($hotelsWithInfo as $hotelWithInfo) {
                 $bed->getType();   // Тип размещения в номере
                 $bed->getAmount(); // Количество кроватей
             }
+        }
+
+        /** @var Bronevik\HotelsConnector\Element\WindowViews $windowViews */
+        $windowViews = $hotelRoom->getWindowViews();
+        // Массив видов из окна
+
+        foreach ($windowViews->getName() as $windowViewName) {
+            // название вида из номера
+            echo $windowViewName;
         }
     }
 }
@@ -669,6 +771,7 @@ foreach ($order->getServices() as $service) {
     $service->getOfferCode();        // Код предложения, с помощью которого оформлена услуга
     $service->getOfferName();        // Название предложения
     $service->getRoomType();         // Тип размещения
+    $service->getVATPercent();       // Процент НДС
 
     /** @var Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
     // доп. поля для создания услуг
@@ -918,6 +1021,301 @@ $orderServices = $connector->GetHotelOfferPricing($services);
 // объект услуги в ответе точно такой же как и при создании заказа
 ```
 
+#### Обновление referenceId услуги
+
+Для обновления услуги нужно воспользоваться методом updateService, который принмает на вход идентификатор услуги и referenceId.
+```php
+<?php
+
+$serviceId   = 123;           // идентификатор услуги
+$referenceId = 'referenceId'; // referenceId
+
+$response = $connector->updateService($serviceId, $referenceId);
+
+$response->getReferenceId(); // Обновленный referenceId
+$response->getResult();      // результат обновления referenceId (true или false)
+```
+
+#### Аннуляция услуг
+
+Для аннуляции услуг нужно воспользоваться методом cancelServices, который принмает на вход массив идентификаторов услуг.
+```php
+<?php
+
+$serviceIds = [123 ,234]; // идентификаторы услуг
+
+/** @var Bronevik\HotelsConnector\Element\CancelledService[] $cancelledServices */
+$cancelledServices = $connector->cancelServices($serviceIds);
+
+foreach ($cancelledServices as $cancelledService) {
+/** @var Bronevik\HotelsConnector\Element\CancelledService $cancelledService */
+    $cancelledService->getId();     // идентификатор услуги
+    $cancelledService->getStatus(); // статус услуги (есть в документации)
+    $cancelledService->getResult(); // результат аннуляции услуги
+}
+```
+
+#### Безрейтовый поиск
+
+##### Поиск по городу
+
+```php
+<?php
+
+$checkinDate  = '2019-08-01'; // дата заезда
+$checkoutDate = '2019-08-02'; // дата выезда
+$cityId       = 1;            // идентификатор города
+
+/** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
+$hotelsWithCheapestOffers = $connector->searhHotelAvailability(
+    $checkinDate,
+    $checkoutDate,
+    $cityId
+);
+```
+
+##### Поиск по отелям
+
+```php
+<?php
+
+$checkinDate  = '2019-08-01'; // дата заезда
+$checkoutDate = '2019-08-02'; // дата выезда
+$hotelIds     = [1, 2, 3];    // идентификаторы отелей (до 100 шт)
+
+/** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
+$hotelsWithCheapestOffers = $connector->searhHotelAvailability(
+    $checkinDate,
+    $checkoutDate,
+    null,
+    $hotelIds
+);
+```
+
+##### Поиск по координатам и радиусу
+
+```php
+<?php
+
+$latitude  = 30.1234; // широта
+$longitude = 30.1234; // долгота
+$radius    = 12.1;    // радиус в км (от 0 до 30 км, точность до 1 десятой)
+
+$geolocation = new Bronevik\HotelsConnector\Element\GeoLocation();
+
+$geolocation->latitude  = $latitude;
+$geolocation->longitude = $longitude;
+$geolocation->radius    = $radius;
+
+$checkinDate  = '2019-08-01'; // дата заезда
+$checkoutDate = '2019-08-02'; // дата выезда
+
+/** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
+$hotelsWithCheapestOffers = $connector->searhHotelAvailability(
+    $checkinDate,
+    $checkoutDate,
+    null,
+    [],
+    $geolocation
+);
+```
+
+##### Поиск с критериями
+
+```php
+<?php
+
+$checkinDate  = '2019-08-01'; // дата заезда
+$checkoutDate = '2019-08-02'; // дата выезда
+$cityId       = 1;            // идентификатор города
+$criterias    = [];           // массив критериев
+
+$criterias[] = new Bronevik\HotelsConnector\Element\SearchOfferCriterionOnlyOnline();
+/**
+ * Более подробную информацию о критериях смотрите в методе searchHotelOffers
+ */
+
+/** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
+$hotelsWithCheapestOffers = $connector->searhHotelAvailability(
+    $checkinDate,
+    $checkoutDate,
+    $cityId,
+    [],
+    null,
+    [],
+    $criterias
+);
+```
+
+##### Управление содержимым ответа поиска
+
+```php
+<?php
+
+$checkinDate  = '2019-08-01'; // дата заезда
+$checkoutDate = '2019-08-02'; // дата выезда
+$cityId       = 1;            // идентификатор города
+$addElements  = [];           // массив с названиями нужных элементов
+/**
+ * Все названия элементов содержатся в классе
+ * @see \Bronevik\HotelsConnector\Enum\AddElementsTypes
+ */
+
+$addElements[] = Bronevik\HotelsConnector\Enum\AddElementsTypes::HOTEL_AMENITIES;
+$addElements[] = Bronevik\HotelsConnector\Enum\AddElementsTypes::GEO;
+
+/** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
+$hotelsWithCheapestOffers = $connector->searhHotelAvailability(
+    $checkinDate,
+    $checkoutDate,
+    $cityId,
+    [],
+    null,
+    $addElements
+);
+```
+
+##### Ответ безрейтового поиска
+
+```php
+<?php
+
+$checkinDate  = '2019-08-01'; // дата заезда
+$checkoutDate = '2019-08-02'; // дата выезда
+$cityId       = 1;            // идентификатор города
+
+/** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
+$hotelsWithCheapestOffers = $connector->searhHotelAvailability(
+    $checkinDate,
+    $checkoutDate,
+    $cityId
+);
+
+foreach ($hotelsWithCheapestOffers as $hotelWithCheapestOffer) {
+    $hotelWithCheapestOffer->getId();        // идентификатор отеля
+
+    /**
+      * Детализация стоимости 
+      * 
+      * @var Bronevik\HotelsConnector\Element\PriceDetails $priceDetails
+      */
+    $priceDetails = $hotelWithCheapestOffer->getMinimalPriceDetails();
+    $priceDetails->getVatApplicable();              // Применим ли к отелю НДС
+    $clientDetails    = $priceDetails->getClient(); // Детализация клиентской стоимости
+    $hotelDetails     = $priceDetails->getHotel();  // Детализация отельной стоимости
+    $additionalPrices = $priceDetails->getExtra();  // Дополнительные цены
+
+    $clientDetails->getVatIncluded(); // Включен ли НДС в клиентскую стоимость
+    $clientDetails->getCommission();  // Информация о комиссии
+    $clientDetails->getGross();       // Брутто-стоимость
+    $clientDetails->getNet();         // Нетто-стоимость
+
+    /** @var Bronevik\HotelsConnector\Element\AvailableAmenities */
+    $availableAmenities = $hotelWithCheapestOffer->getAmenities();
+
+    /** @var Bronevik\HotelsConnector\Element\AvailableAmenity $availableAmenity */
+    foreach ($availableAmenities->availableAmenity as $availableAmenity) {
+        $availableAmenity->getId();
+        $availableAmenity->getPrice();
+        $availableAmenity->getIncluded();
+    }
+
+    /** @var Bronevik\HotelsConnector\Element\HotelGeo $geoInfo */
+    $geoInfo = $hotelWithCheapestOffer->getGeo();
+    
+    $geoInfo->getCityId();            // идентификатор города
+    $geoInfo->getCityName();          // название города
+    $geoInfo->getAddress();           // адрес отеля
+    $geoInfo->getDistanceToCenter();  // расстояние до центра города
+
+    /** @var Bronevik\HotelsConnector\Element\Coordinates $coordinates */
+    $coordinates = $geoInfo->getCoordinates();
+    
+    $coordinates->getLatitude();  // широта
+    $coordinates->getLongitude(); // долгота
+
+    /** @var Bronevik\HotelsConnector\Element\HotelInfo $hotelInfo */
+    $hotelInfo = $hotelWithCheapestOffer->getInfo();
+
+    $hotelInfo->getName();        // название отеля
+    $hotelInfo->getDescription(); // описание отеля
+    $hotelInfo->getType();        // тип отеля
+    $hotelInfo->getCategory();    // категория отеля
+    $hotelInfo->getDeepLink();    // элемент для работы метапоисковых систем
+
+    /** @var Bronevik\HotelsConnector\Element\Image $hotelPhoto */
+    $hotelPhoto = $hotelInfo->getPhoto();       // главная фотография отеля
+
+    /** @var Bronevik\HotelsConnector\Element\HotelVatInfo $hotelVatInfo */
+    $hotelVatInfo = $hotelWithCheapestOffer->getVat();
+
+    $hotelVatInfo->getIncluded();   // включен ли НДС в отеле
+    $hotelVatInfo->getApplicable(); // применим ли НДС к отелю
+    $hotelVatInfo->getPercent();    // процент НДС
+
+    /** @var Bronevik\HotelsConnector\Element\SearchAvailabilityHotelOffer $hotelOffer */
+    $hotelOffer = $hotelWithCheapestOffer->getOffer();
+
+    /** @var Bronevik\HotelsConnector\Element\Image $roomPhoto */
+    $roomPhoto = $hotelOffer->getPhoto();     // главная фотография отеля
+
+    /** @var Bronevik\HotelsConnector\Element\AvailableAmenities $roomAmenities */
+    $roomAmenities = $hotelOffer->getAmenities();
+
+    $hotelOffer->getRoomId();           // идентификатор номера
+    $hotelOffer->getName();             // название номера
+    $hotelOffer->getRoomType();         // тип номера
+    $hotelOffer->getFreeRooms();        // кол-во свободных номеров
+    $hotelOffer->getIsBlockRoom();      // номер блочный?
+    $hotelOffer->getIsSharedRoom();     // номер с подселением?
+    $hotelOffer->getPaymentRecipient(); // способ оплаты
+    $hotelOffer->getNonRefundable();    // невозвратный ли тариф?
+
+    /** @var Bronevik\HotelsConnector\Element\AvailableMeals $meals */
+    $meals = $hotelOffer->getMeals();
+
+    /** @var Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy[] $cancellationPolicies */
+    $cancellationPolicies = $hotelOffer->getCancellationPolicies();
+}
+```
+
+#### Запрос цен за РЗПВ
+
+Для запроса цен раннего заезда и позднего выезда нужно воспользоваться методом getCheckinCheckoutPricing. Он принимает на вход массив оффер-кодов.
+```php
+<?php
+$offerCodes = [
+    'offerCode1',
+    'offerCode2',
+];
+
+/** @var Bronevik\HotelsConnector\Element\OfferCheckinCheckoutPrices[] $offerCheckinCheckoutPrices */
+$offerCheckinCheckoutPrices = $connector->getCheckinCheckoutPricing($offerCodes);
+
+/** @var Bronevik\HotelsConnector\Element\OfferCheckinCheckoutPrices $offerCheckinCheckoutPrice */
+foreach ($offerCheckinCheckoutPrices as $offerCheckinCheckoutPrice) {
+    $offerCheckinCheckoutPrice->getOfferCode(); // оффер-код, для которого рассчитывается РЗПВ
+    
+    /** @var Bronevik\HotelsConnector\Element\OfferHourPrices $earlyArrival */
+    $earlyArrival = $offerCheckinCheckoutPrice->getCheckin();
+
+    /** @var Bronevik\HotelsConnector\Element\OfferHourPrices $lateDeparture */
+    $lateDeparture = $offerCheckinCheckoutPrice->getOfferCode();
+    
+    foreach ($earlyArrival->hourPrice as $offerHourPrice) {
+        $offerHourPrice->getHour();             // час
+        $offerHourPrice->getAvailabilityCode(); // код доступности
+        /** 
+         * @see \Bronevik\HotelsConnector\Enum\AvailabilityCodes
+         */
+
+        // детализация часа заезда
+        /** @var Bronevik\HotelsConnector\Element\PriceDetails $hourPriceDetails */
+        $hourPriceDetails = $offerHourPrice->getPriceDetails();
+    }
+}
+```
+
 #### Ошибки
 
 В случае внутренней ошибки API, возвращается SoapFault
@@ -935,5 +1333,8 @@ catch (SoapFault $e) {
 
     $detail->traceId; // Id запроса
     $detail->code;    // Код ошибки
+    /**
+     * @see \Bronevik\HotelsConnector\Enum\ExceptionCodes 
+     */
 }
 ```
