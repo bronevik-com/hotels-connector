@@ -326,7 +326,7 @@ class HotelsConnector
      * @param string[]                       $skipElements
      * @param Element\GeoLocation|null       $geolocation
      *
-     * @return Element\HotelWithOffers[]
+     * @return Element\Hotels
      */
     public function searchHotelOffers(
         $arrivalDate,
