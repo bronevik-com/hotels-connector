@@ -13,20 +13,20 @@ class AvailableMeal
     public $id;
 
     /**
-     * Стоимость услуги питания
-     * The meal service cost
-     *
-     * @var float
-     */
-    public $price;
-
-    /**
      * Включена ли услуга в предложение
      * Whether the service is included in the offer
      *
      * @var boolean
      */
     public $included;
+
+    /**
+     * Детализация услуги питания.
+     * Detailing of food service.
+     *
+     * @var ClientPriceDetails
+     */
+    public $priceDetails;
 
     /**
      * @param int $id
@@ -45,22 +45,6 @@ class AvailableMeal
     }
 
     /**
-     * @param float $price
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-    }
-
-    /**
-     * @return float
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
      * @param boolean $included
      */
     public function setIncluded($included)
@@ -74,5 +58,21 @@ class AvailableMeal
     public function getIncluded()
     {
         return $this->included;
+    }
+
+    /**
+     * @param ClientPriceDetails $priceDetails
+     */
+    public function setPriceDetails($priceDetails)
+    {
+        $this->priceDetails = $priceDetails;
+    }
+
+    /**
+     * @return ClientPriceDetails
+     */
+    public function getPriceDetails()
+    {
+        return $this->priceDetails;
     }
 }

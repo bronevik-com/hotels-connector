@@ -125,6 +125,14 @@ class OrderServiceAccommodation extends OrderService
     public $extraField = [];
 
     /**
+     * Размер НДС в процентах.
+     * VAT percentage rate
+     *
+     * @var int
+     */
+    public $VATPercent;
+
+    /**
      * Информация о питании
      * An information about meal service
      *
@@ -412,6 +420,23 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
+     * @param int $VATPercent
+     */
+    public function setVATPercent($VATPercent)
+    {
+        $this->VATPercent = $VATPercent;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVATPercent()
+    {
+        return $this->VATPercent;
+    }
+
+    /**
+     *
      * @return bool
      */
     public function hasMeals()

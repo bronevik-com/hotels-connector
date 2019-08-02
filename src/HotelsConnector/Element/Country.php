@@ -21,12 +21,17 @@ class Country
     public $name;
 
     /**
-     * Код страны (трекхбуквенный)
-     * The country code (three-letter)
+     * Коды страны
+     * The country codes
      *
-     * @var string
+     * @var CountryCodes
      */
-    public $code;
+    public $codes;
+
+    public function __construct()
+    {
+        $this->codes = new CountryCodes();
+    }
 
     /**
      * @param int $id
@@ -61,18 +66,18 @@ class Country
     }
 
     /**
-     * @param string $code
+     * @param CountryCodes $codes
      */
-    public function setCode($code)
+    public function setCodes($codes)
     {
-        $this->code = $code;
+        $this->codes = $codes;
     }
 
     /**
-     * @return string
+     * @return CountryCodes
      */
-    public function getCode()
+    public function getCodes()
     {
-        return $this->code;
+        return $this->codes;
     }
 }

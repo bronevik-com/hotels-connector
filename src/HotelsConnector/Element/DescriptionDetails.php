@@ -45,6 +45,14 @@ class DescriptionDetails
     public $longitude;
 
     /**
+     * Индекс отеля.
+     * The hotel zip code.
+     *
+     * @var string
+     */
+    public $zipCode;
+
+    /**
      * Текстовое описание отеля
      * The text hotel description
      *
@@ -154,6 +162,23 @@ class DescriptionDetails
     }
 
     /**
+     * @param string $zipCode
+     */
+    public function setZipCode($zipCode)
+    {
+        $this->zipCode = $zipCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getZipCode()
+    {
+        return $this->zipCode;
+    }
+
+    /**
+     *
      * @param string $description
      */
     public function setDescription($description)
