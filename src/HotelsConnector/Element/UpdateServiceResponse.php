@@ -52,4 +52,3 @@ class UpdateServiceResponse extends BaseResponse
         return $this->referenceId;
     }
 }
-

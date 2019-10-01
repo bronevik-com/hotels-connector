@@ -212,7 +212,8 @@ class HotelsConnector
                     'UpdateServiceResponse'                  => Element\UpdateServiceResponse::class,
                     'WindowViews'                            => Element\WindowViews::class,
                 ],
-            ]);
+            ]
+        );
     }
 
     public function getLastResponse()
@@ -336,8 +337,7 @@ class HotelsConnector
         $hotelIds = [],
         $skipElements = [],
         $geolocation = null
-    )
-    {
+    ) {
         $request = new Element\SearchHotelOffersRequest();
         $this->fillRequest($request);
 
@@ -470,7 +470,7 @@ class HotelsConnector
      * @return Element\OrderServiceAccommodation[]
      * @throws SoapFault
      */
-    public function GetHotelOfferPricing($services)
+    public function getHotelOfferPricing($services)
     {
         $request = new Element\GetHotelOfferPricingRequest();
         $this->fillRequest($request);
@@ -486,7 +486,7 @@ class HotelsConnector
      * @return Element\OrdersChangelogRecord[]
      * @throws SoapFault
      */
-    public function GetOrdersChangelog()
+    public function getOrdersChangelog()
     {
         $request = new Element\GetOrdersChangelogRequest();
         $this->fillRequest($request);
@@ -500,7 +500,7 @@ class HotelsConnector
      * @return string
      * @throws SoapFault
      */
-    public function RemoveOrdersChangelogRecords($recordIds)
+    public function removeOrdersChangelogRecords($recordIds)
     {
         $request = new Element\RemoveOrdersChangelogRecordsRequest();
         $this->fillRequest($request);
@@ -676,8 +676,7 @@ class HotelsConnector
         Element\GeoLocation $geolocation = null,
         array $addElements = [],
         array $searchCriteria = []
-    )
-    {
+    ) {
         $request = new Element\SearchHotelAvailabilityRequest();
         $this->fillRequest($request);
 

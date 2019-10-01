@@ -313,4 +313,3 @@ class HotelRoom
         return $this->windowViews;
     }
 }
-
