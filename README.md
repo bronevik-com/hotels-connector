@@ -1,5 +1,7 @@
 # Коннектор для SOAP-сервиса hotels-api.bronevik.com
 
+[![Build Status](https://travis-ci.org/bronevik-com/hotels-connector.svg?branch=master)](https://travis-ci.org/bronevik-com/hotels-connector)
+
 - [Установка](#Установка)
     - [Требования](#Требования)
     - [Через Composer](#Через-composer)
