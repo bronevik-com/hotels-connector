@@ -178,4 +178,3 @@ class HotelWithCheapestOffer
         return $this->vat;
     }
 }
-

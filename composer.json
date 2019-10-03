@@ -18,5 +18,8 @@
         "psr-4": {
             "Bronevik\\": "src/"
         }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "*"
     }
 }
