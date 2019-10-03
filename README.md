@@ -896,7 +896,7 @@ $orders = $connector->searchOrders($criteria);
 <?php
 
 /** @var Bronevik\HotelsConnector\Element\OrdersChangelogRecord[] $changelogRecords */
-$changelogRecords = $connector->GetOrdersChangelog();
+$changelogRecords = $connector->getOrdersChangelog();
 
 /** @var Bronevik\HotelsConnector\Element\OrdersChangelogRecord[] $changelogRecords */
 foreach ($changelogRecords as $changelogRecord) {
@@ -931,7 +931,7 @@ foreach ($changelogRecords as $changelogRecord) {
 $ids = [1, 2, 3];
 
 /** @var string $status */
-$status = $connector->RemoveOrdersChangelogRecords($ids);
+$status = $connector->removeOrdersChangelogRecords($ids);
 
 // при успешном удалении записей будет возвращен статус 'ok'
 // в случае ошибки будет выброшено исключение
@@ -1016,7 +1016,7 @@ $accommodation->addGuests('Николай');
 $services[] = $accommodation;
 
 /** @var Bronevik\HotelsConnector\Element\OrderServiceAccommodation[] $orderServices */
-$orderServices = $connector->GetHotelOfferPricing($services);
+$orderServices = $connector->getHotelOfferPricing($services);
 
 // объект услуги в ответе точно такой же как и при создании заказа
 ```
