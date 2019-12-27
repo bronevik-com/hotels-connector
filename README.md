@@ -1,5 +1,7 @@
 # Коннектор для SOAP-сервиса hotels-api.bronevik.com
 
+[![Build Status](https://travis-ci.org/bronevik-com/hotels-connector.svg?branch=master)](https://travis-ci.org/bronevik-com/hotels-connector)
+
 - [Установка](#Установка)
     - [Требования](#Требования)
     - [Через Composer](#Через-composer)
@@ -771,7 +773,7 @@ foreach ($order->getServices() as $service) {
     $service->getOfferCode();        // Код предложения, с помощью которого оформлена услуга
     $service->getOfferName();        // Название предложения
     $service->getRoomType();         // Тип размещения
-    $service->getVATPercent();       // Процент НДС
+    $service->getVATPercent();       // Ставка НДС
 
     /** @var Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
     // доп. поля для создания услуг
@@ -896,7 +898,7 @@ $orders = $connector->searchOrders($criteria);
 <?php
 
 /** @var Bronevik\HotelsConnector\Element\OrdersChangelogRecord[] $changelogRecords */
-$changelogRecords = $connector->GetOrdersChangelog();
+$changelogRecords = $connector->getOrdersChangelog();
 
 /** @var Bronevik\HotelsConnector\Element\OrdersChangelogRecord[] $changelogRecords */
 foreach ($changelogRecords as $changelogRecord) {
@@ -931,7 +933,7 @@ foreach ($changelogRecords as $changelogRecord) {
 $ids = [1, 2, 3];
 
 /** @var string $status */
-$status = $connector->RemoveOrdersChangelogRecords($ids);
+$status = $connector->removeOrdersChangelogRecords($ids);
 
 // при успешном удалении записей будет возвращен статус 'ok'
 // в случае ошибки будет выброшено исключение
@@ -1016,19 +1018,19 @@ $accommodation->addGuests('Николай');
 $services[] = $accommodation;
 
 /** @var Bronevik\HotelsConnector\Element\OrderServiceAccommodation[] $orderServices */
-$orderServices = $connector->GetHotelOfferPricing($services);
+$orderServices = $connector->getHotelOfferPricing($services);
 
 // объект услуги в ответе точно такой же как и при создании заказа
 ```
 
 #### Обновление referenceId услуги
 
-Для обновления услуги нужно воспользоваться методом updateService, который принмает на вход идентификатор услуги и referenceId.
+Для обновления услуги нужно воспользоваться методом updateService, который принимает на вход идентификатор услуги и referenceId.
 ```php
 <?php
 
 $serviceId   = 123;           // идентификатор услуги
-$referenceId = 'referenceId'; // referenceId
+$referenceId = 'referenceId'; // идентификатор услуги в системе клиента
 
 $response = $connector->updateService($serviceId, $referenceId);
 
@@ -1038,7 +1040,7 @@ $response->getResult();      // результат обновления referenc
 
 #### Аннуляция услуг
 
-Для аннуляции услуг нужно воспользоваться методом cancelServices, который принмает на вход массив идентификаторов услуг.
+Для аннуляции услуг нужно воспользоваться методом cancelServices, который принимает на вход массив идентификаторов услуг.
 ```php
 <?php
 
@@ -1050,7 +1052,7 @@ $cancelledServices = $connector->cancelServices($serviceIds);
 foreach ($cancelledServices as $cancelledService) {
 /** @var Bronevik\HotelsConnector\Element\CancelledService $cancelledService */
     $cancelledService->getId();     // идентификатор услуги
-    $cancelledService->getStatus(); // статус услуги (есть в документации)
+    $cancelledService->getStatus(); // статус услуги (Описание статусов есть в документации)
     $cancelledService->getResult(); // результат аннуляции услуги
 }
 ```
@@ -1304,7 +1306,7 @@ foreach ($offerCheckinCheckoutPrices as $offerCheckinCheckoutPrice) {
     
     foreach ($earlyArrival->hourPrice as $offerHourPrice) {
         $offerHourPrice->getHour();             // час
-        $offerHourPrice->getAvailabilityCode(); // код доступности
+        $offerHourPrice->getAvailabilityCode(); // код доступности (Описание кодов доступно в документации)
         /** 
          * @see \Bronevik\HotelsConnector\Enum\AvailabilityCodes
          */

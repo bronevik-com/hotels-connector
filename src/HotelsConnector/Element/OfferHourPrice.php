@@ -2,6 +2,8 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\AvailabilityCodes;
+
 class OfferHourPrice
 {
     /**
@@ -17,6 +19,7 @@ class OfferHourPrice
      * Availability Code.
      *
      * @var int
+     * @see AvailabilityCodes
      */
     public $availabilityCode;
 
