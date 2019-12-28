@@ -87,7 +87,11 @@ spl_autoload_register(function ($class) {
 ```php
 <?php
 
-$connector = new Bronevik\HotelsConnector(Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT, true);
+$connector = new Bronevik\HotelsConnector(
+    Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT,
+    Bronevik\HotelsConnector\Enum\Endpoints::ADDITIONAL_DEVELOPMENT,
+    true
+);
 $connector->setCredentials('login', 'password', 'privateKey');
 $connector->setLanguage(Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 ```
@@ -99,10 +103,17 @@ $connector->setLanguage(Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 1. `\Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT` - для разработки, запросы отправляются на тестовый сервер.
 1. `\Bronevik\HotelsConnector\Enum\Endpoints::PRODUCTION` - для использования в бою.
 
+Для `additionalEndpoint` возможны два значения:
+
+1. `\Bronevik\HotelsConnector\Enum\Endpoints::ADDITIONAL_DEVELOPMENT` - для разработки, запросы отправляются на тестовый сервер.
+1. `\Bronevik\HotelsConnector\Enum\Endpoints::ADDITIONAL_PRODUCTION` - для использования в бою.
+
 Флаг `debugMode`, установленный в `true`, позволяет использовать следующие методы:
 
 1. `$connector->getLastResponse()` для получения содержимого последнего ответа сервера.
-1. `$connector->getLastResponceHeaders()` для получения HTTP-заголовков последнего ответа сервера.
+1. `$connector->getLastResponseHeaders()` для получения HTTP-заголовков последнего ответа сервера.
+1. `$connector->getLastRequest()` для получения содержимого последнего запроса сервера.
+1. `$connector->getLastRequestHeaders()` для получения HTTP-заголовков последнего запроса сервера.
 
 В метод `setCredentials()` передаются:
 
@@ -125,7 +136,7 @@ echo $connector->ping('Привет, Броневичок!'); // Привет, �
 
 ## Документация по работе с SOAP сервером без использования этого коннектора
 
-Документация в формате PDF: https://hotels-api.bronevik.com/v2.2.0/api.pdf
+Документация в формате PDF: https://hotels-api.bronevik.com/v2.4.0/api.pdf
 
 Следует упомянуть, что при вызове метода `SearchHotelOffersRequest` параметр `currency` является обязательным и сейчас
 у него только одно возможное значение: `rub`. Без заполнения этого параметра сервис вернёт сообщение об ошибке.
@@ -384,8 +395,15 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
     $hotelWithOffers->getHasTaxes();           // Наличие в отеле дополнительных сборов (например, false)
     $hotelWithOffers->getType();               // Тип отеля (например, hotel)
 
-    // Комментарий для гостя
-    $hotelWithOffers->getInformationForGuest()->getComment();
+    // Информация для гостя
+    $informationForGuest = $hotelWithOffers->getInformationForGuest();
+    $informationForGuest->getComment(); // Комментарий для гостя
+
+    // уведомления для гостя
+    foreach ($informationForGuest->getNotification() as $notification) {
+        $notification->getType();  // тип уведомления
+        $notification->getValue(); // текст уведомления
+    }
 
     // Описание отеля
     /** @var Bronevik\HotelsConnector\Element\DescriptionDetails $descriptionDetails */
@@ -437,7 +455,13 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         $offer->getPaymentRecipient();      // Способ оплаты (например, \Bronevik\HotelsConnector\Enum\PaymentRecipients::AGENCY)
         $offer->getDeepLink();              // ​Элемент для работы метапоисковых систем (например, http://dev.bronevik.com/ru/hotel/russia/yekaterinburg/oktyabrskaya?sd=2019-06-01&ed=2019-06-02&code=T1I3MTYjOTgxNSNzaW5nbGUjMjQjMjAxOS0wNi0wMSMyMDE5LTA2LTAyIzIjMA==&currency=RUB&spk=Corteos)
         $offer->getRoomWithWindow();        // Наличие окна в номере (например, true)
+        $offer->getGuaranteeType();         // Тип гарантии
 
+        // информация о тарифе
+        /** @var Bronevik\HotelsConnector\Element\RateType $rateType */
+        $rateType = $offer->getRateType();
+        $rateType->getRateName();        // Название тарифа
+        $rateType->getRateDescription(); // Описание тарифа
 
         /**
           * Детализация стоимости 
@@ -515,8 +539,9 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         /** @var Bronevik\HotelsConnector\Element\AvailableMeal $meal */
         // питание
         foreach ($offer->getMeals() as $meal) {
-            $meal->getId();       // Идентификатор услуги питания
-            $meal->getIncluded(); // Включена ли услуга в предложение
+            $meal->getId();         // Идентификатор услуги питания
+            $meal->getIncluded();   // Включена ли услуга в предложение
+            $meal->getVATPercent(); // Ставка НДС
 
             /** @var Bronevik\HotelsConnector\Element\ClientPriceDetails $mealPriceDetails */
             $mealPriceDetails = $meal->getPriceDetails();
@@ -573,9 +598,12 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         }
 
         // Правила предоставления предложения
-        /** @var Bronevik\HotelsConnector\Element\OfferPolicy $offerPolicy */
-        foreach ($offer->getOfferPolicies() as $offerPolicy) {
-            $offerPolicy->description; // описание
+        /** @var Bronevik\HotelsConnector\Element\OfferPolicies $offerPolicy */
+        $offerPolicies = $offer->getOfferPolicies();
+        $offerPolicy->getDescription(); // описание
+        foreach ($offerPolicy->getPolicy() as $policy) {
+            $policy->getType();
+            $policy->getValue();
         }
     }
 }
@@ -601,6 +629,13 @@ $hotelsWithInfo = $connector->getHotelInfo([716, 901]);
 
 /** @var Bronevik\HotelsConnector\Element\HotelWithInfo[] $hotelsWithInfo */
 foreach ($hotelsWithInfo as $hotelWithInfo) {
+    // Cертификат, подтверждающий звездность отеля.
+    /** @var Bronevik\HotelsConnector\Element\CategoryCertificate $categoryCertificate */
+    $categoryCertificate = $hotelWithInfo->getCategoryCertificate();
+
+    $categoryCertificate->getNumber();  // Номер сертификата
+    $categoryCertificate->getEndDate(); // Дата истечения сертификата
+
     /** @var Bronevik\HotelsConnector\Element\HotelRoom $hotelRoom */
     foreach ($hotelWithInfo->getRooms() as $hotelRoom) {
         $hotelRoom->getId();            // Id номера
@@ -750,6 +785,7 @@ foreach ($order->getServices() as $service) {
     $service->getComment();          // Комментарий к услуге, который был указан при создании
     $service->getPaymentRecipient(); // Способ оплаты, возможные значения: \Bronevik\HotelsConnector\Enum\PaymentRecipients
     $service->getIsBlockRoom();      // Блочный ли номер?
+    $service->getIsSharedRoom();     // Является ли номер номером с подселением?
     $service->getRoomId();           // Id номера
     $service->getCountryId();        // Id страны
     $service->getCountryName();      // Название страны
@@ -767,6 +803,17 @@ foreach ($order->getServices() as $service) {
     $service->getOfferName();        // Название предложения
     $service->getRoomType();         // Тип размещения
     $service->getVATPercent();       // Ставка НДС
+    $service->getGuaranteeType();    // Тип гарантии
+
+    // информация о тарифе
+    /** @var Bronevik\HotelsConnector\Element\RateType $rateType */
+    $rateType = $service->getRateType();
+    /**
+     * Название тарифа
+     * @see \Bronevik\HotelsConnector\Enum\RateTypeNames
+     */
+    $rateType->getRateName();
+    $rateType->getRateDescription(); // Описание тарифа
 
     /** @var Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
     // доп. поля для создания услуг
@@ -874,6 +921,12 @@ $criteria[] = $criterion;
 // поиск по имени гостя
 $criterion = new Bronevik\HotelsConnector\Element\SearchOrderCriterionGuest();
 $criterion->setName('Имя гостя'); // Имя гостя
+$criteria[] = $criterion;
+
+// поиск по типам гарантии
+$criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionGuaranteeTypes();
+$criterion->addGuaranteeType(Bronevik\HotelsConnector\Enum\GuaranteeTypes::CLIENT_CONTRACT);
+$criterion->addGuaranteeType(Bronevik\HotelsConnector\Enum\GuaranteeTypes::CONSUMER_CARD_WITH_CVV);
 $criteria[] = $criterion;
 
 $orders = $connector->searchOrders($criteria);

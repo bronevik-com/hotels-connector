@@ -98,7 +98,7 @@ class HotelsConnector
      * @return SoapClient
      * @throws SoapFault
      */
-    private function getSoapClient()
+    protected function getSoapClient()
     {
         if ($this->soapClient === null) {
             $this->soapClient = $this->additionalSoapClient = $this->makeSoapClient(
@@ -115,7 +115,7 @@ class HotelsConnector
     /**
      * @throws SoapFault
      */
-    private function getAdditionalSoapClient()
+    protected function getAdditionalSoapClient()
     {
         if ($this->additionalSoapClient === null) {
             $this->additionalSoapClient = $this->makeSoapClient(
