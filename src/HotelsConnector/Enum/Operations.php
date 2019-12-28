@@ -25,4 +25,5 @@ class Operations
     const UPDATE_SERVICE                  = 'updateService';
     const GET_CHECKIN_CHECKOUT_PRICING    = 'getCheckinCheckoutPricing';
     const SEARCH_HOTEL_AVAILABILITY       = 'searchHotelAvailability';
+    const CREATE_ORDER_WITH_CARD_DETAILS  = 'createOrderWithCardDetails';
 }

@@ -101,18 +101,13 @@ class HotelsConnector
     private function getSoapClient()
     {
         if ($this->soapClient === null) {
-            $this->soapClient = new SoapClient(
-                Endpoints::$wsdlUrls[$this->endpoint],
-                [
-                    'location'    => $this->endpoint,
-                    'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_DEFLATE,
-                    'cache_wsdl'  => $this->isDebugMode() ? WSDL_CACHE_NONE : WSDL_CACHE_BOTH,
-                    'trace'       => $this->isDebugMode(),
-                    'features'    => SOAP_SINGLE_ELEMENT_ARRAYS,
-                    'classmap'    => ClassMaps::CLASSMAP_FOR_BASE_ENDPOINT,
-                ]
+            $this->soapClient = $this->additionalSoapClient = $this->makeSoapClient(
+                $this->endpoint,
+                ClassMaps::CLASSMAP_FOR_BASE_ENDPOINT
             );
         }
+
+        $this->lastStartedClient = $this->soapClient;
 
         return $this->soapClient;
     }
@@ -120,21 +115,40 @@ class HotelsConnector
     /**
      * @throws SoapFault
      */
-    protected function getAdditionalSoapClient()
+    private function getAdditionalSoapClient()
     {
         if ($this->additionalSoapClient === null) {
-            $this->additionalSoapClient = new SoapClient(
-                Endpoints::$wsdlUrls[$this->additionalEndpoint],
-                [
-                    'location'    => $this->additionalEndpoint,
-                    'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_DEFLATE,
-                    'cache_wsdl'  => $this->isDebugMode() ? WSDL_CACHE_NONE : WSDL_CACHE_BOTH,
-                    'trace'       => $this->isDebugMode(),
-                    'features'    => SOAP_SINGLE_ELEMENT_ARRAYS,
-                    'classmap'    => ClassMaps::CLASSMAP_FOR_BASE_ENDPOINT,
-                ]
+            $this->additionalSoapClient = $this->makeSoapClient(
+                $this->additionalEndpoint,
+                ClassMaps::CLASSMAP_FOR_ADDITIONAL_ENDPOINT
             );
         }
+
+        $this->lastStartedClient = $this->additionalSoapClient;
+
+        return $this->additionalSoapClient;
+    }
+
+    /**
+     * @param string $endpoint
+     * @param array  $classMap
+     *
+     * @return SoapClient
+     * @throws SoapFault
+     */
+    private function makeSoapClient($endpoint, array $classMap)
+    {
+        return new SoapClient(
+            Endpoints::$wsdlUrls[$endpoint],
+            [
+                'location'    => $endpoint,
+                'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_DEFLATE,
+                'cache_wsdl'  => $this->isDebugMode() ? WSDL_CACHE_NONE : WSDL_CACHE_BOTH,
+                'trace'       => $this->isDebugMode(),
+                'features'    => SOAP_SINGLE_ELEMENT_ARRAYS,
+                'classmap'    => $classMap,
+            ]
+        );
     }
 
     /**
@@ -687,6 +701,20 @@ class HotelsConnector
         $response = $this->getSoapClient()->__call(Operations::SEARCH_HOTEL_AVAILABILITY, [$request]);
 
         return $response->hotels->hotel;
+    }
+
+    /**
+     * @param Element\CreateOrderWithCardDetailsRequest $request
+     *
+     * @return Element\Order
+     * @throws SoapFault
+     */
+    public function createOrderWithCardDetails(Element\CreateOrderWithCardDetailsRequest $request)
+    {
+        /** @var Element\CreateOrderWithCardDetailsResponse $response */
+        $response = $this->getAdditionalSoapClient()->__call(Operations::CREATE_ORDER_WITH_CARD_DETAILS, [$request]);
+
+        return $response->getOrder();
     }
 
     /**
