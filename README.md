@@ -387,13 +387,6 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
     // Комментарий для гостя
     $hotelWithOffers->getInformationForGuest()->getComment();
 
-    // Услуги отеля
-	/** @var Bronevik\HotelsConnector\Element\HotelAmenity $amenity */
-    foreach ($hotelWithOffers->getAmenities() as $amenity) {
-        $amenity->getName(); // Название услуги
-        $amenity->getType(); // Тип услуги
-    }
-
     // Описание отеля
     /** @var Bronevik\HotelsConnector\Element\DescriptionDetails $descriptionDetails */
     /**

@@ -76,11 +76,6 @@ class SearchHotelOffersRequest extends BaseRequest
     public $searchCriteria = [];
 
     /**
-     * @var bool
-     */
-    public $enableProfitShareRates = false;
-
-    /**
      * @see SkipElementTypes::$availableSkipElementsForSearchHotelOffers
      * @var SkipElements
      */

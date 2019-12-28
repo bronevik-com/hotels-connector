@@ -109,6 +109,14 @@ class OrderServiceAccommodation extends OrderService
     public $isBlockRoom;
 
     /**
+     * Является ли номер номером с подселением
+     * Specifies whether the room is dorm or private
+     *
+     * @var bool
+     */
+    public $isSharedRoom;
+
+    /**
      * Место оплаты
      * Specifies the payment scheme
      *
@@ -133,6 +141,22 @@ class OrderServiceAccommodation extends OrderService
     public $VATPercent;
 
     /**
+     * Информация о типе тарифа.
+     * Information about rate type.
+     *
+     * @var RateType
+     */
+    public $rateType;
+
+    /**
+     * Информация о типе гарантии.
+     * Information about guarantee type.
+     *
+     * @var string
+     */
+    public $guaranteeType;
+
+    /**
      * Информация о питании
      * An information about meal service
      *
@@ -144,9 +168,9 @@ class OrderServiceAccommodation extends OrderService
      * Правила предоставления заказа
      * A policies of granting current offer
      *
-     * @var OfferPolicy[]
+     * @var OfferPolicies
      */
-    public $offerPolicies = [];
+    public $offerPolicies;
 
     /**
      * Детализация стоимости на каждый день проживания
@@ -159,8 +183,10 @@ class OrderServiceAccommodation extends OrderService
     public function __construct()
     {
         parent::__construct();
-        $this->contract    = new Contract();
-        $this->dailyPrices = new DailyPrices();
+        $this->contract      = new Contract();
+        $this->rateType      = new RateType();
+        $this->offerPolicies = new OfferPolicies();
+        $this->dailyPrices   = new DailyPrices();
     }
 
     /**
@@ -380,6 +406,22 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
+     * @param bool $isSharedRoom
+     */
+    public function setIsSharedRoom($isSharedRoom)
+    {
+        $this->isSharedRoom = $isSharedRoom;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsSharedRoom()
+    {
+        return $this->isSharedRoom;
+    }
+
+    /**
      * @param string $paymentRecipient
      */
     public function setPaymentRecipient($paymentRecipient)
@@ -436,7 +478,38 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     *
+     * @param RateType $rateType
+     */
+    public function setRateType($rateType)
+    {
+        $this->rateType = $rateType;
+    }
+
+    /**
+     * @return RateType
+     */
+    public function getRateType()
+    {
+        return $this->rateType;
+    }
+
+    /**
+     * @param string $guaranteeType
+     */
+    public function setGuaranteeType($guaranteeType)
+    {
+        $this->guaranteeType = $guaranteeType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGuaranteeType()
+    {
+        return $this->guaranteeType;
+    }
+
+    /**
      * @return bool
      */
     public function hasMeals()
@@ -461,27 +534,19 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return bool
+     * @param OfferPolicies $offerPolicies
      */
-    public function hasOfferPolicies()
+    public function setOfferPolicies($offerPolicies)
     {
-        return count($this->offerPolicies) > 0;
+        $this->offerPolicies = $offerPolicies;
     }
 
     /**
-     * @return OfferPolicy[]
+     * @return OfferPolicies
      */
     public function getOfferPolicies()
     {
         return $this->offerPolicies;
-    }
-
-    /**
-     * @param OfferPolicy $offerPolicies
-     */
-    public function addOfferPolicies($offerPolicies)
-    {
-        $this->offerPolicies[] = $offerPolicies;
     }
 
     /**

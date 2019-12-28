@@ -92,14 +92,6 @@ class Hotel
     public $hasTaxes;
 
     /**
-     * Услуги отеля
-     * The hotel amenities
-     *
-     * @var HotelAmenity[]
-     */
-    public $amenities = [];
-
-    /**
      * Категория отеля (от 0 до 5, если 0 - категория не указана)
      * The property star rating (0-5 stars)
      *
@@ -312,30 +304,6 @@ class Hotel
     public function getHasTaxes()
     {
         return $this->hasTaxes;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasAmenities()
-    {
-        return count($this->amenities) > 0;
-    }
-
-    /**
-     * @return HotelAmenity[]
-     */
-    public function getAmenities()
-    {
-        return $this->amenities;
-    }
-
-    /**
-     * @param HotelAmenity $amenities
-     */
-    public function addAmenities($amenities)
-    {
-        $this->amenities[] = $amenities;
     }
 
     /**

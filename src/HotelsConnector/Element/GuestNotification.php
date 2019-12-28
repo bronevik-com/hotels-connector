@@ -2,23 +2,19 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-/**
- * Правила предоставления предложения
- * A policy of granting current offer
- */
-class OfferPolicy
+class GuestNotification
 {
     /**
-     * Тип правила предоставления предложения.
-     * A type of policy of granting current offer.
+     * Тип уведомления.
+     * Notification type.
      *
      * @var string
      */
     public $type;
 
     /**
-     * Значение правила предоставления предложения.
-     * A value of policy of granting current offer.
+     * Текст уведомления.
+     * Notification text.
      *
      * @var string
      */
