@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-class GuaranteeTypes
+class GuaranteeTypes extends Enum
 {
     /**
      * Наличные с гарантией договором

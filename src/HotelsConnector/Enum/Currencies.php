@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-abstract class Currencies
+abstract class Currencies extends Enum
 {
     const RUSSIAN_RUBLE = 'rub';
 }

@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-abstract class Endpoints
+abstract class Endpoints extends Enum
 {
     const PRODUCTION  = 'https://hotels-api.bronevik.com/v2.4.0/api.php';
     const DEVELOPMENT = 'https://dev-hotels-api.bronevik.com/v2.4.0/api.php';

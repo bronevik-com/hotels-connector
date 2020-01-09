@@ -4,7 +4,7 @@ namespace Bronevik\HotelsConnector\Enum;
 
 use Bronevik\HotelsConnector\Element as Element;
 
-class ClassMaps
+class ClassMaps extends Enum
 {
     const CLASSMAP_FOR_BASE_ENDPOINT = [
         'AddElements'                            => Element\AddElements::class,

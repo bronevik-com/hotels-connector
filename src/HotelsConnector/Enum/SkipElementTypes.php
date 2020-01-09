@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-abstract class SkipElementTypes
+abstract class SkipElementTypes extends Enum
 {
     // ежедневные цены
     const DAILY_PRICES = 'dailyPrices';

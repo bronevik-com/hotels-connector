@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-abstract class AddElementsTypes
+abstract class AddElementsTypes extends Enum
 {
     // Геоинформация об отеле
     const GEO = 'Geo';
@@ -54,5 +54,9 @@ abstract class AddElementsTypes
 
     // Главная фотография номера
     const OFFER_ROOM_PHOTO = 'Offer_RoomPhoto';
+
+    // Тип тарифа номера
+    const OFFER_RATE_TYPE = 'Offer_RateType';
+
     // endregion
 }
