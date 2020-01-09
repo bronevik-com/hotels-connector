@@ -16,10 +16,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Bronevik\\": "src/"
+            "Bronevik\\": "src/",
+            "Bronevik\\Tests\\": "tests/"
         }
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "*",
+        "phpunit/phpunit": "^8.5"
     }
 }
