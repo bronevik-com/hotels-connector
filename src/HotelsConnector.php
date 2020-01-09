@@ -33,14 +33,14 @@ class HotelsConnector
      *
      * @var SoapClient
      */
-    private $soapClient;
+    protected $soapClient;
 
     /**
      * Клиент для дополнительного endpoint
      *
      * @var SoapClient
      */
-    private $additionalSoapClient;
+    protected $additionalSoapClient;
 
     /**
      * Последний запущенный клиент
@@ -98,7 +98,7 @@ class HotelsConnector
      * @return SoapClient
      * @throws SoapFault
      */
-    protected function getSoapClient()
+    private function getSoapClient()
     {
         if ($this->soapClient === null) {
             $this->soapClient = $this->additionalSoapClient = $this->makeSoapClient(
@@ -115,7 +115,7 @@ class HotelsConnector
     /**
      * @throws SoapFault
      */
-    protected function getAdditionalSoapClient()
+    private function getAdditionalSoapClient()
     {
         if ($this->additionalSoapClient === null) {
             $this->additionalSoapClient = $this->makeSoapClient(
