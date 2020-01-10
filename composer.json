@@ -16,7 +16,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Bronevik\\": "src/",
+            "Bronevik\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
             "Bronevik\\Tests\\": "tests/"
         }
     },
