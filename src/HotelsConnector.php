@@ -101,7 +101,7 @@ class HotelsConnector
     private function getSoapClient()
     {
         if ($this->soapClient === null) {
-            $this->soapClient = $this->additionalSoapClient = $this->makeSoapClient(
+            $this->soapClient = $this->makeSoapClient(
                 $this->endpoint,
                 ClassMaps::CLASSMAP_FOR_BASE_ENDPOINT
             );
@@ -711,6 +711,8 @@ class HotelsConnector
      */
     public function createOrderWithCardDetails(Element\CreateOrderWithCardDetailsRequest $request)
     {
+        $this->fillRequest($request);
+
         /** @var Element\CreateOrderWithCardDetailsResponse $response */
         $response = $this->getAdditionalSoapClient()->__call(Operations::CREATE_ORDER_WITH_CARD_DETAILS, [$request]);
 
