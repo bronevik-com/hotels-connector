@@ -3,6 +3,8 @@
 namespace Bronevik\Tests;
 
 use Bronevik\HotelsConnector\Element\Amenity;
+use Bronevik\HotelsConnector\Element\BaseRequest;
+use Bronevik\HotelsConnector\Element\BaseResponse;
 use Bronevik\HotelsConnector\Element\CancelledService;
 use Bronevik\HotelsConnector\Element\CancelledServices;
 use Bronevik\HotelsConnector\Element\CancelOrderRequest;
@@ -73,8 +75,8 @@ use Bronevik\HotelsConnector\Element\UpdateServiceResponse;
 use Bronevik\HotelsConnector\Enum\Currencies;
 use Bronevik\HotelsConnector\Enum\Operations;
 use Bronevik\Tests\Mock\HotelsConnectorMock;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use PHPUnit_Framework_MockObject_MockObject;
 use SoapClient;
 use SoapFault;
 
@@ -84,11 +86,23 @@ use SoapFault;
 class HotelsConnectorTest extends TestCase
 {
     /**
-     * @return MockObject|SoapClient
+     * @param string       $operation
+     * @param BaseRequest  $request
+     * @param BaseResponse $response
+     *
+     * @return PHPUnit_Framework_MockObject_MockObject|SoapClient
      */
-    private function getSoapClient()
+    private function getSoapClient($operation, $request, $response)
     {
-        return $this->createMock(SoapClient::class);
+        $baseClient = $this->createMock(SoapClient::class);
+        // Assert
+        $baseClient
+            ->expects($this->once())
+            ->method('__call')
+            ->with($operation, [$request])
+            ->willReturn($response);
+
+        return $baseClient;
     }
 
     /**
@@ -127,14 +141,7 @@ class HotelsConnectorTest extends TestCase
         $response           = new GetHotelOfferPricingResponse();
         $response->services = $responseServices;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_HOTEL_OFFER_PRICING, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_HOTEL_OFFER_PRICING, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -161,14 +168,7 @@ class HotelsConnectorTest extends TestCase
         $response     = new SendServiceMessageResponse();
         $response->id = $messageId;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::SEND_SERVICE_MESSAGE, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::SEND_SERVICE_MESSAGE, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -205,14 +205,7 @@ class HotelsConnectorTest extends TestCase
         $response         = new SearchHotelOffersResponse();
         $response->hotels = $hotels;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::SEARCH_HOTEL_OFFERS, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::SEARCH_HOTEL_OFFERS, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -254,14 +247,7 @@ class HotelsConnectorTest extends TestCase
         $response         = new SearchHotelOffersResponse();
         $response->hotels = $hotels;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::SEARCH_HOTEL_OFFERS, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::SEARCH_HOTEL_OFFERS, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -297,14 +283,7 @@ class HotelsConnectorTest extends TestCase
         $response         = new SearchHotelOffersResponse();
         $response->hotels = $hotels;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::SEARCH_HOTEL_OFFERS, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::SEARCH_HOTEL_OFFERS, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -331,14 +310,7 @@ class HotelsConnectorTest extends TestCase
         $response            = new GetCountriesResponse();
         $response->countries = $expectedCountries;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_COUNTRIES, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_COUNTRIES, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -371,14 +343,7 @@ class HotelsConnectorTest extends TestCase
         $response->hotels        = new HotelsWithCheapestOffer();
         $response->hotels->hotel = $hotels;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::SEARCH_HOTEL_AVAILABILITY, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::SEARCH_HOTEL_AVAILABILITY, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -415,14 +380,7 @@ class HotelsConnectorTest extends TestCase
         $response->hotels        = new HotelsWithCheapestOffer();
         $response->hotels->hotel = $hotels;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::SEARCH_HOTEL_AVAILABILITY, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::SEARCH_HOTEL_AVAILABILITY, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -465,14 +423,7 @@ class HotelsConnectorTest extends TestCase
         $response->hotels        = new HotelsWithCheapestOffer();
         $response->hotels->hotel = $hotels;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::SEARCH_HOTEL_AVAILABILITY, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::SEARCH_HOTEL_AVAILABILITY, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -506,14 +457,7 @@ class HotelsConnectorTest extends TestCase
         $response->checkinCheckoutPrices              = new OffersCheckinCheckoutPrices();
         $response->checkinCheckoutPrices->offerPrices = $offerCheckinCheckoutPrices;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_CHECKIN_CHECKOUT_PRICING, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_CHECKIN_CHECKOUT_PRICING, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -536,14 +480,7 @@ class HotelsConnectorTest extends TestCase
         $response        = new GetMealsResponse();
         $response->meals = $expectedMeals;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_MEALS, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_MEALS, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -568,14 +505,7 @@ class HotelsConnectorTest extends TestCase
         $response         = new CancelOrderResponse();
         $response->result = $result;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::CANCEL_ORDER, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::CANCEL_ORDER, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -603,14 +533,7 @@ class HotelsConnectorTest extends TestCase
         $response           = new GetServiceMessagesResponse();
         $response->messages = $messages;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_SERVICE_MESSAGES, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_SERVICE_MESSAGES, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -636,14 +559,7 @@ class HotelsConnectorTest extends TestCase
         $response         = new GetCitiesResponse();
         $response->cities = $expectedCities;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_CITIES, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_CITIES, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -666,14 +582,7 @@ class HotelsConnectorTest extends TestCase
         $response            = new GetAmenitiesResponse();
         $response->amenities = $expectedAmenities;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_AMENITIES, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_AMENITIES, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -701,14 +610,7 @@ class HotelsConnectorTest extends TestCase
         $response        = new GetHotelOfferResponse();
         $response->offer = $offer;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_HOTEL_OFFER, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_HOTEL_OFFER, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -731,14 +633,7 @@ class HotelsConnectorTest extends TestCase
         $response        = new CreateOrderResponse();
         $response->order = $order;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::CREATE_ORDER, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::CREATE_ORDER, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -762,14 +657,7 @@ class HotelsConnectorTest extends TestCase
         $response       = new PingResponse();
         $response->data = $pingWord;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::PING, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::PING, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -794,14 +682,7 @@ class HotelsConnectorTest extends TestCase
         $response         = new RemoveOrdersChangelogRecordsResponse();
         $response->status = $status;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::REMOVE_ORDERS_CHANGELOG_RECORDS, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::REMOVE_ORDERS_CHANGELOG_RECORDS, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -824,14 +705,7 @@ class HotelsConnectorTest extends TestCase
         $response                        = new GetOrdersChangelogResponse();
         $response->ordersChangelogRecord = $records;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_ORDERS_CHANGELOG, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_ORDERS_CHANGELOG, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -858,14 +732,7 @@ class HotelsConnectorTest extends TestCase
         $response           = new CancelServicesResponse();
         $response->services = $cancellationServicesResult;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::CANCEL_SERVICES, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::CANCEL_SERVICES, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -890,14 +757,7 @@ class HotelsConnectorTest extends TestCase
         $response        = new GetOrderResponse();
         $response->order = $order;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_ORDER, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_ORDER, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -922,14 +782,7 @@ class HotelsConnectorTest extends TestCase
         $response         = new GetHotelInfoResponse();
         $response->hotels = $hotels;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::GET_HOTEL_INFO, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::GET_HOTEL_INFO, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -957,14 +810,7 @@ class HotelsConnectorTest extends TestCase
         $response         = new SearchOrdersResponse();
         $response->orders = $orders;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::SEARCH_ORDERS, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::SEARCH_ORDERS, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -991,14 +837,7 @@ class HotelsConnectorTest extends TestCase
         $response->result      = true;
         $response->referenceId = $refenceId;
 
-        $baseClient = $this->getSoapClient();
-        // Assert
-        $baseClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::UPDATE_SERVICE, [$request])
-            ->willReturn($response);
-
+        $baseClient      = $this->getSoapClient(Operations::UPDATE_SERVICE, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
@@ -1021,15 +860,8 @@ class HotelsConnectorTest extends TestCase
         $response        = new CreateOrderWithCardDetailsResponse();
         $response->order = $order;
 
-        $additionalClient = $this->getSoapClient();
-        // Assert
-        $additionalClient
-            ->expects($this->once())
-            ->method('__call')
-            ->with(Operations::CREATE_ORDER_WITH_CARD_DETAILS, [$request])
-            ->willReturn($response);
-
-        $hotelsConnector = $this->getHotelsConnector(null, $additionalClient);
+        $additionalClient = $this->getSoapClient(Operations::CREATE_ORDER_WITH_CARD_DETAILS, $request, $response);
+        $hotelsConnector  = $this->getHotelsConnector(null, $additionalClient);
 
         // Act
         $apiResponse = $hotelsConnector->createOrderWithCardDetails($request);
