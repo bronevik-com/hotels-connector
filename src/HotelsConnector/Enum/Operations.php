@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-class Operations
+class Operations extends Enum
 {
     const PING                            = 'ping';
     const GET_MEALS                       = 'getMeals';

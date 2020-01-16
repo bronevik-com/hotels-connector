@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-class RateTypeNames
+class RateTypeNames extends Enum
 {
     const REFUNDABLE_RATE                           = 'RefundableRate';
     const NON_REFUNDABLE_RATE                       = 'NonrefundableRate';

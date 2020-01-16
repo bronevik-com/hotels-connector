@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-abstract class PaymentRecipients
+abstract class PaymentRecipients extends Enum
 {
     // безналичный расчёт
     const AGENCY = 'agency';

@@ -79,8 +79,7 @@ class HotelsConnector
         $endpoint,
         $additionalEndpoint,
         $debugMode = false
-    )
-    {
+    ) {
         $this->endpoint           = $endpoint;
         $this->additionalEndpoint = $additionalEndpoint;
         $this->debugMode          = (bool) $debugMode;
@@ -101,7 +100,7 @@ class HotelsConnector
     private function getSoapClient()
     {
         if ($this->soapClient === null) {
-            $this->soapClient = $this->additionalSoapClient = $this->makeSoapClient(
+            $this->soapClient = $this->makeSoapClient(
                 $this->endpoint,
                 ClassMaps::CLASSMAP_FOR_BASE_ENDPOINT
             );
@@ -307,8 +306,7 @@ class HotelsConnector
         $hotelIds = [],
         $skipElements = [],
         $geolocation = null
-    )
-    {
+    ) {
         $request = new Element\SearchHotelOffersRequest();
         $this->fillRequest($request);
 
@@ -683,8 +681,7 @@ class HotelsConnector
         Element\GeoLocation $geolocation = null,
         array $addElements = [],
         array $searchCriteria = []
-    )
-    {
+    ) {
         $request = new Element\SearchHotelAvailabilityRequest();
         $this->fillRequest($request);
 
@@ -711,6 +708,8 @@ class HotelsConnector
      */
     public function createOrderWithCardDetails(Element\CreateOrderWithCardDetailsRequest $request)
     {
+        $this->fillRequest($request);
+
         /** @var Element\CreateOrderWithCardDetailsResponse $response */
         $response = $this->getAdditionalSoapClient()->__call(Operations::CREATE_ORDER_WITH_CARD_DETAILS, [$request]);
 

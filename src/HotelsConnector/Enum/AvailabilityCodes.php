@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-abstract class AvailabilityCodes
+abstract class AvailabilityCodes extends Enum
 {
     /**
      * Заезд/выезд доступен с мгновенным подтверждением
