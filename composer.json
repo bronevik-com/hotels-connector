@@ -26,6 +26,11 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "*",
-        "phpunit/phpunit": "^4"
+        "phpunit/phpunit": "^5"
+    },
+    "config": {
+        "platform": {
+            "php": "5.6.40"
+        }
     }
 }
