@@ -9,8 +9,8 @@ namespace Bronevik\HotelsConnector\Element;
 class HotelWithInfo extends Hotel
 {
     /**
-     * Cертификат, подтверждающий звездность отеля.
-     * Hotel's star sertificate information.
+     * Сертификат, подтверждающий звездность отеля.
+     * Hotel's star certificate information.
      *
      * @var CategoryCertificate
      */

@@ -27,6 +27,7 @@
     - [Получение информации о предложении отеля](#Получение-информации-о-предложении-отеля)
     - [Заказ бронирования проживания и операции с заказами](#Заказ-бронирования-проживания-и-операции-с-заказами)
         - [Создание заказа](#Создание-заказа)
+        - [Создание заказа с данными банковской карты](#Создание-заказа-с-данными-банковской-карты)
         - [Получение информации о заказе](#Получение-информации-о-заказе)
         - [Отмена (аннуляция) заказа](#Отмена-заказа)
         - [Поиск заказов](#Поиск-заказов)
@@ -89,7 +90,7 @@ spl_autoload_register(function ($class) {
 
 $connector = new Bronevik\HotelsConnector(
     Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT,
-    Bronevik\HotelsConnector\Enum\Endpoints::ADDITIONAL_DEVELOPMENT,
+    Bronevik\HotelsConnector\Enum\Endpoints::SECURE_DEVELOPMENT,
     true
 );
 $connector->setCredentials('login', 'password', 'privateKey');
@@ -103,10 +104,10 @@ $connector->setLanguage(Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 1. `\Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT` - для разработки, запросы отправляются на тестовый сервер.
 1. `\Bronevik\HotelsConnector\Enum\Endpoints::PRODUCTION` - для использования в бою.
 
-Для `additionalEndpoint` возможны два значения:
+Для `secureEndpoint` возможны два значения:
 
-1. `\Bronevik\HotelsConnector\Enum\Endpoints::ADDITIONAL_DEVELOPMENT` - для разработки, запросы отправляются на тестовый сервер.
-1. `\Bronevik\HotelsConnector\Enum\Endpoints::ADDITIONAL_PRODUCTION` - для использования в бою.
+1. `\Bronevik\HotelsConnector\Enum\Endpoints::SECURE_DEVELOPMENT` - для разработки, запросы отправляются на тестовый сервер.
+1. `\Bronevik\HotelsConnector\Enum\Endpoints::SECURE_PRODUCTION` - для использования в бою.
 
 Флаг `debugMode`, установленный в `true`, позволяет использовать следующие методы:
 
@@ -600,8 +601,8 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         // Правила предоставления предложения
         /** @var Bronevik\HotelsConnector\Element\OfferPolicies $offerPolicy */
         $offerPolicies = $offer->getOfferPolicies();
-        $offerPolicy->getDescription(); // описание
-        foreach ($offerPolicy->getPolicy() as $policy) {
+        $offerPolicies->getDescription(); // описание
+        foreach ($offerPolicies->getPolicy() as $policy) {
             $policy->getType();
             $policy->getValue();
         }
@@ -629,7 +630,7 @@ $hotelsWithInfo = $connector->getHotelInfo([716, 901]);
 
 /** @var Bronevik\HotelsConnector\Element\HotelWithInfo[] $hotelsWithInfo */
 foreach ($hotelsWithInfo as $hotelWithInfo) {
-    // Cертификат, подтверждающий звездность отеля.
+    // Сертификат, подтверждающий звездность отеля.
     /** @var Bronevik\HotelsConnector\Element\CategoryCertificate $categoryCertificate */
     $categoryCertificate = $hotelWithInfo->getCategoryCertificate();
 
@@ -853,6 +854,71 @@ foreach ($order->getServices() as $service) {
     $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
 }
 ```
+
+#### Создание заказа с данными банковской карты
+
+Запрос:
+
+```php
+<?php
+/** @var Bronevik\HotelsConnector\Element\HotelOffer $offer */
+$offer = $connector->getHotelOffer('T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=');
+
+// Создание запроса на бронирование номеров
+$orderRequest = new Bronevik\HotelsConnector\Element\CreateOrderWithCardDetailsRequest();
+
+// Заполнение данных банковской карты
+$orderRequest->guestInfo = new Bronevik\HotelsConnector\Element\GuestInfo();
+$orderRequest->guestInfo->cardDetails = new Bronevik\HotelsConnector\Element\CardDetails();
+$orderRequest->guestInfo->cardDetails->pan             = '1234123412341234'; // Номер карты
+$orderRequest->guestInfo->cardDetails->cardholder      = 'IVANOV IVAN';      // Владелец карты
+$orderRequest->guestInfo->cardDetails->expirationMonth = '01';               // Месяц истечения карты
+$orderRequest->guestInfo->cardDetails->expirationYear  = '20';               // Год истечения карты
+$orderRequest->guestInfo->cardDetails->CVV             = '123';              // CVV/CVC
+
+// Заполнение информации о госте
+$orderRequest->guestInfo->contacts = new Bronevik\HotelsConnector\Element\GuestContacts();
+$orderRequest->guestInfo->contacts->email = 'guest@email.com'; // email гостя
+$orderRequest->guestInfo->contacts->phone = '+79999999999';    // контактный телефон гостя
+
+$orderRequest->setContactPerson('Григорий');
+$orderRequest->setContactEmail('grigoriy@example.com');
+$orderRequest->setContactPhone('+79991234567');
+$orderRequest->setComment('Гости приедут в районе 18 часов.');
+
+// Создание услуг проживания и привязка их к заказу.
+$accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
+$accommodation->setOfferCode($offer->getCode());
+$accommodation->setComment('Гостям потребуется высокоскоростное подключение к Интернет.');
+$accommodation->addGuests('Валентин');
+$accommodation->addMeals(2);            // Добавить питание в услугу
+$accommodation->addMeals(34);           // Если нужно несколько услуг питания
+$accommodation->setCheckinHour(10);     // Установить час заезда
+$accommodation->setCheckoutHour(8);     // Установить час выезда
+$accommodation->setSellingPrice(1000);  // Установить желаемую цену продажи
+$accommodation->setReferenceId('test'); // Установить номер услуги в системе клиента
+// также можно добавить доп. поля для создания услуг
+$serviceExtraField = new Bronevik\HotelsConnector\Element\ServiceExtraField();
+$serviceExtraField->setName('name');
+$serviceExtraField->setValue('value');
+$accommodation->addExtraField($serviceExtraField);
+
+$orderRequest->addServices($accommodation);
+
+// Нужно создавать по услуге на каждый бронируемый номер.
+$accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
+$accommodation->setOfferCode($offer->getCode());
+$accommodation->setComment('Не представлять напитки из минибара.');
+$accommodation->addGuests('Николай');
+$accommodation->addGuests('Эльдар');
+$orderRequest->addServices($accommodation);
+
+// Отправка заказа
+/** @var Bronevik\HotelsConnector\Element\Order $order */
+$order = $connector->createOrderWithCardDetails($orderRequest);
+```
+
+Результат возвращается такой же, как и для обычного создания заказа (CreateOrder).
 
 #### Получение информации о заказе
 

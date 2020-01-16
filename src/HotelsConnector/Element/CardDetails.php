@@ -37,8 +37,7 @@ class CardDetails
     public $expirationYear;
 
     /**
-     * Приватный ключ.
-     * Private key.
+     * CVV/CVC
      *
      * @var string
      */

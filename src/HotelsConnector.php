@@ -24,9 +24,9 @@ class HotelsConnector
      * Дополнительный endpoint
      *
      * @var string
-     * @see Endpoints::ADDITIONAL_*
+     * @see Endpoints::SECURE_*
      */
-    private $additionalEndpoint;
+    private $secureEndpoint;
 
     /**
      * Клиент
@@ -40,7 +40,7 @@ class HotelsConnector
      *
      * @var SoapClient
      */
-    protected $additionalSoapClient;
+    protected $secureSoapClient;
 
     /**
      * Последний запущенный клиент
@@ -72,17 +72,17 @@ class HotelsConnector
 
     /**
      * @param string $endpoint
-     * @param string $additionalEndpoint
+     * @param string $secureEndpoint
      * @param bool   $debugMode
      */
     public function __construct(
         $endpoint,
-        $additionalEndpoint,
+        $secureEndpoint,
         $debugMode = false
     ) {
-        $this->endpoint           = $endpoint;
-        $this->additionalEndpoint = $additionalEndpoint;
-        $this->debugMode          = (bool) $debugMode;
+        $this->endpoint       = $endpoint;
+        $this->secureEndpoint = $secureEndpoint;
+        $this->debugMode      = (bool) $debugMode;
     }
 
     /**
@@ -114,18 +114,18 @@ class HotelsConnector
     /**
      * @throws SoapFault
      */
-    private function getAdditionalSoapClient()
+    private function getSecureSoapClient()
     {
-        if ($this->additionalSoapClient === null) {
-            $this->additionalSoapClient = $this->makeSoapClient(
-                $this->additionalEndpoint,
-                ClassMaps::CLASSMAP_FOR_ADDITIONAL_ENDPOINT
+        if ($this->secureSoapClient === null) {
+            $this->secureSoapClient = $this->makeSoapClient(
+                $this->secureEndpoint,
+                ClassMaps::CLASSMAP_FOR_SECURE_ENDPOINT
             );
         }
 
-        $this->lastStartedClient = $this->additionalSoapClient;
+        $this->lastStartedClient = $this->secureSoapClient;
 
-        return $this->additionalSoapClient;
+        return $this->secureSoapClient;
     }
 
     /**
@@ -711,7 +711,7 @@ class HotelsConnector
         $this->fillRequest($request);
 
         /** @var Element\CreateOrderWithCardDetailsResponse $response */
-        $response = $this->getAdditionalSoapClient()->__call(Operations::CREATE_ORDER_WITH_CARD_DETAILS, [$request]);
+        $response = $this->getSecureSoapClient()->__call(Operations::CREATE_ORDER_WITH_CARD_DETAILS, [$request]);
 
         return $response->getOrder();
     }

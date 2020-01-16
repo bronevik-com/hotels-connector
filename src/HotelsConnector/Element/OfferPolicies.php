@@ -23,6 +23,8 @@ class OfferPolicies
 
     /**
      * @param string $description
+     *
+     * @deprecated
      */
     public function setDescription($description)
     {
@@ -31,6 +33,7 @@ class OfferPolicies
 
     /**
      * @return string
+     * @deprecated
      */
     public function getDescription()
     {
