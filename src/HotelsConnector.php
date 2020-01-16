@@ -79,8 +79,7 @@ class HotelsConnector
         $endpoint,
         $additionalEndpoint,
         $debugMode = false
-    )
-    {
+    ) {
         $this->endpoint           = $endpoint;
         $this->additionalEndpoint = $additionalEndpoint;
         $this->debugMode          = (bool) $debugMode;
@@ -307,8 +306,7 @@ class HotelsConnector
         $hotelIds = [],
         $skipElements = [],
         $geolocation = null
-    )
-    {
+    ) {
         $request = new Element\SearchHotelOffersRequest();
         $this->fillRequest($request);
 
@@ -683,8 +681,7 @@ class HotelsConnector
         Element\GeoLocation $geolocation = null,
         array $addElements = [],
         array $searchCriteria = []
-    )
-    {
+    ) {
         $request = new Element\SearchHotelAvailabilityRequest();
         $this->fillRequest($request);
 
