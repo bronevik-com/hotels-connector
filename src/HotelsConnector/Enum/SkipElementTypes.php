@@ -16,6 +16,9 @@ abstract class SkipElementTypes extends Enum
     // детализация штрафа
     const PENALTY_PRICE_DETAILS = 'penaltyPriceDetails';
 
+    // элемент для работы метапоисковых систем
+    const DEEPLINK = 'deepLink';
+
     /**
      * Элементы, которые можно скипнуть в операци GetHotelOffer
      * @var string[]
@@ -24,6 +27,7 @@ abstract class SkipElementTypes extends Enum
         self::DAILY_PRICES,
         self::MEAL_PRICES,
         self::PENALTY_PRICE_DETAILS,
+        self::DEEPLINK,
     ];
 
     /**
