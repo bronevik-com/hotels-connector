@@ -149,7 +149,7 @@ class ClassMaps extends Enum
         'WindowViews'                            => Element\WindowViews::class,
     ];
 
-    const CLASSMAP_FOR_ADDITIONAL_ENDPOINT = [
+    const CLASSMAP_FOR_SECURE_ENDPOINT = [
         'AvailableMeal'                      => Element\AvailableMeal::class,
         'BaseRequest'                        => Element\BaseRequest::class,
         'BaseResponse'                       => Element\BaseResponse::class,

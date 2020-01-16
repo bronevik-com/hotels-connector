@@ -58,6 +58,7 @@ class CreateOrderWithCardDetailsRequest extends BaseRequest
 
     public function __construct()
     {
+        parent::__construct();
         $this->guestInfo = new GuestInfo();
     }
 
