@@ -25,8 +25,8 @@ class HotelsConnectorMock extends HotelsConnector
     /**
      * @param SoapClient $client
      */
-    public function setAdditionalClient($client)
+    public function setSecureClient($client)
     {
-        $this->additionalSoapClient = $client;
+        $this->secureSoapClient = $client;
     }
 }

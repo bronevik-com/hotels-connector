@@ -120,7 +120,7 @@ class HotelsConnectorTest extends TestCase
         }
 
         if ($additionalClient) {
-            $connector->setAdditionalClient($additionalClient);
+            $connector->setSecureClient($additionalClient);
         }
 
         return $connector;
