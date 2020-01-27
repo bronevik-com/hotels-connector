@@ -47,7 +47,7 @@ class HotelsConnector
      *
      * @var SoapClient
      */
-    private $lastStartedClient;
+    protected $lastStartedClient;
 
     /**
      * Режим отладки
