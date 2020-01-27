@@ -8,7 +8,7 @@ use Bronevik\HotelsConnector\Enum\GuaranteeTypes;
  * Поиск по типам гарантии
  * The offer search by guarantee types
  */
-class SearchOfferCriterionGuaranteeTypes
+class SearchOfferCriterionGuaranteeTypes extends SearchOfferCriterion
 {
     /**
      * Тип гарантии
