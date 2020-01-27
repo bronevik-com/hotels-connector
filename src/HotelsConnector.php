@@ -266,7 +266,7 @@ class HotelsConnector
     /**
      * Получение списка городов
      *
-     * @param string $countryId
+     * @param int $countryId
      *
      * @return Element\City[]
      * @throws SoapFault
