@@ -27,7 +27,6 @@ abstract class SkipElementTypes extends Enum
         self::DAILY_PRICES,
         self::MEAL_PRICES,
         self::PENALTY_PRICE_DETAILS,
-        self::DEEPLINK,
     ];
 
     /**
@@ -39,5 +38,6 @@ abstract class SkipElementTypes extends Enum
         self::DESCRIPTION_DETAILS,
         self::MEAL_PRICES,
         self::PENALTY_PRICE_DETAILS,
+        self::DEEPLINK,
     ];
 }
