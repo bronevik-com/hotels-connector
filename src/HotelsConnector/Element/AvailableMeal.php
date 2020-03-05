@@ -29,6 +29,14 @@ class AvailableMeal
     public $priceDetails;
 
     /**
+     * Ставка НДС.
+     * VAT percentage rate.
+     *
+     * @var int
+     */
+    public $VATPercent;
+
+    /**
      * @param int $id
      */
     public function setId($id)
@@ -74,5 +82,21 @@ class AvailableMeal
     public function getPriceDetails()
     {
         return $this->priceDetails;
+    }
+
+    /**
+     * @param int $VATPercent
+     */
+    public function setVATPercent($VATPercent)
+    {
+        $this->VATPercent = $VATPercent;
+    }
+
+    /**
+     * @return int
+     */
+    public function getVATPercent()
+    {
+        return $this->VATPercent;
     }
 }

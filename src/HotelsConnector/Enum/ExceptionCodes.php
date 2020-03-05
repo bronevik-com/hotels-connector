@@ -41,6 +41,13 @@ class ExceptionCodes
     const INCORRECT_SEARCH_CRITERIA_PARAM_CODE      = 2027;
     const NOT_SPECIFIED_REFERENCE_ID_CODE           = 2028;
     const INVALID_MEALS_ADD_ELEMENTS_CODE           = 2029;
+    const COUNTRY_ID_NOT_SPECIFIED                  = 2030;
+    const UNKNOWN_GUARANTEE_TYPE                    = 2031;
+    const EMPTY_GUEST_INFO                          = 2032;
+    const WRONG_CARD_DETAILS                        = 2033;
+    const CVV_NOT_FILLED                            = 2034;
+    const EMPTY_GUEST_CONTACTS                      = 2035;
+    const EXPIRED_CLIENT_CARD                       = 2037;
 
     const MEAL_IS_NOT_AVAILABLE_IN_OFFER_CODE  = 3000;
     const EARLY_ARRIVAL_IS_NOT_AVAILABLE_CODE  = 3001;
@@ -51,9 +58,11 @@ class ExceptionCodes
     const EXTRA_FIELD_INCORRECT_VALUE_CODE  = 4001;
     const UNKNOWN_EXTRA_FIELD_CODE          = 4002;
 
-    const INCORRECT_OFFER_CODE                    = 5000;
-    const NO_LONGER_AVAILABLE_OFFER_CODE          = 5001;
-    const SPECIFIED_VALUES_ARE_NOT_AVAILABLE_CODE = 5002;
+    const INCORRECT_OFFER_CODE                          = 5000;
+    const NO_LONGER_AVAILABLE_OFFER_CODE                = 5001;
+    const SPECIFIED_VALUES_ARE_NOT_AVAILABLE_CODE       = 5002;
+    const INCORRECT_CREATE_ORDER_WITH_CARD_DETAILS_CALL = 5003;
+    const INCORRECT_CREATE_ORDER_CALL                   = 5004;
 
     const SELLING_PRICE_HAS_WRONG_FORMAT_CODE  = 6000;
     const CLIENT_SELLING_PRICE_DISABLED_CODE   = 6001;

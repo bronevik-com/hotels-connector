@@ -9,9 +9,39 @@ namespace Bronevik\HotelsConnector\Element;
 class HotelWithInfo extends Hotel
 {
     /**
+     * Сертификат, подтверждающий звездность отеля.
+     * Hotel's star certificate information.
+     *
+     * @var CategoryCertificate
+     */
+    public $categoryCertificate = null;
+
+    /**
      * @var HotelRoom[]
      */
     public $rooms = [];
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->categoryCertificate = new CategoryCertificate();
+    }
+
+    /**
+     * @param CategoryCertificate $categoryCertificate
+     */
+    public function setCategoryCertificate($categoryCertificate)
+    {
+        $this->categoryCertificate = $categoryCertificate;
+    }
+
+    /**
+     * @return CategoryCertificate
+     */
+    public function getCategoryCertificate()
+    {
+        return $this->categoryCertificate;
+    }
 
     /**
      * @return bool

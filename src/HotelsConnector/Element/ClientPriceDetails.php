@@ -38,10 +38,9 @@ class ClientPriceDetails
 
     public function __construct()
     {
-        $this->commission  = new DetailedPrice();
-        $this->gross       = new DetailedPrice();
-        $this->net         = new DetailedPrice();
-        $this->vatIncluded = true;
+        $this->commission = new DetailedPrice();
+        $this->gross      = new DetailedPrice();
+        $this->net        = new DetailedPrice();
     }
 
     /**

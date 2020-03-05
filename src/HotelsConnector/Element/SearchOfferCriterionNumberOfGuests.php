@@ -2,6 +2,8 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\GuestsCounts;
+
 /**
  * Поиск по количеству человек
  * The offer search by number of guests
@@ -13,6 +15,7 @@ class SearchOfferCriterionNumberOfGuests extends SearchOfferCriterion
      * Number of adult guests
      *
      * @var int
+     * @see GuestsCounts
      */
     public $adults;
 

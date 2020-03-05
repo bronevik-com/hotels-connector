@@ -17,6 +17,7 @@ class HotelOffer extends BaseOffer
      * Specifies LHP-rate in the offer
      *
      * @var boolean
+     * @deprecated
      */
     public $lhp;
 
@@ -54,9 +55,10 @@ class HotelOffer extends BaseOffer
 
     /**
      * deprecated - перенесено в элемент 'HotelRoom'.
-     *                                         Количество гостей, которых можно разместить в номере
+     * Количество гостей, которых можно разместить в номере
      * deprecated - currently available in 'HotelRoom' element.
-     *                                         The basic room capacity
+     * The basic room capacity
+     *
      * @deprecated
      * @var int
      */
@@ -90,15 +92,16 @@ class HotelOffer extends BaseOffer
      * Правила предоставления предложения
      * A policies of granting current offer
      *
-     * @var OfferPolicy[]
+     * @var OfferPolicies
      */
-    public $offerPolicies = [];
+    public $offerPolicies;
 
     public function __construct()
     {
         parent::__construct();
-        $this->priceDetails = new PriceDetails();
-        $this->dailyPrices  = new DailyPrices();
+        $this->priceDetails  = new PriceDetails();
+        $this->dailyPrices   = new DailyPrices();
+        $this->offerPolicies = new OfferPolicies();
     }
 
     /**
@@ -270,26 +273,18 @@ class HotelOffer extends BaseOffer
     }
 
     /**
-     * @return bool
+     * @param OfferPolicies $offerPolicies
      */
-    public function hasOfferPolicies()
+    public function setOfferPolicies($offerPolicies)
     {
-        return count($this->offerPolicies) > 0;
+        $this->offerPolicies = $offerPolicies;
     }
 
     /**
-     * @return OfferPolicy[]
+     * @return OfferPolicies
      */
     public function getOfferPolicies()
     {
         return $this->offerPolicies;
-    }
-
-    /**
-     * @param OfferPolicy $offerPolicies
-     */
-    public function addOfferPolicies($offerPolicies)
-    {
-        $this->offerPolicies[] = $offerPolicies;
     }
 }

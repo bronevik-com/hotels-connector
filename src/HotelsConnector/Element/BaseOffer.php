@@ -90,9 +90,26 @@ class BaseOffer
      */
     public $nonRefundable;
 
+    /**
+     * Информация о типе тарифа.
+     * Information about rate type.
+     *
+     * @var RateType
+     */
+    public $rateType;
+
+    /**
+     * Информация о типе гарантии.
+     * Information about guarantee type.
+     *
+     * @var string
+     */
+    public $guaranteeType;
+
     public function __construct()
     {
-        $this->meals = new AvailableMeals();
+        $this->meals    = new AvailableMeals();
+        $this->rateType = new RateType();
     }
 
     /**
@@ -261,5 +278,37 @@ class BaseOffer
     public function getNonRefundable()
     {
         return $this->nonRefundable;
+    }
+
+    /**
+     * @param RateType $rateType
+     */
+    public function setRateType($rateType)
+    {
+        $this->rateType = $rateType;
+    }
+
+    /**
+     * @return RateType
+     */
+    public function getRateType()
+    {
+        return $this->rateType;
+    }
+
+    /**
+     * @param string $guaranteeType
+     */
+    public function setGuaranteeType($guaranteeType)
+    {
+        $this->guaranteeType = $guaranteeType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGuaranteeType()
+    {
+        return $this->guaranteeType;
     }
 }

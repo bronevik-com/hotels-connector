@@ -27,6 +27,7 @@
     - [Получение информации о предложении отеля](#Получение-информации-о-предложении-отеля)
     - [Заказ бронирования проживания и операции с заказами](#Заказ-бронирования-проживания-и-операции-с-заказами)
         - [Создание заказа](#Создание-заказа)
+        - [Создание заказа с данными банковской карты](#Создание-заказа-с-данными-банковской-карты)
         - [Получение информации о заказе](#Получение-информации-о-заказе)
         - [Отмена (аннуляция) заказа](#Отмена-заказа)
         - [Поиск заказов](#Поиск-заказов)
@@ -87,7 +88,11 @@ spl_autoload_register(function ($class) {
 ```php
 <?php
 
-$connector = new Bronevik\HotelsConnector(Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT, true);
+$connector = new Bronevik\HotelsConnector(
+    Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT,
+    Bronevik\HotelsConnector\Enum\Endpoints::SECURE_DEVELOPMENT,
+    true
+);
 $connector->setCredentials('login', 'password', 'privateKey');
 $connector->setLanguage(Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 ```
@@ -99,10 +104,17 @@ $connector->setLanguage(Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 1. `\Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT` - для разработки, запросы отправляются на тестовый сервер.
 1. `\Bronevik\HotelsConnector\Enum\Endpoints::PRODUCTION` - для использования в бою.
 
+Для `secureEndpoint` возможны два значения:
+
+1. `\Bronevik\HotelsConnector\Enum\Endpoints::SECURE_DEVELOPMENT` - для разработки, запросы отправляются на тестовый сервер.
+1. `\Bronevik\HotelsConnector\Enum\Endpoints::SECURE_PRODUCTION` - для использования в бою.
+
 Флаг `debugMode`, установленный в `true`, позволяет использовать следующие методы:
 
 1. `$connector->getLastResponse()` для получения содержимого последнего ответа сервера.
-1. `$connector->getLastResponceHeaders()` для получения HTTP-заголовков последнего ответа сервера.
+1. `$connector->getLastResponseHeaders()` для получения HTTP-заголовков последнего ответа сервера.
+1. `$connector->getLastRequest()` для получения содержимого последнего запроса сервера.
+1. `$connector->getLastRequestHeaders()` для получения HTTP-заголовков последнего запроса сервера.
 
 В метод `setCredentials()` передаются:
 
@@ -125,7 +137,7 @@ echo $connector->ping('Привет, Броневичок!'); // Привет, �
 
 ## Документация по работе с SOAP сервером без использования этого коннектора
 
-Документация в формате PDF: https://hotels-api.bronevik.com/v2.2.0/api.pdf
+Документация в формате PDF: https://hotels-api.bronevik.com/v2.4.0/api.pdf
 
 Следует упомянуть, что при вызове метода `SearchHotelOffersRequest` параметр `currency` является обязательным и сейчас
 у него только одно возможное значение: `rub`. Без заполнения этого параметра сервис вернёт сообщение об ошибке.
@@ -384,14 +396,14 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
     $hotelWithOffers->getHasTaxes();           // Наличие в отеле дополнительных сборов (например, false)
     $hotelWithOffers->getType();               // Тип отеля (например, hotel)
 
-    // Комментарий для гостя
-    $hotelWithOffers->getInformationForGuest()->getComment();
+    // Информация для гостя
+    $informationForGuest = $hotelWithOffers->getInformationForGuest();
+    $informationForGuest->getComment(); // Комментарий для гостя
 
-    // Услуги отеля
-	/** @var Bronevik\HotelsConnector\Element\HotelAmenity $amenity */
-    foreach ($hotelWithOffers->getAmenities() as $amenity) {
-        $amenity->getName(); // Название услуги
-        $amenity->getType(); // Тип услуги
+    // уведомления для гостя
+    foreach ($informationForGuest->getNotification() as $notification) {
+        $notification->getType();  // тип уведомления
+        $notification->getValue(); // текст уведомления
     }
 
     // Описание отеля
@@ -444,7 +456,13 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         $offer->getPaymentRecipient();      // Способ оплаты (например, \Bronevik\HotelsConnector\Enum\PaymentRecipients::AGENCY)
         $offer->getDeepLink();              // ​Элемент для работы метапоисковых систем (например, http://dev.bronevik.com/ru/hotel/russia/yekaterinburg/oktyabrskaya?sd=2019-06-01&ed=2019-06-02&code=T1I3MTYjOTgxNSNzaW5nbGUjMjQjMjAxOS0wNi0wMSMyMDE5LTA2LTAyIzIjMA==&currency=RUB&spk=Corteos)
         $offer->getRoomWithWindow();        // Наличие окна в номере (например, true)
+        $offer->getGuaranteeType();         // Тип гарантии
 
+        // информация о тарифе
+        /** @var Bronevik\HotelsConnector\Element\RateType $rateType */
+        $rateType = $offer->getRateType();
+        $rateType->getRateName();        // Название тарифа
+        $rateType->getRateDescription(); // Описание тарифа
 
         /**
           * Детализация стоимости 
@@ -522,8 +540,9 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         /** @var Bronevik\HotelsConnector\Element\AvailableMeal $meal */
         // питание
         foreach ($offer->getMeals() as $meal) {
-            $meal->getId();       // Идентификатор услуги питания
-            $meal->getIncluded(); // Включена ли услуга в предложение
+            $meal->getId();         // Идентификатор услуги питания
+            $meal->getIncluded();   // Включена ли услуга в предложение
+            $meal->getVATPercent(); // Ставка НДС
 
             /** @var Bronevik\HotelsConnector\Element\ClientPriceDetails $mealPriceDetails */
             $mealPriceDetails = $meal->getPriceDetails();
@@ -580,9 +599,12 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         }
 
         // Правила предоставления предложения
-        /** @var Bronevik\HotelsConnector\Element\OfferPolicy $offerPolicy */
-        foreach ($offer->getOfferPolicies() as $offerPolicy) {
-            $offerPolicy->description; // описание
+        /** @var Bronevik\HotelsConnector\Element\OfferPolicies $offerPolicy */
+        $offerPolicies = $offer->getOfferPolicies();
+        $offerPolicies->getDescription(); // описание
+        foreach ($offerPolicies->getPolicy() as $policy) {
+            $policy->getType();
+            $policy->getValue();
         }
     }
 }
@@ -608,6 +630,13 @@ $hotelsWithInfo = $connector->getHotelInfo([716, 901]);
 
 /** @var Bronevik\HotelsConnector\Element\HotelWithInfo[] $hotelsWithInfo */
 foreach ($hotelsWithInfo as $hotelWithInfo) {
+    // Сертификат, подтверждающий звездность отеля.
+    /** @var Bronevik\HotelsConnector\Element\CategoryCertificate $categoryCertificate */
+    $categoryCertificate = $hotelWithInfo->getCategoryCertificate();
+
+    $categoryCertificate->getNumber();  // Номер сертификата
+    $categoryCertificate->getEndDate(); // Дата истечения сертификата
+
     /** @var Bronevik\HotelsConnector\Element\HotelRoom $hotelRoom */
     foreach ($hotelWithInfo->getRooms() as $hotelRoom) {
         $hotelRoom->getId();            // Id номера
@@ -757,6 +786,7 @@ foreach ($order->getServices() as $service) {
     $service->getComment();          // Комментарий к услуге, который был указан при создании
     $service->getPaymentRecipient(); // Способ оплаты, возможные значения: \Bronevik\HotelsConnector\Enum\PaymentRecipients
     $service->getIsBlockRoom();      // Блочный ли номер?
+    $service->getIsSharedRoom();     // Является ли номер номером с подселением?
     $service->getRoomId();           // Id номера
     $service->getCountryId();        // Id страны
     $service->getCountryName();      // Название страны
@@ -774,6 +804,17 @@ foreach ($order->getServices() as $service) {
     $service->getOfferName();        // Название предложения
     $service->getRoomType();         // Тип размещения
     $service->getVATPercent();       // Ставка НДС
+    $service->getGuaranteeType();    // Тип гарантии
+
+    // информация о тарифе
+    /** @var Bronevik\HotelsConnector\Element\RateType $rateType */
+    $rateType = $service->getRateType();
+    /**
+     * Название тарифа
+     * @see \Bronevik\HotelsConnector\Enum\RateTypeNames
+     */
+    $rateType->getRateName();
+    $rateType->getRateDescription(); // Описание тарифа
 
     /** @var Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
     // доп. поля для создания услуг
@@ -813,6 +854,71 @@ foreach ($order->getServices() as $service) {
     $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
 }
 ```
+
+#### Создание заказа с данными банковской карты
+
+Запрос:
+
+```php
+<?php
+/** @var Bronevik\HotelsConnector\Element\HotelOffer $offer */
+$offer = $connector->getHotelOffer('T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=');
+
+// Создание запроса на бронирование номеров
+$orderRequest = new Bronevik\HotelsConnector\Element\CreateOrderWithCardDetailsRequest();
+
+// Заполнение данных банковской карты
+$orderRequest->guestInfo = new Bronevik\HotelsConnector\Element\GuestInfo();
+$orderRequest->guestInfo->cardDetails = new Bronevik\HotelsConnector\Element\CardDetails();
+$orderRequest->guestInfo->cardDetails->pan             = '1234123412341234'; // Номер карты
+$orderRequest->guestInfo->cardDetails->cardholder      = 'IVANOV IVAN';      // Владелец карты
+$orderRequest->guestInfo->cardDetails->expirationMonth = '01';               // Месяц истечения карты
+$orderRequest->guestInfo->cardDetails->expirationYear  = '20';               // Год истечения карты
+$orderRequest->guestInfo->cardDetails->CVV             = '123';              // CVV/CVC
+
+// Заполнение информации о госте
+$orderRequest->guestInfo->contacts = new Bronevik\HotelsConnector\Element\GuestContacts();
+$orderRequest->guestInfo->contacts->email = 'guest@email.com'; // email гостя
+$orderRequest->guestInfo->contacts->phone = '+79999999999';    // контактный телефон гостя
+
+$orderRequest->setContactPerson('Григорий');
+$orderRequest->setContactEmail('grigoriy@example.com');
+$orderRequest->setContactPhone('+79991234567');
+$orderRequest->setComment('Гости приедут в районе 18 часов.');
+
+// Создание услуг проживания и привязка их к заказу.
+$accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
+$accommodation->setOfferCode($offer->getCode());
+$accommodation->setComment('Гостям потребуется высокоскоростное подключение к Интернет.');
+$accommodation->addGuests('Валентин');
+$accommodation->addMeals(2);            // Добавить питание в услугу
+$accommodation->addMeals(34);           // Если нужно несколько услуг питания
+$accommodation->setCheckinHour(10);     // Установить час заезда
+$accommodation->setCheckoutHour(8);     // Установить час выезда
+$accommodation->setSellingPrice(1000);  // Установить желаемую цену продажи
+$accommodation->setReferenceId('test'); // Установить номер услуги в системе клиента
+// также можно добавить доп. поля для создания услуг
+$serviceExtraField = new Bronevik\HotelsConnector\Element\ServiceExtraField();
+$serviceExtraField->setName('name');
+$serviceExtraField->setValue('value');
+$accommodation->addExtraField($serviceExtraField);
+
+$orderRequest->addServices($accommodation);
+
+// Нужно создавать по услуге на каждый бронируемый номер.
+$accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
+$accommodation->setOfferCode($offer->getCode());
+$accommodation->setComment('Не представлять напитки из минибара.');
+$accommodation->addGuests('Николай');
+$accommodation->addGuests('Эльдар');
+$orderRequest->addServices($accommodation);
+
+// Отправка заказа
+/** @var Bronevik\HotelsConnector\Element\Order $order */
+$order = $connector->createOrderWithCardDetails($orderRequest);
+```
+
+Результат возвращается такой же, как и для обычного создания заказа (CreateOrder).
 
 #### Получение информации о заказе
 
@@ -881,6 +987,12 @@ $criteria[] = $criterion;
 // поиск по имени гостя
 $criterion = new Bronevik\HotelsConnector\Element\SearchOrderCriterionGuest();
 $criterion->setName('Имя гостя'); // Имя гостя
+$criteria[] = $criterion;
+
+// поиск по типам гарантии
+$criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionGuaranteeTypes();
+$criterion->addGuaranteeType(Bronevik\HotelsConnector\Enum\GuaranteeTypes::CLIENT_CONTRACT);
+$criterion->addGuaranteeType(Bronevik\HotelsConnector\Enum\GuaranteeTypes::CONSUMER_CARD_WITH_CVV);
 $criteria[] = $criterion;
 
 $orders = $connector->searchOrders($criteria);

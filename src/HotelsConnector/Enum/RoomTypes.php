@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-abstract class RoomTypes
+abstract class RoomTypes extends Enum
 {
     const SINGLE = 'single';
     const DOUBLE = 'double';

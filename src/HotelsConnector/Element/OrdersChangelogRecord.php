@@ -49,6 +49,22 @@ class OrdersChangelogRecord
     public $serviceCreationSource;
 
     /**
+     * Источник изменения услуги.
+     * Source of service change.
+     *
+     * @var string
+     */
+    public $changeSource;
+
+    /**
+     * Автор изменения услуги.
+     * Author of service change.
+     *
+     * @var string
+     */
+    public $changeAuthor;
+
+    /**
      * Дата и время изменения
      * Date and time of the change
      *
@@ -147,6 +163,38 @@ class OrdersChangelogRecord
     public function getServiceCreationSource()
     {
         return $this->serviceCreationSource;
+    }
+
+    /**
+     * @param string $changeSource
+     */
+    public function setChangeSource($changeSource)
+    {
+        $this->changeSource = $changeSource;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChangeSource()
+    {
+        return $this->changeSource;
+    }
+
+    /**
+     * @param string $changeAuthor
+     */
+    public function setChangeAuthor($changeAuthor)
+    {
+        $this->changeAuthor = $changeAuthor;
+    }
+
+    /**
+     * @return string
+     */
+    public function getChangeAuthor()
+    {
+        return $this->changeAuthor;
     }
 
     /**

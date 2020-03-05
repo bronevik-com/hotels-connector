@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-abstract class Languages
+abstract class Languages extends Enum
 {
     const RUSSIAN = 'ru';
     const ENGLISH = 'en';

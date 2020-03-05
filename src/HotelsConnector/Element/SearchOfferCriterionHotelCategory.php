@@ -2,6 +2,8 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\HotelCategories;
+
 /**
  * Критерий поиска отеля по категории
  * The criterion by hotel star rating
@@ -13,6 +15,7 @@ class SearchOfferCriterionHotelCategory extends SearchOfferCriterion
      * The hotel star rating
      *
      * @var int[]
+     * @see HotelCategories
      */
     public $category = [];
 
