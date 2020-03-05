@@ -6,6 +6,7 @@ php:
   - 7.1
   - 7.2
   - 7.3
+  - 7.4
 
 install:
   - composer install
@@ -13,3 +14,4 @@ install:
 script:
   - composer validate --strict
   - ./vendor/bin/phpcs
+  - vendor/bin/phpunit tests
