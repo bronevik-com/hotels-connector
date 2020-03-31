@@ -165,6 +165,15 @@ class HotelsConnector
     {
         return $this->lastStartedClient->__getLastRequest();
     }
+    
+    public function getLastRequest()
+    {
+        if($this->isDebugMode()) {
+            return $this->soapClient->__getLastRequest();
+        }
+        
+        return null;
+    }
 
     /**
      * @return string
