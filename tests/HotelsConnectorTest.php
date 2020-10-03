@@ -76,7 +76,7 @@ use Bronevik\HotelsConnector\Enum\Currencies;
 use Bronevik\HotelsConnector\Enum\Operations;
 use Bronevik\Tests\Mock\HotelsConnectorMock;
 use PHPUnit\Framework\TestCase;
-use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit\Framework\MockObject\MockObject;
 use SoapClient;
 use SoapFault;
 
@@ -90,7 +90,7 @@ class HotelsConnectorTest extends TestCase
      * @param BaseRequest  $request
      * @param BaseResponse $response
      *
-     * @return PHPUnit_Framework_MockObject_MockObject|SoapClient
+     * @return MockObject|SoapClient
      */
     private function getSoapClient($operation, $request, $response)
     {
