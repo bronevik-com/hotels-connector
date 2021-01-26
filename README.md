@@ -286,7 +286,7 @@ foreach ($hotelsWithOffers as $hotelWithOffers) {
 	/** @var \Bronevik\HotelsConnector\Element\Image $photo */
     foreach ($hotelWithOffers->getPhotos() as $photo) {
         $photo->getGuid(); // 73c7c9b97a36ac0d970990937d842417
-        $photo->getUrl();  // //dev.bronevik.com/static/photo/g/250x250a/73c7c9b97a36ac0d970990937d842417
+        $photo->getUrl();  // //dev.bronevik.tech/static/photo/g/250x250a/73c7c9b97a36ac0d970990937d842417
     }
 
 	/** @var \Bronevik\HotelsConnector\Element\HotelAmenity $amenity */
