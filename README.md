@@ -413,7 +413,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
 	/** @var Bronevik\HotelsConnector\Element\Image $photo */
     foreach ($descriptionDetails->getPhotos() as $photo) {
         $photo->getGuid(); // 73c7c9b97a36ac0d970990937d842417
-        $photo->getUrl();  // //dev.bronevik.com/static/photo/g/250x250a/73c7c9b97a36ac0d970990937d842417
+        $photo->getUrl();  // //dev.bronevik.tech/static/photo/g/250x250a/73c7c9b97a36ac0d970990937d842417
     }
 
     /** @var Bronevik\HotelsConnector\Element\AvailableAmenity $amenity */
@@ -440,7 +440,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         $offer->getIsSharedRoom();          // Является ли номер номером с подселением (например, false)
         $offer->getIsBlockRoom();           // Является ли номер блочным (например, false)
         $offer->getPaymentRecipient();      // Способ оплаты (например, \Bronevik\HotelsConnector\Enum\PaymentRecipients::AGENCY)
-        $offer->getDeepLink();              // ​Элемент для работы метапоисковых систем (например, http://dev.bronevik.com/ru/hotel/russia/yekaterinburg/oktyabrskaya?sd=2019-06-01&ed=2019-06-02&code=T1I3MTYjOTgxNSNzaW5nbGUjMjQjMjAxOS0wNi0wMSMyMDE5LTA2LTAyIzIjMA==&currency=RUB&spk=Corteos)
+        $offer->getDeepLink();              // ​Элемент для работы метапоисковых систем (например, http://dev.bronevik.tech/ru/hotel/russia/yekaterinburg/oktyabrskaya?sd=2019-06-01&ed=2019-06-02&code=T1I3MTYjOTgxNSNzaW5nbGUjMjQjMjAxOS0wNi0wMSMyMDE5LTA2LTAyIzIjMA==&currency=RUB&spk=Corteos)
         $offer->getRoomWithWindow();        // Наличие окна в номере (например, true)
 
 
