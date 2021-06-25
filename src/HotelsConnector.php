@@ -141,7 +141,7 @@ class HotelsConnector
             Endpoints::$wsdlUrls[$endpoint],
             [
                 'location'    => $endpoint,
-                'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_DEFLATE,
+                'compression' => SOAP_COMPRESSION_ACCEPT | SOAP_COMPRESSION_GZIP,
                 'cache_wsdl'  => $this->isDebugMode() ? WSDL_CACHE_NONE : WSDL_CACHE_BOTH,
                 'trace'       => $this->isDebugMode(),
                 'features'    => SOAP_SINGLE_ELEMENT_ARRAYS,
