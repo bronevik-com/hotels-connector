@@ -2,6 +2,8 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\CurrencyCodesEnum;
+
 class GetCheckinCheckoutPricingRequest extends BaseRequest
 {
     /**
@@ -11,6 +13,12 @@ class GetCheckinCheckoutPricingRequest extends BaseRequest
      * @var OfferCodes
      */
     public $offerCodes = null;
+
+    /**
+     * @var string
+     * @see CurrencyCodesEnum
+     */
+    public $currency;
 
     public function __construct()
     {

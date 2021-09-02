@@ -60,14 +60,6 @@ class Hotel
     public $checkoutTime;
 
     /**
-     * Фиксировано ли время заезда в отеле
-     * Whether the check-in time is fixed or not
-     *
-     * @var boolean
-     */
-    public $isFixedCheckinTime;
-
-    /**
      * Описание отеля
      * The hotel description
      *
@@ -240,22 +232,6 @@ class Hotel
     public function getCheckoutTime()
     {
         return $this->checkoutTime;
-    }
-
-    /**
-     * @param boolean $isFixedCheckinTime
-     */
-    public function setIsFixedCheckinTime($isFixedCheckinTime)
-    {
-        $this->isFixedCheckinTime = $isFixedCheckinTime;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getIsFixedCheckinTime()
-    {
-        return $this->isFixedCheckinTime;
     }
 
     /**

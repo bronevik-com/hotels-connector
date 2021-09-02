@@ -9,36 +9,11 @@ namespace Bronevik\HotelsConnector\Element;
 class OfferPolicies
 {
     /**
-     * @deprecated
-     * @var string
-     */
-    public $description;
-
-    /**
      * Правило предоставления предложения.
      *
      * @var OfferPolicy[]
      */
     public $policy = [];
-
-    /**
-     * @param string $description
-     *
-     * @deprecated
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     * @return string
-     * @deprecated
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 
     /**
      * @return bool

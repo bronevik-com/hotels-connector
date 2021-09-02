@@ -13,20 +13,9 @@ class UpdateServiceRequest extends BaseRequest
     public $serviceId;
 
     /**
-     * Номер услуги в системе клиента
-     * The service number in the client system
-     *
-     * @var string
+     * @var UpdateService
      */
-    public $referenceId;
-
-    /**
-     * @param int $serviceId
-     */
-    public function setServiceId($serviceId)
-    {
-        $this->serviceId = $serviceId;
-    }
+    public $updateService;
 
     /**
      * @return int
@@ -37,18 +26,10 @@ class UpdateServiceRequest extends BaseRequest
     }
 
     /**
-     * @param string $referenceId
+     * @return UpdateService
      */
-    public function setReferenceId($referenceId)
+    public function getUpdateService()
     {
-        $this->referenceId = $referenceId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReferenceId()
-    {
-        return $this->referenceId;
+        return $this->updateService;
     }
 }

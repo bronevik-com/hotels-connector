@@ -5,20 +5,12 @@ namespace Bronevik\HotelsConnector\Element;
 class GetCountriesResponse extends BaseResponse
 {
     /**
-     * @var Country[]
+     * @var Countries
      */
-    public $countries = [];
+    public $countries;
 
     /**
-     * @return bool
-     */
-    public function hasCountries()
-    {
-        return count($this->countries) > 0;
-    }
-
-    /**
-     * @return Country[]
+     * @return Countries
      */
     public function getCountries()
     {
@@ -26,10 +18,10 @@ class GetCountriesResponse extends BaseResponse
     }
 
     /**
-     * @param Country $countries
+     * @param Countries $countries
      */
-    public function addCountries($countries)
+    public function setCountries($countries)
     {
-        $this->countries[] = $countries;
+        $this->countries = $countries;
     }
 }

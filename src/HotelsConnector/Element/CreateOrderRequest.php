@@ -2,12 +2,23 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\CurrencyCodesEnum;
+
 /**
  * Запрос на создание заказа
  * The request for create the order
  */
 class CreateOrderRequest extends BaseRequest
 {
+
+    /**
+     * @var string
+     * @see CurrencyCodesEnum
+     *
+     */
+    public $currency;
+
+    
     /**
      * Контактное лицо по вопросам заказа
      * A person who provides a link for information about order

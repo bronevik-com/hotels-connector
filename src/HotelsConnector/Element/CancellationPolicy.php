@@ -17,15 +17,6 @@ abstract class CancellationPolicy
     public $penaltyDateTime;
 
     /**
-     * Размер штрафа
-     * An amount of penalty
-     *
-     * @deprecated
-     * @var float
-     */
-    public $penaltySum;
-
-    /**
      * Детализация штрафа.
      * Detailing of penalty.
      *
@@ -52,22 +43,6 @@ abstract class CancellationPolicy
     public function getPenaltyDateTime()
     {
         return $this->penaltyDateTime;
-    }
-
-    /**
-     * @param float $penaltySum
-     */
-    public function setPenaltySum($penaltySum)
-    {
-        $this->penaltySum = $penaltySum;
-    }
-
-    /**
-     * @return float
-     */
-    public function getPenaltySum()
-    {
-        return $this->penaltySum;
     }
 
     /**

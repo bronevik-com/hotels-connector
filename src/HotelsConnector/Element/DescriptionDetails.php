@@ -64,9 +64,9 @@ class DescriptionDetails
      * Фотографии отеля
      * The hotel's photos
      *
-     * @var Image[]
+     * @var Photos
      */
-    public $photos = [];
+    public $photos;
 
     /**
      * Доступные в отеле доп. услуги
@@ -192,30 +192,6 @@ class DescriptionDetails
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasPhotos()
-    {
-        return count($this->photos) > 0;
-    }
-
-    /**
-     * @return Image[]
-     */
-    public function getPhotos()
-    {
-        return $this->photos;
-    }
-
-    /**
-     * @param Image $photos
-     */
-    public function addPhotos($photos)
-    {
-        $this->photos[] = $photos;
     }
 
     /**

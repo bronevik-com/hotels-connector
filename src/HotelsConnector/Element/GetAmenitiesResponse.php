@@ -5,20 +5,12 @@ namespace Bronevik\HotelsConnector\Element;
 class GetAmenitiesResponse extends BaseResponse
 {
     /**
-     * @var Amenity[]
+     * @var Amenities
      */
-    public $amenities = [];
+    public $amenities;
 
     /**
-     * @return bool
-     */
-    public function hasAmenities()
-    {
-        return count($this->amenities) > 0;
-    }
-
-    /**
-     * @return Amenity[]
+     * @return Amenities
      */
     public function getAmenities()
     {
@@ -26,10 +18,10 @@ class GetAmenitiesResponse extends BaseResponse
     }
 
     /**
-     * @param Amenity $amenities
+     * @param Amenities $amenities
      */
-    public function addAmenities($amenities)
+    public function setAmenities($amenities)
     {
-        $this->amenities[] = $amenities;
+        $this->amenities = $amenities;
     }
 }

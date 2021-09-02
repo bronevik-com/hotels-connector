@@ -17,9 +17,9 @@ class HotelWithInfo extends Hotel
     public $categoryCertificate = null;
 
     /**
-     * @var HotelRoom[]
+     * @var HotelRooms
      */
-    public $rooms = [];
+    public $rooms;
 
     public function __construct()
     {
@@ -44,15 +44,7 @@ class HotelWithInfo extends Hotel
     }
 
     /**
-     * @return bool
-     */
-    public function hasRooms()
-    {
-        return count($this->rooms) > 0;
-    }
-
-    /**
-     * @return HotelRoom[]
+     * @return HotelRooms
      */
     public function getRooms()
     {
@@ -60,10 +52,10 @@ class HotelWithInfo extends Hotel
     }
 
     /**
-     * @param HotelRoom $rooms
+     * @param HotelRooms $rooms
      */
-    public function addRooms($rooms)
+    public function setRooms($rooms)
     {
-        $this->rooms[] = $rooms;
+        $this->rooms = $rooms;
     }
 }

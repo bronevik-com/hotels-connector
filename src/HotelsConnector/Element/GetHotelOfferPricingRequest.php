@@ -2,12 +2,21 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\CurrencyCodesEnum;
+
 class GetHotelOfferPricingRequest extends BaseRequest
 {
     /**
      * @var Service[]
      */
     public $services = [];
+
+    /**
+     * @var string
+     *
+     * @see CurrencyCodesEnum
+     */
+    public $currency;
 
     /**
      * @return bool

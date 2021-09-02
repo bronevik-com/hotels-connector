@@ -5,31 +5,23 @@ namespace Bronevik\HotelsConnector\Element;
 class GetHotelInfoRequest extends BaseRequest
 {
     /**
-     * @var int[]
+     * @var HotelIds
      */
-    public $hotelId = [];
+    public $hotelIds;
 
     /**
-     * @return bool
+     * @return HotelIds
      */
-    public function hasHotelId()
+    public function getHotelIds()
     {
-        return count($this->hotelId) > 0;
+        return $this->hotelIds;
     }
 
     /**
-     * @return int[]
+     * @param HotelIds $hotelIds
      */
-    public function getHotelId()
+    public function setHotelIds($hotelIds)
     {
-        return $this->hotelId;
-    }
-
-    /**
-     * @param int $hotelId
-     */
-    public function addHotelId($hotelId)
-    {
-        $this->hotelId[] = $hotelId;
+        $this->hotelIds = $hotelIds;
     }
 }
