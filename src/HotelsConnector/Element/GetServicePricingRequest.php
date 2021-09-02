@@ -3,21 +3,48 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-
 class GetServicePricingRequest extends BaseRequest
 {
     /**
-     * @var int | null
+     * Идентификатор услуги
+     * Service ID
+     *
+     * @var int
      */
-    public $serviceId = null;
+    public $serviceId;
 
     /**
-     * @var UpdateService | null
+     * Изменения, которые планируется внести в услугу проживания
+     * Changes to be made to the accommodation service
+     *
+     * @var UpdateService
      */
-    public $updateService = null;
+    public $updateService;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->updateService = new UpdateService();
+    }
 
     /**
-     * @param int|null $serviceId
+     * @return int
+     */
+    public function getServiceId()
+    {
+        return $this->serviceId;
+    }
+
+    /**
+     * @return UpdateService
+     */
+    public function getUpdateService()
+    {
+        return $this->updateService;
+    }
+
+    /**
+     * @param int $serviceId
      */
     public function setServiceId($serviceId)
     {
@@ -25,7 +52,7 @@ class GetServicePricingRequest extends BaseRequest
     }
 
     /**
-     * @param UpdateService|null $updateService
+     * @param UpdateService $updateService
      */
     public function setUpdateService($updateService)
     {

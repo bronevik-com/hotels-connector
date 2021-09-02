@@ -5,6 +5,9 @@ namespace Bronevik\HotelsConnector\Element;
 class GetCitiesResponse extends BaseResponse
 {
     /**
+     * Информация о городах
+     * Information about cities
+     *
      * @var Cities
      */
     public $cities;

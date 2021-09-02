@@ -3,56 +3,158 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-
 class UpdateService
 {
     /**
-     * @var int | null
+     * @var int
      */
-    public $referenceId = null;
+    public $referenceId;
 
     /**
-     * @var int | null
+     * Час заезда
+     * Check-in hour
+     *
+     * @var int
      */
-    public $checkinHour = null;
+    public $checkinHour;
 
     /**
-     * @var int | null
+     * Час выезда
+     * Departure hour
+     *
+     * @var int
      */
-    public $checkoutHour = null;
+    public $checkoutHour;
 
     /**
-     * @var string | null
+     * Дата заезда
+     * Arrival date
+     *
+     * @var string
      */
-    public $arrivalDate = null;
+    public $arrivalDate;
 
     /**
-     * @var string | null
+     * Дата выезда
+     * date of departure
+     *
+     * @var string
      */
-    public $departureDate = null;
+    public $departureDate;
 
     /**
-     * @var MealIds | null
+     * Услуги питания которые нужно добавить
+     * Meals services to add
+     *
+     * @var MealIds
      */
-    public $addMeals = null;
+    public $addMeals;
 
     /**
-     * @var MealIds | null
+     * Услуги питания которые нужно удалить
+     * Meals services to remove
+     *
+     * @var MealIds
      */
-    public $removeMeals = null;
+    public $removeMeals;
 
     /**
-     * @var int | null
+     * Коррекция свайп шкалы
+     * Swipe Scale Correction
+     *
+     * @var int
      */
-    public $sellingPrice = null;
+    public $sellingPrice;
 
     /**
-     * @var string | null
+     * Коррекция комментария
+     * Correction of comments
+     *
+     * @var string
      */
-    public $comment = null;
+    public $comment;
+
+    public function __construct()
+    {
+        $this->addMeals    = new MealIds();
+        $this->removeMeals = new MealIds();
+    }
+
 
     /**
-     * @param int|null $referenceId
+     * @return int
+     */
+    public function getReferenceId()
+    {
+        return $this->referenceId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCheckinHour()
+    {
+        return $this->checkinHour;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCheckoutHour()
+    {
+        return $this->checkoutHour;
+    }
+
+    /**
+     * @return string
+     */
+    public function getArrivalDate()
+    {
+        return $this->arrivalDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDepartureDate()
+    {
+        return $this->departureDate;
+    }
+
+    /**
+     * @return MealIds
+     */
+    public function getAddMeals()
+    {
+        return $this->addMeals;
+    }
+
+    /**
+     * @return MealIds
+     */
+    public function getRemoveMeals()
+    {
+        return $this->removeMeals;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSellingPrice()
+    {
+        return $this->sellingPrice;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param int $referenceId
      */
     public function setReferenceId($referenceId)
     {
@@ -60,7 +162,7 @@ class UpdateService
     }
 
     /**
-     * @param int|null $checkinHour
+     * @param int $checkinHour
      */
     public function setCheckinHour($checkinHour)
     {
@@ -68,7 +170,7 @@ class UpdateService
     }
 
     /**
-     * @param int|null $checkoutHour
+     * @param int $checkoutHour
      */
     public function setCheckoutHour($checkoutHour)
     {
@@ -76,7 +178,7 @@ class UpdateService
     }
 
     /**
-     * @param string|null $arrivalDate
+     * @param string $arrivalDate
      */
     public function setArrivalDate($arrivalDate)
     {
@@ -84,7 +186,7 @@ class UpdateService
     }
 
     /**
-     * @param string|null $departureDate
+     * @param string $departureDate
      */
     public function setDepartureDate($departureDate)
     {
@@ -92,7 +194,7 @@ class UpdateService
     }
 
     /**
-     * @param MealIds|null $addMeals
+     * @param MealIds $addMeals
      */
     public function setAddMeals($addMeals)
     {
@@ -100,7 +202,7 @@ class UpdateService
     }
 
     /**
-     * @param MealIds|null $removeMeals
+     * @param MealIds $removeMeals
      */
     public function setRemoveMeals($removeMeals)
     {
@@ -108,7 +210,7 @@ class UpdateService
     }
 
     /**
-     * @param int|null $sellingPrice
+     * @param int $sellingPrice
      */
     public function setSellingPrice($sellingPrice)
     {
@@ -116,11 +218,10 @@ class UpdateService
     }
 
     /**
-     * @param string|null $comment
+     * @param string $comment
      */
     public function setComment($comment)
     {
         $this->comment = $comment;
     }
-
 }

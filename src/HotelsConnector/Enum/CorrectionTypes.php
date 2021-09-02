@@ -3,7 +3,6 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-
 class CorrectionTypes extends Enum
 {
      const MEALS          = "meals";

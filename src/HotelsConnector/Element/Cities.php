@@ -6,6 +6,9 @@ namespace Bronevik\HotelsConnector\Element;
 class Cities
 {
     /**
+     * Массив с информацией о городах
+     * Array with information about cities
+     *
      * @var City[]
      */
     public $city = [];
@@ -16,14 +19,6 @@ class Cities
     public function getCity()
     {
         return $this->city;
-    }
-
-    /**
-     * @param City[] $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
     }
 
     /**

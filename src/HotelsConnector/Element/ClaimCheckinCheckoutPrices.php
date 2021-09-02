@@ -1,23 +1,28 @@
-<?php declare(strict_types=1);
+<?php
 
 
 namespace Bronevik\HotelsConnector\Element;
 
-
 class ClaimCheckinCheckoutPrices
 {
     /**
-     * @var OfferHourPrices | null
-     */
-    public $checkin = null;
-
-    /**
+     * Информация о раннем заезде
+     * Early check-in information
+     *
      * @var OfferHourPrices
      */
-    public $checkout = null;
+    public $checkin;
 
     /**
-     * @return OfferHourPrices|null
+     * Информация о позднем выезде
+     * Late check-out information
+     *
+     * @var OfferHourPrices
+     */
+    public $checkout;
+
+    /**
+     * @return OfferHourPrices
      */
     public function getCheckin()
     {
@@ -30,5 +35,21 @@ class ClaimCheckinCheckoutPrices
     public function getCheckout()
     {
         return $this->checkout;
+    }
+
+    /**
+     * @param OfferHourPrices $checkin
+     */
+    public function setCheckin($checkin)
+    {
+        $this->checkin = $checkin;
+    }
+
+    /**
+     * @param OfferHourPrices $checkout
+     */
+    public function setCheckout($checkout)
+    {
+        $this->checkout = $checkout;
     }
 }

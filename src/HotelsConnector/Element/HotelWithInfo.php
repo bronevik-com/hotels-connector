@@ -25,6 +25,7 @@ class HotelWithInfo extends Hotel
     {
         parent::__construct();
         $this->categoryCertificate = new CategoryCertificate();
+        $this->rooms               = new HotelRooms();
     }
 
     /**

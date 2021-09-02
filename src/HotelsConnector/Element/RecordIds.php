@@ -19,14 +19,6 @@ class RecordIds
     }
 
     /**
-     * @param int[] $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @param int $id
      */
     public function addId($id)

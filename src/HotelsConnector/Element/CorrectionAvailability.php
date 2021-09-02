@@ -3,66 +3,177 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-
 class CorrectionAvailability
 {
     /**
-     * @var int | null
+     * Доступное количество коррекций
+     * Available number of corrections
+     *
+     * @var int
      */
-    public $availableCorrectionNumber = null;
+    public $availableCorrectionNumber;
 
     /**
-     * @var int | null
+     * Доступна ли коррекция услуги
+     * Is service correction available
+     *
+     * @var int
      */
-    public $isCorrectionAvailable = null;
+    public $isCorrectionAvailable;
 
     /**
-     * @var boolean | null
+     * Доступна ли коррекция питания
+     * Is meals correction available
+     *
+     * @var boolean
      */
-    public $meals = null;
+    public $meals;
 
     /**
-     * @var boolean | null
+     * Доступна ли коррекция часов заезда
+     * Is the check-in time correction available
+     *
+     * @var boolean
      */
-    public $checkinHour = null;
+    public $checkinHour;
 
     /**
-     * @var boolean | null
+     * Доступна ли коррекция часов выезда
+     * Is the check-out time correction available
+     *
+     * @var boolean
      */
-    public $checkoutHour = null;
+    public $checkoutHour;
 
     /**
-     * @var boolean | null
+     * Доступна ли коррекция даты заезда
+     * Is the check-in date correction available
+     *
+     * @var boolean
      */
-    public $arrivalDate = null;
+    public $arrivalDate;
 
     /**
-     * @var boolean | null
+     * Доступна ли коррекция даты выезда
+     * Is the departure date correction available
+     *
+     * @var boolean
      */
-    public $departureDate = null;
+    public $departureDate;
 
     /**
-     * @var boolean | null
+     * Доступна ли коррекция свайп шкалы
+     * Is the selling price correction available
+     * @var boolean
      */
-    public $sellingPrice = null;
+    public $sellingPrice;
 
     /**
-     * @var boolean | null
+     * Доступна ли коррекция комментария
+     * Is the comment correction available
+     *
+     * @var boolean
      */
-    public $comment = null;
+    public $comment;
 
     /**
-     * @var boolean | null
+     * Доступна ли коррекция гостей
+     * Is guest correction available
+     *
+     * @var boolean
      */
-    public $guests = null;
+    public $guests;
 
     /**
-     * @var boolean | null
+     * Доступна ли коррекция referenceId
+     * Is referenceId correction available
+     *
+     * @var boolean
      */
-    public $referenceId = null;
+    public $referenceId;
 
     /**
-     * @return int|null
+     * @param int $isCorrectionAvailable
+     */
+    public function setIsCorrectionAvailable($isCorrectionAvailable)
+    {
+        $this->isCorrectionAvailable = $isCorrectionAvailable;
+    }
+
+    /**
+     * @param bool $meals
+     */
+    public function setMeals($meals)
+    {
+        $this->meals = $meals;
+    }
+
+    /**
+     * @param bool $checkinHour
+     */
+    public function setCheckinHour($checkinHour)
+    {
+        $this->checkinHour = $checkinHour;
+    }
+
+    /**
+     * @param bool $checkoutHour
+     */
+    public function setCheckoutHour($checkoutHour)
+    {
+        $this->checkoutHour = $checkoutHour;
+    }
+
+    /**
+     * @param bool $arrivalDate
+     */
+    public function setArrivalDate($arrivalDate)
+    {
+        $this->arrivalDate = $arrivalDate;
+    }
+
+    /**
+     * @param bool $departureDate
+     */
+    public function setDepartureDate($departureDate)
+    {
+        $this->departureDate = $departureDate;
+    }
+
+    /**
+     * @param bool $sellingPrice
+     */
+    public function setSellingPrice($sellingPrice)
+    {
+        $this->sellingPrice = $sellingPrice;
+    }
+
+    /**
+     * @param bool $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    /**
+     * @param bool $guests
+     */
+    public function setGuests($guests)
+    {
+        $this->guests = $guests;
+    }
+
+    /**
+     * @param bool $referenceId
+     */
+    public function setReferenceId($referenceId)
+    {
+        $this->referenceId = $referenceId;
+    }
+
+    /**
+     * @return int
      */
     public function getAvailableCorrectionNumber()
     {
@@ -70,7 +181,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return int|null
+     * @return int
      */
     public function getIsCorrectionAvailable()
     {
@@ -78,7 +189,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
     public function getMeals()
     {
@@ -86,7 +197,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
     public function getCheckinHour()
     {
@@ -94,7 +205,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
     public function getCheckoutHour()
     {
@@ -102,7 +213,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
     public function getArrivalDate()
     {
@@ -110,7 +221,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
     public function getDepartureDate()
     {
@@ -118,7 +229,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
     public function getSellingPrice()
     {
@@ -126,7 +237,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
     public function getComment()
     {
@@ -134,7 +245,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
     public function getGuests()
     {
@@ -142,10 +253,18 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool|null
+     * @return bool
      */
     public function getReferenceId()
     {
         return $this->referenceId;
+    }
+
+    /**
+     * @param int $availableCorrectionNumber
+     */
+    public function setAvailableCorrectionNumber($availableCorrectionNumber)
+    {
+        $this->availableCorrectionNumber = $availableCorrectionNumber;
     }
 }

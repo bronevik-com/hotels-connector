@@ -29,11 +29,17 @@ class ClientPriceDetails
     public $gross;
 
     /**
+     * Цены в валюте клиента.
+     * Prices in client currency.
+     *
      * @var CurrencyPriceDetails
      */
     public $clientCurrency;
 
     /**
+     * Цены в валюте отеля.
+     * Prices in hotel currency.
+     *
      * @var CurrencyPriceDetails
      */
     public $hotelCurrency;

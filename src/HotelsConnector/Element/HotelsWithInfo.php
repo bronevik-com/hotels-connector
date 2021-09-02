@@ -19,14 +19,6 @@ class HotelsWithInfo
     }
 
     /**
-     * @param HotelWithInfo[] $hotel
-     */
-    public function setHotel($hotel)
-    {
-        $this->hotel = $hotel;
-    }
-
-    /**
      * @param HOtelWithInfo $hotel
      */
     public function addHotel($hotel)

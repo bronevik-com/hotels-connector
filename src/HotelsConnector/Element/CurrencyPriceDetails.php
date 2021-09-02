@@ -6,16 +6,25 @@ namespace Bronevik\HotelsConnector\Element;
 class CurrencyPriceDetails
 {
     /**
+     * Информация о комиссии
+     * The information about commission
+     *
      * @var DetailedPrice
      */
     public $commission;
 
     /**
+     * Нетто-стоимость
+     * The net-cost value
+     *
      * @var DetailedPrice
      */
     public $net;
 
     /**
+     * Брутто-стоимость
+     * The gross-cost value
+     *
      * @var DetailedPrice
      */
     public $gross;

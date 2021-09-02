@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-use Bronevik\HotelsConnector\Enum\CurrencyCodesEnum;
+use Bronevik\HotelsConnector\Enum\CurrencyCodes;
 use Bronevik\HotelsConnector\Enum\SkipElementTypes;
 
 /**
@@ -56,7 +56,7 @@ class SearchHotelOffersRequest extends BaseRequest
      * The payment currency
      *
      * @var string
-     * @see CurrencyCodesEnum
+     * @see CurrencyCodes
      */
     public $currency;
 
@@ -156,6 +156,7 @@ class SearchHotelOffersRequest extends BaseRequest
 
     /**
      * @param string $currency
+     * @see CurrencyCodes
      */
     public function setCurrency($currency)
     {

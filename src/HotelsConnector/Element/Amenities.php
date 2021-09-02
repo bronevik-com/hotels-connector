@@ -6,6 +6,9 @@ namespace Bronevik\HotelsConnector\Element;
 class Amenities
 {
     /**
+     * Дополнительны услуги
+     * Additional services
+     *
      * @var Amenity[]
      */
     public $amenity = [];
@@ -16,14 +19,6 @@ class Amenities
     public function getAmenity()
     {
         return $this->amenity;
-    }
-
-    /**
-     * @param Amenity[] $amenity
-     */
-    public function setAmenity($amenity)
-    {
-        $this->amenity = $amenity;
     }
 
     /**

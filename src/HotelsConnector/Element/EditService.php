@@ -3,33 +3,52 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-
 class EditService
 {
     /**
-     * @var int | null
+     * Идентификатор услуги
+     * Service ID
+     *
+     * @var int
      */
-    public $serviceId = null;
+    public $serviceId;
 
     /**
-     * @var EditServiceArrivalDepartureDates | null
+     * Доступные даты для коррекции заезда и выезда
+     * Available dates for check-in and check-out correction
+     *
+     * @var EditServiceArrivalDepartureDates
      */
-    public $arrivalDepartureDates = null;
+    public $arrivalDepartureDates;
 
     /**
-     * @var AvailableMeals | null
+     * Информация о доступном питании.
+     * Information about available food.
+     *
+     * @var AvailableMeals
      */
-    public $meals = null;
+    public $meals;
 
     /**
-     * @var ClaimCheckinCheckoutPrices | null
+     * Цены и доступность РЗПВ.
+     * EALD prices and availability.
+     *
+     * @var ClaimCheckinCheckoutPrices
      */
-    public $checkinCheckoutPrices = null;
+    public $checkinCheckoutPrices;
 
     /**
-     * @var CorrectionAvailability | null
+     * Информация о доступности коррекции
+     * Correction availability information
+     *
+     * @var CorrectionAvailability
      */
-    public $correctionAvailability = null;
+    public $correctionAvailability;
+
+    public function __construct()
+    {
+        $this->meals = new AvailableMeals();
+    }
 
     /**
      * @return int
@@ -69,5 +88,45 @@ class EditService
     public function getCorrectionAvailability()
     {
         return $this->correctionAvailability;
+    }
+
+    /**
+     * @param AvailableMeals $meals
+     */
+    public function setMeals($meals)
+    {
+        $this->meals = $meals;
+    }
+
+    /**
+     * @param int $serviceId
+     */
+    public function setServiceId($serviceId)
+    {
+        $this->serviceId = $serviceId;
+    }
+
+    /**
+     * @param EditServiceArrivalDepartureDates $arrivalDepartureDates
+     */
+    public function setArrivalDepartureDates($arrivalDepartureDates)
+    {
+        $this->arrivalDepartureDates = $arrivalDepartureDates;
+    }
+
+    /**
+     * @param ClaimCheckinCheckoutPrices $checkinCheckoutPrices
+     */
+    public function setCheckinCheckoutPrices($checkinCheckoutPrices)
+    {
+        $this->checkinCheckoutPrices = $checkinCheckoutPrices;
+    }
+
+    /**
+     * @param CorrectionAvailability $correctionAvailability
+     */
+    public function setCorrectionAvailability($correctionAvailability)
+    {
+        $this->correctionAvailability = $correctionAvailability;
     }
 }

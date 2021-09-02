@@ -9,6 +9,12 @@ class GetHotelInfoRequest extends BaseRequest
      */
     public $hotelIds;
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->hotelIds = new HotelIds();
+    }
+
     /**
      * @return HotelIds
      */

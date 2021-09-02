@@ -3,18 +3,23 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-
 class EditServiceArrivalDepartureDates
 {
     /**
-     * @var EditServiceDate | null
+     * Доступные даты для коррекции заезда
+     * Available dates for check-in correction
+     *
+     * @var EditServiceDate
      */
-    public $arrivalDate = null;
+    public $arrivalDate;
 
     /**
-     * @var EditServiceDate | null
+     * Доступные даты для коррекции выезда
+     * Available dates for departure correction
+     *
+     * @var EditServiceDate
      */
-    public $departureDate = null;
+    public $departureDate;
 
     /**
      * @return EditServiceDate|null
@@ -32,4 +37,19 @@ class EditServiceArrivalDepartureDates
         return $this->departureDate;
     }
 
+    /**
+     * @param EditServiceDate $departureDate
+     */
+    public function setDepartureDate($departureDate)
+    {
+        $this->departureDate = $departureDate;
+    }
+
+    /**
+     * @param EditServiceDate $arrivalDate
+     */
+    public function setArrivalDate($arrivalDate)
+    {
+        $this->arrivalDate = $arrivalDate;
+    }
 }

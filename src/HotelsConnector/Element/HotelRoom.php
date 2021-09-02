@@ -103,6 +103,7 @@ class HotelRoom
     {
         $this->bedSets     = new BedSets();
         $this->windowViews = new WindowViews();
+        $this->photos      = new Photos();
     }
 
     /**

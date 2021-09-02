@@ -9,12 +9,8 @@ class GetOrdersChangelogResponse extends BaseResponse
      */
     public $ordersChangelogRecords;
 
-    public function __construct() {
-        $this->ordersChangelogRecords = new OrdersChangelogRecords();
-    }
-
     /**
-     * @return OrdersChangelogRecord
+     * @return OrdersChangelogRecords
      */
     public function getOrdersChangelogRecords()
     {

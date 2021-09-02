@@ -79,6 +79,7 @@ class DescriptionDetails
     public function __construct()
     {
         $this->availableAmenities = new AvailableAmenities();
+        $this->photos             = new Photos();
     }
 
     /**
@@ -208,5 +209,21 @@ class DescriptionDetails
     public function getAvailableAmenities()
     {
         return $this->availableAmenities;
+    }
+
+    /**
+     * @return Photos
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    /**
+     * @param Photos $photos
+     */
+    public function setPhotos($photos)
+    {
+        $this->photos = $photos;
     }
 }

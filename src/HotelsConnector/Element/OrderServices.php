@@ -19,14 +19,6 @@ class OrderServices
     }
 
     /**
-     * @param OrderService[] $service
-     */
-    public function setService($service)
-    {
-        $this->service = $service;
-    }
-
-    /**
      * @param OrderService $service
      */
     public function addService($service)

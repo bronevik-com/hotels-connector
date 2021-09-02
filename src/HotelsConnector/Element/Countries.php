@@ -19,14 +19,6 @@ class Countries
     }
 
     /**
-     * @param Country[] $country
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-    }
-
-    /**
      * @param Country $country
      */
     public function addCountry($country)

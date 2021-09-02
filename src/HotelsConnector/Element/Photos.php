@@ -19,14 +19,6 @@ class Photos
     }
 
     /**
-     * @param Image[] $photo
-     */
-    public function setPhoto($photo)
-    {
-        $this->photo = $photo;
-    }
-
-    /**
      * @param Image $photo
      */
     public function addPhoto($photo)

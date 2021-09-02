@@ -3,11 +3,17 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-
 use Bronevik\HotelsConnector\Enum\CorrectionTypes;
 
 class AvailableCorrectionTypes
 {
+    /**
+     * Виды дополнительных услуг по которым нужна информация
+     * Types of additional services for which information is needed
+     *
+     * @var string[]
+     * @see CorrectionTypes
+     */
     public $correctionType = [];
 
     /**
@@ -23,7 +29,8 @@ class AvailableCorrectionTypes
      *
      * @see CorrectionTypes
      */
-    public function addAmenityType($correctionType) {
+    public function addAmenityType($correctionType)
+    {
         $this->correctionType[] = $correctionType;
     }
 }

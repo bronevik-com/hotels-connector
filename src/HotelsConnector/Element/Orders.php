@@ -19,14 +19,6 @@ class Orders
     }
 
     /**
-     * @param Order[] $order
-     */
-    public function setOrder($order)
-    {
-        $this->order = $order;
-    }
-
-    /**
      * @param Order $order
      */
     public function addOrder($order)

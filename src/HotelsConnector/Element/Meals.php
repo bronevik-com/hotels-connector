@@ -19,14 +19,6 @@ class Meals
     }
 
     /**
-     * @param Meal[] $meal
-     */
-    public function setMeal($meal)
-    {
-        $this->meal = $meal;
-    }
-
-    /**
      * @param Meal $meal
      */
     public function addMeal($meal)

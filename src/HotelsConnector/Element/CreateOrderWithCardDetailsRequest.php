@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-use Bronevik\HotelsConnector\Enum\CurrencyCodesEnum;
+use Bronevik\HotelsConnector\Enum\CurrencyCodes;
 
 /**
  * Запрос на создание заказа
@@ -12,8 +12,11 @@ class CreateOrderWithCardDetailsRequest extends BaseRequest
 {
 
     /**
+     * Валюта расчета
+     * The payment currency
+     *
      * @var string
-     * @see CurrencyCodesEnum
+     * @see CurrencyCodes
      */
     public $currency;
 
@@ -185,7 +188,8 @@ class CreateOrderWithCardDetailsRequest extends BaseRequest
 
     /**
      * @param string $currency
-     * @see CurrencyCodesEnum
+     *
+     * @see CurrencyCodes
      */
     public function setCurrency($currency)
     {

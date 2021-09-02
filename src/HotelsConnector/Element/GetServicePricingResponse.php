@@ -3,19 +3,26 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-
 class GetServicePricingResponse
 {
     /**
-     * @var Order | null
+     * @var Order
      */
-    public $order = null;
+    public $order;
 
     /**
-     * @return Order|null
+     * @return Order
      */
     public function getOrder()
     {
         return $this->order;
+    }
+
+    /**
+     * @param Order $order
+     */
+    public function setOrder($order)
+    {
+        $this->order = $order;
     }
 }

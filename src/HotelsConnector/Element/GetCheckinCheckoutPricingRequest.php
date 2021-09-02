@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-use Bronevik\HotelsConnector\Enum\CurrencyCodesEnum;
+use Bronevik\HotelsConnector\Enum\CurrencyCodes;
 
 class GetCheckinCheckoutPricingRequest extends BaseRequest
 {
@@ -15,8 +15,11 @@ class GetCheckinCheckoutPricingRequest extends BaseRequest
     public $offerCodes = null;
 
     /**
+     * Валюта расчета
+     * The payment currency
+     *
      * @var string
-     * @see CurrencyCodesEnum
+     * @see CurrencyCodes
      */
     public $currency;
 
@@ -40,5 +43,22 @@ class GetCheckinCheckoutPricingRequest extends BaseRequest
     public function getOfferCodes()
     {
         return $this->offerCodes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     * @see CurrencyCodes
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
     }
 }

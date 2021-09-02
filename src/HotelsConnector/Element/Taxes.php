@@ -18,13 +18,6 @@ class Taxes
         return $this->taxes;
     }
 
-    /**
-     * @param Tax[] $taxes
-     */
-    public function setTaxes($taxes)
-    {
-        $this->taxes = $taxes;
-    }
 
     /**
      * @param Tax $tax

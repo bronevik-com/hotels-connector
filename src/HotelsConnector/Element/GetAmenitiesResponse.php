@@ -5,6 +5,9 @@ namespace Bronevik\HotelsConnector\Element;
 class GetAmenitiesResponse extends BaseResponse
 {
     /**
+     * Дополнительны услуги
+     * Additional services
+     *
      * @var Amenities
      */
     public $amenities;

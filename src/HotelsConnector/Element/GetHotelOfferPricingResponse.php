@@ -5,12 +5,12 @@ namespace Bronevik\HotelsConnector\Element;
 class GetHotelOfferPricingResponse extends BaseResponse
 {
     /**
-     * @var OrderServices[]
+     * @var OrderServices
      */
     public $services;
 
     /**
-     * @return OrderServices[]
+     * @return OrderServices
      */
     public function getServices()
     {
@@ -18,7 +18,7 @@ class GetHotelOfferPricingResponse extends BaseResponse
     }
 
     /**
-     * @param OrderServices[] $services
+     * @param OrderServices $services
      */
     public function setServices($services)
     {

@@ -3,18 +3,23 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-
 class EditServiceDate
 {
     /**
+     * Максимальная дата для коррекции
+     * Maximum date for correction
+     *
      * @var string
      */
-    public $minAvailableDate = null;
+    public $minAvailableDate;
 
     /**
+     * Минимальная дата для коррекции
+     * Minimum date for correction
+     *
      * @var string
      */
-    public $maxAvailableDate = null;
+    public $maxAvailableDate;
 
     /**
      * @return string
@@ -30,5 +35,21 @@ class EditServiceDate
     public function getMaxAvailableDate()
     {
         return $this->maxAvailableDate;
+    }
+
+    /**
+     * @param string $minAvailableDate
+     */
+    public function setMinAvailableDate($minAvailableDate)
+    {
+        $this->minAvailableDate = $minAvailableDate;
+    }
+
+    /**
+     * @param string $maxAvailableDate
+     */
+    public function setMaxAvailableDate($maxAvailableDate)
+    {
+        $this->maxAvailableDate = $maxAvailableDate;
     }
 }

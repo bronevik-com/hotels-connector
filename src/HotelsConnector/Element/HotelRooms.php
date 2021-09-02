@@ -19,14 +19,6 @@ class HotelRooms
     }
 
     /**
-     * @param HotelRoom[] $room
-     */
-    public function setRoom($room)
-    {
-        $this->room = $room;
-    }
-
-    /**
      * @param HotelRoom $room
      */
     public function addRoom($room)

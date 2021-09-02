@@ -52,6 +52,12 @@ class Order
      */
     public $services;
 
+    public function __construct()
+    {
+        $this->services = new OrderServices();
+    }
+
+
     /**
      * @param int $id
      */

@@ -3,7 +3,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-class CurrencyCodesEnum extends Enum
+class CurrencyCodes extends Enum
 {
     const RUB = "RUB";
     const USD = "USD";
