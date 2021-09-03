@@ -25,6 +25,6 @@ class Operations extends Enum
     const GET_CHECKIN_CHECKOUT_PRICING     = 'getCheckinCheckoutPricing';
     const SEARCH_HOTEL_AVAILABILITY        = 'searchHotelAvailability';
     const CREATE_ORDER_WITH_CARD_DETAILS   = 'createOrderWithCardDetails';
-    const GET_SERVICE_AVAILABLE_CORRECTION = 'getServiceAvailableCorrection';
-    const GET_SERVICE_PRICING              = 'getServicePricings';
+    const GET_SERVICE_AVAILABLE_CORRECTION = 'getServiceAvailableCorrections';
+    const GET_SERVICE_PRICING              = 'getServicePricing';
 }
