@@ -11,7 +11,7 @@ class EditServiceDate
      *
      * @var string
      */
-    public $minAvailableDate;
+    public $maxAvailableDate;
 
     /**
      * Минимальная дата для коррекции
@@ -19,7 +19,7 @@ class EditServiceDate
      *
      * @var string
      */
-    public $maxAvailableDate;
+    public $minAvailableDate;
 
     /**
      * @return string
