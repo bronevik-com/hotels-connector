@@ -686,7 +686,7 @@ class HotelsConnector
         $request = new Element\GetServiceAvailableCorrectionsRequest();
         $this->fillRequest($request);
 
-        $request->serviceIds = $serviceIds;
+        $request->serviceId = $serviceIds;
         $request->setAvailableCorrectionTypes($availableCorrectionTypes);
 
         /** @var Element\GetServiceAvailableCorrectionsResponse $response */
