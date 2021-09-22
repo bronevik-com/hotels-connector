@@ -29,22 +29,6 @@ class ClientPriceDetails
     public $gross;
 
     /**
-     * Цены в валюте клиента.
-     * Prices in client currency.
-     *
-     * @var CurrencyPriceDetails
-     */
-    public $clientCurrency;
-
-    /**
-     * Цены в валюте отеля.
-     * Prices in hotel currency.
-     *
-     * @var CurrencyPriceDetails
-     */
-    public $hotelCurrency;
-
-    /**
      * Нетто-стоимость
      * The net-cost value
      *
@@ -121,37 +105,5 @@ class ClientPriceDetails
     public function getNet()
     {
         return $this->net;
-    }
-
-    /**
-     * @return CurrencyPriceDetails
-     */
-    public function getClientCurrency()
-    {
-        return $this->clientCurrency;
-    }
-
-    /**
-     * @param CurrencyPriceDetails $clientCurrency
-     */
-    public function setClientCurrency($clientCurrency)
-    {
-        $this->clientCurrency = $clientCurrency;
-    }
-
-    /**
-     * @return CurrencyPriceDetails
-     */
-    public function getHotelCurrency()
-    {
-        return $this->hotelCurrency;
-    }
-
-    /**
-     * @param CurrencyPriceDetails $hotelCurrency
-     */
-    public function setHotelCurrency($hotelCurrency)
-    {
-        $this->hotelCurrency = $hotelCurrency;
     }
 }

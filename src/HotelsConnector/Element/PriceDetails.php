@@ -28,6 +28,14 @@ class PriceDetails
      */
     public $client;
 
+    /**
+     * Дополнительные цены
+     * The extra prices
+     *
+     * @var NamedDetailedPrice[]
+     */
+    public $extra = [];
+
     public function __construct()
     {
         $this->hotel  = new HotelPriceDetails();
@@ -80,5 +88,29 @@ class PriceDetails
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasExtra()
+    {
+        return count($this->extra) > 0;
+    }
+
+    /**
+     * @return NamedDetailedPrice[]
+     */
+    public function getExtra()
+    {
+        return $this->extra;
+    }
+
+    /**
+     * @param NamedDetailedPrice $extra
+     */
+    public function addExtra($extra)
+    {
+        $this->extra[] = $extra;
     }
 }
