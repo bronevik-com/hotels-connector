@@ -5,6 +5,9 @@ namespace Bronevik\HotelsConnector\Element;
 class AvailableMeals
 {
     /**
+     * Массив с информацией о доступном питании.
+     * Array with information about available power supply.
+     *
      * @var AvailableMeal[]
      */
     public $meal = [];

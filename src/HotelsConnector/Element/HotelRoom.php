@@ -22,9 +22,9 @@ class HotelRoom
      * Доступные в номере удобства
      * Available amenities in room
      *
-     * @var AvailableAmenity[]
+     * @var AvailableAmenities
      */
-    public $availableAmenities = [];
+    public $availableAmenities;
 
     /**
      * Описание номера
@@ -38,9 +38,9 @@ class HotelRoom
      * Фотографии номера
      * Room's photos
      *
-     * @var Image[]
+     * @var Photos
      */
-    public $photos = [];
+    public $photos;
 
     /**
      * Количество гостей, которых можно разместить в номере
@@ -103,6 +103,7 @@ class HotelRoom
     {
         $this->bedSets     = new BedSets();
         $this->windowViews = new WindowViews();
+        $this->photos      = new Photos();
     }
 
     /**
@@ -138,30 +139,6 @@ class HotelRoom
     }
 
     /**
-     * @return bool
-     */
-    public function hasAvailableAmenities()
-    {
-        return count($this->availableAmenities) > 0;
-    }
-
-    /**
-     * @return AvailableAmenity[]
-     */
-    public function getAvailableAmenities()
-    {
-        return $this->availableAmenities;
-    }
-
-    /**
-     * @param AvailableAmenity $availableAmenities
-     */
-    public function addAvailableAmenities($availableAmenities)
-    {
-        $this->availableAmenities[] = $availableAmenities;
-    }
-
-    /**
      * @param string $description
      */
     public function setDescription($description)
@@ -175,30 +152,6 @@ class HotelRoom
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasPhotos()
-    {
-        return count($this->photos) > 0;
-    }
-
-    /**
-     * @return Image[]
-     */
-    public function getPhotos()
-    {
-        return $this->photos;
-    }
-
-    /**
-     * @param Image $photos
-     */
-    public function addPhotos($photos)
-    {
-        $this->photos[] = $photos;
     }
 
     /**
@@ -311,5 +264,37 @@ class HotelRoom
     public function getWindowViews()
     {
         return $this->windowViews;
+    }
+
+    /**
+     * @return Photos
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    /**
+     * @param Photos $photos
+     */
+    public function setPhotos($photos)
+    {
+        $this->photos = $photos;
+    }
+
+    /**
+     * @return AvailableAmenities
+     */
+    public function getAvailableAmenities()
+    {
+        return $this->availableAmenities;
+    }
+
+    /**
+     * @param AvailableAmenities $availableAmenities
+     */
+    public function setAvailableAmenities($availableAmenities)
+    {
+        $this->availableAmenities = $availableAmenities;
     }
 }

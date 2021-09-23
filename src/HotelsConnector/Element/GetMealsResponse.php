@@ -5,20 +5,12 @@ namespace Bronevik\HotelsConnector\Element;
 class GetMealsResponse extends BaseResponse
 {
     /**
-     * @var Meal[]
+     * @var Meals
      */
-    public $meals = [];
+    public $meals;
 
     /**
-     * @return bool
-     */
-    public function hasMeals()
-    {
-        return count($this->meals) > 0;
-    }
-
-    /**
-     * @return Meal[]
+     * @return Meals
      */
     public function getMeals()
     {
@@ -26,10 +18,10 @@ class GetMealsResponse extends BaseResponse
     }
 
     /**
-     * @param Meal $meals
+     * @param Meals $meals
      */
-    public function addMeals($meals)
+    public function setMeals($meals)
     {
-        $this->meals[] = $meals;
+        $this->meals = $meals;
     }
 }

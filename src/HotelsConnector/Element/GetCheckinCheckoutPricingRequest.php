@@ -11,7 +11,6 @@ class GetCheckinCheckoutPricingRequest extends BaseRequest
      * @var OfferCodes
      */
     public $offerCodes = null;
-
     public function __construct()
     {
         parent::__construct();

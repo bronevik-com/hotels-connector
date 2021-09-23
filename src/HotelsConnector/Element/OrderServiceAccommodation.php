@@ -160,9 +160,9 @@ class OrderServiceAccommodation extends OrderService
      * Информация о питании
      * An information about meal service
      *
-     * @var AvailableMeal[]
+     * @var AvailableMeals
      */
-    public $meals = [];
+    public $meals;
 
     /**
      * Правила предоставления заказа
@@ -187,6 +187,7 @@ class OrderServiceAccommodation extends OrderService
         $this->rateType      = new RateType();
         $this->offerPolicies = new OfferPolicies();
         $this->dailyPrices   = new DailyPrices();
+        $this->meals         = new AvailableMeals();
     }
 
     /**
@@ -510,30 +511,6 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return bool
-     */
-    public function hasMeals()
-    {
-        return count($this->meals) > 0;
-    }
-
-    /**
-     * @return AvailableMeal[]
-     */
-    public function getMeals()
-    {
-        return $this->meals;
-    }
-
-    /**
-     * @param AvailableMeal $meals
-     */
-    public function addMeals($meals)
-    {
-        $this->meals[] = $meals;
-    }
-
-    /**
      * @param OfferPolicies $offerPolicies
      */
     public function setOfferPolicies($offerPolicies)
@@ -563,5 +540,21 @@ class OrderServiceAccommodation extends OrderService
     public function getDailyPrices()
     {
         return $this->dailyPrices;
+    }
+
+    /**
+     * @return AvailableMeals
+     */
+    public function getMeals()
+    {
+        return $this->meals;
+    }
+
+    /**
+     * @param AvailableMeals $meals
+     */
+    public function setMeals($meals)
+    {
+        $this->meals = $meals;
     }
 }

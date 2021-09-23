@@ -2,6 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\CurrencyCodes;
 use Bronevik\HotelsConnector\Enum\SkipElementTypes;
 
 /**
@@ -17,15 +18,6 @@ class SearchHotelOffersRequest extends BaseRequest
      * @var int
      */
     public $cityId;
-
-    /**
-     * @deprecated
-     * Идентификатор отеля, по которому будет идти поиск
-     * The hotel id for search
-     *
-     * @var int
-     */
-    public $hotelId;
 
     /**
      * Идентификаторы отелей, по которым будет идти поиск
@@ -64,6 +56,7 @@ class SearchHotelOffersRequest extends BaseRequest
      * The payment currency
      *
      * @var string
+     * @see CurrencyCodes
      */
     public $currency;
 
@@ -95,22 +88,6 @@ class SearchHotelOffersRequest extends BaseRequest
     public function getCityId()
     {
         return $this->cityId;
-    }
-
-    /**
-     * @param int $hotelId
-     */
-    public function setHotelId($hotelId)
-    {
-        $this->hotelId = $hotelId;
-    }
-
-    /**
-     * @return int
-     */
-    public function getHotelId()
-    {
-        return $this->hotelId;
     }
 
     /**
@@ -179,6 +156,7 @@ class SearchHotelOffersRequest extends BaseRequest
 
     /**
      * @param string $currency
+     * @see CurrencyCodes
      */
     public function setCurrency($currency)
     {

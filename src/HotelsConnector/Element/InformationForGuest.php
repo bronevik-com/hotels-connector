@@ -5,36 +5,12 @@ namespace Bronevik\HotelsConnector\Element;
 class InformationForGuest
 {
     /**
-     * Важная информация об отеле
-     * Important information about hotel
-     *
-     * @var string
-     */
-    public $comment;
-
-    /**
      * Уведомления для гостя.
      * Guest notifications.
      *
      * @var GuestNotification[]
      */
     public $notification = [];
-
-    /**
-     * @param string $comment
-     */
-    public function setComment($comment)
-    {
-        $this->comment = $comment;
-    }
-
-    /**
-     * @return string
-     */
-    public function getComment()
-    {
-        return $this->comment;
-    }
 
     /**
      * @return bool

@@ -13,15 +13,6 @@ class HotelOffer extends BaseOffer
     public $code;
 
     /**
-     * Флаг наличия lhp-цен в предложении
-     * Specifies LHP-rate in the offer
-     *
-     * @var boolean
-     * @deprecated
-     */
-    public $lhp;
-
-    /**
      * Детализация стоимости
      * The offer price details
      *
@@ -52,17 +43,6 @@ class HotelOffer extends BaseOffer
      * @var boolean
      */
     public $immediateConfirmation;
-
-    /**
-     * deprecated - перенесено в элемент 'HotelRoom'.
-     * Количество гостей, которых можно разместить в номере
-     * deprecated - currently available in 'HotelRoom' element.
-     * The basic room capacity
-     *
-     * @deprecated
-     * @var int
-     */
-    public $roomCapacity;
 
     /**
      * ​Элемент для работы метапоисковых систем
@@ -118,22 +98,6 @@ class HotelOffer extends BaseOffer
     public function getCode()
     {
         return $this->code;
-    }
-
-    /**
-     * @param boolean $lhp
-     */
-    public function setLhp($lhp)
-    {
-        $this->lhp = $lhp;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getLhp()
-    {
-        return $this->lhp;
     }
 
     /**
@@ -206,22 +170,6 @@ class HotelOffer extends BaseOffer
     public function getImmediateConfirmation()
     {
         return $this->immediateConfirmation;
-    }
-
-    /**
-     * @param int $roomCapacity
-     */
-    public function setRoomCapacity($roomCapacity)
-    {
-        $this->roomCapacity = $roomCapacity;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRoomCapacity()
-    {
-        return $this->roomCapacity;
     }
 
     /**

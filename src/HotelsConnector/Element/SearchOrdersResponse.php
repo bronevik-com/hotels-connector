@@ -5,20 +5,12 @@ namespace Bronevik\HotelsConnector\Element;
 class SearchOrdersResponse extends BaseResponse
 {
     /**
-     * @var Order[]
+     * @var Orders
      */
-    public $orders = [];
+    public $orders;
 
     /**
-     * @return bool
-     */
-    public function hasOrders()
-    {
-        return count($this->orders) > 0;
-    }
-
-    /**
-     * @return Order[]
+     * @return Orders
      */
     public function getOrders()
     {
@@ -26,10 +18,10 @@ class SearchOrdersResponse extends BaseResponse
     }
 
     /**
-     * @param Order $orders
+     * @param Orders $orders
      */
-    public function addOrders($orders)
+    public function setOrders($orders)
     {
-        $this->orders[] = $orders;
+        $this->orders = $orders;
     }
 }
