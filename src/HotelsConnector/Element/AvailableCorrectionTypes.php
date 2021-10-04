@@ -29,7 +29,7 @@ class AvailableCorrectionTypes
      *
      * @see CorrectionTypes
      */
-    public function addCorrectionType($correctionType)
+    public function addAmenityType($correctionType)
     {
         $this->correctionType[] = $correctionType;
     }
