@@ -733,6 +733,23 @@ class HotelsConnector
     }
 
     /**
+     * @param int $orderId
+     *
+     * @throws SoapFault
+     */
+    public function getOrderInvoices($orderId)
+    {
+        $request = new Element\GetOrderInvoicesRequest();
+        $request->setOrderId($orderId);
+
+        $this->fillRequest($request);
+
+        $response = $this->getSoapClient()->__soapCall(Operations::GET_ORDER_INVOICES, [$request]);
+
+        return $response->getOrder();
+    }
+
+    /**
      * Заполнение запроса всем, чем нужно
      *
      * @param Element\BaseRequest $request
