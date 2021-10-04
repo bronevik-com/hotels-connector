@@ -11,7 +11,7 @@ class GetServiceAvailableCorrectionsRequest extends BaseRequest
      *
      * @var int[]
      */
-    public $serviceIds = [];
+    public $serviceId = [];
 
     /**
      * Виды дополнительных услуг по которым нужна информация
@@ -30,9 +30,9 @@ class GetServiceAvailableCorrectionsRequest extends BaseRequest
     /**
      * @return int[]
      */
-    public function getServiceIds()
+    public function getServiceId()
     {
-        return $this->serviceIds;
+        return $this->serviceId;
     }
 
     /**
@@ -48,7 +48,7 @@ class GetServiceAvailableCorrectionsRequest extends BaseRequest
      */
     public function addServiceId($serviceId)
     {
-        $this->serviceIds[] = $serviceId;
+        $this->serviceId[] = $serviceId;
     }
 
     /**
