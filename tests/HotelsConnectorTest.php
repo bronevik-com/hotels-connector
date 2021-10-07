@@ -52,6 +52,7 @@ use Bronevik\HotelsConnector\Element\OrdersChangelogRecord;
 use Bronevik\HotelsConnector\Element\OrderServiceAccommodation;
 use Bronevik\HotelsConnector\Element\PingRequest;
 use Bronevik\HotelsConnector\Element\PingResponse;
+use Bronevik\HotelsConnector\Element\RecordIds;
 use Bronevik\HotelsConnector\Element\RemoveOrdersChangelogRecordsRequest;
 use Bronevik\HotelsConnector\Element\RemoveOrdersChangelogRecordsResponse;
 use Bronevik\HotelsConnector\Element\SearchHotelAvailabilityRequest;
@@ -67,6 +68,7 @@ use Bronevik\HotelsConnector\Element\SendServiceMessageResponse;
 use Bronevik\HotelsConnector\Element\ServiceAccommodation;
 use Bronevik\HotelsConnector\Element\ServiceMessages;
 use Bronevik\HotelsConnector\Element\SkipElements;
+use Bronevik\HotelsConnector\Element\UpdateService;
 use Bronevik\HotelsConnector\Element\UpdateServiceRequest;
 use Bronevik\HotelsConnector\Element\UpdateServiceResponse;
 use Bronevik\HotelsConnector\Enum\Currencies;
@@ -143,7 +145,7 @@ class HotelsConnectorTest extends TestCase
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
-        $apiResponse = $hotelsConnector->getHotelOfferPricing($services);
+        $apiResponse = $hotelsConnector->getHotelOfferPricing($services, CurrencyCodes::RUB);
 
         // Assert
         $this->assertEquals($responseServices, $apiResponse);
@@ -465,7 +467,7 @@ class HotelsConnectorTest extends TestCase
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
-        $apiResponse = $hotelsConnector->getCheckinCheckoutPricing($offerCodes);
+        $apiResponse = $hotelsConnector->getCheckinCheckoutPricing($offerCodes, CurrencyCodes::RUB);
 
         // Assert
         $this->assertEquals($offerCheckinCheckoutPrices, $apiResponse);
@@ -649,11 +651,15 @@ class HotelsConnectorTest extends TestCase
     public function testRemoveOrdersChangelogRecords()
     {
         // Arrange
-        $recordIds = [1, 2, 3];
-        $status    = true;
+        $recordIds = new RecordIds();
+        $recordIds->addId(1);
+        $recordIds->addId(2);
+        $recordIds->addId(3);
 
-        $request           = new RemoveOrdersChangelogRecordsRequest();
-        $request->recordId = $recordIds;
+        $status = true;
+
+        $request            = new RemoveOrdersChangelogRecordsRequest();
+        $request->recordIds = $recordIds;
 
         $response         = new RemoveOrdersChangelogRecordsResponse();
         $response->status = $status;
@@ -662,7 +668,7 @@ class HotelsConnectorTest extends TestCase
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
-        $apiResponse = $hotelsConnector->removeOrdersChangelogRecords($recordIds);
+        $apiResponse = $hotelsConnector->removeOrdersChangelogRecords([1, 2, 3]);
 
         // Assert
         $this->assertEquals($status, $apiResponse);
@@ -678,8 +684,8 @@ class HotelsConnectorTest extends TestCase
 
         $request = new GetOrdersChangelogRequest();
 
-        $response                        = new GetOrdersChangelogResponse();
-        $response->ordersChangelogRecord = $records;
+        $response                         = new GetOrdersChangelogResponse();
+        $response->ordersChangelogRecords = $records;
 
         $baseClient      = $this->getSoapClient(Operations::GET_ORDERS_CHANGELOG, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
@@ -805,19 +811,19 @@ class HotelsConnectorTest extends TestCase
         $serviceId = 1;
         $refenceId = 'refenceId';
 
-        $request              = new UpdateServiceRequest();
-        $request->serviceId   = $serviceId;
-        $request->referenceId = $refenceId;
+        $request            = new UpdateServiceRequest();
+        $request->serviceId = $serviceId;
 
-        $response              = new UpdateServiceResponse();
-        $response->result      = true;
-        $response->referenceId = $refenceId;
+        $updateService = new UpdateService();
+        $updateService->setReferenceId(11);
+
+        $response = new UpdateServiceResponse();
 
         $baseClient      = $this->getSoapClient(Operations::UPDATE_SERVICE, $request, $response);
         $hotelsConnector = $this->getHotelsConnector($baseClient);
 
         // Act
-        $apiResponse = $hotelsConnector->updateService($serviceId, $refenceId);
+        $apiResponse = $hotelsConnector->updateService($serviceId, $updateService);
 
         // Assert
         $this->assertEquals($response, $apiResponse);
