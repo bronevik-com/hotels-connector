@@ -167,6 +167,27 @@ class ClassMaps extends Enum
         'Photos'                                 => Element\Photos::class,
         'RecordIds'                              => Element\RecordIds::class,
         'UpdateService'                          => Element\UpdateService::class,
+        'AbstractChange'                         => Element\AbstractChange::class,
+        'CityIds'                                => Element\CityIds::class,
+        'CurrencyPriceDetails'                   => Element\CurrencyPriceDetails::class,
+        'EditServiceAvailableMeals'              => Element\EditServiceAvailableMeals::class,
+        'GetOrderInvoicesRequest' => Element\GetOrderInvoicesRequest::class,
+        'GetOrderInvoicesResponse' => Element\GetOrderInvoicesResponse::class,
+        'Guest' => Element\Guest::class,
+        'Guests' => Element\Guests::class,
+        'GuestsChange' => Element\GuestsChange::class,
+        'GuestsChangeValue' => Element\GuestsChangeValue::class,
+        'Invoice' => Element\Invoice::class,
+        'InvoiceInfo' => Element\InvoiceInfo::class,
+        'Invoices' => Element\Invoices::class,
+        'MealForChangeLog' => Element\MealForChangeLog::class,
+        'MealsChange' => Element\MealsChange::class,
+        'MealsChangeValue' => Element\MealsChangeValue::class,
+        'MealsCorrectionAvailability' => Element\MealsCorrectionAvailability::class,
+        'OrderInvoices' => Element\OrderInvoices::class,
+        'Taxes' => Element\Taxes::class,
+        'TimeRange' => Element\TimeRange::class,
+
     ];
 
     const CLASSMAP_FOR_SECURE_ENDPOINT = [
