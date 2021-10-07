@@ -5,6 +5,7 @@ namespace Bronevik;
 use Bronevik\HotelsConnector\Element as Element;
 use Bronevik\HotelsConnector\Enum\ClassMaps;
 use Bronevik\HotelsConnector\Enum\Currencies;
+use Bronevik\HotelsConnector\Enum\CurrencyCodes;
 use Bronevik\HotelsConnector\Enum\Endpoints;
 use Bronevik\HotelsConnector\Enum\Operations;
 use SoapClient;
@@ -271,12 +272,13 @@ class HotelsConnector
      * @return Element\Cities
      * @throws SoapFault
      */
-    public function getCities($countryId)
+    public function getCities($countryId, Element\CityIds $cityIds = null)
     {
         $request = new Element\GetCitiesRequest();
         $this->fillRequest($request);
 
         $request->setCountryId($countryId);
+        $request->setCityIds($cityIds);
 
         /** @var Element\GetCitiesResponse $response */
         $response = $this->getSoapClient()->__call(Operations::GET_CITIES, [$request]);
@@ -289,6 +291,7 @@ class HotelsConnector
      *
      * @param string                         $arrivalDate
      * @param string                         $departureDate
+     * @param string                         $currency
      * @param int|null                       $cityId
      * @param Element\SearchOfferCriterion[] $searchCriteria
      * @param int[]                          $hotelIds
@@ -301,6 +304,7 @@ class HotelsConnector
     public function searchHotelOffers(
         $arrivalDate,
         $departureDate,
+        $currency,
         $cityId = null,
         $searchCriteria = [],
         $hotelIds = [],
@@ -312,7 +316,7 @@ class HotelsConnector
 
         $request->setArrivalDate($arrivalDate);
         $request->setDepartureDate($departureDate);
-        $request->setCurrency(Currencies::RUSSIAN_RUBLE);
+        $request->setCurrency($currency);
 
         if ($cityId) {
             $request->setCityId($cityId);
@@ -402,6 +406,7 @@ class HotelsConnector
      * Запрос описания отелей
      *
      * @param array $hotelIds
+     * @param array $cityIds
      *
      * @return Element\HotelsWithInfo
      * @throws SoapFault
@@ -422,14 +427,37 @@ class HotelsConnector
     }
 
     /**
+     * Запрос описания отелей в выбранных городах
+     *
+     * @param array $cityIds
+     *
+     * @return Element\HotelsWithInfo
+     * @throws SoapFault
+     */
+    public function getHotelInfoByCityIds($cityIds)
+    {
+        $request = new Element\GetHotelInfoRequest();
+        $this->fillRequest($request);
+
+        $request->cityIds->setId($cityIds);
+
+        /** @var Element\GetHotelInfoResponse $response */
+        $response = $this->getSoapClient()->__call(Operations::GET_HOTEL_INFO, [$request]);
+
+        return $response->getHotels();
+    }
+
+    /**
      * @param Element\ServiceAccommodation[] $services
+     * @param string                         $currency
      *
      * @return Element\OrderServices
      * @throws SoapFault
      */
-    public function getHotelOfferPricing($services)
+    public function getHotelOfferPricing($services, $currency)
     {
         $request = new Element\GetHotelOfferPricingRequest();
+        $request->setCurrency($currency);
         $this->fillRequest($request);
 
         foreach ((array) $services as $serviceAccommodation) {
@@ -613,13 +641,15 @@ class HotelsConnector
      * Получить цены за ранный заезд и поздний выезд
      *
      * @param string[] $offerCodes
+     * @param string   $currency
      *
      * @return Element\OfferCheckinCheckoutPrices[]
      * @throws SoapFault
      */
-    public function getCheckinCheckoutPricing(array $offerCodes)
+    public function getCheckinCheckoutPricing(array $offerCodes, $currency)
     {
         $request = new Element\GetCheckinCheckoutPricingRequest();
+        $request->setCurrency($currency);
         $this->fillRequest($request);
 
         $request->offerCodes = $offerCodes;
@@ -637,6 +667,7 @@ class HotelsConnector
      * @param string                         $checkOutDate
      * @param int|null                       $cityId
      * @param int[]                          $hotelIds
+     * @param string                         $currency
      * @param Element\GeoLocation|null       $geolocation
      * @param string[]                       $addElements
      * @param Element\SearchOfferCriterion[] $searchCriteria
@@ -647,6 +678,7 @@ class HotelsConnector
     public function searchHotelAvailability(
         $checkinDate,
         $checkOutDate,
+        $currency,
         $cityId = null,
         array $hotelIds = [],
         Element\GeoLocation $geolocation = null,
@@ -658,7 +690,7 @@ class HotelsConnector
 
         $request->checkInDate    = $checkinDate;
         $request->checkOutDate   = $checkOutDate;
-        $request->currency       = Currencies::RUSSIAN_RUBLE;
+        $request->currency       = $currency;
         $request->cityId         = $cityId;
         $request->hotelIds       = $hotelIds;
         $request->geolocation    = $geolocation;
@@ -672,7 +704,7 @@ class HotelsConnector
     }
 
     /**
-     * Получение доступных услуг для коррекции
+     * Получение доступности коррекции для услуг
      *
      * @param int[]                                 $serviceIds
      * @param Element\AvailableCorrectionTypes|null $availableCorrectionTypes
@@ -733,6 +765,8 @@ class HotelsConnector
     }
 
     /**
+     * Получение счетов заказа
+     *
      * @param int $orderId
      *
      * @throws SoapFault
@@ -744,6 +778,7 @@ class HotelsConnector
 
         $this->fillRequest($request);
 
+        /** @var Element\GetOrderInvoicesResponse $response */
         $response = $this->getSoapClient()->__soapCall(Operations::GET_ORDER_INVOICES, [$request]);
 
         return $response->getOrder();

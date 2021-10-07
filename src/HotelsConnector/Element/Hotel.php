@@ -115,6 +115,30 @@ class Hotel
      */
     public $additionalInfo;
 
+    /**
+     * Допустимое время заезда.
+     * Allowable arrival time.
+     *
+     * @var TimeRange
+     */
+    public $allowableCheckinTime;
+
+    /**
+     * Допустимое время выезда.
+     * Allowable departure time.
+     *
+     * @var TimeRange
+     */
+    public $allowableCheckoutTime;
+
+    /**
+     * Условия оплаты.
+     * Payment terms.
+     *
+     * @var string
+     */
+    public $paymentTerms;
+
     public function __construct()
     {
         $this->descriptionDetails  = new DescriptionDetails();
@@ -344,5 +368,53 @@ class Hotel
     public function getAdditionalInfo()
     {
         return $this->additionalInfo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentTerms()
+    {
+        return $this->paymentTerms;
+    }
+
+    /**
+     * @param string $paymentTerms
+     */
+    public function setPaymentTerms($paymentTerms)
+    {
+        $this->paymentTerms = $paymentTerms;
+    }
+
+    /**
+     * @return TimeRange
+     */
+    public function getAllowableCheckinTime()
+    {
+        return $this->allowableCheckinTime;
+    }
+
+    /**
+     * @param TimeRange $allowableCheckinTime
+     */
+    public function setAllowableCheckinTime($allowableCheckinTime)
+    {
+        $this->allowableCheckinTime = $allowableCheckinTime;
+    }
+
+    /**
+     * @return TimeRange
+     */
+    public function getAllowableCheckoutTime()
+    {
+        return $this->allowableCheckoutTime;
+    }
+
+    /**
+     * @param TimeRange $allowableCheckoutTime
+     */
+    public function setAllowableCheckoutTime($allowableCheckoutTime)
+    {
+        $this->allowableCheckoutTime = $allowableCheckoutTime;
     }
 }

@@ -3,14 +3,20 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-class OrderInvoice
+class OrderInvoices
 {
     /**
+     * Идентификатор заказа
+     * Order ID
+     *
      * @var int
      */
     public $id;
 
     /**
+     * Счета заказа
+     * Order invoices
+     *
      * @var Invoices
      */
     public $invoices;

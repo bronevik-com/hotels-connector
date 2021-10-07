@@ -32,6 +32,14 @@ class OfferHourPrice
     public $priceDetails;
 
     /**
+     * Доступен ли час для коррекции
+     * Is the hour available for correction
+     *
+     * @var boolean
+     */
+    public $correctionAvailability;
+
+    /**
      * @param int $hour
      */
     public function setHour($hour)

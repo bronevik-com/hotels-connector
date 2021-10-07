@@ -20,7 +20,6 @@ class ClassMaps extends Enum
         'Bed'                                    => Element\Bed::class,
         'BedSet'                                 => Element\BedSet::class,
         'BedSets'                                => Element\BedSets::class,
-        'BreakfastInfo'                          => Element\BreakfastInfo::class,
         'CancelOrderRequest'                     => Element\CancelOrderRequest::class,
         'CancelOrderResponse'                    => Element\CancelOrderResponse::class,
         'CancelServicesRequest'                  => Element\CancelServicesRequest::class,

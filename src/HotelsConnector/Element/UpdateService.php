@@ -6,6 +6,9 @@ namespace Bronevik\HotelsConnector\Element;
 class UpdateService
 {
     /**
+     * Номер услуги в системе клиента
+     * Service number in the client's system
+     *
      * @var int
      */
     public $referenceId;

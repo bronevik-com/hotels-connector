@@ -5,6 +5,9 @@ namespace Bronevik\HotelsConnector\Element;
 class Invoices
 {
     /**
+     * Информация о счете
+     * Account information
+     *
      * @var Invoice[]
      */
     public $invoice;

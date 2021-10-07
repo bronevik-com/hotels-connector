@@ -6,16 +6,16 @@ namespace Bronevik\HotelsConnector\Element;
 class ClaimCheckinCheckoutPrices
 {
     /**
-     * Информация о раннем заезде
-     * Early check-in information
+     * Цены за ранний заезд.
+     * Prices for early arrival.
      *
      * @var OfferHourPrices
      */
     public $checkin;
 
     /**
-     * Информация о позднем выезде
-     * Late check-out information
+     * Цены за поздний выезд.
+     * Prices for late departure.
      *
      * @var OfferHourPrices
      */

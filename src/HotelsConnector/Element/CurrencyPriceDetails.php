@@ -84,4 +84,20 @@ class CurrencyPriceDetails
     {
         $this->gross = $gross;
     }
+
+    /**
+     * @return NamedDetailedPrice[]
+     */
+    public function getExtra()
+    {
+        return $this->extra;
+    }
+
+    /**
+     * @param NamedDetailedPrice[] $extra
+     */
+    public function setExtra($extra)
+    {
+        $this->extra = $extra;
+    }
 }

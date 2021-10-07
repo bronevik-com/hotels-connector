@@ -6,6 +6,9 @@ namespace Bronevik\HotelsConnector\Element;
 class Invoice
 {
     /**
+     * Временная ссылка для скачивания счета
+     * Temporary link to download the invoice
+     *
      * @var string
      */
     public $invoiceLink;
