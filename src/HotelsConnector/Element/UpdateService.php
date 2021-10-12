@@ -65,7 +65,7 @@ class UpdateService
      * Коррекция свайп шкалы
      * Swipe Scale Correction
      *
-     * @var int
+     * @var float
      */
     public $sellingPrice;
 
@@ -149,7 +149,7 @@ class UpdateService
     }
 
     /**
-     * @return int
+     * @return float
      */
     public function getSellingPrice()
     {
@@ -221,7 +221,7 @@ class UpdateService
     }
 
     /**
-     * @param int $sellingPrice
+     * @param float $sellingPrice
      */
     public function setSellingPrice($sellingPrice)
     {
