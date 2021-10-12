@@ -442,7 +442,7 @@ $response = $connector->getServiceAvailableCorrection($serviceIds, $availableCor
     $checkout = $checkinCheckoutPrice->getCheckout(); // Информация о позднем выезде
     
     $hoursPrice = $checkin->getHourPrice(); // Массив с ценами по часам.
-    /** @var Bronevik\HotelsConnector\Element\OfferHourPrice $hourPrice */
+    /** @var Bronevik\HotelsConnector\Element\EditServiceHourPrice $hourPrice */
     foreach($hoursPrice as $hourPrice)
     {
         $hourPrice->getHour(); // Час
@@ -528,17 +528,22 @@ foreach ($countries as $country) {
 
 #### Получение списка городов
 
-В метод `getCities()` нужно передать Id страны или Id городов.
+Получение списка городов по стране
 
 ```php
 <?php
 
-$cityIds = new \Bronevik\HotelsConnector\Element\CityIds(); // $cityIds может быть null
-$cityIds->add(1);
-
 /** @var Bronevik\HotelsConnector\Element\Cities $cities */
-$cities = $connector->getCities(1, $cityIds);
+$cities = $connector->getCitiesByCountryId(1);
 ```
+
+Получение списка городов по городам
+```php
+<?php
+/** @var Bronevik\HotelsConnector\Element\Cities $cities */
+$cities = $connector->getCitiesByCityIds([1]);
+```
+
 Разбор результата:
 ```php
 <?php

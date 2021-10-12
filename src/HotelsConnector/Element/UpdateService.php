@@ -77,6 +77,14 @@ class UpdateService
      */
     public $comment;
 
+    /**
+     * ФИО Гостей
+     * Full name of guests
+     *
+     * @var Guests
+     */
+    public $guests;
+
     public function __construct()
     {
         $this->addMeals    = new MealIds();
@@ -226,5 +234,21 @@ class UpdateService
     public function setComment($comment)
     {
         $this->comment = $comment;
+    }
+
+    /**
+     * @return Guests
+     */
+    public function getGuests()
+    {
+        return $this->guests;
+    }
+
+    /**
+     * @param Guests $guests
+     */
+    public function setGuests($guests)
+    {
+        $this->guests = $guests;
     }
 }

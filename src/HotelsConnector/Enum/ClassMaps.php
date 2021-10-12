@@ -187,6 +187,7 @@ class ClassMaps extends Enum
         'OrderInvoices'                          => Element\OrderInvoices::class,
         'Taxes'                                  => Element\Taxes::class,
         'TimeRange'                              => Element\TimeRange::class,
+        'EditServiceHourPrice'                   => Element\EditServiceHourPrice::class,
 
     ];
 

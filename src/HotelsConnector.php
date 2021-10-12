@@ -265,20 +265,42 @@ class HotelsConnector
     }
 
     /**
-     * Получение списка городов
+     * Получение списка городов по стране
      *
-     * @param int $countryId
+     * @param $countryId
      *
      * @return Element\Cities
      * @throws SoapFault
      */
-    public function getCities($countryId, Element\CityIds $cityIds = null)
+    public function getCitiesByCountryId($countryId)
     {
         $request = new Element\GetCitiesRequest();
         $this->fillRequest($request);
 
         $request->setCountryId($countryId);
-        $request->setCityIds($cityIds);
+
+        /** @var Element\GetCitiesResponse $response */
+        $response = $this->getSoapClient()->__call(Operations::GET_CITIES, [$request]);
+
+        return $response->getCities();
+    }
+
+    /**
+     * Получение списка городов по городам
+     *
+     * @param array $cityIds
+     *
+     * @throws SoapFault
+     */
+    public function getCitiesByCityIds($cityIds)
+    {
+        $request = new Element\GetCitiesRequest();
+        $this->fillRequest($request);
+
+        $cityIdsHba = new Element\CityIds();
+        $cityIdsHba->setId($cityIds);
+
+        $request->setCityIds($cityIdsHba);
 
         /** @var Element\GetCitiesResponse $response */
         $response = $this->getSoapClient()->__call(Operations::GET_CITIES, [$request]);
@@ -706,20 +728,24 @@ class HotelsConnector
     /**
      * Получение доступности коррекции для услуг
      *
-     * @param int[]                                 $serviceIds
-     * @param Element\AvailableCorrectionTypes|null $availableCorrectionTypes
+     * @param int[]    $serviceIds
+     * @param string[] $availableCorrectionTypes
      *
      * @throws SoapFault
      */
     public function getServiceAvailableCorrection(
         $serviceIds,
-        Element\AvailableCorrectionTypes $availableCorrectionTypes = null
+        $availableCorrectionTypes
     ) {
         $request = new Element\GetServiceAvailableCorrectionsRequest();
         $this->fillRequest($request);
 
         $request->serviceId = $serviceIds;
-        $request->setAvailableCorrectionTypes($availableCorrectionTypes);
+
+        if (count($availableCorrectionTypes) > 0) {
+            $request->availableCorrectionTypes = new Element\AvailableCorrectionTypes();
+            $request->availableCorrectionTypes->correctionType = $availableCorrectionTypes;
+        }
 
         /** @var Element\GetServiceAvailableCorrectionsResponse $response */
         return $this->getSoapClient()->__soapCall(Operations::GET_SERVICE_AVAILABLE_CORRECTION, [$request]);

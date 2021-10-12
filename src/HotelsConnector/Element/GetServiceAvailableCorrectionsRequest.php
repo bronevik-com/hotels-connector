@@ -24,7 +24,6 @@ class GetServiceAvailableCorrectionsRequest extends BaseRequest
     public function __construct()
     {
         parent::__construct();
-        $this->availableCorrectionTypes = new AvailableCorrectionTypes();
     }
 
     /**
