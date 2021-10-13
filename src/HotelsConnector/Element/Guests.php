@@ -10,7 +10,7 @@ class Guests
      *
      * @var Guest[]
      */
-    public $guest;
+    public $guest = [];
 
     /**
      * @param Guest $guest
