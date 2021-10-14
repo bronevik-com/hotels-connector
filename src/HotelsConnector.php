@@ -760,7 +760,7 @@ class HotelsConnector
      * @return Element\GetServicePricingResponse
      * @throws SoapFault
      */
-    public function getServicePricingRequest(
+    public function getServicePricing(
         $serviceId,
         Element\UpdateService $updateService
     ) {

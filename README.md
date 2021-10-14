@@ -293,7 +293,7 @@ foreach ($order->getServices()->service as $service) {
     $updateService->setCheckoutHour(21); // Коррекция часа выезда
     $updateService->setComment('Комментарий'); // Коррекция комментария к услуге
     
-    $response = $connector->getServicePricingRequest($serviceId, $updateService);
+    $response = $connector->getServicePricing($serviceId, $updateService);
 ```
 Запрос для коррекции цены продажи:
 
