@@ -80,7 +80,8 @@ class HotelsConnector
         $endpoint,
         $secureEndpoint,
         $debugMode = false
-    ) {
+    )
+    {
         $this->endpoint       = $endpoint;
         $this->secureEndpoint = $secureEndpoint;
         $this->debugMode      = (bool) $debugMode;
@@ -332,7 +333,8 @@ class HotelsConnector
         $hotelIds = [],
         $skipElements = [],
         $geolocation = null
-    ) {
+    )
+    {
         $request = new Element\SearchHotelOffersRequest();
         $this->fillRequest($request);
 
@@ -706,7 +708,8 @@ class HotelsConnector
         Element\GeoLocation $geolocation = null,
         array $addElements = [],
         array $searchCriteria = []
-    ) {
+    )
+    {
         $request = new Element\SearchHotelAvailabilityRequest();
         $this->fillRequest($request);
 
@@ -728,22 +731,22 @@ class HotelsConnector
     /**
      * Получение доступности коррекции для услуг
      *
-     * @param int[]    $serviceIds
+     * @param int      $serviceId
      * @param string[] $availableCorrectionTypes
      *
      * @throws SoapFault
      */
     public function getServiceAvailableCorrection(
-        $serviceIds,
+        $serviceId,
         $availableCorrectionTypes
     ) {
         $request = new Element\GetServiceAvailableCorrectionsRequest();
         $this->fillRequest($request);
 
-        $request->serviceId = $serviceIds;
+        $request->serviceId = $serviceId;
 
         if (count($availableCorrectionTypes) > 0) {
-            $request->availableCorrectionTypes = new Element\AvailableCorrectionTypes();
+            $request->availableCorrectionTypes                 = new Element\AvailableCorrectionTypes();
             $request->availableCorrectionTypes->correctionType = $availableCorrectionTypes;
         }
 
@@ -763,7 +766,8 @@ class HotelsConnector
     public function getServicePricing(
         $serviceId,
         Element\UpdateService $updateService
-    ) {
+    )
+    {
         $request = new Element\GetServicePricingRequest();
         $this->fillRequest($request);
 

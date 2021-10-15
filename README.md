@@ -402,7 +402,7 @@ foreach ($order->getServices()->service as $service) {
 
 ```php
 <?php
-$serviceIds = [];
+$serviceIds = 123;
 $availableCorrectionTypes = new Bronevik\HotelsConnector\Element\AvailableCorrectionTypes();
 $availableCorrectionTypes->addCorrectionType(\Bronevik\HotelsConnector\Enum\CorrectionTypes::MEALS);
 $response = $connector->getServiceAvailableCorrection($serviceIds, $availableCorrectionTypes);
