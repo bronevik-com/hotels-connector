@@ -736,7 +736,7 @@ class HotelsConnector
      *
      * @throws SoapFault
      */
-    public function getServiceAvailableCorrection(
+    public function getServiceAvailableCorrections(
         $serviceId,
         $availableCorrectionTypes
     ) {
@@ -751,7 +751,7 @@ class HotelsConnector
         }
 
         /** @var Element\GetServiceAvailableCorrectionsResponse $response */
-        return $this->getSoapClient()->__soapCall(Operations::GET_SERVICE_AVAILABLE_CORRECTION, [$request]);
+        return $this->getSoapClient()->__soapCall(Operations::GET_SERVICE_AVAILABLE_CORRECTIONS, [$request]);
     }
 
     /**
