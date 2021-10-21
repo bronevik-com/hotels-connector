@@ -6,6 +6,9 @@ namespace Bronevik\HotelsConnector\Element;
 class UpdateService
 {
     /**
+     * Номер услуги в системе клиента
+     * Service number in the client's system
+     *
      * @var int
      */
     public $referenceId;
@@ -62,7 +65,7 @@ class UpdateService
      * Коррекция свайп шкалы
      * Swipe Scale Correction
      *
-     * @var int
+     * @var float
      */
     public $sellingPrice;
 
@@ -73,6 +76,14 @@ class UpdateService
      * @var string
      */
     public $comment;
+
+    /**
+     * ФИО Гостей
+     * Full name of guests
+     *
+     * @var Guests
+     */
+    public $guests;
 
     public function __construct()
     {
@@ -138,7 +149,7 @@ class UpdateService
     }
 
     /**
-     * @return int
+     * @return float
      */
     public function getSellingPrice()
     {
@@ -210,7 +221,7 @@ class UpdateService
     }
 
     /**
-     * @param int $sellingPrice
+     * @param float $sellingPrice
      */
     public function setSellingPrice($sellingPrice)
     {
@@ -223,5 +234,21 @@ class UpdateService
     public function setComment($comment)
     {
         $this->comment = $comment;
+    }
+
+    /**
+     * @return Guests
+     */
+    public function getGuests()
+    {
+        return $this->guests;
+    }
+
+    /**
+     * @param Guests $guests
+     */
+    public function setGuests($guests)
+    {
+        $this->guests = $guests;
     }
 }

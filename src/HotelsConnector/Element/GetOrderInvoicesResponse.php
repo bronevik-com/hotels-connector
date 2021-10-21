@@ -1,16 +1,17 @@
 <?php
 
+
 namespace Bronevik\HotelsConnector\Element;
 
-class UpdateServiceResponse extends BaseResponse
+class GetOrderInvoicesResponse extends BaseResponse
 {
     /**
-     * @var Order
+     * @var OrderInvoices
      */
     public $order;
 
     /**
-     * @return Order
+     * @return OrderInvoices
      */
     public function getOrder()
     {
@@ -18,7 +19,7 @@ class UpdateServiceResponse extends BaseResponse
     }
 
     /**
-     * @param Order $order
+     * @param OrderInvoices $order
      */
     public function setOrder($order)
     {

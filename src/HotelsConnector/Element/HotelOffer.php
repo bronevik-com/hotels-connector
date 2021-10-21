@@ -24,9 +24,9 @@ class HotelOffer extends BaseOffer
      * Дополнительные сборы при заселении
      * The additional fees at check-in
      *
-     * @var Tax[]
+     * @var Taxes
      */
-    public $taxes = [];
+    public $taxes;
 
     /**
      * Валюта оплаты
@@ -82,6 +82,7 @@ class HotelOffer extends BaseOffer
         $this->priceDetails  = new PriceDetails();
         $this->dailyPrices   = new DailyPrices();
         $this->offerPolicies = new OfferPolicies();
+        $this->taxes         = new Taxes();
     }
 
     /**
@@ -114,30 +115,6 @@ class HotelOffer extends BaseOffer
     public function getPriceDetails()
     {
         return $this->priceDetails;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasTaxes()
-    {
-        return count($this->taxes) > 0;
-    }
-
-    /**
-     * @return Tax[]
-     */
-    public function getTaxes()
-    {
-        return $this->taxes;
-    }
-
-    /**
-     * @param Tax $taxes
-     */
-    public function addTaxes($taxes)
-    {
-        $this->taxes[] = $taxes;
     }
 
     /**
@@ -234,5 +211,21 @@ class HotelOffer extends BaseOffer
     public function getOfferPolicies()
     {
         return $this->offerPolicies;
+    }
+
+    /**
+     * @return Taxes
+     */
+    public function getTaxes()
+    {
+        return $this->taxes;
+    }
+
+    /**
+     * @param Taxes $taxes
+     */
+    public function setTaxes($taxes)
+    {
+        $this->taxes = $taxes;
     }
 }

@@ -2,12 +2,24 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\CurrencyCodes;
+
 /**
  * Запрос на создание заказа
  * The request for create the order
  */
 class CreateOrderWithCardDetailsRequest extends BaseRequest
 {
+
+    /**
+     * Валюта расчета
+     * The payment currency
+     *
+     * @var string
+     * @see CurrencyCodes
+     */
+    public $currency;
+
     /**
      * Контактное лицо по вопросам заказа
      * A person who provides a link for information about order
@@ -164,5 +176,23 @@ class CreateOrderWithCardDetailsRequest extends BaseRequest
     public function getGuestInfo()
     {
         return $this->guestInfo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     *
+     * @see CurrencyCodes
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
     }
 }

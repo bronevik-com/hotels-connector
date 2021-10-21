@@ -25,7 +25,7 @@ class EditService
      * Информация о доступном питании.
      * Information about available food.
      *
-     * @var AvailableMeals
+     * @var EditServiceAvailableMeals
      */
     public $meals;
 
@@ -67,7 +67,7 @@ class EditService
     }
 
     /**
-     * @return AvailableMeals
+     * @return EditServiceAvailableMeals
      */
     public function getMeals()
     {
@@ -91,7 +91,7 @@ class EditService
     }
 
     /**
-     * @param AvailableMeals $meals
+     * @param EditServiceAvailableMeals $meals
      */
     public function setMeals($meals)
     {

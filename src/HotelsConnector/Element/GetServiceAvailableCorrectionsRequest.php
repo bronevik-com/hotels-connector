@@ -9,9 +9,9 @@ class GetServiceAvailableCorrectionsRequest extends BaseRequest
      * Идентификаторы услуг
      * Service identifiers
      *
-     * @var int[]
+     * @var int
      */
-    public $serviceId = [];
+    public $serviceId;
 
     /**
      * Виды дополнительных услуг по которым нужна информация
@@ -24,11 +24,10 @@ class GetServiceAvailableCorrectionsRequest extends BaseRequest
     public function __construct()
     {
         parent::__construct();
-        $this->availableCorrectionTypes = new AvailableCorrectionTypes();
     }
 
     /**
-     * @return int[]
+     * @return int
      */
     public function getServiceId()
     {
@@ -44,18 +43,18 @@ class GetServiceAvailableCorrectionsRequest extends BaseRequest
     }
 
     /**
-     * @param int $serviceId
-     */
-    public function addServiceId($serviceId)
-    {
-        $this->serviceId[] = $serviceId;
-    }
-
-    /**
      * @return AvailableCorrectionTypes|null
      */
     public function getAvailableCorrectionTypes()
     {
         return $this->availableCorrectionTypes;
+    }
+
+    /**
+     * @param int $serviceId
+     */
+    public function setServiceId($serviceId)
+    {
+        $this->serviceId = $serviceId;
     }
 }

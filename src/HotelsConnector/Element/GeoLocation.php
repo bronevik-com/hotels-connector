@@ -8,7 +8,7 @@ class GeoLocation
      * Широта.
      * Latitude.
      *
-     * @var float
+     * @var string
      */
     public $latitude;
 
@@ -16,7 +16,7 @@ class GeoLocation
      * Долгота.
      * Longitude.
      *
-     * @var float
+     * @var string
      */
     public $longitude;
 
@@ -29,7 +29,7 @@ class GeoLocation
     public $radius;
 
     /**
-     * @param float $latitude
+     * @param string $latitude
      */
     public function setLatitude($latitude)
     {
@@ -37,7 +37,7 @@ class GeoLocation
     }
 
     /**
-     * @return float
+     * @return string
      */
     public function getLatitude()
     {
@@ -45,7 +45,7 @@ class GeoLocation
     }
 
     /**
-     * @param float $longitude
+     * @param string $longitude
      */
     public function setLongitude($longitude)
     {
@@ -53,7 +53,7 @@ class GeoLocation
     }
 
     /**
-     * @return float
+     * @return string
      */
     public function getLongitude()
     {
