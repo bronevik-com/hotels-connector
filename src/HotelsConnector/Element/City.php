@@ -53,6 +53,22 @@ class City
     public $regionName;
 
     /**
+     * Идентификатор страны города.
+     * The city's country id.
+     *
+     * @var string
+     */
+    public $countryId;
+
+    /**
+     * Название страны города.
+     * The city's country name.
+     *
+     * @var string
+     */
+    public $countryName;
+
+    /**
      * @param int $id
      */
     public function setId($id)
@@ -146,5 +162,37 @@ class City
     public function getRegionName()
     {
         return $this->regionName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryId()
+    {
+        return $this->countryId;
+    }
+
+    /**
+     * @param string $countryId
+     */
+    public function setCountryId($countryId)
+    {
+        $this->countryId = $countryId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountryName()
+    {
+        return $this->countryName;
+    }
+
+    /**
+     * @param string $countryName
+     */
+    public function setCountryName($countryName)
+    {
+        $this->countryName = $countryName;
     }
 }

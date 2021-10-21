@@ -60,14 +60,6 @@ class Hotel
     public $checkoutTime;
 
     /**
-     * Фиксировано ли время заезда в отеле
-     * Whether the check-in time is fixed or not
-     *
-     * @var boolean
-     */
-    public $isFixedCheckinTime;
-
-    /**
      * Описание отеля
      * The hotel description
      *
@@ -122,6 +114,30 @@ class Hotel
      * @var AdditionalInfo
      */
     public $additionalInfo;
+
+    /**
+     * Допустимое время заезда.
+     * Allowable arrival time.
+     *
+     * @var TimeRange
+     */
+    public $allowableCheckinTime;
+
+    /**
+     * Допустимое время выезда.
+     * Allowable departure time.
+     *
+     * @var TimeRange
+     */
+    public $allowableCheckoutTime;
+
+    /**
+     * Условия оплаты.
+     * Payment terms.
+     *
+     * @var string
+     */
+    public $paymentTerms;
 
     public function __construct()
     {
@@ -243,22 +259,6 @@ class Hotel
     }
 
     /**
-     * @param boolean $isFixedCheckinTime
-     */
-    public function setIsFixedCheckinTime($isFixedCheckinTime)
-    {
-        $this->isFixedCheckinTime = $isFixedCheckinTime;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getIsFixedCheckinTime()
-    {
-        return $this->isFixedCheckinTime;
-    }
-
-    /**
      * @param DescriptionDetails $descriptionDetails
      */
     public function setDescriptionDetails($descriptionDetails)
@@ -368,5 +368,53 @@ class Hotel
     public function getAdditionalInfo()
     {
         return $this->additionalInfo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentTerms()
+    {
+        return $this->paymentTerms;
+    }
+
+    /**
+     * @param string $paymentTerms
+     */
+    public function setPaymentTerms($paymentTerms)
+    {
+        $this->paymentTerms = $paymentTerms;
+    }
+
+    /**
+     * @return TimeRange
+     */
+    public function getAllowableCheckinTime()
+    {
+        return $this->allowableCheckinTime;
+    }
+
+    /**
+     * @param TimeRange $allowableCheckinTime
+     */
+    public function setAllowableCheckinTime($allowableCheckinTime)
+    {
+        $this->allowableCheckinTime = $allowableCheckinTime;
+    }
+
+    /**
+     * @return TimeRange
+     */
+    public function getAllowableCheckoutTime()
+    {
+        return $this->allowableCheckoutTime;
+    }
+
+    /**
+     * @param TimeRange $allowableCheckoutTime
+     */
+    public function setAllowableCheckoutTime($allowableCheckoutTime)
+    {
+        $this->allowableCheckoutTime = $allowableCheckoutTime;
     }
 }

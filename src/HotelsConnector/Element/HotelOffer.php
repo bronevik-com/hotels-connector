@@ -13,15 +13,6 @@ class HotelOffer extends BaseOffer
     public $code;
 
     /**
-     * Флаг наличия lhp-цен в предложении
-     * Specifies LHP-rate in the offer
-     *
-     * @var boolean
-     * @deprecated
-     */
-    public $lhp;
-
-    /**
      * Детализация стоимости
      * The offer price details
      *
@@ -33,9 +24,9 @@ class HotelOffer extends BaseOffer
      * Дополнительные сборы при заселении
      * The additional fees at check-in
      *
-     * @var Tax[]
+     * @var Taxes
      */
-    public $taxes = [];
+    public $taxes;
 
     /**
      * Валюта оплаты
@@ -52,17 +43,6 @@ class HotelOffer extends BaseOffer
      * @var boolean
      */
     public $immediateConfirmation;
-
-    /**
-     * deprecated - перенесено в элемент 'HotelRoom'.
-     * Количество гостей, которых можно разместить в номере
-     * deprecated - currently available in 'HotelRoom' element.
-     * The basic room capacity
-     *
-     * @deprecated
-     * @var int
-     */
-    public $roomCapacity;
 
     /**
      * ​Элемент для работы метапоисковых систем
@@ -102,6 +82,7 @@ class HotelOffer extends BaseOffer
         $this->priceDetails  = new PriceDetails();
         $this->dailyPrices   = new DailyPrices();
         $this->offerPolicies = new OfferPolicies();
+        $this->taxes         = new Taxes();
     }
 
     /**
@@ -121,22 +102,6 @@ class HotelOffer extends BaseOffer
     }
 
     /**
-     * @param boolean $lhp
-     */
-    public function setLhp($lhp)
-    {
-        $this->lhp = $lhp;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getLhp()
-    {
-        return $this->lhp;
-    }
-
-    /**
      * @param PriceDetails $priceDetails
      */
     public function setPriceDetails($priceDetails)
@@ -150,30 +115,6 @@ class HotelOffer extends BaseOffer
     public function getPriceDetails()
     {
         return $this->priceDetails;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasTaxes()
-    {
-        return count($this->taxes) > 0;
-    }
-
-    /**
-     * @return Tax[]
-     */
-    public function getTaxes()
-    {
-        return $this->taxes;
-    }
-
-    /**
-     * @param Tax $taxes
-     */
-    public function addTaxes($taxes)
-    {
-        $this->taxes[] = $taxes;
     }
 
     /**
@@ -206,22 +147,6 @@ class HotelOffer extends BaseOffer
     public function getImmediateConfirmation()
     {
         return $this->immediateConfirmation;
-    }
-
-    /**
-     * @param int $roomCapacity
-     */
-    public function setRoomCapacity($roomCapacity)
-    {
-        $this->roomCapacity = $roomCapacity;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRoomCapacity()
-    {
-        return $this->roomCapacity;
     }
 
     /**
@@ -286,5 +211,21 @@ class HotelOffer extends BaseOffer
     public function getOfferPolicies()
     {
         return $this->offerPolicies;
+    }
+
+    /**
+     * @return Taxes
+     */
+    public function getTaxes()
+    {
+        return $this->taxes;
+    }
+
+    /**
+     * @param Taxes $taxes
+     */
+    public function setTaxes($taxes)
+    {
+        $this->taxes = $taxes;
     }
 }

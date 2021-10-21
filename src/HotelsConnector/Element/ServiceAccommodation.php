@@ -16,9 +16,9 @@ class ServiceAccommodation extends Service
      * ФИО гостей
      * The name of guests
      *
-     * @var string[]
+     * @var Guests
      */
-    public $guests = [];
+    public $guests;
 
     /**
      * Комментарий к услуге
@@ -60,6 +60,11 @@ class ServiceAccommodation extends Service
      */
     public $meals = [];
 
+    public function __construct()
+    {
+        $this->guests = new Guests();
+    }
+
     /**
      * @param string $offerCode
      */
@@ -74,30 +79,6 @@ class ServiceAccommodation extends Service
     public function getOfferCode()
     {
         return $this->offerCode;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasGuests()
-    {
-        return count($this->guests) > 0;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getGuests()
-    {
-        return $this->guests;
-    }
-
-    /**
-     * @param string $guests
-     */
-    public function addGuests($guests)
-    {
-        $this->guests[] = $guests;
     }
 
     /**
@@ -186,5 +167,21 @@ class ServiceAccommodation extends Service
     public function addMeals($meals)
     {
         $this->meals[] = $meals;
+    }
+
+    /**
+     * @return Guests|null
+     */
+    public function getGuests()
+    {
+        return $this->guests;
+    }
+
+    /**
+     * @param Guests|null $guests
+     */
+    public function setGuests($guests)
+    {
+        $this->guests = $guests;
     }
 }

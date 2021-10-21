@@ -5,20 +5,15 @@ namespace Bronevik\HotelsConnector\Element;
 class GetCitiesResponse extends BaseResponse
 {
     /**
-     * @var City[]
+     * Информация о городах
+     * Information about cities
+     *
+     * @var Cities
      */
-    public $cities = [];
+    public $cities;
 
     /**
-     * @return bool
-     */
-    public function hasCities()
-    {
-        return count($this->cities) > 0;
-    }
-
-    /**
-     * @return City[]
+     * @return Cities
      */
     public function getCities()
     {
@@ -26,10 +21,10 @@ class GetCitiesResponse extends BaseResponse
     }
 
     /**
-     * @param City $cities
+     * @param Cities $cities
      */
-    public function addCities($cities)
+    public function setCities($cities)
     {
-        $this->cities[] = $cities;
+        $this->cities = $cities;
     }
 }

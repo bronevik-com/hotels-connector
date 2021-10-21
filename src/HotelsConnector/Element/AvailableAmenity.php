@@ -29,6 +29,14 @@ class AvailableAmenity
     public $included;
 
     /**
+     * Валюта
+     * Currency
+     *
+     * @var string
+     */
+    public $currency;
+
+    /**
      * @param int $id
      */
     public function setId($id)
@@ -74,5 +82,21 @@ class AvailableAmenity
     public function getIncluded()
     {
         return $this->included;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param string $currency
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
     }
 }

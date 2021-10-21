@@ -8,7 +8,7 @@ class Coordinates
      * Широта.
      * Latitude.
      *
-     * @var float
+     * @var string
      */
     public $latitude;
 
@@ -16,7 +16,7 @@ class Coordinates
      * Долгота.
      * Longitude.
      *
-     * @var float
+     * @var string
      */
     public $longitude;
 

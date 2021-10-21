@@ -5,7 +5,7 @@ namespace Bronevik\HotelsConnector\Element;
 class ChangeList
 {
     /**
-     * @var Change[]
+     * @var AbstractChange[]
      */
     public $change = [];
 
@@ -18,7 +18,7 @@ class ChangeList
     }
 
     /**
-     * @return Change[]
+     * @return AbstractChange[]
      */
     public function getChange()
     {
@@ -26,7 +26,7 @@ class ChangeList
     }
 
     /**
-     * @param Change $change
+     * @param AbstractChange $change
      */
     public function addChange($change)
     {

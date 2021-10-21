@@ -5,50 +5,23 @@ namespace Bronevik\HotelsConnector\Element;
 class UpdateServiceResponse extends BaseResponse
 {
     /**
-     * Результат (true или false).
-     * Result (true or false).
-     *
-     * @var boolean
+     * @var Order
      */
-    public $result;
+    public $order;
 
     /**
-     * Номер услуги в системе клиента
-     * The service number in the client system
-     *
-     * @var string
+     * @return Order
      */
-    public $referenceId;
-
-    /**
-     * @param boolean $result
-     */
-    public function setResult($result)
+    public function getOrder()
     {
-        $this->result = $result;
+        return $this->order;
     }
 
     /**
-     * @return boolean
+     * @param Order $order
      */
-    public function getResult()
+    public function setOrder($order)
     {
-        return $this->result;
-    }
-
-    /**
-     * @param string $referenceId
-     */
-    public function setReferenceId($referenceId)
-    {
-        $this->referenceId = $referenceId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReferenceId()
-    {
-        return $this->referenceId;
+        $this->order = $order;
     }
 }

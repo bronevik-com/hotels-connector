@@ -80,9 +80,9 @@ class OrderServiceAccommodation extends OrderService
      * ФИО гостей
      * The name of guests
      *
-     * @var string[]
+     * @var Guests
      */
-    public $guests = [];
+    public $guests;
 
     /**
      * Комментарии
@@ -160,9 +160,9 @@ class OrderServiceAccommodation extends OrderService
      * Информация о питании
      * An information about meal service
      *
-     * @var AvailableMeal[]
+     * @var AvailableMeals
      */
-    public $meals = [];
+    public $meals;
 
     /**
      * Правила предоставления заказа
@@ -180,6 +180,14 @@ class OrderServiceAccommodation extends OrderService
      */
     public $dailyPrices;
 
+    /**
+     * Условия оплаты.
+     * Payment terms.
+     *
+     * @var string
+     */
+    public $paymentTerms;
+
     public function __construct()
     {
         parent::__construct();
@@ -187,6 +195,8 @@ class OrderServiceAccommodation extends OrderService
         $this->rateType      = new RateType();
         $this->offerPolicies = new OfferPolicies();
         $this->dailyPrices   = new DailyPrices();
+        $this->meals         = new AvailableMeals();
+        $this->guests        = new Guests();
     }
 
     /**
@@ -331,30 +341,6 @@ class OrderServiceAccommodation extends OrderService
     public function getCheckout()
     {
         return $this->checkout;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasGuests()
-    {
-        return count($this->guests) > 0;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getGuests()
-    {
-        return $this->guests;
-    }
-
-    /**
-     * @param string $guests
-     */
-    public function addGuests($guests)
-    {
-        $this->guests[] = $guests;
     }
 
     /**
@@ -510,30 +496,6 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return bool
-     */
-    public function hasMeals()
-    {
-        return count($this->meals) > 0;
-    }
-
-    /**
-     * @return AvailableMeal[]
-     */
-    public function getMeals()
-    {
-        return $this->meals;
-    }
-
-    /**
-     * @param AvailableMeal $meals
-     */
-    public function addMeals($meals)
-    {
-        $this->meals[] = $meals;
-    }
-
-    /**
      * @param OfferPolicies $offerPolicies
      */
     public function setOfferPolicies($offerPolicies)
@@ -563,5 +525,53 @@ class OrderServiceAccommodation extends OrderService
     public function getDailyPrices()
     {
         return $this->dailyPrices;
+    }
+
+    /**
+     * @return AvailableMeals
+     */
+    public function getMeals()
+    {
+        return $this->meals;
+    }
+
+    /**
+     * @param AvailableMeals $meals
+     */
+    public function setMeals($meals)
+    {
+        $this->meals = $meals;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentTerms()
+    {
+        return $this->paymentTerms;
+    }
+
+    /**
+     * @param string $paymentTerms
+     */
+    public function setPaymentTerms($paymentTerms)
+    {
+        $this->paymentTerms = $paymentTerms;
+    }
+
+    /**
+     * @return Guests
+     */
+    public function getGuests()
+    {
+        return $this->guests;
+    }
+
+    /**
+     * @param Guests $guests
+     */
+    public function setGuests($guests)
+    {
+        $this->guests = $guests;
     }
 }

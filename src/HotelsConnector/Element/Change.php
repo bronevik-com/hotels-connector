@@ -2,33 +2,12 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
-class Change
+class Change extends AbstractChange
 {
     /**
      * @var string
      */
-    public $element;
-
-    /**
-     * @var string
-     */
     public $newValue;
-
-    /**
-     * @param string $element
-     */
-    public function setElement($element)
-    {
-        $this->element = $element;
-    }
-
-    /**
-     * @return string
-     */
-    public function getElement()
-    {
-        return $this->element;
-    }
 
     /**
      * @param string $newValue

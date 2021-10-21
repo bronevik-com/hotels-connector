@@ -53,6 +53,14 @@ class HotelInfo
     public $deepLink;
 
     /**
+     * Условия оплаты.
+     * Payment terms.
+     *
+     * @var string
+     */
+    public $paymentTerms;
+
+    /**
      * @param string $description
      */
     public function setDescription($description)

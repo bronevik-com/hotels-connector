@@ -48,9 +48,15 @@ class Order
      * Список возможных услуг
      * List of the services
      *
-     * @var OrderService[]
+     * @var OrderServices
      */
-    public $services = [];
+    public $services;
+
+    public function __construct()
+    {
+        $this->services = new OrderServices();
+    }
+
 
     /**
      * @param int $id
@@ -133,15 +139,7 @@ class Order
     }
 
     /**
-     * @return bool
-     */
-    public function hasServices()
-    {
-        return count($this->services) > 0;
-    }
-
-    /**
-     * @return OrderService[]
+     * @return OrderServices
      */
     public function getServices()
     {
@@ -149,10 +147,10 @@ class Order
     }
 
     /**
-     * @param OrderService $services
+     * @param OrderServices $services
      */
-    public function addServices($services)
+    public function setServices($services)
     {
-        $this->services[] = $services;
+        $this->services = $services;
     }
 }

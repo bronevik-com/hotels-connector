@@ -5,6 +5,7 @@ namespace Bronevik;
 use Bronevik\HotelsConnector\Element as Element;
 use Bronevik\HotelsConnector\Enum\ClassMaps;
 use Bronevik\HotelsConnector\Enum\Currencies;
+use Bronevik\HotelsConnector\Enum\CurrencyCodes;
 use Bronevik\HotelsConnector\Enum\Endpoints;
 use Bronevik\HotelsConnector\Enum\Operations;
 use SoapClient;
@@ -79,7 +80,8 @@ class HotelsConnector
         $endpoint,
         $secureEndpoint,
         $debugMode = false
-    ) {
+    )
+    {
         $this->endpoint       = $endpoint;
         $this->secureEndpoint = $secureEndpoint;
         $this->debugMode      = (bool) $debugMode;
@@ -232,7 +234,7 @@ class HotelsConnector
     /**
      * Получение списка типов питания
      *
-     * @return Element\Meal[]
+     * @return Element\Meals
      * @throws SoapFault
      */
     public function getMeals()
@@ -249,7 +251,7 @@ class HotelsConnector
     /**
      * Получение списка стран
      *
-     * @return Element\Country[]
+     * @return Element\Countries
      * @throws SoapFault
      */
     public function getCountries()
@@ -264,14 +266,14 @@ class HotelsConnector
     }
 
     /**
-     * Получение списка городов
+     * Получение списка городов по стране
      *
-     * @param int $countryId
+     * @param $countryId
      *
-     * @return Element\City[]
+     * @return Element\Cities
      * @throws SoapFault
      */
-    public function getCities($countryId)
+    public function getCitiesByCountryId($countryId)
     {
         $request = new Element\GetCitiesRequest();
         $this->fillRequest($request);
@@ -285,10 +287,34 @@ class HotelsConnector
     }
 
     /**
+     * Получение списка городов по городам
+     *
+     * @param array $cityIds
+     *
+     * @throws SoapFault
+     */
+    public function getCitiesByCityIds($cityIds)
+    {
+        $request = new Element\GetCitiesRequest();
+        $this->fillRequest($request);
+
+        $cityIdsHba = new Element\CityIds();
+        $cityIdsHba->setId($cityIds);
+
+        $request->setCityIds($cityIdsHba);
+
+        /** @var Element\GetCitiesResponse $response */
+        $response = $this->getSoapClient()->__call(Operations::GET_CITIES, [$request]);
+
+        return $response->getCities();
+    }
+
+    /**
      * Поиск предложений
      *
      * @param string                         $arrivalDate
      * @param string                         $departureDate
+     * @param string                         $currency
      * @param int|null                       $cityId
      * @param Element\SearchOfferCriterion[] $searchCriteria
      * @param int[]                          $hotelIds
@@ -301,18 +327,20 @@ class HotelsConnector
     public function searchHotelOffers(
         $arrivalDate,
         $departureDate,
+        $currency,
         $cityId = null,
         $searchCriteria = [],
         $hotelIds = [],
         $skipElements = [],
         $geolocation = null
-    ) {
+    )
+    {
         $request = new Element\SearchHotelOffersRequest();
         $this->fillRequest($request);
 
         $request->setArrivalDate($arrivalDate);
         $request->setDepartureDate($departureDate);
-        $request->setCurrency(Currencies::RUSSIAN_RUBLE);
+        $request->setCurrency($currency);
 
         if ($cityId) {
             $request->setCityId($cityId);
@@ -402,8 +430,9 @@ class HotelsConnector
      * Запрос описания отелей
      *
      * @param array $hotelIds
+     * @param array $cityIds
      *
-     * @return Element\HotelWithInfo[]
+     * @return Element\HotelsWithInfo
      * @throws SoapFault
      */
     public function getHotelInfo($hotelIds)
@@ -412,7 +441,7 @@ class HotelsConnector
         $this->fillRequest($request);
 
         foreach ((array) $hotelIds as $id) {
-            $request->addHotelId($id);
+            $request->hotelIds->addId($id);
         }
 
         /** @var Element\GetHotelInfoResponse $response */
@@ -422,41 +451,37 @@ class HotelsConnector
     }
 
     /**
+     * Запрос описания отелей в выбранных городах
      *
-     * @param string   $offerCode
-     * @param string[] $skipElements
+     * @param array $cityIds
      *
-     * @return Element\HotelOffer[]
+     * @return Element\HotelsWithInfo
      * @throws SoapFault
-     * @deprecated
      */
-    public function getHotelOffer($offerCode, $skipElements = [])
+    public function getHotelInfoByCityIds($cityIds)
     {
-        $request = new Element\GetHotelOfferRequest();
+        $request = new Element\GetHotelInfoRequest();
         $this->fillRequest($request);
 
-        $request->addOfferCode($offerCode);
+        $request->cityIds->setId($cityIds);
 
-        if ($skipElements) {
-            $request->skipElements          = new Element\SkipElements();
-            $request->skipElements->element = $skipElements;
-        }
+        /** @var Element\GetHotelInfoResponse $response */
+        $response = $this->getSoapClient()->__call(Operations::GET_HOTEL_INFO, [$request]);
 
-        /** @var Element\GetHotelOfferResponse $response */
-        $response = $this->getSoapClient()->__call(Operations::GET_HOTEL_OFFER, [$request]);
-
-        return $response->getOffer();
+        return $response->getHotels();
     }
 
     /**
      * @param Element\ServiceAccommodation[] $services
+     * @param string                         $currency
      *
-     * @return Element\OrderServiceAccommodation[]
+     * @return Element\OrderServices
      * @throws SoapFault
      */
-    public function getHotelOfferPricing($services)
+    public function getHotelOfferPricing($services, $currency)
     {
         $request = new Element\GetHotelOfferPricingRequest();
+        $request->setCurrency($currency);
         $this->fillRequest($request);
 
         foreach ((array) $services as $serviceAccommodation) {
@@ -470,7 +495,7 @@ class HotelsConnector
     }
 
     /**
-     * @return Element\OrdersChangelogRecord[]
+     * @return Element\OrdersChangelogRecords
      * @throws SoapFault
      */
     public function getOrdersChangelog()
@@ -481,7 +506,7 @@ class HotelsConnector
         /** @var Element\GetOrdersChangelogResponse $response */
         $response = $this->getSoapClient()->__call(Operations::GET_ORDERS_CHANGELOG, [$request]);
 
-        return $response->ordersChangelogRecord;
+        return $response->ordersChangelogRecords;
     }
 
     /**
@@ -496,7 +521,7 @@ class HotelsConnector
         $this->fillRequest($request);
 
         foreach ((array) $recordIds as $id) {
-            $request->addRecordId($id);
+            $request->getRecordIds()->addId($id);
         }
 
         /** @var Element\RemoveOrdersChangelogRecordsResponse $response */
@@ -506,7 +531,7 @@ class HotelsConnector
     }
 
     /**
-     * @return Element\Amenity[]
+     * @return Element\Amenities
      * @throws SoapFault
      */
     public function getAmenities()
@@ -525,7 +550,7 @@ class HotelsConnector
      *
      * @param Element\SearchOrderCriterion[] $searchCriteria
      *
-     * @return Element\Order[]
+     * @return Element\Orders
      * @throws SoapFault
      */
     public function searchOrders($searchCriteria)
@@ -616,39 +641,39 @@ class HotelsConnector
     }
 
     /**
-     * Обновление referenceId для услуг
+     * Коррекция услуги
      *
-     * @param int    $serviceId
-     * @param string $referenceId
+     * @param int                   $serviceId
+     * @param Element\UpdateService $updateService
      *
      * @return Element\UpdateServiceResponse
      * @throws SoapFault
      */
-    public function updateService($serviceId, $referenceId)
+    public function updateService($serviceId, Element\UpdateService $updateService)
     {
         $request = new Element\UpdateServiceRequest();
         $this->fillRequest($request);
 
-        $request->serviceId   = $serviceId;
-        $request->referenceId = $referenceId;
+        $request->setServiceId($serviceId);
+        $request->setUpdateService($updateService);
 
         /** @var Element\UpdateServiceResponse $response */
-        $response = $this->getSoapClient()->__call(Operations::UPDATE_SERVICE, [$request]);
-
-        return $response;
+        return $this->getSoapClient()->__call(Operations::UPDATE_SERVICE, [$request]);
     }
 
     /**
      * Получить цены за ранный заезд и поздний выезд
      *
      * @param string[] $offerCodes
+     * @param string   $currency
      *
      * @return Element\OfferCheckinCheckoutPrices[]
      * @throws SoapFault
      */
-    public function getCheckinCheckoutPricing(array $offerCodes)
+    public function getCheckinCheckoutPricing(array $offerCodes, $currency)
     {
         $request = new Element\GetCheckinCheckoutPricingRequest();
+        $request->setCurrency($currency);
         $this->fillRequest($request);
 
         $request->offerCodes = $offerCodes;
@@ -666,6 +691,7 @@ class HotelsConnector
      * @param string                         $checkOutDate
      * @param int|null                       $cityId
      * @param int[]                          $hotelIds
+     * @param string                         $currency
      * @param Element\GeoLocation|null       $geolocation
      * @param string[]                       $addElements
      * @param Element\SearchOfferCriterion[] $searchCriteria
@@ -676,18 +702,20 @@ class HotelsConnector
     public function searchHotelAvailability(
         $checkinDate,
         $checkOutDate,
+        $currency,
         $cityId = null,
         array $hotelIds = [],
         Element\GeoLocation $geolocation = null,
         array $addElements = [],
         array $searchCriteria = []
-    ) {
+    )
+    {
         $request = new Element\SearchHotelAvailabilityRequest();
         $this->fillRequest($request);
 
         $request->checkInDate    = $checkinDate;
         $request->checkOutDate   = $checkOutDate;
-        $request->currency       = Currencies::RUSSIAN_RUBLE;
+        $request->currency       = $currency;
         $request->cityId         = $cityId;
         $request->hotelIds       = $hotelIds;
         $request->geolocation    = $geolocation;
@@ -698,6 +726,56 @@ class HotelsConnector
         $response = $this->getSoapClient()->__call(Operations::SEARCH_HOTEL_AVAILABILITY, [$request]);
 
         return $response->hotels->hotel;
+    }
+
+    /**
+     * Получение доступности коррекции для услуг
+     *
+     * @param int      $serviceId
+     * @param string[] $availableCorrectionTypes
+     *
+     * @throws SoapFault
+     */
+    public function getServiceAvailableCorrections(
+        $serviceId,
+        $availableCorrectionTypes
+    ) {
+        $request = new Element\GetServiceAvailableCorrectionsRequest();
+        $this->fillRequest($request);
+
+        $request->serviceId = $serviceId;
+
+        if (count($availableCorrectionTypes) > 0) {
+            $request->availableCorrectionTypes                 = new Element\AvailableCorrectionTypes();
+            $request->availableCorrectionTypes->correctionType = $availableCorrectionTypes;
+        }
+
+        /** @var Element\GetServiceAvailableCorrectionsResponse $response */
+        return $this->getSoapClient()->__soapCall(Operations::GET_SERVICE_AVAILABLE_CORRECTIONS, [$request]);
+    }
+
+    /**
+     * Стоимость услуги с учетом коррекции
+     *
+     * @param int                   $serviceId
+     * @param Element\UpdateService $updateService
+     *
+     * @return Element\GetServicePricingResponse
+     * @throws SoapFault
+     */
+    public function getServicePricing(
+        $serviceId,
+        Element\UpdateService $updateService
+    )
+    {
+        $request = new Element\GetServicePricingRequest();
+        $this->fillRequest($request);
+
+        $request->setServiceId($serviceId);
+        $request->setUpdateService($updateService);
+
+        /** @var Element\GetServicePricingResponse $response */
+        return $this->getSoapClient()->__soapCall(Operations::GET_SERVICE_PRICING, [$request]);
     }
 
     /**
@@ -712,6 +790,26 @@ class HotelsConnector
 
         /** @var Element\CreateOrderWithCardDetailsResponse $response */
         $response = $this->getSecureSoapClient()->__call(Operations::CREATE_ORDER_WITH_CARD_DETAILS, [$request]);
+
+        return $response->getOrder();
+    }
+
+    /**
+     * Получение счетов заказа
+     *
+     * @param int $orderId
+     *
+     * @throws SoapFault
+     */
+    public function getOrderInvoices($orderId)
+    {
+        $request = new Element\GetOrderInvoicesRequest();
+        $request->setOrderId($orderId);
+
+        $this->fillRequest($request);
+
+        /** @var Element\GetOrderInvoicesResponse $response */
+        $response = $this->getSoapClient()->__soapCall(Operations::GET_ORDER_INVOICES, [$request]);
 
         return $response->getOrder();
     }

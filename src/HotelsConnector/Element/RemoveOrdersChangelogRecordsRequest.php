@@ -5,31 +5,29 @@ namespace Bronevik\HotelsConnector\Element;
 class RemoveOrdersChangelogRecordsRequest extends BaseRequest
 {
     /**
-     * @var int[]
+     * @var RecordIds
      */
-    public $recordId = [];
+    public $recordIds;
 
-    /**
-     * @return bool
-     */
-    public function hasRecordId()
+    public function __construct()
     {
-        return count($this->recordId) > 0;
+        parent::__construct();
+        $this->recordIds = new RecordIds();
     }
 
     /**
-     * @return int[]
+     * @return RecordIds
      */
-    public function getRecordId()
+    public function getRecordIds()
     {
-        return $this->recordId;
+        return $this->recordIds;
     }
 
     /**
-     * @param int $recordId
+     * @param RecordIds $recordIds
      */
-    public function addRecordId($recordId)
+    public function setRecordIds($recordIds)
     {
-        $this->recordId[] = $recordId;
+        $this->recordIds = $recordIds;
     }
 }

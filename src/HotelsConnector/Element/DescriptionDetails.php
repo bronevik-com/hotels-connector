@@ -64,9 +64,9 @@ class DescriptionDetails
      * Фотографии отеля
      * The hotel's photos
      *
-     * @var Image[]
+     * @var Photos
      */
-    public $photos = [];
+    public $photos;
 
     /**
      * Доступные в отеле доп. услуги
@@ -79,6 +79,7 @@ class DescriptionDetails
     public function __construct()
     {
         $this->availableAmenities = new AvailableAmenities();
+        $this->photos             = new Photos();
     }
 
     /**
@@ -195,30 +196,6 @@ class DescriptionDetails
     }
 
     /**
-     * @return bool
-     */
-    public function hasPhotos()
-    {
-        return count($this->photos) > 0;
-    }
-
-    /**
-     * @return Image[]
-     */
-    public function getPhotos()
-    {
-        return $this->photos;
-    }
-
-    /**
-     * @param Image $photos
-     */
-    public function addPhotos($photos)
-    {
-        $this->photos[] = $photos;
-    }
-
-    /**
      * @param AvailableAmenities $availableAmenities
      */
     public function setAvailableAmenities($availableAmenities)
@@ -232,5 +209,21 @@ class DescriptionDetails
     public function getAvailableAmenities()
     {
         return $this->availableAmenities;
+    }
+
+    /**
+     * @return Photos
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+    /**
+     * @param Photos $photos
+     */
+    public function setPhotos($photos)
+    {
+        $this->photos = $photos;
     }
 }

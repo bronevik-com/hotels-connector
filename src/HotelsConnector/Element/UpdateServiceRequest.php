@@ -13,12 +13,19 @@ class UpdateServiceRequest extends BaseRequest
     public $serviceId;
 
     /**
-     * Номер услуги в системе клиента
-     * The service number in the client system
+     * Изменения, которые планируется внести в услугу проживания
+     * Changes to be made to the accommodation service
      *
-     * @var string
+     * @var UpdateService
      */
-    public $referenceId;
+    public $updateService;
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->updateService = new UpdateService();
+    }
 
     /**
      * @param int $serviceId
@@ -26,6 +33,14 @@ class UpdateServiceRequest extends BaseRequest
     public function setServiceId($serviceId)
     {
         $this->serviceId = $serviceId;
+    }
+
+    /**
+     * @param UpdateService $updateService
+     */
+    public function setUpdateService($updateService)
+    {
+        $this->updateService = $updateService;
     }
 
     /**
@@ -37,18 +52,10 @@ class UpdateServiceRequest extends BaseRequest
     }
 
     /**
-     * @param string $referenceId
+     * @return UpdateService
      */
-    public function setReferenceId($referenceId)
+    public function getUpdateService()
     {
-        $this->referenceId = $referenceId;
-    }
-
-    /**
-     * @return string
-     */
-    public function getReferenceId()
-    {
-        return $this->referenceId;
+        return $this->updateService;
     }
 }
