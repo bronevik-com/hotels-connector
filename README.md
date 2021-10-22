@@ -29,6 +29,7 @@
         - [Создание заказа](#Создание-заказа)
         - [Создание заказа с данными банковской карты](#Создание-заказа-с-данными-банковской-карты)
         - [Получение информации о заказе](#Получение-информации-о-заказе)
+        - [Получение счетов заказа](#Получение-счетов-заказа)
         - [Отмена (аннуляция) заказа](#Отмена-заказа)
         - [Поиск заказов](#Поиск-заказов)
         - [Услуги](#Услуги)
@@ -39,7 +40,7 @@
                 - [Получение комментариев](#Получение-комментариев)
                 - [Отправка комментариев](#Отправка-комментариев)
     - [Детализация предложения](#Детализация-предложения)
-    - [Обновление referenceId услуги](#Обновление-referenceId-услуги)
+    - [Онлайн коррекция услуги](#Онлайн-коррекция-услуги)
     - [Аннуляция услуг](#Аннуляция-услуг)
     - [Безрейтовый поиск](#Безрейтовый-поиск)
         - [Поиск по городу](#Поиск-по-городу)
@@ -145,359 +146,6 @@ echo $connector->ping('Привет, Броневичок!'); // Привет, �
 ## Документация по работе с клиентом и примеры
 
 ### Справочники
-
-#### Коррекция услуги
-
-Запрос:
-
-```php
-<?php
-    $serviceId = 1; // Id услуги
-    $updateService = new \Bronevik\HotelsConnector\Element\UpdateService();
-    $updateService->setArrivalDate("2021-09-18"); // Коррекция даты заезда
-    $updateService->setDepartureDate("2021-09-22"); //  Коррекция даты выезда
-    $updateService->setReferenceId(1); // Коррекция номера услуги в системе клиента
-    $addMeals = new \Bronevik\HotelsConnector\Element\MealIds();
-    $addMeals->addMeal(1); // id услуги питания 
-    $removeMeals = new \Bronevik\HotelsConnector\Element\MealIds();
-    $removeMeals->addMeal(2); // id услуги питания 
-    $updateService->setAddMeals($addMeals); // Добавить питание в услугу
-    $updateService->setRemoveMeals($removeMeals); // Удалить питание из услуги 
-    $updateService->setCheckinHour(15); // Коррекция часа заезда
-    $updateService->setCheckoutHour(21); // Коррекция часа выезда
-    $updateService->setComment('Комментарий'); // Коррекция комментария к услуге
-    
-    $response = $connector->updateService($serviceId, $updateService);
-```
-
-Запрос для коррекции цены продажи:
-
-```php
-<?php
-    $serviceId = 1; // Id услуги
-    $updateService = new \Bronevik\HotelsConnector\Element\UpdateService();
-    $updateService->setSellingPrice(100); // Цена продажи
-    
-    $response = $connector->updateService($serviceId, $updateService);
-```
-
-Разбор результатов:
-
-```php
-<?php
-/** @var \Bronevik\HotelsConnector\Element\GetServicePricingResponse $response */
-$order = $response->getOrder();
-$order->getId();            // Id заказа
-$order->getComment();       // Комментарий к заказу, который был указан при создании
-$order->getContactPerson(); // Контактное лицо
-$order->getContactPhone();  // Контактный телефон
-$order->getContactEmail();  // Контактный email
-
-/** @var Bronevik\HotelsConnector\Element\OrderServiceAccommodation $service */
-foreach ($order->getServices()->service as $service) {
-    $service->getId();               // Id услуги
-    $service->getDate();             // Дата создания услуги
-    $service->getComment();          // Комментарий к услуге, который был указан при создании
-    $service->getPaymentRecipient(); // Способ оплаты, возможные значения: \Bronevik\HotelsConnector\Enum\PaymentRecipients
-    $service->getIsBlockRoom();      // Блочный ли номер?
-    $service->getIsSharedRoom();     // Является ли номер номером с подселением?
-    $service->getRoomId();           // Id номера
-    $service->getCountryId();        // Id страны
-    $service->getCountryName();      // Название страны
-    $service->getCityId();           // Id города
-    $service->getCityName();         // Название города
-    $service->getHotelId();          // Id отеля
-    $service->getHotelName();        // Название отеля
-    $service->getReferenceId();      // Номер услуги в системе клиента
-    $service->getStatusId();         // Id статуса
-    $service->getStatusName();       // Название статуса
-    $service->getCheckin();          // Час заезда
-    $service->getCheckout();         // Час выезда
-    $service->getNonRefundable();    // Является ли тариф невозвратным?
-    $service->getOfferCode();        // Код предложения, с помощью которого оформлена услуга
-    $service->getOfferName();        // Название предложения
-    $service->getRoomType();         // Тип размещения
-    $service->getVATPercent();       // Ставка НДС
-    $service->getGuaranteeType();    // Тип гарантии
-    $service->getGuests();           // Гости услуги
-    $service->getPaymentTerms()      // Условия оплаты
-   
-    // информация о тарифе
-    /** @var Bronevik\HotelsConnector\Element\RateType $rateType */
-    $rateType = $service->getRateType();
-    /**
-     * Название тарифа
-     * @see \Bronevik\HotelsConnector\Enum\RateTypeNames
-     */
-    $rateType->getRateName();
-    $rateType->getRateDescription(); // Описание тарифа
-
-    /** @var Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
-    // доп. поля для создания услуг
-    foreach ($service->getExtraField() as $serviceExtraField) {
-        $serviceExtraField->getName();  // Название
-        $serviceExtraField->getValue(); // Значение
-    }
-
-    // ежедневные цены
-    /** @var Bronevik\HotelsConnector\Element\DailyPrice $dailyPrice */
-    foreach ($service->getDailyPrices()->dailyPrice as $dailyPrice) {
-        // аналогично dailyPrice в SearchHotelOffers
-        $dailyPrice->getDate();          // Дата, на которую рассчитана цена
-        $dailyPrice->getBookingFee();    // Стоимость брони в отеле
-        $dailyPrice->getEarlyArrival();  // Стоимость раннего заезда
-        $dailyPrice->getLateDeparture(); // Стоимость позднего выезда
-        $dailyPrice->getRate();          // Стоимость номера
-    }
-
-    // гости
-    foreach ($service->getGuests() as $guest) {
-        /** @var Bronevik\HotelsConnector\Element\Guest $guest */
-        echo $guest->getLastName() . ' ' . $guest->getFirstName();
-    }
-
-    // договор, привязанный к услуге
-    /** @var Bronevik\HotelsConnector\Element\Contract $contract */
-    $contract = $service->getContract();
-    $contract->getId();          // Id договора
-    $contract->getNumber();      // Номер договора
-    $contract->getBeginsAt();    // Дата начала действия договора
-    $contract->getLegalEntity(); // Юридическое лицо
-
-    $service->getPriceDetails();         // аналогично как и для SearchHotelOffers
-    $service->getCancellationPolicies(); // аналогично как и для SearchHotelOffers
-    $service->getMeals();                // аналогично как и для SearchHotelOffers
-    $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
-}
-```
-
-
-#### Получение стоимость услуги с учетом коррекции
-
-Запрос:
-
-```php
-<?php
-    $serviceId = 1; // Id услуги
-    $updateService = new \Bronevik\HotelsConnector\Element\UpdateService();
-    $updateService->setArrivalDate("2021-09-18"); // Коррекция даты заезда
-    $updateService->setDepartureDate("2021-09-22"); //  Коррекция даты выезда
-    $updateService->setReferenceId(1); // Коррекция номера услуги в системе клиента
-    $addMeals = new \Bronevik\HotelsConnector\Element\MealIds();
-    $addMeals->addMeal(1); // id услуги питания 
-    $removeMeals = new \Bronevik\HotelsConnector\Element\MealIds();
-    $removeMeals->addMeal(2); // id услуги питания 
-    $updateService->setAddMeals($addMeals); // Добавить питание в услугу
-    $updateService->setRemoveMeals($removeMeals); // Удалить питание из услуги 
-    $updateService->setCheckinHour(15); // Коррекция часа заезда
-    $updateService->setCheckoutHour(21); // Коррекция часа выезда
-    $updateService->setComment('Комментарий'); // Коррекция комментария к услуге
-    
-    $response = $connector->getServicePricing($serviceId, $updateService);
-```
-Запрос для коррекции цены продажи:
-
-```php
-<?php
-    $serviceId = 1; // Id услуги
-    $updateService = new \Bronevik\HotelsConnector\Element\UpdateService();
-    $updateService->setSellingPrice(100); // Цена продажи
-    
-    $response = $connector->updateService($serviceId, $updateService);
-```
-
-Разбор результатов:
-
-```php
-<?php
-/** @var \Bronevik\HotelsConnector\Element\GetServicePricingResponse $response */
-$order = $response->getOrder();
-$order->getId();            // Id заказа
-$order->getComment();       // Комментарий к заказу, который был указан при создании
-$order->getContactPerson(); // Контактное лицо
-$order->getContactPhone();  // Контактный телефон
-$order->getContactEmail();  // Контактный email
-
-/** @var Bronevik\HotelsConnector\Element\OrderServiceAccommodation $service */
-foreach ($order->getServices()->service as $service) {
-    $service->getId();               // Id услуги
-    $service->getDate();             // Дата создания услуги
-    $service->getComment();          // Комментарий к услуге, который был указан при создании
-    $service->getPaymentRecipient(); // Способ оплаты, возможные значения: \Bronevik\HotelsConnector\Enum\PaymentRecipients
-    $service->getIsBlockRoom();      // Блочный ли номер?
-    $service->getIsSharedRoom();     // Является ли номер номером с подселением?
-    $service->getRoomId();           // Id номера
-    $service->getCountryId();        // Id страны
-    $service->getCountryName();      // Название страны
-    $service->getCityId();           // Id города
-    $service->getCityName();         // Название города
-    $service->getHotelId();          // Id отеля
-    $service->getHotelName();        // Название отеля
-    $service->getReferenceId();      // Номер услуги в системе клиента
-    $service->getStatusId();         // Id статуса
-    $service->getStatusName();       // Название статуса
-    $service->getCheckin();          // Час заезда
-    $service->getCheckout();         // Час выезда
-    $service->getNonRefundable();    // Является ли тариф невозвратным?
-    $service->getOfferCode();        // Код предложения, с помощью которого оформлена услуга
-    $service->getOfferName();        // Название предложения
-    $service->getRoomType();         // Тип размещения
-    $service->getVATPercent();       // Ставка НДС
-    $service->getGuaranteeType();    // Тип гарантии
-    $service->getGuests();           // Гости услуги
-    $service->getPaymentTerms()      // Условия оплаты
-   
-    // информация о тарифе
-    /** @var Bronevik\HotelsConnector\Element\RateType $rateType */
-    $rateType = $service->getRateType();
-    /**
-     * Название тарифа
-     * @see \Bronevik\HotelsConnector\Enum\RateTypeNames
-     */
-    $rateType->getRateName();
-    $rateType->getRateDescription(); // Описание тарифа
-
-    /** @var Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
-    // доп. поля для создания услуг
-    foreach ($service->getExtraField() as $serviceExtraField) {
-        $serviceExtraField->getName();  // Название
-        $serviceExtraField->getValue(); // Значение
-    }
-
-    // ежедневные цены
-    /** @var Bronevik\HotelsConnector\Element\DailyPrice $dailyPrice */
-    foreach ($service->getDailyPrices()->dailyPrice as $dailyPrice) {
-        // аналогично dailyPrice в SearchHotelOffers
-        $dailyPrice->getDate();          // Дата, на которую рассчитана цена
-        $dailyPrice->getBookingFee();    // Стоимость брони в отеле
-        $dailyPrice->getEarlyArrival();  // Стоимость раннего заезда
-        $dailyPrice->getLateDeparture(); // Стоимость позднего выезда
-        $dailyPrice->getRate();          // Стоимость номера
-    }
-
-    // гости
-    foreach ($service->getGuests() as $guest) {
-        /** @var Bronevik\HotelsConnector\Element\Guest $guest */
-        echo $guest->getLastName() . ' ' . $guest->getFirstName();
-    }
-
-    // договор, привязанный к услуге
-    /** @var Bronevik\HotelsConnector\Element\Contract $contract */
-    $contract = $service->getContract();
-    $contract->getId();          // Id договора
-    $contract->getNumber();      // Номер договора
-    $contract->getBeginsAt();    // Дата начала действия договора
-    $contract->getLegalEntity(); // Юридическое лицо
-
-    $service->getPriceDetails();         // аналогично как и для SearchHotelOffers
-    $service->getCancellationPolicies(); // аналогично как и для SearchHotelOffers
-    $service->getMeals();                // аналогично как и для SearchHotelOffers
-    $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
-}
-```
-
-#### Получение доступности коррекции для услуг
-
-Запрос:
-
-```php
-<?php
-$serviceIds = 123;
-$availableCorrectionTypes = new Bronevik\HotelsConnector\Element\AvailableCorrectionTypes();
-$availableCorrectionTypes->addCorrectionType(\Bronevik\HotelsConnector\Enum\CorrectionTypes::MEALS);
-$response = $connector->getServiceAvailableCorrections($serviceIds, $availableCorrectionTypes);
-```
-
-Разбор результатов:
-
-```php
-<?php
- /** @var Bronevik\HotelsConnector\Element\GetServiceAvailableCorrectionsResponse $response */
-    $editService = $response->getEditService();
-    $editService->getServiceId(); // Id услуги
-    
-    $arrivalDepartureDate = $editService->getArrivalDepartureDates(); // Информация о коррекции дат заезда/выезда
-    $arrivalDepartureDate->getArrivalDate(); // Дата заезда
-    $departureDate = $arrivalDepartureDate->getDepartureDate(); // Дата выезда
-    $departureDate->getMaxAvailableDate(); // Максимально доступная дата для коррекции 
-    $departureDate->getMinAvailableDate(); // Минимально доступная дата для коррекции 
-
-    /** @var Bronevik\HotelsConnector\Element\AvailableMeals $meals */
-    $meals = $editService->getMeals(); // Доступность питания
-    
-    /** @var Bronevik\HotelsConnector\Element\AvailableMeal $meal */
-    foreach($meals->meal as $meal) {
-        $meal->getId(); // Идентификатор услуги питания
-        $meal->getIncluded(); // Включена ли услуга в предложение
-        $meal->getVATPercent(); // Детализация услуги питания
-        $meal->getPriceDetails(); // Ставка НДС
-    }
-    
-    
-    $meals->getCorrectionAvailability()->isAdding(); // Доступно ли добавление услуг питания
-    $meals->getCorrectionAvailability()->isRemoving(); // Доступно ли удаление услуг питания
-    
-    $checkinCheckoutPrice = $editService->getCheckinCheckoutPrices(); // Цены и доступность РЗПВ
-    $checkin = $checkinCheckoutPrice->getCheckin(); // Информация о раннем заезде
-    $checkout = $checkinCheckoutPrice->getCheckout(); // Информация о позднем выезде
-    
-    $hoursPrice = $checkin->getHourPrice(); // Массив с ценами по часам.
-    /** @var Bronevik\HotelsConnector\Element\EditServiceHourPrice $hourPrice */
-    foreach($hoursPrice as $hourPrice)
-    {
-        $hourPrice->getHour(); // Час
-        $hourPrice->getAvailabilityCode(); // Код доступности.
-        $hourPrice->getPriceDetails(); //  Детализация часа.
-    }
-    
-    $correctionAvailability = $editService->getCorrectionAvailability(); // Информация о доступности коррекции
-    $correctionAvailability->getAvailableCorrectionNumber(); // Доступное количество коррекций
-    $correctionAvailability->getIsCorrectionAvailable(); // Доступна ли коррекция услуги
-    $correctionAvailability->getMeals(); // Доступна ли коррекция питания
-    $correctionAvailability->getCheckinHour(); // Доступна ли коррекция часов заезда
-    $correctionAvailability->getCheckoutHour(); // Доступна ли коррекция часов выезда
-    $correctionAvailability->getArrivalDate(); // Доступна ли коррекция даты заезда
-    $correctionAvailability->getDepartureDate(); // Доступна ли коррекция даты выезда
-    $correctionAvailability->getSellingPrice(); // Доступна ли коррекция свайп шкалы
-    $correctionAvailability->getComment(); // Доступна ли коррекция комментария
-    $correctionAvailability->getGuests(); // Доступна ли коррекция гостей
-    $correctionAvailability->getReferenceId(); // Доступна ли коррекция referenceId
-
-```
-
-#### Получение счетов заказа
-
-Запрос:
-
-```php
-<?php
-
-$orderId = 1; // id Заказа
-$orderInvoices = $connector->getOrderInvoices($orderId);
-```
-
-Разбор результата:
-
-```php
-/** @var Bronevik\HotelsConnector\Element\OrderInvoices $invoice */ 
-$orderInvoices->getId(); // id Заказа
-$invoices = $orderInvoices->getInvoices(); // Счета заказа
-
-/** @var Bronevik\HotelsConnector\Element\Invoice $invoice */
-foreach($invoices as $invoice) {
-   $invoice->getInvoiceLink(); // Временная ссылка для скачивания счета
-   $invoiceInfo = $invoice->getInvoiceInfo(); // Информация о счете
-   
-    /** @var Bronevik\HotelsConnector\Element\Info $info */
-    foreach($invoiceInfo->getInfo() as $info)
-    {
-        $info->getName(); //  Название параметра
-        $info->getValue(); // Значение параметра
-    }
-}
-
-```
-
 
 #### Получение списка стран
 
@@ -1302,6 +950,39 @@ $order = $connector->createOrderWithCardDetails($orderRequest);
 $order = $connector->getOrder(349007);
 ```
 
+#### Получение счетов заказа
+
+Запрос:
+
+```php
+<?php
+
+$orderId = 1; // id Заказа
+$orderInvoices = $connector->getOrderInvoices($orderId);
+```
+
+Разбор результата:
+
+```php
+/** @var Bronevik\HotelsConnector\Element\OrderInvoices $invoice */ 
+$orderInvoices->getId(); // id Заказа
+$invoices = $orderInvoices->getInvoices(); // Счета заказа
+
+/** @var Bronevik\HotelsConnector\Element\Invoice $invoice */
+foreach($invoices as $invoice) {
+   $invoice->getInvoiceLink(); // Временная ссылка для скачивания счета
+   $invoiceInfo = $invoice->getInvoiceInfo(); // Информация о счете
+   
+    /** @var Bronevik\HotelsConnector\Element\Info $info */
+    foreach($invoiceInfo->getInfo() as $info)
+    {
+        $info->getName(); //  Название параметра
+        $info->getValue(); // Значение параметра
+    }
+}
+
+```
+
 #### Отмена заказа
 
 ```php
@@ -1509,20 +1190,328 @@ $orderServices = $connector->getHotelOfferPricing($services, $currency);
 // объект услуги в ответе точно такой же как и при создании заказа
 ```
 
-#### Обновление referenceId услуги
+### Онлайн коррекция услуги
 
-Для обновления услуги нужно воспользоваться методом updateService, который принимает на вход идентификатор услуги и referenceId.
+
+#### Коррекция услуги
+
+Запрос:
+
 ```php
 <?php
-
-$serviceId   = 123;           // идентификатор услуги
-$referenceId = 'referenceId'; // идентификатор услуги в системе клиента
-
-$response = $connector->updateService($serviceId, $referenceId);
-
-$response->getReferenceId(); // Обновленный referenceId
-$response->getResult();      // результат обновления referenceId (true или false)
+    $serviceId = 1; // Id услуги
+    $updateService = new \Bronevik\HotelsConnector\Element\UpdateService();
+    $updateService->setArrivalDate("2021-09-18"); // Коррекция даты заезда
+    $updateService->setDepartureDate("2021-09-22"); //  Коррекция даты выезда
+    $updateService->setReferenceId(1); // Коррекция номера услуги в системе клиента
+    $addMeals = new \Bronevik\HotelsConnector\Element\MealIds();
+    $addMeals->addMeal(1); // id услуги питания 
+    $removeMeals = new \Bronevik\HotelsConnector\Element\MealIds();
+    $removeMeals->addMeal(2); // id услуги питания 
+    $updateService->setAddMeals($addMeals); // Добавить питание в услугу
+    $updateService->setRemoveMeals($removeMeals); // Удалить питание из услуги 
+    $updateService->setCheckinHour(15); // Коррекция часа заезда
+    $updateService->setCheckoutHour(21); // Коррекция часа выезда
+    $updateService->setComment('Комментарий'); // Коррекция комментария к услуге
+    
+    $response = $connector->updateService($serviceId, $updateService);
 ```
+
+Запрос для коррекции цены продажи:
+
+```php
+<?php
+    $serviceId = 1; // Id услуги
+    $updateService = new \Bronevik\HotelsConnector\Element\UpdateService();
+    $updateService->setSellingPrice(100); // Цена продажи
+    
+    $response = $connector->updateService($serviceId, $updateService);
+```
+
+Разбор результатов:
+
+```php
+<?php
+/** @var \Bronevik\HotelsConnector\Element\GetServicePricingResponse $response */
+$order = $response->getOrder();
+$order->getId();            // Id заказа
+$order->getComment();       // Комментарий к заказу, который был указан при создании
+$order->getContactPerson(); // Контактное лицо
+$order->getContactPhone();  // Контактный телефон
+$order->getContactEmail();  // Контактный email
+
+/** @var Bronevik\HotelsConnector\Element\OrderServiceAccommodation $service */
+foreach ($order->getServices()->service as $service) {
+    $service->getId();               // Id услуги
+    $service->getDate();             // Дата создания услуги
+    $service->getComment();          // Комментарий к услуге, который был указан при создании
+    $service->getPaymentRecipient(); // Способ оплаты, возможные значения: \Bronevik\HotelsConnector\Enum\PaymentRecipients
+    $service->getIsBlockRoom();      // Блочный ли номер?
+    $service->getIsSharedRoom();     // Является ли номер номером с подселением?
+    $service->getRoomId();           // Id номера
+    $service->getCountryId();        // Id страны
+    $service->getCountryName();      // Название страны
+    $service->getCityId();           // Id города
+    $service->getCityName();         // Название города
+    $service->getHotelId();          // Id отеля
+    $service->getHotelName();        // Название отеля
+    $service->getReferenceId();      // Номер услуги в системе клиента
+    $service->getStatusId();         // Id статуса
+    $service->getStatusName();       // Название статуса
+    $service->getCheckin();          // Час заезда
+    $service->getCheckout();         // Час выезда
+    $service->getNonRefundable();    // Является ли тариф невозвратным?
+    $service->getOfferCode();        // Код предложения, с помощью которого оформлена услуга
+    $service->getOfferName();        // Название предложения
+    $service->getRoomType();         // Тип размещения
+    $service->getVATPercent();       // Ставка НДС
+    $service->getGuaranteeType();    // Тип гарантии
+    $service->getGuests();           // Гости услуги
+    $service->getPaymentTerms()      // Условия оплаты
+   
+    // информация о тарифе
+    /** @var Bronevik\HotelsConnector\Element\RateType $rateType */
+    $rateType = $service->getRateType();
+    /**
+     * Название тарифа
+     * @see \Bronevik\HotelsConnector\Enum\RateTypeNames
+     */
+    $rateType->getRateName();
+    $rateType->getRateDescription(); // Описание тарифа
+
+    /** @var Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
+    // доп. поля для создания услуг
+    foreach ($service->getExtraField() as $serviceExtraField) {
+        $serviceExtraField->getName();  // Название
+        $serviceExtraField->getValue(); // Значение
+    }
+
+    // ежедневные цены
+    /** @var Bronevik\HotelsConnector\Element\DailyPrice $dailyPrice */
+    foreach ($service->getDailyPrices()->dailyPrice as $dailyPrice) {
+        // аналогично dailyPrice в SearchHotelOffers
+        $dailyPrice->getDate();          // Дата, на которую рассчитана цена
+        $dailyPrice->getBookingFee();    // Стоимость брони в отеле
+        $dailyPrice->getEarlyArrival();  // Стоимость раннего заезда
+        $dailyPrice->getLateDeparture(); // Стоимость позднего выезда
+        $dailyPrice->getRate();          // Стоимость номера
+    }
+
+    // гости
+    foreach ($service->getGuests() as $guest) {
+        /** @var Bronevik\HotelsConnector\Element\Guest $guest */
+        echo $guest->getLastName() . ' ' . $guest->getFirstName();
+    }
+
+    // договор, привязанный к услуге
+    /** @var Bronevik\HotelsConnector\Element\Contract $contract */
+    $contract = $service->getContract();
+    $contract->getId();          // Id договора
+    $contract->getNumber();      // Номер договора
+    $contract->getBeginsAt();    // Дата начала действия договора
+    $contract->getLegalEntity(); // Юридическое лицо
+
+    $service->getPriceDetails();         // аналогично как и для SearchHotelOffers
+    $service->getCancellationPolicies(); // аналогично как и для SearchHotelOffers
+    $service->getMeals();                // аналогично как и для SearchHotelOffers
+    $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
+}
+```
+
+
+#### Получение стоимость услуги с учетом коррекции
+
+Запрос:
+
+```php
+<?php
+    $serviceId = 1; // Id услуги
+    $updateService = new \Bronevik\HotelsConnector\Element\UpdateService();
+    $updateService->setArrivalDate("2021-09-18"); // Коррекция даты заезда
+    $updateService->setDepartureDate("2021-09-22"); //  Коррекция даты выезда
+    $updateService->setReferenceId(1); // Коррекция номера услуги в системе клиента
+    $addMeals = new \Bronevik\HotelsConnector\Element\MealIds();
+    $addMeals->addMeal(1); // id услуги питания 
+    $removeMeals = new \Bronevik\HotelsConnector\Element\MealIds();
+    $removeMeals->addMeal(2); // id услуги питания 
+    $updateService->setAddMeals($addMeals); // Добавить питание в услугу
+    $updateService->setRemoveMeals($removeMeals); // Удалить питание из услуги 
+    $updateService->setCheckinHour(15); // Коррекция часа заезда
+    $updateService->setCheckoutHour(21); // Коррекция часа выезда
+    $updateService->setComment('Комментарий'); // Коррекция комментария к услуге
+    
+    $response = $connector->getServicePricing($serviceId, $updateService);
+```
+Запрос для коррекции цены продажи:
+
+```php
+<?php
+    $serviceId = 1; // Id услуги
+    $updateService = new \Bronevik\HotelsConnector\Element\UpdateService();
+    $updateService->setSellingPrice(100); // Цена продажи
+    
+    $response = $connector->updateService($serviceId, $updateService);
+```
+
+Разбор результатов:
+
+```php
+<?php
+/** @var \Bronevik\HotelsConnector\Element\GetServicePricingResponse $response */
+$order = $response->getOrder();
+$order->getId();            // Id заказа
+$order->getComment();       // Комментарий к заказу, который был указан при создании
+$order->getContactPerson(); // Контактное лицо
+$order->getContactPhone();  // Контактный телефон
+$order->getContactEmail();  // Контактный email
+
+/** @var Bronevik\HotelsConnector\Element\OrderServiceAccommodation $service */
+foreach ($order->getServices()->service as $service) {
+    $service->getId();               // Id услуги
+    $service->getDate();             // Дата создания услуги
+    $service->getComment();          // Комментарий к услуге, который был указан при создании
+    $service->getPaymentRecipient(); // Способ оплаты, возможные значения: \Bronevik\HotelsConnector\Enum\PaymentRecipients
+    $service->getIsBlockRoom();      // Блочный ли номер?
+    $service->getIsSharedRoom();     // Является ли номер номером с подселением?
+    $service->getRoomId();           // Id номера
+    $service->getCountryId();        // Id страны
+    $service->getCountryName();      // Название страны
+    $service->getCityId();           // Id города
+    $service->getCityName();         // Название города
+    $service->getHotelId();          // Id отеля
+    $service->getHotelName();        // Название отеля
+    $service->getReferenceId();      // Номер услуги в системе клиента
+    $service->getStatusId();         // Id статуса
+    $service->getStatusName();       // Название статуса
+    $service->getCheckin();          // Час заезда
+    $service->getCheckout();         // Час выезда
+    $service->getNonRefundable();    // Является ли тариф невозвратным?
+    $service->getOfferCode();        // Код предложения, с помощью которого оформлена услуга
+    $service->getOfferName();        // Название предложения
+    $service->getRoomType();         // Тип размещения
+    $service->getVATPercent();       // Ставка НДС
+    $service->getGuaranteeType();    // Тип гарантии
+    $service->getGuests();           // Гости услуги
+    $service->getPaymentTerms()      // Условия оплаты
+   
+    // информация о тарифе
+    /** @var Bronevik\HotelsConnector\Element\RateType $rateType */
+    $rateType = $service->getRateType();
+    /**
+     * Название тарифа
+     * @see \Bronevik\HotelsConnector\Enum\RateTypeNames
+     */
+    $rateType->getRateName();
+    $rateType->getRateDescription(); // Описание тарифа
+
+    /** @var Bronevik\HotelsConnector\Element\ServiceExtraField $serviceExtraField */
+    // доп. поля для создания услуг
+    foreach ($service->getExtraField() as $serviceExtraField) {
+        $serviceExtraField->getName();  // Название
+        $serviceExtraField->getValue(); // Значение
+    }
+
+    // ежедневные цены
+    /** @var Bronevik\HotelsConnector\Element\DailyPrice $dailyPrice */
+    foreach ($service->getDailyPrices()->dailyPrice as $dailyPrice) {
+        // аналогично dailyPrice в SearchHotelOffers
+        $dailyPrice->getDate();          // Дата, на которую рассчитана цена
+        $dailyPrice->getBookingFee();    // Стоимость брони в отеле
+        $dailyPrice->getEarlyArrival();  // Стоимость раннего заезда
+        $dailyPrice->getLateDeparture(); // Стоимость позднего выезда
+        $dailyPrice->getRate();          // Стоимость номера
+    }
+
+    // гости
+    foreach ($service->getGuests() as $guest) {
+        /** @var Bronevik\HotelsConnector\Element\Guest $guest */
+        echo $guest->getLastName() . ' ' . $guest->getFirstName();
+    }
+
+    // договор, привязанный к услуге
+    /** @var Bronevik\HotelsConnector\Element\Contract $contract */
+    $contract = $service->getContract();
+    $contract->getId();          // Id договора
+    $contract->getNumber();      // Номер договора
+    $contract->getBeginsAt();    // Дата начала действия договора
+    $contract->getLegalEntity(); // Юридическое лицо
+
+    $service->getPriceDetails();         // аналогично как и для SearchHotelOffers
+    $service->getCancellationPolicies(); // аналогично как и для SearchHotelOffers
+    $service->getMeals();                // аналогично как и для SearchHotelOffers
+    $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
+}
+```
+
+#### Получение доступности коррекции для услуг
+
+Запрос:
+
+```php
+<?php
+$serviceIds = 123;
+$availableCorrectionTypes = new Bronevik\HotelsConnector\Element\AvailableCorrectionTypes();
+$availableCorrectionTypes->addCorrectionType(\Bronevik\HotelsConnector\Enum\CorrectionTypes::MEALS);
+$response = $connector->getServiceAvailableCorrections($serviceIds, $availableCorrectionTypes);
+```
+
+Разбор результатов:
+
+```php
+<?php
+ /** @var Bronevik\HotelsConnector\Element\GetServiceAvailableCorrectionsResponse $response */
+    $editService = $response->getEditService();
+    $editService->getServiceId(); // Id услуги
+    
+    $arrivalDepartureDate = $editService->getArrivalDepartureDates(); // Информация о коррекции дат заезда/выезда
+    $arrivalDepartureDate->getArrivalDate(); // Дата заезда
+    $departureDate = $arrivalDepartureDate->getDepartureDate(); // Дата выезда
+    $departureDate->getMaxAvailableDate(); // Максимально доступная дата для коррекции 
+    $departureDate->getMinAvailableDate(); // Минимально доступная дата для коррекции 
+
+    /** @var Bronevik\HotelsConnector\Element\AvailableMeals $meals */
+    $meals = $editService->getMeals(); // Доступность питания
+    
+    /** @var Bronevik\HotelsConnector\Element\AvailableMeal $meal */
+    foreach($meals->meal as $meal) {
+        $meal->getId(); // Идентификатор услуги питания
+        $meal->getIncluded(); // Включена ли услуга в предложение
+        $meal->getVATPercent(); // Детализация услуги питания
+        $meal->getPriceDetails(); // Ставка НДС
+    }
+    
+    
+    $meals->getCorrectionAvailability()->isAdding(); // Доступно ли добавление услуг питания
+    $meals->getCorrectionAvailability()->isRemoving(); // Доступно ли удаление услуг питания
+    
+    $checkinCheckoutPrice = $editService->getCheckinCheckoutPrices(); // Цены и доступность РЗПВ
+    $checkin = $checkinCheckoutPrice->getCheckin(); // Информация о раннем заезде
+    $checkout = $checkinCheckoutPrice->getCheckout(); // Информация о позднем выезде
+    
+    $hoursPrice = $checkin->getHourPrice(); // Массив с ценами по часам.
+    /** @var Bronevik\HotelsConnector\Element\EditServiceHourPrice $hourPrice */
+    foreach($hoursPrice as $hourPrice)
+    {
+        $hourPrice->getHour(); // Час
+        $hourPrice->getAvailabilityCode(); // Код доступности.
+        $hourPrice->getPriceDetails(); //  Детализация часа.
+    }
+    
+    $correctionAvailability = $editService->getCorrectionAvailability(); // Информация о доступности коррекции
+    $correctionAvailability->getAvailableCorrectionNumber(); // Доступное количество коррекций
+    $correctionAvailability->getIsCorrectionAvailable(); // Доступна ли коррекция услуги
+    $correctionAvailability->getMeals(); // Доступна ли коррекция питания
+    $correctionAvailability->getCheckinHour(); // Доступна ли коррекция часов заезда
+    $correctionAvailability->getCheckoutHour(); // Доступна ли коррекция часов выезда
+    $correctionAvailability->getArrivalDate(); // Доступна ли коррекция даты заезда
+    $correctionAvailability->getDepartureDate(); // Доступна ли коррекция даты выезда
+    $correctionAvailability->getSellingPrice(); // Доступна ли коррекция свайп шкалы
+    $correctionAvailability->getComment(); // Доступна ли коррекция комментария
+    $correctionAvailability->getGuests(); // Доступна ли коррекция гостей
+    $correctionAvailability->getReferenceId(); // Доступна ли коррекция referenceId
+
+```
+
 
 #### Аннуляция услуг
 
