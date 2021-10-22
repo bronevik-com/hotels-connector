@@ -4,8 +4,6 @@ namespace Bronevik;
 
 use Bronevik\HotelsConnector\Element as Element;
 use Bronevik\HotelsConnector\Enum\ClassMaps;
-use Bronevik\HotelsConnector\Enum\Currencies;
-use Bronevik\HotelsConnector\Enum\CurrencyCodes;
 use Bronevik\HotelsConnector\Enum\Endpoints;
 use Bronevik\HotelsConnector\Enum\Operations;
 use SoapClient;
@@ -80,8 +78,7 @@ class HotelsConnector
         $endpoint,
         $secureEndpoint,
         $debugMode = false
-    )
-    {
+    ) {
         $this->endpoint       = $endpoint;
         $this->secureEndpoint = $secureEndpoint;
         $this->debugMode      = (bool) $debugMode;
@@ -333,8 +330,7 @@ class HotelsConnector
         $hotelIds = [],
         $skipElements = [],
         $geolocation = null
-    )
-    {
+    ) {
         $request = new Element\SearchHotelOffersRequest();
         $this->fillRequest($request);
 
@@ -708,8 +704,7 @@ class HotelsConnector
         Element\GeoLocation $geolocation = null,
         array $addElements = [],
         array $searchCriteria = []
-    )
-    {
+    ) {
         $request = new Element\SearchHotelAvailabilityRequest();
         $this->fillRequest($request);
 
@@ -766,8 +761,7 @@ class HotelsConnector
     public function getServicePricing(
         $serviceId,
         Element\UpdateService $updateService
-    )
-    {
+    ) {
         $request = new Element\GetServicePricingRequest();
         $this->fillRequest($request);
 

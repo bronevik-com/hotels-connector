@@ -1,8 +1,7 @@
-<?php declare(strict_types=1);
+<?php
 
 
 namespace Bronevik\HotelsConnector\Element;
-
 
 class EditServiceAvailableMeals extends AvailableMeals
 {
