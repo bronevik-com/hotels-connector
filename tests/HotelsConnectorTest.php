@@ -71,7 +71,6 @@ use Bronevik\HotelsConnector\Element\SkipElements;
 use Bronevik\HotelsConnector\Element\UpdateService;
 use Bronevik\HotelsConnector\Element\UpdateServiceRequest;
 use Bronevik\HotelsConnector\Element\UpdateServiceResponse;
-use Bronevik\HotelsConnector\Enum\Currencies;
 use Bronevik\HotelsConnector\Enum\CurrencyCodes;
 use Bronevik\HotelsConnector\Enum\Operations;
 use Bronevik\Tests\Mock\HotelsConnectorMock;
@@ -194,7 +193,7 @@ class HotelsConnectorTest extends TestCase
         $hotels         = new Hotels();
 
         $request                        = new SearchHotelOffersRequest();
-        $request->currency              = Currencies::RUSSIAN_RUBLE;
+        $request->currency              = CurrencyCodes::RUB;
         $request->arrivalDate           = $arrivalDate;
         $request->departureDate         = $departureDate;
         $request->skipElements          = new SkipElements();
@@ -238,7 +237,7 @@ class HotelsConnectorTest extends TestCase
         $hotels         = new Hotels();
 
         $request                 = new SearchHotelOffersRequest();
-        $request->currency       = Currencies::RUSSIAN_RUBLE;
+        $request->currency       = CurrencyCodes::RUB;
         $request->arrivalDate    = $arrivalDate;
         $request->departureDate  = $departureDate;
         $request->searchCriteria = $searchCriteria;
@@ -277,7 +276,7 @@ class HotelsConnectorTest extends TestCase
         $hotels        = new Hotels();
 
         $request                = new SearchHotelOffersRequest();
-        $request->currency      = Currencies::RUSSIAN_RUBLE;
+        $request->currency      = CurrencyCodes::RUB;
         $request->arrivalDate   = $arrivalDate;
         $request->departureDate = $departureDate;
         $request->cityId        = $cityId;
@@ -335,7 +334,7 @@ class HotelsConnectorTest extends TestCase
         $hotels       = [new HotelWithCheapestOffer()];
 
         $request               = new SearchHotelAvailabilityRequest();
-        $request->currency     = Currencies::RUSSIAN_RUBLE;
+        $request->currency     = CurrencyCodes::RUB;
         $request->checkInDate  = $checkinDate;
         $request->checkOutDate = $checkOutDate;
         $request->cityId       = $cityId;
@@ -374,7 +373,7 @@ class HotelsConnectorTest extends TestCase
         $hotels       = [new HotelWithCheapestOffer()];
 
         $request               = new SearchHotelAvailabilityRequest();
-        $request->currency     = Currencies::RUSSIAN_RUBLE;
+        $request->currency     = CurrencyCodes::RUB;
         $request->checkInDate  = $checkinDate;
         $request->checkOutDate = $checkOutDate;
         $request->addElements  = [];
@@ -415,7 +414,7 @@ class HotelsConnectorTest extends TestCase
         $hotels         = [new HotelWithCheapestOffer()];
 
         $request                 = new SearchHotelAvailabilityRequest();
-        $request->currency       = Currencies::RUSSIAN_RUBLE;
+        $request->currency       = CurrencyCodes::RUB;
         $request->checkInDate    = $checkinDate;
         $request->checkOutDate   = $checkOutDate;
         $request->addElements    = [];

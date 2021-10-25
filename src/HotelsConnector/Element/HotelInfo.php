@@ -155,4 +155,20 @@ class HotelInfo
     {
         return $this->deepLink;
     }
+
+    /**
+     * @return string
+     */
+    public function getPaymentTerms()
+    {
+        return $this->paymentTerms;
+    }
+
+    /**
+     * @param string $paymentTerms
+     */
+    public function setPaymentTerms($paymentTerms)
+    {
+        $this->paymentTerms = $paymentTerms;
+    }
 }
