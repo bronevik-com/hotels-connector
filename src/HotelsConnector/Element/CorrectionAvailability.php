@@ -17,7 +17,7 @@ class CorrectionAvailability
      * Доступна ли коррекция услуги
      * Is service correction available
      *
-     * @var int
+     * @var bool
      */
     public $isCorrectionAvailable;
 
@@ -93,7 +93,7 @@ class CorrectionAvailability
     public $referenceId;
 
     /**
-     * @param int $isCorrectionAvailable
+     * @param bool $isCorrectionAvailable
      */
     public function setIsCorrectionAvailable($isCorrectionAvailable)
     {
@@ -181,7 +181,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return int
+     * @return bool
      */
     public function getIsCorrectionAvailable()
     {
