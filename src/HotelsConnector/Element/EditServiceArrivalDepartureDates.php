@@ -9,7 +9,7 @@ class EditServiceArrivalDepartureDates
      * Доступные даты для коррекции заезда
      * Available dates for check-in correction
      *
-     * @var EditServiceDate
+     * @var EditServiceDate | null
      */
     public $arrivalDate;
 
@@ -17,12 +17,12 @@ class EditServiceArrivalDepartureDates
      * Доступные даты для коррекции выезда
      * Available dates for departure correction
      *
-     * @var EditServiceDate
+     * @var EditServiceDate | null
      */
     public $departureDate;
 
     /**
-     * @return EditServiceDate|null
+     * @return EditServiceDate | null
      */
     public function getArrivalDate()
     {
@@ -30,7 +30,7 @@ class EditServiceArrivalDepartureDates
     }
 
     /**
-     * @return EditServiceDate|null
+     * @return EditServiceDate | null
      */
     public function getDepartureDate()
     {
@@ -38,7 +38,7 @@ class EditServiceArrivalDepartureDates
     }
 
     /**
-     * @param EditServiceDate $departureDate
+     * @param EditServiceDate | null $departureDate
      */
     public function setDepartureDate($departureDate)
     {
@@ -46,7 +46,7 @@ class EditServiceArrivalDepartureDates
     }
 
     /**
-     * @param EditServiceDate $arrivalDate
+     * @param EditServiceDate | null $arrivalDate
      */
     public function setArrivalDate($arrivalDate)
     {

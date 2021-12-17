@@ -14,12 +14,12 @@ class Invoice
     public $invoiceLink;
 
     /**
-     * @var InvoiceInfo
+     * @var InvoiceInfo | null
      */
     public $invoiceInfo;
 
     /**
-     * @return InvoiceInfo
+     * @return InvoiceInfo | null
      */
     public function getInvoiceInfo()
     {
@@ -27,7 +27,7 @@ class Invoice
     }
 
     /**
-     * @param InvoiceInfo $invoiceInfo
+     * @param InvoiceInfo | null $invoiceInfo
      */
     public function setInvoiceInfo($invoiceInfo)
     {

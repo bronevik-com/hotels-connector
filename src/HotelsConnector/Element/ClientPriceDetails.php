@@ -8,7 +8,7 @@ class ClientPriceDetails
      * Включен ли НДС в клиентскую стоимость
      * Whether VAT is included in the client’s price
      *
-     * @var boolean
+     * @var boolean | null
      */
     public $vatIncluded;
 
@@ -40,7 +40,7 @@ class ClientPriceDetails
      * Цены в валюте отеля.
      * Prices in hotel currency.
      *
-     * @var CurrencyPriceDetails
+     * @var CurrencyPriceDetails | null
      */
     public $hotelCurrency;
 
@@ -60,7 +60,7 @@ class ClientPriceDetails
     }
 
     /**
-     * @param boolean $vatIncluded
+     * @param boolean | null $vatIncluded
      */
     public function setVatIncluded($vatIncluded)
     {
@@ -68,7 +68,7 @@ class ClientPriceDetails
     }
 
     /**
-     * @return boolean
+     * @return boolean | null
      */
     public function getVatIncluded()
     {
@@ -140,7 +140,7 @@ class ClientPriceDetails
     }
 
     /**
-     * @return CurrencyPriceDetails
+     * @return CurrencyPriceDetails | null
      */
     public function getHotelCurrency()
     {
@@ -148,7 +148,7 @@ class ClientPriceDetails
     }
 
     /**
-     * @param CurrencyPriceDetails $hotelCurrency
+     * @param CurrencyPriceDetails | null $hotelCurrency
      */
     public function setHotelCurrency($hotelCurrency)
     {

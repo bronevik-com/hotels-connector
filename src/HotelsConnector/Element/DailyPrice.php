@@ -16,7 +16,7 @@ class DailyPrice
      * Стоимость номера
      * The price's detailing of accommodation per day
      *
-     * @var ClientPriceDetails
+     * @var ClientPriceDetails | null
      */
     public $rate;
 
@@ -24,7 +24,7 @@ class DailyPrice
      * Стоимость брони в отеле
      * The booking fee’s price detailing
      *
-     * @var ClientPriceDetails
+     * @var ClientPriceDetails | null
      */
     public $bookingFee;
 
@@ -32,7 +32,7 @@ class DailyPrice
      * Стоимость раннего заезда
      * The cost of early arrival
      *
-     * @var ClientPriceDetails
+     * @var ClientPriceDetails | null
      */
     public $earlyArrival;
 
@@ -40,7 +40,7 @@ class DailyPrice
      * Стоимость позднего выезда
      * The cost of last departure
      *
-     * @var ClientPriceDetails
+     * @var ClientPriceDetails | null
      */
     public $lateDeparture;
 
@@ -48,7 +48,7 @@ class DailyPrice
      * Стоимость платного питания
      * The cost of meal service
      *
-     * @var DailyPriceMeals
+     * @var DailyPriceMeals | null
      */
     public $meals;
 
@@ -80,7 +80,7 @@ class DailyPrice
     }
 
     /**
-     * @param ClientPriceDetails $rate
+     * @param ClientPriceDetails | null $rate
      */
     public function setRate($rate)
     {
@@ -88,7 +88,7 @@ class DailyPrice
     }
 
     /**
-     * @return ClientPriceDetails
+     * @return ClientPriceDetails | null
      */
     public function getRate()
     {
@@ -96,7 +96,7 @@ class DailyPrice
     }
 
     /**
-     * @param ClientPriceDetails $bookingFee
+     * @param ClientPriceDetails | null $bookingFee
      */
     public function setBookingFee($bookingFee)
     {
@@ -104,7 +104,7 @@ class DailyPrice
     }
 
     /**
-     * @return ClientPriceDetails
+     * @return ClientPriceDetails | null
      */
     public function getBookingFee()
     {
@@ -112,7 +112,7 @@ class DailyPrice
     }
 
     /**
-     * @param ClientPriceDetails $earlyArrival
+     * @param ClientPriceDetails | null $earlyArrival
      */
     public function setEarlyArrival($earlyArrival)
     {
@@ -120,7 +120,7 @@ class DailyPrice
     }
 
     /**
-     * @return ClientPriceDetails
+     * @return ClientPriceDetails | null
      */
     public function getEarlyArrival()
     {
@@ -128,7 +128,7 @@ class DailyPrice
     }
 
     /**
-     * @param ClientPriceDetails $lateDeparture
+     * @param ClientPriceDetails | null $lateDeparture
      */
     public function setLateDeparture($lateDeparture)
     {
@@ -136,7 +136,7 @@ class DailyPrice
     }
 
     /**
-     * @return ClientPriceDetails
+     * @return ClientPriceDetails | null
      */
     public function getLateDeparture()
     {

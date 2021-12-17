@@ -54,7 +54,7 @@ class HotelRoom
      * Площадь номера
      * Room size
      *
-     * @var float
+     * @var float | null
      */
     public $size;
 
@@ -78,7 +78,7 @@ class HotelRoom
      * Количество комнат в номере.
      * The number of apartment in the room.
      *
-     * @var int
+     * @var int | null
      */
     public $bedroomAmount;
 
@@ -171,7 +171,7 @@ class HotelRoom
     }
 
     /**
-     * @param float $size
+     * @param float | null $size
      */
     public function setSize($size)
     {
@@ -179,7 +179,7 @@ class HotelRoom
     }
 
     /**
-     * @return float
+     * @return float | null
      */
     public function getSize()
     {
@@ -219,7 +219,7 @@ class HotelRoom
     }
 
     /**
-     * @param int $bedroomAmount
+     * @param int | null $bedroomAmount
      */
     public function setBedroomAmount($bedroomAmount)
     {
@@ -227,7 +227,7 @@ class HotelRoom
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getBedroomAmount()
     {

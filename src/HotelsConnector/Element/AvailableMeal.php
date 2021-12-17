@@ -24,7 +24,7 @@ class AvailableMeal
      * Детализация услуги питания.
      * Detailing of food service.
      *
-     * @var ClientPriceDetails
+     * @var ClientPriceDetails | null
      */
     public $priceDetails;
 
@@ -69,7 +69,7 @@ class AvailableMeal
     }
 
     /**
-     * @param ClientPriceDetails $priceDetails
+     * @param ClientPriceDetails | null $priceDetails
      */
     public function setPriceDetails($priceDetails)
     {
@@ -77,7 +77,7 @@ class AvailableMeal
     }
 
     /**
-     * @return ClientPriceDetails
+     * @return ClientPriceDetails | null
      */
     public function getPriceDetails()
     {

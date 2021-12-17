@@ -15,7 +15,7 @@ class SearchHotelOffersRequest extends BaseRequest
      * Идентификатор города, по которому будет идти поиск
      * The city id for search
      *
-     * @var int
+     * @var int | null
      */
     public $cityId;
 
@@ -23,7 +23,7 @@ class SearchHotelOffersRequest extends BaseRequest
      * Идентификаторы отелей, по которым будет идти поиск
      * The hotel ids for search
      *
-     * @var HotelIds
+     * @var HotelIds | null
      */
     public $hotelIds;
 
@@ -31,7 +31,7 @@ class SearchHotelOffersRequest extends BaseRequest
      * Координаты и радиус для поиска.
      * Coordinates and radius for search.
      *
-     * @var GeoLocation
+     * @var GeoLocation | null
      */
     public $geolocation;
 
@@ -70,12 +70,12 @@ class SearchHotelOffersRequest extends BaseRequest
 
     /**
      * @see SkipElementTypes::$availableSkipElementsForSearchHotelOffers
-     * @var SkipElements
+     * @var SkipElements | null
      */
     public $skipElements;
 
     /**
-     * @param int $cityId
+     * @param int | null $cityId
      */
     public function setCityId($cityId)
     {
@@ -83,7 +83,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getCityId()
     {
@@ -91,7 +91,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * @param HotelIds $hotelIds
+     * @param HotelIds | null $hotelIds
      */
     public function setHotelIds($hotelIds)
     {
@@ -99,7 +99,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * @return HotelIds
+     * @return HotelIds | null
      */
     public function getHotelIds()
     {
@@ -107,7 +107,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * @param GeoLocation $geolocation
+     * @param GeoLocation | null $geolocation
      */
     public function setGeolocation($geolocation)
     {
@@ -115,7 +115,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * @return GeoLocation
+     * @return GeoLocation | null
      */
     public function getGeolocation()
     {
@@ -196,7 +196,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * @param SkipElements $skipElements
+     * @param SkipElements | null $skipElements
      */
     public function setSkipElements($skipElements)
     {
@@ -204,7 +204,7 @@ class SearchHotelOffersRequest extends BaseRequest
     }
 
     /**
-     * @return SkipElements
+     * @return SkipElements | null
      */
     public function getSkipElements()
     {

@@ -5,12 +5,12 @@ namespace Bronevik\HotelsConnector\Element;
 class GetHotelInfoRequest extends BaseRequest
 {
     /**
-     * @var HotelIds
+     * @var HotelIds | null
      */
     public $hotelIds;
 
     /**
-     * @var CityIds
+     * @var CityIds | null
      */
     public $cityIds;
 
@@ -22,7 +22,7 @@ class GetHotelInfoRequest extends BaseRequest
     }
 
     /**
-     * @return HotelIds
+     * @return HotelIds | null
      */
     public function getHotelIds()
     {
@@ -30,7 +30,7 @@ class GetHotelInfoRequest extends BaseRequest
     }
 
     /**
-     * @param HotelIds $hotelIds
+     * @param HotelIds | null $hotelIds
      */
     public function setHotelIds($hotelIds)
     {
@@ -38,7 +38,7 @@ class GetHotelInfoRequest extends BaseRequest
     }
 
     /**
-     * @return CityIds
+     * @return CityIds | null
      */
     public function getCityIds()
     {
@@ -46,7 +46,7 @@ class GetHotelInfoRequest extends BaseRequest
     }
 
     /**
-     * @param CityIds $cityIds
+     * @param CityIds | null $cityIds
      */
     public function setCityIds($cityIds)
     {
