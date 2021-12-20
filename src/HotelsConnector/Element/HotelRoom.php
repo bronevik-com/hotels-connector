@@ -22,7 +22,7 @@ class HotelRoom
      * Доступные в номере удобства
      * Available amenities in room
      *
-     * @var AvailableAmenities
+     * @var AvailableAmenities | null
      */
     public $availableAmenities;
 
@@ -95,7 +95,7 @@ class HotelRoom
      * Information views from the window in the room.
      * Type: tns:WindowViews
      *
-     * @var WindowViews
+     * @var WindowViews | null
      */
     public $windowViews;
 
@@ -251,7 +251,7 @@ class HotelRoom
     }
 
     /**
-     * @param WindowViews $windowViews
+     * @param WindowViews | null $windowViews
      */
     public function setWindowViews($windowViews)
     {
@@ -259,7 +259,7 @@ class HotelRoom
     }
 
     /**
-     * @return WindowViews
+     * @return WindowViews | null
      */
     public function getWindowViews()
     {
@@ -283,7 +283,7 @@ class HotelRoom
     }
 
     /**
-     * @return AvailableAmenities
+     * @return AvailableAmenities | null
      */
     public function getAvailableAmenities()
     {
@@ -291,7 +291,7 @@ class HotelRoom
     }
 
     /**
-     * @param AvailableAmenities $availableAmenities
+     * @param AvailableAmenities | null $availableAmenities
      */
     public function setAvailableAmenities($availableAmenities)
     {

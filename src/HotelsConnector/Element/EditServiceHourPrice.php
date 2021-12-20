@@ -9,12 +9,12 @@ class EditServiceHourPrice extends OfferHourPrice
      * Доступен ли час для коррекции
      * Is the hour available for correction
      *
-     * @var boolean | null
+     * @var boolean
      */
     public $correctionAvailability;
 
     /**
-     * @return bool | null
+     * @return bool
      */
     public function isCorrectionAvailability()
     {
@@ -22,7 +22,7 @@ class EditServiceHourPrice extends OfferHourPrice
     }
 
     /**
-     * @param bool | null $correctionAvailability
+     * @param bool $correctionAvailability
      */
     public function setCorrectionAvailability($correctionAvailability)
     {
