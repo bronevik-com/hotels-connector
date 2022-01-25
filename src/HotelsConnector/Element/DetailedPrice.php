@@ -16,7 +16,7 @@ class DetailedPrice
      * Сумма ндс
      * The VAT amount
      *
-     * @var float
+     * @var float | null
      */
     public $vatAmount;
 
@@ -45,7 +45,7 @@ class DetailedPrice
     }
 
     /**
-     * @param float $vatAmount
+     * @param float | null $vatAmount
      */
     public function setVatAmount($vatAmount)
     {
@@ -53,7 +53,7 @@ class DetailedPrice
     }
 
     /**
-     * @return float
+     * @return float | null
      */
     public function getVatAmount()
     {

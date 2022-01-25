@@ -63,7 +63,7 @@ class Hotel
      * Описание отеля
      * The hotel description
      *
-     * @var DescriptionDetails
+     * @var DescriptionDetails | null
      */
     public $descriptionDetails;
 
@@ -111,7 +111,7 @@ class Hotel
      * Дополнительная информация
      * Additional info
      *
-     * @var AdditionalInfo
+     * @var AdditionalInfo | null
      */
     public $additionalInfo;
 
@@ -119,7 +119,7 @@ class Hotel
      * Допустимое время заезда.
      * Allowable arrival time.
      *
-     * @var TimeRange
+     * @var TimeRange | null
      */
     public $allowableCheckinTime;
 
@@ -127,7 +127,7 @@ class Hotel
      * Допустимое время выезда.
      * Allowable departure time.
      *
-     * @var TimeRange
+     * @var TimeRange | null
      */
     public $allowableCheckoutTime;
 
@@ -259,7 +259,7 @@ class Hotel
     }
 
     /**
-     * @param DescriptionDetails $descriptionDetails
+     * @param DescriptionDetails | null $descriptionDetails
      */
     public function setDescriptionDetails($descriptionDetails)
     {
@@ -267,7 +267,7 @@ class Hotel
     }
 
     /**
-     * @return DescriptionDetails
+     * @return DescriptionDetails | null
      */
     public function getDescriptionDetails()
     {
@@ -387,7 +387,7 @@ class Hotel
     }
 
     /**
-     * @return TimeRange
+     * @return TimeRange | null
      */
     public function getAllowableCheckinTime()
     {
@@ -395,7 +395,7 @@ class Hotel
     }
 
     /**
-     * @param TimeRange $allowableCheckinTime
+     * @param TimeRange | null $allowableCheckinTime
      */
     public function setAllowableCheckinTime($allowableCheckinTime)
     {
@@ -403,7 +403,7 @@ class Hotel
     }
 
     /**
-     * @return TimeRange
+     * @return TimeRange | null
      */
     public function getAllowableCheckoutTime()
     {
@@ -411,7 +411,7 @@ class Hotel
     }
 
     /**
-     * @param TimeRange $allowableCheckoutTime
+     * @param TimeRange | null $allowableCheckoutTime
      */
     public function setAllowableCheckoutTime($allowableCheckoutTime)
     {

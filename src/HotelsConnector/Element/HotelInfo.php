@@ -8,7 +8,7 @@ class HotelInfo
      * Описание отеля.
      * Description of the hotel.
      *
-     * @var string
+     * @var string | null
      */
     public $description;
 
@@ -16,7 +16,7 @@ class HotelInfo
      * Название отеля.
      * Hotel name.
      *
-     * @var string
+     * @var string | null
      */
     public $name;
 
@@ -24,7 +24,7 @@ class HotelInfo
      * Категория отеля.
      * Hotel category.
      *
-     * @var int
+     * @var int | null
      */
     public $category;
 
@@ -32,7 +32,7 @@ class HotelInfo
      * Тип отеля.
      * The type of the hotel.
      *
-     * @var string
+     * @var string | null
      */
     public $type;
 
@@ -40,7 +40,7 @@ class HotelInfo
      * Главная фотография отеля.
      * Main photo of the hotel.
      *
-     * @var Image
+     * @var Image | null
      */
     public $photo;
 
@@ -48,7 +48,7 @@ class HotelInfo
      * ​Элемент для работы метапоисковых систем.
      * The element for metasearch engines.
      *
-     * @var string
+     * @var string | null
      */
     public $deepLink;
 
@@ -56,12 +56,12 @@ class HotelInfo
      * Условия оплаты.
      * Payment terms.
      *
-     * @var string
+     * @var string | null
      */
     public $paymentTerms;
 
     /**
-     * @param string $description
+     * @param string | null $description
      */
     public function setDescription($description)
     {
@@ -69,7 +69,7 @@ class HotelInfo
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getDescription()
     {
@@ -77,7 +77,7 @@ class HotelInfo
     }
 
     /**
-     * @param string $name
+     * @param string | null $name
      */
     public function setName($name)
     {
@@ -85,7 +85,7 @@ class HotelInfo
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getName()
     {
@@ -93,7 +93,7 @@ class HotelInfo
     }
 
     /**
-     * @param int $category
+     * @param int | null $category
      */
     public function setCategory($category)
     {
@@ -101,7 +101,7 @@ class HotelInfo
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getCategory()
     {
@@ -109,7 +109,7 @@ class HotelInfo
     }
 
     /**
-     * @param string $type
+     * @param string | null $type
      */
     public function setType($type)
     {
@@ -117,7 +117,7 @@ class HotelInfo
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getType()
     {
@@ -125,7 +125,7 @@ class HotelInfo
     }
 
     /**
-     * @param Image $photo
+     * @param Image | null $photo
      */
     public function setPhoto($photo)
     {
@@ -133,7 +133,7 @@ class HotelInfo
     }
 
     /**
-     * @return Image
+     * @return Image | null
      */
     public function getPhoto()
     {
@@ -141,7 +141,7 @@ class HotelInfo
     }
 
     /**
-     * @param string $deepLink
+     * @param string | null $deepLink
      */
     public function setDeepLink($deepLink)
     {
@@ -149,7 +149,7 @@ class HotelInfo
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getDeepLink()
     {
@@ -157,7 +157,7 @@ class HotelInfo
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getPaymentTerms()
     {
@@ -165,7 +165,7 @@ class HotelInfo
     }
 
     /**
-     * @param string $paymentTerms
+     * @param string | null $paymentTerms
      */
     public function setPaymentTerms($paymentTerms)
     {

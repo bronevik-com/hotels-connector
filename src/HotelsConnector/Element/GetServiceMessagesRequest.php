@@ -8,7 +8,7 @@ class GetServiceMessagesRequest extends BaseRequest
      * Идентификатор услуги, по которой будет поиск комментариев.
      * The identifier of the service that will be searched for comments.
      *
-     * @var int
+     * @var int | null
      */
     public $serviceId;
 
@@ -16,12 +16,12 @@ class GetServiceMessagesRequest extends BaseRequest
      * Идентификаторы комментариев, по которым будет поиск комментариев.
      * Comment identifiers for which comments will be searched.
      *
-     * @var ServiceMessages
+     * @var ServiceMessages | null
      */
     public $serviceMessages;
 
     /**
-     * @param int $serviceId
+     * @param int | null $serviceId
      */
     public function setServiceId($serviceId)
     {
@@ -29,7 +29,7 @@ class GetServiceMessagesRequest extends BaseRequest
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getServiceId()
     {
@@ -37,7 +37,7 @@ class GetServiceMessagesRequest extends BaseRequest
     }
 
     /**
-     * @param ServiceMessages $serviceMessages
+     * @param ServiceMessages | null $serviceMessages
      */
     public function setServiceMessages($serviceMessages)
     {
@@ -45,7 +45,7 @@ class GetServiceMessagesRequest extends BaseRequest
     }
 
     /**
-     * @return ServiceMessages
+     * @return ServiceMessages | null
      */
     public function getServiceMessages()
     {

@@ -9,7 +9,7 @@ class ClaimCheckinCheckoutPrices
      * Цены за ранний заезд.
      * Prices for early arrival.
      *
-     * @var OfferHourPrices
+     * @var OfferHourPrices | null
      */
     public $checkin;
 
@@ -17,12 +17,12 @@ class ClaimCheckinCheckoutPrices
      * Цены за поздний выезд.
      * Prices for late departure.
      *
-     * @var OfferHourPrices
+     * @var OfferHourPrices | null
      */
     public $checkout;
 
     /**
-     * @return OfferHourPrices
+     * @return OfferHourPrices | null
      */
     public function getCheckin()
     {
@@ -30,7 +30,7 @@ class ClaimCheckinCheckoutPrices
     }
 
     /**
-     * @return OfferHourPrices
+     * @return OfferHourPrices | null
      */
     public function getCheckout()
     {
@@ -38,7 +38,7 @@ class ClaimCheckinCheckoutPrices
     }
 
     /**
-     * @param OfferHourPrices $checkin
+     * @param OfferHourPrices | null $checkin
      */
     public function setCheckin($checkin)
     {
@@ -46,7 +46,7 @@ class ClaimCheckinCheckoutPrices
     }
 
     /**
-     * @param OfferHourPrices $checkout
+     * @param OfferHourPrices | null $checkout
      */
     public function setCheckout($checkout)
     {

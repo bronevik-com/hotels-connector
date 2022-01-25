@@ -16,7 +16,7 @@ class Info
      * Значение поля дополнительной информации
      * Value of additional info field
      *
-     * @var string
+     * @var string | null
      */
     public $value;
 
@@ -37,7 +37,7 @@ class Info
     }
 
     /**
-     * @param string $value
+     * @param string | null $value
      */
     public function setValue($value)
     {
@@ -45,7 +45,7 @@ class Info
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getValue()
     {

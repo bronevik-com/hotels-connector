@@ -24,7 +24,7 @@ class DescriptionDetails
      * Расстояние до центра города (км)
      * The distance to center from hotel (in km)
      *
-     * @var float
+     * @var float | null
      */
     public $distanceToCenter;
 
@@ -48,7 +48,7 @@ class DescriptionDetails
      * Индекс отеля.
      * The hotel zip code.
      *
-     * @var string
+     * @var string | null
      */
     public $zipCode;
 
@@ -64,7 +64,7 @@ class DescriptionDetails
      * Фотографии отеля
      * The hotel's photos
      *
-     * @var Photos
+     * @var Photos | null
      */
     public $photos;
 
@@ -115,7 +115,7 @@ class DescriptionDetails
     }
 
     /**
-     * @param float $distanceToCenter
+     * @param float | null $distanceToCenter
      */
     public function setDistanceToCenter($distanceToCenter)
     {
@@ -123,7 +123,7 @@ class DescriptionDetails
     }
 
     /**
-     * @return float
+     * @return float | null
      */
     public function getDistanceToCenter()
     {
@@ -163,7 +163,7 @@ class DescriptionDetails
     }
 
     /**
-     * @param string $zipCode
+     * @param string | null $zipCode
      */
     public function setZipCode($zipCode)
     {
@@ -171,7 +171,7 @@ class DescriptionDetails
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getZipCode()
     {
@@ -212,7 +212,7 @@ class DescriptionDetails
     }
 
     /**
-     * @return Photos
+     * @return Photos | null
      */
     public function getPhotos()
     {
@@ -220,7 +220,7 @@ class DescriptionDetails
     }
 
     /**
-     * @param Photos $photos
+     * @param Photos | null $photos
      */
     public function setPhotos($photos)
     {

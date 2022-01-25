@@ -20,7 +20,7 @@ abstract class CancellationPolicy
      * Детализация штрафа.
      * Detailing of penalty.
      *
-     * @var ClientPriceDetails
+     * @var ClientPriceDetails | null
      */
     public $penaltyPriceDetails;
 
@@ -47,7 +47,7 @@ abstract class CancellationPolicy
 
     /**
      *
-     * @param ClientPriceDetails $penaltyPriceDetails
+     * @param ClientPriceDetails | null $penaltyPriceDetails
      */
     public function setPenaltyPriceDetails($penaltyPriceDetails)
     {
@@ -56,7 +56,7 @@ abstract class CancellationPolicy
 
     /**
      *
-     * @return ClientPriceDetails
+     * @return ClientPriceDetails | null
      */
     public function getPenaltyPriceDetails()
     {

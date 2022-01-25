@@ -6,12 +6,12 @@ namespace Bronevik\HotelsConnector\Element;
 class EditServiceAvailableMeals extends AvailableMeals
 {
     /**
-     * @var MealsCorrectionAvailability
+     * @var MealsCorrectionAvailability | null
      */
     public $correctionAvailability;
 
     /**
-     * @return MealsCorrectionAvailability
+     * @return MealsCorrectionAvailability | null
      */
     public function getCorrectionAvailability()
     {
@@ -19,7 +19,7 @@ class EditServiceAvailableMeals extends AvailableMeals
     }
 
     /**
-     * @param MealsCorrectionAvailability $correctionAvailability
+     * @param MealsCorrectionAvailability | null $correctionAvailability
      */
     public function setCorrectionAvailability($correctionAvailability)
     {

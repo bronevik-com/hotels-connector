@@ -27,7 +27,7 @@ class OfferHourPrice
      * Детализация часа.
      * Hour detail.
      *
-     * @var PriceDetails
+     * @var PriceDetails | null
      */
     public $priceDetails;
 
@@ -64,7 +64,7 @@ class OfferHourPrice
     }
 
     /**
-     * @param PriceDetails $priceDetails
+     * @param PriceDetails | null $priceDetails
      */
     public function setPriceDetails($priceDetails)
     {
@@ -72,7 +72,7 @@ class OfferHourPrice
     }
 
     /**
-     * @return PriceDetails
+     * @return PriceDetails | null
      */
     public function getPriceDetails()
     {

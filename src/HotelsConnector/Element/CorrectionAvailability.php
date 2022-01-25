@@ -17,7 +17,7 @@ class CorrectionAvailability
      * Доступна ли коррекция услуги
      * Is service correction available
      *
-     * @var bool
+     * @var bool | null
      */
     public $isCorrectionAvailable;
 
@@ -25,7 +25,7 @@ class CorrectionAvailability
      * Доступна ли коррекция питания
      * Is meals correction available
      *
-     * @var boolean
+     * @var boolean | null
      */
     public $meals;
 
@@ -33,7 +33,7 @@ class CorrectionAvailability
      * Доступна ли коррекция часов заезда
      * Is the check-in time correction available
      *
-     * @var boolean
+     * @var boolean | null
      */
     public $checkinHour;
 
@@ -41,7 +41,7 @@ class CorrectionAvailability
      * Доступна ли коррекция часов выезда
      * Is the check-out time correction available
      *
-     * @var boolean
+     * @var boolean | null
      */
     public $checkoutHour;
 
@@ -49,7 +49,7 @@ class CorrectionAvailability
      * Доступна ли коррекция даты заезда
      * Is the check-in date correction available
      *
-     * @var boolean
+     * @var boolean | null
      */
     public $arrivalDate;
 
@@ -57,14 +57,14 @@ class CorrectionAvailability
      * Доступна ли коррекция даты выезда
      * Is the departure date correction available
      *
-     * @var boolean
+     * @var boolean | null
      */
     public $departureDate;
 
     /**
      * Доступна ли коррекция свайп шкалы
      * Is the selling price correction available
-     * @var boolean
+     * @var boolean | null
      */
     public $sellingPrice;
 
@@ -72,7 +72,7 @@ class CorrectionAvailability
      * Доступна ли коррекция комментария
      * Is the comment correction available
      *
-     * @var boolean
+     * @var boolean | null
      */
     public $comment;
 
@@ -80,7 +80,7 @@ class CorrectionAvailability
      * Доступна ли коррекция гостей
      * Is guest correction available
      *
-     * @var boolean
+     * @var boolean | null
      */
     public $guests;
 
@@ -88,12 +88,12 @@ class CorrectionAvailability
      * Доступна ли коррекция referenceId
      * Is referenceId correction available
      *
-     * @var boolean
+     * @var boolean | null
      */
     public $referenceId;
 
     /**
-     * @param bool $isCorrectionAvailable
+     * @param bool | null $isCorrectionAvailable
      */
     public function setIsCorrectionAvailable($isCorrectionAvailable)
     {
@@ -101,7 +101,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @param bool $meals
+     * @param bool | null $meals
      */
     public function setMeals($meals)
     {
@@ -109,7 +109,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @param bool $checkinHour
+     * @param bool | null $checkinHour
      */
     public function setCheckinHour($checkinHour)
     {
@@ -117,7 +117,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @param bool $checkoutHour
+     * @param bool | null $checkoutHour
      */
     public function setCheckoutHour($checkoutHour)
     {
@@ -125,7 +125,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @param bool $arrivalDate
+     * @param bool | null $arrivalDate
      */
     public function setArrivalDate($arrivalDate)
     {
@@ -133,7 +133,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @param bool $departureDate
+     * @param bool | null $departureDate
      */
     public function setDepartureDate($departureDate)
     {
@@ -141,7 +141,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @param bool $sellingPrice
+     * @param bool | null $sellingPrice
      */
     public function setSellingPrice($sellingPrice)
     {
@@ -149,7 +149,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @param bool $comment
+     * @param bool | null $comment
      */
     public function setComment($comment)
     {
@@ -157,7 +157,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @param bool $guests
+     * @param bool | null $guests
      */
     public function setGuests($guests)
     {
@@ -165,7 +165,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @param bool $referenceId
+     * @param bool | null $referenceId
      */
     public function setReferenceId($referenceId)
     {
@@ -181,7 +181,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool
+     * @return bool | null
      */
     public function getIsCorrectionAvailable()
     {
@@ -189,7 +189,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool
+     * @return bool | null
      */
     public function getMeals()
     {
@@ -197,7 +197,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool
+     * @return bool | null
      */
     public function getCheckinHour()
     {
@@ -205,7 +205,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool
+     * @return bool | null
      */
     public function getCheckoutHour()
     {
@@ -213,7 +213,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool
+     * @return bool | null
      */
     public function getArrivalDate()
     {
@@ -221,7 +221,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool
+     * @return bool | null
      */
     public function getDepartureDate()
     {
@@ -229,7 +229,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool
+     * @return bool | null
      */
     public function getSellingPrice()
     {
@@ -237,7 +237,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool
+     * @return bool | null
      */
     public function getComment()
     {
@@ -245,7 +245,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool
+     * @return bool | null
      */
     public function getGuests()
     {
@@ -253,7 +253,7 @@ class CorrectionAvailability
     }
 
     /**
-     * @return bool
+     * @return bool | null
      */
     public function getReferenceId()
     {

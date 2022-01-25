@@ -160,7 +160,7 @@ class OrderServiceAccommodation extends OrderService
      * Информация о питании
      * An information about meal service
      *
-     * @var AvailableMeals
+     * @var AvailableMeals | null
      */
     public $meals;
 
@@ -176,7 +176,7 @@ class OrderServiceAccommodation extends OrderService
      * Детализация стоимости на каждый день проживания
      * The detailed daily cost of accommodation
      *
-     * @var DailyPrices
+     * @var DailyPrices | null
      */
     public $dailyPrices;
 
@@ -512,7 +512,7 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @param DailyPrices $dailyPrices
+     * @param DailyPrices | null $dailyPrices
      */
     public function setDailyPrices($dailyPrices)
     {
@@ -520,7 +520,7 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return DailyPrices
+     * @return DailyPrices | null
      */
     public function getDailyPrices()
     {
@@ -528,7 +528,7 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @return AvailableMeals
+     * @return AvailableMeals | null
      */
     public function getMeals()
     {
@@ -536,7 +536,7 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @param AvailableMeals $meals
+     * @param AvailableMeals | null $meals
      */
     public function setMeals($meals)
     {
