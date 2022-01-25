@@ -12,7 +12,7 @@ class HotelWithInfo extends Hotel
      * Сертификат, подтверждающий звездность отеля.
      * Hotel's star certificate information.
      *
-     * @var CategoryCertificate
+     * @var CategoryCertificate | null
      */
     public $categoryCertificate = null;
 
@@ -29,7 +29,7 @@ class HotelWithInfo extends Hotel
     }
 
     /**
-     * @param CategoryCertificate $categoryCertificate
+     * @param CategoryCertificate | null $categoryCertificate
      */
     public function setCategoryCertificate($categoryCertificate)
     {
@@ -37,7 +37,7 @@ class HotelWithInfo extends Hotel
     }
 
     /**
-     * @return CategoryCertificate
+     * @return CategoryCertificate | null
      */
     public function getCategoryCertificate()
     {

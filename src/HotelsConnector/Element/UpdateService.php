@@ -9,7 +9,7 @@ class UpdateService
      * Номер услуги в системе клиента
      * Service number in the client's system
      *
-     * @var int
+     * @var int | null
      */
     public $referenceId;
 
@@ -17,7 +17,7 @@ class UpdateService
      * Час заезда
      * Check-in hour
      *
-     * @var int
+     * @var int | null
      */
     public $checkinHour;
 
@@ -25,7 +25,7 @@ class UpdateService
      * Час выезда
      * Departure hour
      *
-     * @var int
+     * @var int | null
      */
     public $checkoutHour;
 
@@ -33,7 +33,7 @@ class UpdateService
      * Дата заезда
      * Arrival date
      *
-     * @var string
+     * @var string | null
      */
     public $arrivalDate;
 
@@ -41,7 +41,7 @@ class UpdateService
      * Дата выезда
      * date of departure
      *
-     * @var string
+     * @var string | null
      */
     public $departureDate;
 
@@ -49,7 +49,7 @@ class UpdateService
      * Услуги питания которые нужно добавить
      * Meals services to add
      *
-     * @var MealIds
+     * @var MealIds | null
      */
     public $addMeals;
 
@@ -57,7 +57,7 @@ class UpdateService
      * Услуги питания которые нужно удалить
      * Meals services to remove
      *
-     * @var MealIds
+     * @var MealIds | null
      */
     public $removeMeals;
 
@@ -65,7 +65,7 @@ class UpdateService
      * Коррекция свайп шкалы
      * Swipe Scale Correction
      *
-     * @var float
+     * @var float | null
      */
     public $sellingPrice;
 
@@ -73,7 +73,7 @@ class UpdateService
      * Коррекция комментария
      * Correction of comments
      *
-     * @var string
+     * @var string | null
      */
     public $comment;
 
@@ -81,7 +81,7 @@ class UpdateService
      * ФИО Гостей
      * Full name of guests
      *
-     * @var Guests
+     * @var Guests | null
      */
     public $guests;
 
@@ -93,7 +93,7 @@ class UpdateService
 
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getReferenceId()
     {
@@ -101,7 +101,7 @@ class UpdateService
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getCheckinHour()
     {
@@ -109,7 +109,7 @@ class UpdateService
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getCheckoutHour()
     {
@@ -117,7 +117,7 @@ class UpdateService
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getArrivalDate()
     {
@@ -125,7 +125,7 @@ class UpdateService
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getDepartureDate()
     {
@@ -133,7 +133,7 @@ class UpdateService
     }
 
     /**
-     * @return MealIds
+     * @return MealIds | null
      */
     public function getAddMeals()
     {
@@ -141,7 +141,7 @@ class UpdateService
     }
 
     /**
-     * @return MealIds
+     * @return MealIds | null
      */
     public function getRemoveMeals()
     {
@@ -149,7 +149,7 @@ class UpdateService
     }
 
     /**
-     * @return float
+     * @return float | null
      */
     public function getSellingPrice()
     {
@@ -157,7 +157,7 @@ class UpdateService
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getComment()
     {
@@ -165,7 +165,7 @@ class UpdateService
     }
 
     /**
-     * @param int $referenceId
+     * @param int | null $referenceId
      */
     public function setReferenceId($referenceId)
     {
@@ -173,7 +173,7 @@ class UpdateService
     }
 
     /**
-     * @param int $checkinHour
+     * @param int | null $checkinHour
      */
     public function setCheckinHour($checkinHour)
     {
@@ -181,7 +181,7 @@ class UpdateService
     }
 
     /**
-     * @param int $checkoutHour
+     * @param int | null $checkoutHour
      */
     public function setCheckoutHour($checkoutHour)
     {
@@ -189,7 +189,7 @@ class UpdateService
     }
 
     /**
-     * @param string $arrivalDate
+     * @param string | null $arrivalDate
      */
     public function setArrivalDate($arrivalDate)
     {
@@ -197,7 +197,7 @@ class UpdateService
     }
 
     /**
-     * @param string $departureDate
+     * @param string | null $departureDate
      */
     public function setDepartureDate($departureDate)
     {
@@ -205,7 +205,7 @@ class UpdateService
     }
 
     /**
-     * @param MealIds $addMeals
+     * @param MealIds | null $addMeals
      */
     public function setAddMeals($addMeals)
     {
@@ -213,7 +213,7 @@ class UpdateService
     }
 
     /**
-     * @param MealIds $removeMeals
+     * @param MealIds | null $removeMeals
      */
     public function setRemoveMeals($removeMeals)
     {
@@ -221,7 +221,7 @@ class UpdateService
     }
 
     /**
-     * @param float $sellingPrice
+     * @param float | null $sellingPrice
      */
     public function setSellingPrice($sellingPrice)
     {
@@ -229,7 +229,7 @@ class UpdateService
     }
 
     /**
-     * @param string $comment
+     * @param string | null $comment
      */
     public function setComment($comment)
     {
@@ -237,7 +237,7 @@ class UpdateService
     }
 
     /**
-     * @return Guests
+     * @return Guests | null
      */
     public function getGuests()
     {
@@ -245,7 +245,7 @@ class UpdateService
     }
 
     /**
-     * @param Guests $guests
+     * @param Guests | null $guests
      */
     public function setGuests($guests)
     {

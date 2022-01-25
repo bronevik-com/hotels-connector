@@ -48,7 +48,7 @@ class HotelOffer extends BaseOffer
      * ​Элемент для работы метапоисковых систем
      * The element for metasearch engines
      *
-     * @var string
+     * @var string | null
      */
     public $deepLink;
 
@@ -64,7 +64,7 @@ class HotelOffer extends BaseOffer
      * Ежедневная детализация стоимости проживания
      * The detailed daily cost of accommodation
      *
-     * @var DailyPrices
+     * @var DailyPrices | null
      */
     public $dailyPrices;
 
@@ -150,7 +150,7 @@ class HotelOffer extends BaseOffer
     }
 
     /**
-     * @param string $deepLink
+     * @param string | null $deepLink
      */
     public function setDeepLink($deepLink)
     {
@@ -158,7 +158,7 @@ class HotelOffer extends BaseOffer
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getDeepLink()
     {
@@ -182,7 +182,7 @@ class HotelOffer extends BaseOffer
     }
 
     /**
-     * @param DailyPrices $dailyPrices
+     * @param DailyPrices | null $dailyPrices
      */
     public function setDailyPrices($dailyPrices)
     {
@@ -190,7 +190,7 @@ class HotelOffer extends BaseOffer
     }
 
     /**
-     * @return DailyPrices
+     * @return DailyPrices | null
      */
     public function getDailyPrices()
     {

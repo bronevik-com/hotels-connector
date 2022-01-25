@@ -24,7 +24,7 @@ class HotelWithCheapestOffer
      * Геоинформация об отеле.
      * Geo information about the hotel.
      *
-     * @var HotelGeo
+     * @var HotelGeo | null
      */
     public $geo;
 
@@ -40,7 +40,7 @@ class HotelWithCheapestOffer
      * Доступные в отеле доп. услуги.
      * Available amenities in the property.
      *
-     * @var AvailableAmenities
+     * @var AvailableAmenities | null
      */
     public $amenities;
 
@@ -56,7 +56,7 @@ class HotelWithCheapestOffer
      * Информация об НДС в отеле.
      * Information about VAT at the hotel.
      *
-     * @var HotelVatInfo
+     * @var HotelVatInfo | null
      */
     public $vat;
 
@@ -99,7 +99,7 @@ class HotelWithCheapestOffer
     }
 
     /**
-     * @param HotelGeo $geo
+     * @param HotelGeo | null $geo
      */
     public function setGeo($geo)
     {
@@ -107,7 +107,7 @@ class HotelWithCheapestOffer
     }
 
     /**
-     * @return HotelGeo
+     * @return HotelGeo | null
      */
     public function getGeo()
     {
@@ -131,7 +131,7 @@ class HotelWithCheapestOffer
     }
 
     /**
-     * @param AvailableAmenities $amenities
+     * @param AvailableAmenities | null $amenities
      */
     public function setAmenities($amenities)
     {
@@ -139,7 +139,7 @@ class HotelWithCheapestOffer
     }
 
     /**
-     * @return AvailableAmenities
+     * @return AvailableAmenities | null
      */
     public function getAmenities()
     {
@@ -163,7 +163,7 @@ class HotelWithCheapestOffer
     }
 
     /**
-     * @param HotelVatInfo $vat
+     * @param HotelVatInfo | null $vat
      */
     public function setVat($vat)
     {
@@ -171,7 +171,7 @@ class HotelWithCheapestOffer
     }
 
     /**
-     * @return HotelVatInfo
+     * @return HotelVatInfo | null
      */
     public function getVat()
     {

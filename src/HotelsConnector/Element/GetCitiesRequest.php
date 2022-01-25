@@ -5,7 +5,7 @@ namespace Bronevik\HotelsConnector\Element;
 class GetCitiesRequest extends BaseRequest
 {
     /**
-     * @var int
+     * @var int | null
      */
     public $countryId;
 
@@ -13,12 +13,12 @@ class GetCitiesRequest extends BaseRequest
      * Массив идентификаторов городов.
      * Array of city ids.
      *
-     * @var CityIds|null
+     * @var CityIds | null
      */
     public $cityIds = null;
 
     /**
-     * @param int $countryId
+     * @param int | null $countryId
      */
     public function setCountryId($countryId)
     {
@@ -26,7 +26,7 @@ class GetCitiesRequest extends BaseRequest
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getCountryId()
     {

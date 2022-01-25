@@ -16,7 +16,7 @@ class AvailableAmenity
      * Стоимость доп. услуги
      * The amenity price
      *
-     * @var float
+     * @var float | null
      */
     public $price;
 
@@ -32,7 +32,7 @@ class AvailableAmenity
      * Валюта
      * Currency
      *
-     * @var string
+     * @var string | null
      */
     public $currency;
 
@@ -53,7 +53,7 @@ class AvailableAmenity
     }
 
     /**
-     * @param float $price
+     * @param float | null $price
      */
     public function setPrice($price)
     {
@@ -61,7 +61,7 @@ class AvailableAmenity
     }
 
     /**
-     * @return float
+     * @return float | null
      */
     public function getPrice()
     {
@@ -85,7 +85,7 @@ class AvailableAmenity
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getCurrency()
     {
@@ -93,7 +93,7 @@ class AvailableAmenity
     }
 
     /**
-     * @param string $currency
+     * @param string | null $currency
      */
     public function setCurrency($currency)
     {

@@ -8,7 +8,7 @@ class SearchAvailabilityHotelOffer extends BaseOffer
      * Фотография отеля.
      * Hotel photo.
      *
-     * @var Image
+     * @var Image | null
      */
     public $photo;
 
@@ -16,12 +16,12 @@ class SearchAvailabilityHotelOffer extends BaseOffer
      * Доступные в отеле доп. услуги.
      * Available amenities in the property.
      *
-     * @var AvailableAmenities
+     * @var AvailableAmenities | null
      */
     public $amenities;
 
     /**
-     * @param Image $photo
+     * @param Image | null $photo
      */
     public function setPhoto($photo)
     {
@@ -29,7 +29,7 @@ class SearchAvailabilityHotelOffer extends BaseOffer
     }
 
     /**
-     * @return Image
+     * @return Image | null
      */
     public function getPhoto()
     {
@@ -37,7 +37,7 @@ class SearchAvailabilityHotelOffer extends BaseOffer
     }
 
     /**
-     * @param AvailableAmenities $amenities
+     * @param AvailableAmenities | null $amenities
      */
     public function setAmenities($amenities)
     {
@@ -45,7 +45,7 @@ class SearchAvailabilityHotelOffer extends BaseOffer
     }
 
     /**
-     * @return AvailableAmenities
+     * @return AvailableAmenities | null
      */
     public function getAmenities()
     {

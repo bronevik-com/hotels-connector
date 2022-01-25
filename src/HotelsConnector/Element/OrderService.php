@@ -8,7 +8,7 @@ abstract class OrderService
      * Идентификатор услуги
      * The service id
      *
-     * @var int
+     * @var int | null
      */
     public $id;
 
@@ -80,7 +80,7 @@ abstract class OrderService
      * Статус услуги
      * The service status
      *
-     * @var int
+     * @var int | null
      */
     public $statusId;
 
@@ -88,7 +88,7 @@ abstract class OrderService
      * Название статуса услуги
      * The service name
      *
-     * @var string
+     * @var string | null
      */
     public $statusName;
 
@@ -98,7 +98,7 @@ abstract class OrderService
     }
 
     /**
-     * @param int $id
+     * @param int $id | null
      */
     public function setId($id)
     {
@@ -106,7 +106,7 @@ abstract class OrderService
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getId()
     {
@@ -250,7 +250,7 @@ abstract class OrderService
     }
 
     /**
-     * @param int $statusId
+     * @param int | null $statusId
      */
     public function setStatusId($statusId)
     {
@@ -258,7 +258,7 @@ abstract class OrderService
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getStatusId()
     {
@@ -266,7 +266,7 @@ abstract class OrderService
     }
 
     /**
-     * @param string $statusName
+     * @param string | null $statusName
      */
     public function setStatusName($statusName)
     {
@@ -274,7 +274,7 @@ abstract class OrderService
     }
 
     /**
-     * @return string
+     * @return string | null
      */
     public function getStatusName()
     {

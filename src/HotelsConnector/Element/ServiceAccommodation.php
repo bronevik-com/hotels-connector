@@ -40,7 +40,7 @@ class ServiceAccommodation extends Service
      * Желаемое время заезда
      * The desired date of check-in
      *
-     * @var int
+     * @var int | null
      */
     public $checkinHour;
 
@@ -48,7 +48,7 @@ class ServiceAccommodation extends Service
      * Желаемое время выезда
      * The desired date of check-out
      *
-     * @var int
+     * @var int | null
      */
     public $checkoutHour;
 
@@ -114,7 +114,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * @param int $checkinHour
+     * @param int | null $checkinHour
      */
     public function setCheckinHour($checkinHour)
     {
@@ -122,7 +122,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getCheckinHour()
     {
@@ -130,7 +130,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * @param int $checkoutHour
+     * @param int | null $checkoutHour
      */
     public function setCheckoutHour($checkoutHour)
     {
@@ -138,7 +138,7 @@ class ServiceAccommodation extends Service
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getCheckoutHour()
     {

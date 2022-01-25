@@ -10,7 +10,7 @@ class SearchHotelAvailabilityRequest extends BaseRequest
      * Идентификатор города, по которому будет осуществлен поиск.
      * The identifier of the city that will be searched.
      *
-     * @var int
+     * @var int | null
      */
     public $cityId;
 
@@ -18,7 +18,7 @@ class SearchHotelAvailabilityRequest extends BaseRequest
      * Идентификаторы отелей, по которым будет осуществлен поиск.
      * The identifiers of the hotels that will be searched.
      *
-     * @var HotelIds
+     * @var HotelIds | null
      */
     public $hotelIds;
 
@@ -26,7 +26,7 @@ class SearchHotelAvailabilityRequest extends BaseRequest
      * Идентификаторы отелей, по которым будет осуществлен поиск.
      * The identifiers of the hotels that will be searched.
      *
-     * @var GeoLocation
+     * @var GeoLocation | null
      */
     public $geolocation;
 
@@ -63,13 +63,13 @@ class SearchHotelAvailabilityRequest extends BaseRequest
     public $searchCriteria = [];
 
     /**
-     * @var AddElements
+     * @var AddElements | null
      * @see AddElementsTypes
      */
     public $addElements;
 
     /**
-     * @param int $cityId
+     * @param int | null $cityId
      */
     public function setCityId($cityId)
     {
@@ -77,7 +77,7 @@ class SearchHotelAvailabilityRequest extends BaseRequest
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getCityId()
     {
@@ -85,7 +85,7 @@ class SearchHotelAvailabilityRequest extends BaseRequest
     }
 
     /**
-     * @param HotelIds $hotelIds
+     * @param HotelIds | null $hotelIds
      */
     public function setHotelIds($hotelIds)
     {
@@ -93,7 +93,7 @@ class SearchHotelAvailabilityRequest extends BaseRequest
     }
 
     /**
-     * @return HotelIds
+     * @return HotelIds | null
      */
     public function getHotelIds()
     {
@@ -101,7 +101,7 @@ class SearchHotelAvailabilityRequest extends BaseRequest
     }
 
     /**
-     * @param GeoLocation $geolocation
+     * @param GeoLocation | null $geolocation
      */
     public function setGeolocation($geolocation)
     {
@@ -109,7 +109,7 @@ class SearchHotelAvailabilityRequest extends BaseRequest
     }
 
     /**
-     * @return GeoLocation
+     * @return GeoLocation | null
      */
     public function getGeolocation()
     {
@@ -189,7 +189,7 @@ class SearchHotelAvailabilityRequest extends BaseRequest
     }
 
     /**
-     * @param AddElements $addElements
+     * @param AddElements | null $addElements
      */
     public function setAddElements($addElements)
     {
@@ -197,7 +197,7 @@ class SearchHotelAvailabilityRequest extends BaseRequest
     }
 
     /**
-     * @return AddElements
+     * @return AddElements | null
      */
     public function getAddElements()
     {

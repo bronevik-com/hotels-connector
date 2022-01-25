@@ -22,7 +22,7 @@ class HotelRoom
      * Доступные в номере удобства
      * Available amenities in room
      *
-     * @var AvailableAmenities
+     * @var AvailableAmenities | null
      */
     public $availableAmenities;
 
@@ -54,7 +54,7 @@ class HotelRoom
      * Площадь номера
      * Room size
      *
-     * @var float
+     * @var float | null
      */
     public $size;
 
@@ -78,7 +78,7 @@ class HotelRoom
      * Количество комнат в номере.
      * The number of apartment in the room.
      *
-     * @var int
+     * @var int | null
      */
     public $bedroomAmount;
 
@@ -95,7 +95,7 @@ class HotelRoom
      * Information views from the window in the room.
      * Type: tns:WindowViews
      *
-     * @var WindowViews
+     * @var WindowViews | null
      */
     public $windowViews;
 
@@ -171,7 +171,7 @@ class HotelRoom
     }
 
     /**
-     * @param float $size
+     * @param float | null $size
      */
     public function setSize($size)
     {
@@ -179,7 +179,7 @@ class HotelRoom
     }
 
     /**
-     * @return float
+     * @return float | null
      */
     public function getSize()
     {
@@ -219,7 +219,7 @@ class HotelRoom
     }
 
     /**
-     * @param int $bedroomAmount
+     * @param int | null $bedroomAmount
      */
     public function setBedroomAmount($bedroomAmount)
     {
@@ -227,7 +227,7 @@ class HotelRoom
     }
 
     /**
-     * @return int
+     * @return int | null
      */
     public function getBedroomAmount()
     {
@@ -251,7 +251,7 @@ class HotelRoom
     }
 
     /**
-     * @param WindowViews $windowViews
+     * @param WindowViews | null $windowViews
      */
     public function setWindowViews($windowViews)
     {
@@ -259,7 +259,7 @@ class HotelRoom
     }
 
     /**
-     * @return WindowViews
+     * @return WindowViews | null
      */
     public function getWindowViews()
     {
@@ -283,7 +283,7 @@ class HotelRoom
     }
 
     /**
-     * @return AvailableAmenities
+     * @return AvailableAmenities | null
      */
     public function getAvailableAmenities()
     {
@@ -291,7 +291,7 @@ class HotelRoom
     }
 
     /**
-     * @param AvailableAmenities $availableAmenities
+     * @param AvailableAmenities | null $availableAmenities
      */
     public function setAvailableAmenities($availableAmenities)
     {

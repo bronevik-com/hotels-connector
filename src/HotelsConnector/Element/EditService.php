@@ -17,7 +17,7 @@ class EditService
      * Доступные даты для коррекции заезда и выезда
      * Available dates for check-in and check-out correction
      *
-     * @var EditServiceArrivalDepartureDates
+     * @var EditServiceArrivalDepartureDates | null
      */
     public $arrivalDepartureDates;
 
@@ -25,7 +25,7 @@ class EditService
      * Информация о доступном питании.
      * Information about available food.
      *
-     * @var EditServiceAvailableMeals
+     * @var EditServiceAvailableMeals | null
      */
     public $meals;
 
@@ -33,7 +33,7 @@ class EditService
      * Цены и доступность РЗПВ.
      * EALD prices and availability.
      *
-     * @var ClaimCheckinCheckoutPrices
+     * @var ClaimCheckinCheckoutPrices | null
      */
     public $checkinCheckoutPrices;
 
@@ -59,7 +59,7 @@ class EditService
     }
 
     /**
-     * @return EditServiceArrivalDepartureDates
+     * @return EditServiceArrivalDepartureDates | null
      */
     public function getArrivalDepartureDates()
     {
@@ -67,7 +67,7 @@ class EditService
     }
 
     /**
-     * @return EditServiceAvailableMeals
+     * @return EditServiceAvailableMeals | null
      */
     public function getMeals()
     {
@@ -75,7 +75,7 @@ class EditService
     }
 
     /**
-     * @return ClaimCheckinCheckoutPrices
+     * @return ClaimCheckinCheckoutPrices | null
      */
     public function getCheckinCheckoutPrices()
     {
@@ -91,7 +91,7 @@ class EditService
     }
 
     /**
-     * @param EditServiceAvailableMeals $meals
+     * @param EditServiceAvailableMeals | null $meals
      */
     public function setMeals($meals)
     {
@@ -107,7 +107,7 @@ class EditService
     }
 
     /**
-     * @param EditServiceArrivalDepartureDates $arrivalDepartureDates
+     * @param EditServiceArrivalDepartureDates | null $arrivalDepartureDates
      */
     public function setArrivalDepartureDates($arrivalDepartureDates)
     {
@@ -115,7 +115,7 @@ class EditService
     }
 
     /**
-     * @param ClaimCheckinCheckoutPrices $checkinCheckoutPrices
+     * @param ClaimCheckinCheckoutPrices | null $checkinCheckoutPrices
      */
     public function setCheckinCheckoutPrices($checkinCheckoutPrices)
     {
