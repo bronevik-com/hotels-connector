@@ -106,6 +106,14 @@ class BaseOffer
      */
     public $guaranteeType;
 
+    /**
+     * Информация о размещении детей.
+     * Information about the placement of children.
+     *
+     * @var ChildrenAccommodation
+     */
+    public $childrenAccommodation;
+
     public function __construct()
     {
         $this->meals    = new AvailableMeals();
@@ -311,4 +319,26 @@ class BaseOffer
     {
         return $this->guaranteeType;
     }
+
+    /**
+     * @return ChildrenAccommodation
+     */
+    public function getChildrenAccommodation()
+    {
+        return $this->childrenAccommodation;
+    }
+
+    /**
+     * @param ChildrenAccommodation $childrenAccommodation
+     *
+     * @return BaseOffer
+     */
+    public function setChildrenAccommodation($childrenAccommodation)
+    {
+        $this->childrenAccommodation = $childrenAccommodation;
+
+        return $this;
+    }
+
+
 }

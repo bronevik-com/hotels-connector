@@ -24,7 +24,6 @@
         - [Управление содержимым ответа](#Управление-содержимым-ответа)
         - [Объект отельного предложения](#Отельное-предложение)
     - [Получение информации об отелях](#Получение-информации-об-отелях)
-    - [Получение информации о предложении отеля](#Получение-информации-о-предложении-отеля)
     - [Заказ бронирования проживания и операции с заказами](#Заказ-бронирования-проживания-и-операции-с-заказами)
         - [Создание заказа](#Создание-заказа)
         - [Создание заказа с данными банковской карты](#Создание-заказа-с-данными-банковской-карты)
@@ -282,6 +281,14 @@ $criteria[] = $criterion;
 // Фильтр предложений по количеству гостей
 $criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
 $criterion->setAdults(2);
+$criteria[] = $criterion;
+
+// Фильтр предложений по количеству гостей с детьми
+$criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$criterion->setAdults(1); // Количество взрослых обязательно
+$children = new HotelsConnector\Element\Request\Children();
+$children->setAge(5)->setCount(1);
+$criterion->addChild($children);
 $criteria[] = $criterion;
 
 // Фильтр предложений по возможности моментального подтверждения бронирования (онлайн)
@@ -635,6 +642,16 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         foreach ($offerPolicies->getPolicy() as $policy) {
             $policy->getType();
             $policy->getValue();
+        }
+        
+        // Информация о детях
+        $childrenAccommodation = $offer->childrenAccommodation;
+        /** @var \Bronevik\HotelsConnector\Element\ChildAccommodation $childAccommodation */
+        foreach ($childrenAccommodation->getChildren() as $childAccommodation) {
+            $childAccommodation->getAge();           // Возраст
+            $childAccommodation->getCount();         // Количество детей данного возраста
+            $childAccommodation->isIncluded();       // Дети включены в услугу
+            $childAccommodation->getAccommodation(); // Тип размещения в номере
         }
     }
 }
@@ -1761,6 +1778,16 @@ foreach ($hotelsWithCheapestOffers as $hotelWithCheapestOffer) {
 
     /** @var Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy[] $cancellationPolicies */
     $cancellationPolicies = $hotelOffer->getCancellationPolicies();
+    
+    // Информация о детях
+    $childrenAccommodation = $hotelOffer->childrenAccommodation;
+    /** @var \Bronevik\HotelsConnector\Element\ChildAccommodation $childAccommodation */
+    foreach ($childrenAccommodation->getChildren() as $childAccommodation) {
+        $childAccommodation->getAge();           // Возраст
+        $childAccommodation->getCount();         // Количество детей данного возраста
+        $childAccommodation->isIncluded();       // Дети включены в услугу
+        $childAccommodation->getAccommodation(); // Тип размещения в номере
+    }
 }
 ```
 
