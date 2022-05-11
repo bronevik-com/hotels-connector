@@ -286,9 +286,10 @@ $criteria[] = $criterion;
 // Фильтр предложений по количеству гостей с детьми
 $criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
 $criterion->setAdults(1); // Количество взрослых обязательно
-$children = new HotelsConnector\Element\Request\Children();
-$children->setAge(5)->setCount(1);
-$criterion->addChild($children);
+$child = new HotelsConnector\Element\Request\Child();
+$child->setAge(5);
+$child->setCount(1);
+$criterion->addChild($child);
 $criteria[] = $criterion;
 
 // Фильтр предложений по возможности моментального подтверждения бронирования (онлайн)
