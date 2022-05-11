@@ -763,7 +763,17 @@ $orderRequest->setComment('Гости приедут в районе 18 часо
 $accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
 $accommodation->setOfferCode('T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=');
 $accommodation->setComment('Гостям потребуется высокоскоростное подключение к Интернет.');
-$accommodation->addGuests('Валентин');
+$guest = new Bronevik\HotelsConnector\Element\Guest();
+$guest->setFirstName('Спанч');
+$guest->setLastName('Боб');
+$accommodation->guests->add($guest);
+
+// Добавление детей
+$child = new \Bronevik\HotelsConnector\Element\Child();
+$child->setAge(3);
+$child->setCount(2);
+$accommodation->guests->addChild($child);
+
 $accommodation->addMeals(2);            // Добавить питание в услугу
 $accommodation->addMeals(34);           // Если нужно несколько услуг питания
 $accommodation->setCheckinHour(10);     // Установить час заезда
@@ -782,8 +792,16 @@ $orderRequest->addServices($accommodation);
 $accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
 $accommodation->setOfferCode('T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=');
 $accommodation->setComment('Не представлять напитки из минибара.');
-$accommodation->addGuests('Николай');
-$accommodation->addGuests('Эльдар');
+
+$guestNikolay = new \Bronevik\HotelsConnector\Element\Guest();
+$guestNikolay->setFirstName('Николай');
+$guestNikolay->setLastName('Петрович');
+
+$guestEldar = new \Bronevik\HotelsConnector\Element\Guest();
+$guestEldar->setFirstName('Эльдар');
+$guestEldar->setLastName('Джарахов');
+$accommodation->guests->add($guestNikolay);
+$accommodation->guests->add($guestEldar);
 $orderRequest->addServices($accommodation);
 
 // Отправка заказа
@@ -918,6 +936,11 @@ $guest = new Bronevik\HotelsConnector\Element\Guest();
 $guest->setFirstName('Спанч');
 $guest->setLastName('Боб');
 $accommodation->guests->add($guest);
+// Добавление детей
+$child = new \Bronevik\HotelsConnector\Element\Child();
+$child->setAge(3);
+$child->setCount(2);
+$accommodation->guests->addChild($child);
 $accommodation->addMeals(2);            // Добавить питание в услугу
 $accommodation->addMeals(34);           // Если нужно несколько услуг питания
 $accommodation->setCheckinHour(10);     // Установить час заезда

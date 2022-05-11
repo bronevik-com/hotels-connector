@@ -48,6 +48,10 @@ class ExceptionCodes
     const CVV_NOT_FILLED                            = 2034;
     const EMPTY_GUEST_CONTACTS                      = 2035;
     const EXPIRED_CLIENT_CARD                       = 2037;
+    const NOT_INVOICES_AVAILABLE                    = 2038;
+    const CITY_NOT_FOUND                            = 2040;
+    const COUNT_PARAMS_LIMIT                        = 2041;
+    const IMPOSSIBLE_CHILDREN_ACCOMMODATION         = 2043;
 
     const MEAL_IS_NOT_AVAILABLE_IN_OFFER_CODE  = 3000;
     const EARLY_ARRIVAL_IS_NOT_AVAILABLE_CODE  = 3001;
