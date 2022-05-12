@@ -193,6 +193,14 @@ class OrderServiceAccommodation extends OrderService
      */
     public $paymentTerms;
 
+    /**
+     * Предпочитаемые кровати
+     * Preferred Beds
+     *
+     * @var BedSet|null
+     */
+    public $preferredBedSet;
+
     public function __construct()
     {
         parent::__construct();
@@ -588,4 +596,22 @@ class OrderServiceAccommodation extends OrderService
     {
         return $this->children;
     }
+
+    /**
+     * @return BedSet|null
+     */
+    public function getPreferredBedSet()
+    {
+        return $this->preferredBedSet;
+    }
+
+    /**
+     * @param BedSet $preferredBedSet
+     */
+    public function setPreferredBedSet($preferredBedSet)
+    {
+        $this->preferredBedSet = $preferredBedSet;
+    }
+
+
 }

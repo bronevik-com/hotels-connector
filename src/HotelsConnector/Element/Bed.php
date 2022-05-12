@@ -9,6 +9,7 @@ class Bed
      * The room type
      *
      * @var string
+     * @see BedTypes
      */
     public $type;
 

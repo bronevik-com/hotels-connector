@@ -912,6 +912,14 @@ foreach ($order->getServices()->service as $service) {
             $childAccommodation->getAccommodation(); // Тип размещения в номере
         }
     }
+    
+    // Предпочитаемые кровати
+    if ($service->getPreferredBedSet()) {
+        foreach ($service->getPreferredBedSet()->getBed() as $bed) {
+            $bed->getAmount(); // Количество кроватей
+            $bed->getType();   // Тип размещения
+        }
+    }
 }
 ```
 
@@ -1380,15 +1388,8 @@ foreach ($order->getServices()->service as $service) {
     $service->getMeals();                // аналогично как и для SearchHotelOffers
     $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
     
-    //Информация о детях аналогично как и для SearchHotelOffers
-    if ($service->getChildrenAccommodation()) {
-        foreach ($service->getChildrenAccommodation()->getChildren() as $childAccommodation) {
-            $childAccommodation->getAge();           // Возраст
-            $childAccommodation->getCount();         // Количество детей данного возраста
-            $childAccommodation->isIncluded();       // Дети включены в услугу
-            $childAccommodation->getAccommodation(); // Тип размещения в номере
-        }
-    }
+    //Информация о детях аналогично CreateOrder
+    //Информация о предпочитаемых кроватях аналогично CreateOrder
 }
 ```
 
@@ -1515,15 +1516,8 @@ foreach ($order->getServices()->service as $service) {
     $service->getMeals();                // аналогично как и для SearchHotelOffers
     $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
     
-    //Информация о детях аналогично как и для SearchHotelOffers
-    if ($service->getChildrenAccommodation()) {
-        foreach ($service->getChildrenAccommodation()->getChildren() as $childAccommodation) {
-            $childAccommodation->getAge();           // Возраст
-            $childAccommodation->getCount();         // Количество детей данного возраста
-            $childAccommodation->isIncluded();       // Дети включены в услугу
-            $childAccommodation->getAccommodation(); // Тип размещения в номере
-        }
-    }
+    //Информация о детях аналогично CreateOrder
+    //Информация о предпочитаемых кроватях аналогично CreateOrder
 }
 ```
 
