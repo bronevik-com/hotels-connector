@@ -425,6 +425,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
     $hotelWithOffers->getVATPercent();         // Процент НДС (например, 20)
     $hotelWithOffers->getHasTaxes();           // Наличие в отеле дополнительных сборов (например, false)
     $hotelWithOffers->getType();               // Тип отеля (например, hotel)
+    $hotelWithOffers->isOnline();              // Работает ли отель онлайн
 
     // Информация для гостя
     $informationForGuest = $hotelWithOffers->getInformationForGuest();
@@ -655,11 +656,17 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
             }
         }
         
-        // Варианты комбинаций кроватей
+        // размещения кроватей в номере
+        /** @var Bronevik\HotelsConnector\Element\BedSets $bedSets */
         $bedSets = $offer->getBedSets();
+
+        // Массив вариантов комбинаций кроватей
+        /** @var Bronevik\HotelsConnector\Element\BedSet $bedSet */
         foreach ($bedSets->getBedSet() as $bedSet) {
-            foreach($bedSet->getBed() as $bed) {
-                $bed->getType(); // Тип размещения: double, single
+            // Вариант размещения кроватей
+            /** @var Bronevik\HotelsConnector\Element\Bed $bed */
+            foreach ($bedSet->getBed() as $bed) {
+                $bed->getType();   // Тип размещения в номере
                 $bed->getAmount(); // Количество кроватей
             }
         }
@@ -725,18 +732,7 @@ foreach ($hotelsWithInfo as $hotelWithInfo) {
 
         // размещения кроватей в номере
         /** @var Bronevik\HotelsConnector\Element\BedSets $bedSets */
-        $bedSets = $hotelRoom->getBedSets();
-
-        // Массив вариантов комбинаций кроватей
-        /** @var Bronevik\HotelsConnector\Element\BedSet $bedSet */
-        foreach ($bedSets->getBedSet() as $bedSet) {
-            // Вариант размещения кроватей
-            /** @var Bronevik\HotelsConnector\Element\Bed $bed */
-            foreach ($bedSet->getBed() as $bed) {
-                $bed->getType();   // Тип размещения в номере
-                $bed->getAmount(); // Количество кроватей
-            }
-        }
+        $bedSets = $hotelRoom->getBedSets(); // Далее аналогично ответу SearchHotelOffers
 
         /** @var Bronevik\HotelsConnector\Element\WindowViews $windowViews */
         $windowViews = $hotelRoom->getWindowViews();
@@ -1860,13 +1856,7 @@ foreach ($hotelsWithCheapestOffers as $hotelWithCheapestOffer) {
     }
     
     // Варианты комбинаций кроватей
-    $bedSets = $hotelOffer->getBedSets();
-    foreach ($bedSets->getBedSet() as $bedSet) {
-        foreach($bedSet->getBed() as $bed) {
-            $bed->getType(); // Тип размещения: double, single
-            $bed->getAmount(); // Количество кроватей
-        }
-    }
+    $bedSets = $hotelOffer->getBedSets();  // Далее аналогично ответу SearchHotelOffers
 }
 ```
 

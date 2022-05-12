@@ -139,6 +139,11 @@ class Hotel
      */
     public $paymentTerms;
 
+    /**
+     * @var bool
+     */
+    public $isHotelOnline;
+
     public function __construct()
     {
         $this->descriptionDetails  = new DescriptionDetails();
@@ -417,4 +422,21 @@ class Hotel
     {
         $this->allowableCheckoutTime = $allowableCheckoutTime;
     }
+
+    /**
+     * @return bool
+     */
+    public function isOnline()
+    {
+        return $this->isHotelOnline;
+    }
+
+    /**
+     * @param bool $isHotelOnline
+     */
+    public function setIsOnline($isHotelOnline)
+    {
+        $this->isHotelOnline = $isHotelOnline;
+    }
+
 }
