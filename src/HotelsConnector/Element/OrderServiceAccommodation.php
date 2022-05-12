@@ -598,6 +598,14 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
+     * @param ChildrenAccommodation $children
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+    }
+
+    /**
      * @return BedSet|null
      */
     public function getPreferredBedSet()
