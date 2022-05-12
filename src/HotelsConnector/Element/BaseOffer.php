@@ -118,6 +118,7 @@ class BaseOffer
     {
         $this->meals    = new AvailableMeals();
         $this->rateType = new RateType();
+        $this->childrenAccommodation = new ChildrenAccommodation();
     }
 
     /**
@@ -321,7 +322,7 @@ class BaseOffer
     }
 
     /**
-     * @return ChildrenAccommodation
+     * @return ChildrenAccommodation?
      */
     public function getChildrenAccommodation()
     {

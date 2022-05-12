@@ -84,6 +84,11 @@ class OrderServiceAccommodation extends OrderService
      */
     public $guests;
 
+
+    /**
+     * @var ChildrenAccommodation
+     */
+    public $children;
     /**
      * Комментарии
      * An important information about accommodation
@@ -197,6 +202,7 @@ class OrderServiceAccommodation extends OrderService
         $this->dailyPrices   = new DailyPrices();
         $this->meals         = new AvailableMeals();
         $this->guests        = new Guests();
+        $this->children      = new ChildrenAccommodation();
     }
 
     /**
@@ -573,5 +579,13 @@ class OrderServiceAccommodation extends OrderService
     public function setGuests($guests)
     {
         $this->guests = $guests;
+    }
+
+    /**
+     * @return ChildrenAccommodation|null
+     */
+    public function getChildrenAccommodation()
+    {
+        return $this->children;
     }
 }

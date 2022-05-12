@@ -286,7 +286,7 @@ $criteria[] = $criterion;
 // Фильтр предложений по количеству гостей с детьми
 $criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
 $criterion->setAdults(1); // Количество взрослых обязательно
-$child = new HotelsConnector\Element\Request\Child();
+$child = new HotelsConnector\Element\Child();
 $child->setAge(5);
 $child->setCount(1);
 $criterion->addChild($child);
@@ -645,14 +645,14 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
             $policy->getValue();
         }
         
-        // Информация о детях
-        $childrenAccommodation = $offer->childrenAccommodation;
-        /** @var \Bronevik\HotelsConnector\Element\ChildAccommodation $childAccommodation */
-        foreach ($childrenAccommodation->getChildren() as $childAccommodation) {
-            $childAccommodation->getAge();           // Возраст
-            $childAccommodation->getCount();         // Количество детей данного возраста
-            $childAccommodation->isIncluded();       // Дети включены в услугу
-            $childAccommodation->getAccommodation(); // Тип размещения в номере
+        //Информация о детях
+        if ($offer->getChildrenAccommodation()) {
+            foreach ($offer->getChildrenAccommodation()->getChildren() as $childAccommodation) {
+                $childAccommodation->getAge();           // Возраст
+                $childAccommodation->getCount();         // Количество детей данного возраста
+                $childAccommodation->isIncluded();       // Дети включены в услугу
+                $childAccommodation->getAccommodation(); // Тип размещения в номере
+            }
         }
     }
 }
@@ -897,6 +897,16 @@ foreach ($order->getServices()->service as $service) {
     $service->getCancellationPolicies(); // аналогично как и для SearchHotelOffers
     $service->getMeals();                // аналогично как и для SearchHotelOffers
     $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
+    
+    //Информация о детях аналогично как и для SearchHotelOffers
+    if ($service->getChildrenAccommodation()) {
+        foreach ($service->getChildrenAccommodation()->getChildren() as $childAccommodation) {
+            $childAccommodation->getAge();           // Возраст
+            $childAccommodation->getCount();         // Количество детей данного возраста
+            $childAccommodation->isIncluded();       // Дети включены в услугу
+            $childAccommodation->getAccommodation(); // Тип размещения в номере
+        }
+    }
 }
 ```
 
@@ -1357,6 +1367,16 @@ foreach ($order->getServices()->service as $service) {
     $service->getCancellationPolicies(); // аналогично как и для SearchHotelOffers
     $service->getMeals();                // аналогично как и для SearchHotelOffers
     $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
+    
+    //Информация о детях аналогично как и для SearchHotelOffers
+    if ($service->getChildrenAccommodation()) {
+        foreach ($service->getChildrenAccommodation()->getChildren() as $childAccommodation) {
+            $childAccommodation->getAge();           // Возраст
+            $childAccommodation->getCount();         // Количество детей данного возраста
+            $childAccommodation->isIncluded();       // Дети включены в услугу
+            $childAccommodation->getAccommodation(); // Тип размещения в номере
+        }
+    }
 }
 ```
 
@@ -1482,6 +1502,16 @@ foreach ($order->getServices()->service as $service) {
     $service->getCancellationPolicies(); // аналогично как и для SearchHotelOffers
     $service->getMeals();                // аналогично как и для SearchHotelOffers
     $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
+    
+    //Информация о детях аналогично как и для SearchHotelOffers
+    if ($service->getChildrenAccommodation()) {
+        foreach ($service->getChildrenAccommodation()->getChildren() as $childAccommodation) {
+            $childAccommodation->getAge();           // Возраст
+            $childAccommodation->getCount();         // Количество детей данного возраста
+            $childAccommodation->isIncluded();       // Дети включены в услугу
+            $childAccommodation->getAccommodation(); // Тип размещения в номере
+        }
+    }
 }
 ```
 
@@ -1803,14 +1833,14 @@ foreach ($hotelsWithCheapestOffers as $hotelWithCheapestOffer) {
     /** @var Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy[] $cancellationPolicies */
     $cancellationPolicies = $hotelOffer->getCancellationPolicies();
     
-    // Информация о детях
-    $childrenAccommodation = $hotelOffer->childrenAccommodation;
-    /** @var \Bronevik\HotelsConnector\Element\ChildAccommodation $childAccommodation */
-    foreach ($childrenAccommodation->getChildren() as $childAccommodation) {
-        $childAccommodation->getAge();           // Возраст
-        $childAccommodation->getCount();         // Количество детей данного возраста
-        $childAccommodation->isIncluded();       // Дети включены в услугу
-        $childAccommodation->getAccommodation(); // Тип размещения в номере
+    //Информация о детях
+    if ($hotelOffer->getChildrenAccommodation()) {
+        foreach ($hotelOffer->getChildrenAccommodation()->getChildren() as $childAccommodation) {
+            $childAccommodation->getAge();           // Возраст
+            $childAccommodation->getCount();         // Количество детей данного возраста
+            $childAccommodation->isIncluded();       // Дети включены в услугу
+            $childAccommodation->getAccommodation(); // Тип размещения в номере
+        }
     }
 }
 ```
