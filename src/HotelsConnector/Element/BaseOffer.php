@@ -114,6 +114,14 @@ class BaseOffer
      */
     public $childrenAccommodation;
 
+    /**
+     * Варианты комбинаций кроватей.
+     * Bed combinations options.
+     *
+     * @var BedSets
+     */
+    public $availableBedSets;
+
     public function __construct()
     {
         $this->meals    = new AvailableMeals();
@@ -341,5 +349,19 @@ class BaseOffer
         return $this;
     }
 
+    /**
+     * @param BedSets $bedSets
+     */
+    public function setBedSets($bedSets)
+    {
+        $this->availableBedSets = $bedSets;
+    }
 
+    /**
+     * @return BedSets
+     */
+    public function getBedSets()
+    {
+        return $this->availableBedSets;
+    }
 }

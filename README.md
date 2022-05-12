@@ -654,6 +654,15 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
                 $childAccommodation->getAccommodation(); // Тип размещения в номере
             }
         }
+        
+        // Варианты комбинаций кроватей
+        $bedSets = $offer->getBedSets();
+        foreach ($bedSets->getBedSet() as $bedSet) {
+            foreach($bedSet->getBed() as $bed) {
+                $bed->getType(); // Тип размещения: double, single
+                $bed->getAmount(); // Количество кроватей
+            }
+        }
     }
 }
 ```
@@ -1129,7 +1138,14 @@ foreach ($changelogRecords as $changelogRecord) {
     /** @var Bronevik\HotelsConnector\Element\Change $change */
     foreach ($changes->change as $change) {
         $change->getElement();  // Название элемента
-        $change->getNewValue(); // Его новое значение
+        $value = $change->getNewValue(); // Его новое значение
+        
+        //Информации о проживающих
+        if ($value instanceof HotelsConnector\Element\GuestsChangeValue) {
+            $guests = $value->getGuests();
+            $guests->getChildren(); // Информация о взрослых
+            $guests->getGuest(); // Информация о Детях
+        }
     }
 }
 
@@ -1840,6 +1856,15 @@ foreach ($hotelsWithCheapestOffers as $hotelWithCheapestOffer) {
             $childAccommodation->getCount();         // Количество детей данного возраста
             $childAccommodation->isIncluded();       // Дети включены в услугу
             $childAccommodation->getAccommodation(); // Тип размещения в номере
+        }
+    }
+    
+    // Варианты комбинаций кроватей
+    $bedSets = $hotelOffer->getBedSets();
+    foreach ($bedSets->getBedSet() as $bedSet) {
+        foreach($bedSet->getBed() as $bed) {
+            $bed->getType(); // Тип размещения: double, single
+            $bed->getAmount(); // Количество кроватей
         }
     }
 }
