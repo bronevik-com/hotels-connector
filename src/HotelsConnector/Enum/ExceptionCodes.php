@@ -51,6 +51,7 @@ class ExceptionCodes
     const NOT_INVOICES_AVAILABLE                    = 2038;
     const CITY_NOT_FOUND                            = 2040;
     const COUNT_PARAMS_LIMIT                        = 2041;
+    const INCORRECT_VALUE_BED_TYPE                  = 2042;
     const IMPOSSIBLE_CHILDREN_ACCOMMODATION         = 2043;
 
     const MEAL_IS_NOT_AVAILABLE_IN_OFFER_CODE  = 3000;
@@ -72,4 +73,13 @@ class ExceptionCodes
     const CLIENT_SELLING_PRICE_DISABLED_CODE   = 6001;
     const SELLING_PRICE_NOT_WITHIN_LIMITS_CODE = 6002;
     const SELLING_PRICE_IS_ONLY_IN_RUSSIA_CODE = 6003;
+
+    const CORRECTION_OF_SERVICES_IS_NOT_AVAILABLE       = 7000;
+    const VALUES_ARE_NOT_AVAILABLE_FOR_CORRECTION       = 7001;
+    const CORRECTION_EALD_IS_NOT_AVAILABLE              = 7002;
+    const CORRECTION_DATE_OF_RESIDENCE_IS_NOT_AVAILABLE = 7003;
+    const CORRECTION_DATES_IS_NOT_AVAILABLE             = 7004;
+    const ONLY_SELLING_PRICE_CAN_BE_SPECIFIED           = 7005;
+    const CORRECTION_MEALS_IS_NOT_AVAILABLE             = 7006;
+    const CORRECTION_OPTION_DISABLED                    = 7007;
 }
