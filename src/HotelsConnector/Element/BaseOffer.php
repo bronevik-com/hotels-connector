@@ -124,9 +124,10 @@ class BaseOffer
 
     public function __construct()
     {
-        $this->meals    = new AvailableMeals();
-        $this->rateType = new RateType();
+        $this->meals                 = new AvailableMeals();
+        $this->rateType              = new RateType();
         $this->childrenAccommodation = new ChildrenAccommodation();
+        $this->availableBedSets      = new BedSet();
     }
 
     /**
@@ -330,7 +331,7 @@ class BaseOffer
     }
 
     /**
-     * @return ChildrenAccommodation?
+     * @return ChildrenAccommodation|null
      */
     public function getChildrenAccommodation()
     {

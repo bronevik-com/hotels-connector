@@ -86,7 +86,7 @@ class OrderServiceAccommodation extends OrderService
 
 
     /**
-     * @var ChildrenAccommodation
+     * @var ChildrenAccommodation|null
      */
     public $children;
     /**
@@ -598,9 +598,9 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @param ChildrenAccommodation $children
+     * @param ChildrenAccommodation|null $children
      */
-    public function setChildren($children)
+    public function setChildrenAccommodation($children)
     {
         $this->children = $children;
     }
@@ -614,7 +614,7 @@ class OrderServiceAccommodation extends OrderService
     }
 
     /**
-     * @param BedSet $preferredBedSet
+     * @param BedSet|null $preferredBedSet
      */
     public function setPreferredBedSet($preferredBedSet)
     {
