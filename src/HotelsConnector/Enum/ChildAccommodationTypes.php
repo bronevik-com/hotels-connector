@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-class ChildAccommodationTypes
+class ChildAccommodationTypes extends Enum
 {
     /**
      * Размещение на дополнительном месте.
