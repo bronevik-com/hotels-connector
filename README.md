@@ -515,14 +515,15 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         $hotelDetails     = $priceDetails->getHotel();  // Детализация отельной стоимости
         $additionalPrices = $clientDetails->getClientCurrency()->getExtra()  // Дополнительные цены
 
-        $clientDetails->getVatIncluded(); // Включен ли НДС в клиентскую стоимость
-        $clientDetails->getCommission();  // Информация о комиссии
-        $clientDetails->getGross();       // Брутто-стоимость
-        $clientDetails->getNet();         // Нетто-стоимость
+        $clientDetails->getVatIncluded();   // Включен ли НДС в клиентскую стоимость
+        $clientDetails->getClientCurrency() // Цены в валюте клиента  
+        $clientDetails->getCommission();    // Информация о комиссии
+        $clientDetails->getGross();         // Брутто-стоимость
+        $clientDetails->getNet();           // Нетто-стоимость
 
         /**
          * @var Bronevik\HotelsConnector\Element\ClientPriceDetails $clientDetails
-         * getGross, getNet, getCommission возвращают объект DetailedPrice, который содержит в себе:
+         * getClientCurrency, getGross, getNet, getCommission возвращают объект DetailedPrice, который содержит в себе:
          */
         $clientDetails->getGross()->getCurrency();  // Валюта
         $clientDetails->getGross()->getPrice();     // Стоимость
@@ -1766,10 +1767,11 @@ foreach ($hotelsWithCheapestOffers as $hotelWithCheapestOffer) {
     $hotelDetails     = $priceDetails->getHotel();  // Детализация отельной стоимости
     $additionalPrices = $priceDetails->getExtra();  // Дополнительные цены
 
-    $clientDetails->getVatIncluded(); // Включен ли НДС в клиентскую стоимость
-    $clientDetails->getCommission();  // Информация о комиссии
-    $clientDetails->getGross();       // Брутто-стоимость
-    $clientDetails->getNet();         // Нетто-стоимость
+    $clientDetails->getVatIncluded();   // Включен ли НДС в клиентскую стоимость
+    $clientDetails->getClientCurrency() // Цены в валюте клиента   
+    $clientDetails->getCommission();    // Информация о комиссии
+    $clientDetails->getGross();         // Брутто-стоимость
+    $clientDetails->getNet();           // Нетто-стоимость
 
     /** @var Bronevik\HotelsConnector\Element\AvailableAmenities */
     $availableAmenities = $hotelWithCheapestOffer->getAmenities();
