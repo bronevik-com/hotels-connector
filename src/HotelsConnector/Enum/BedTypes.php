@@ -2,7 +2,7 @@
 
 namespace Bronevik\HotelsConnector\Enum;
 
-class BedTypes
+class BedTypes extends Enum
 {
     /**
      * Двуспальная кровать
