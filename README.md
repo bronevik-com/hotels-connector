@@ -162,7 +162,7 @@ $countries = $connector->getCountries();
 <?php
 
 /** @var Bronevik\HotelsConnector\Element\Countries $countries */
-foreach ($countries as $country) {
+foreach ($countries->getCountry() as $country) {
     $country->getId();   // 1
     $country->getName(); // Россия
 
