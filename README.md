@@ -781,6 +781,14 @@ $child->setAge(3);
 $child->setCount(2);
 $accommodation->guests->addChild($child);
 
+//Добавление предпочитаемого набора кроватей
+$bed = new HotelsConnector\Element\Bed();
+$bed->setAmount(1);                                     //Установить количество кроватей
+$bed->setType(HotelsConnector\Enum\BedTypes::DOUBLE);   //Установить тип кроватей
+$preferredBedSet = new HotelsConnector\Element\BedSet();
+$preferredBedSet->addBed($bed);
+$accommodation->setPreferredBedSet($preferredBedSet);
+
 $accommodation->addMeals(2);            // Добавить питание в услугу
 $accommodation->addMeals(34);           // Если нужно несколько услуг питания
 $accommodation->setCheckinHour(10);     // Установить час заезда
