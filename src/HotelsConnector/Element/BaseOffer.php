@@ -106,10 +106,28 @@ class BaseOffer
      */
     public $guaranteeType;
 
+    /**
+     * Информация о размещении детей.
+     * Information about the placement of children.
+     *
+     * @var ChildrenAccommodation
+     */
+    public $childrenAccommodation;
+
+    /**
+     * Варианты комбинаций кроватей.
+     * Bed combinations options.
+     *
+     * @var BedSets
+     */
+    public $availableBedSets;
+
     public function __construct()
     {
-        $this->meals    = new AvailableMeals();
-        $this->rateType = new RateType();
+        $this->meals                 = new AvailableMeals();
+        $this->rateType              = new RateType();
+        $this->childrenAccommodation = new ChildrenAccommodation();
+        $this->availableBedSets      = new BedSet();
     }
 
     /**
@@ -310,5 +328,41 @@ class BaseOffer
     public function getGuaranteeType()
     {
         return $this->guaranteeType;
+    }
+
+    /**
+     * @return ChildrenAccommodation|null
+     */
+    public function getChildrenAccommodation()
+    {
+        return $this->childrenAccommodation;
+    }
+
+    /**
+     * @param ChildrenAccommodation $childrenAccommodation
+     *
+     * @return BaseOffer
+     */
+    public function setChildrenAccommodation($childrenAccommodation)
+    {
+        $this->childrenAccommodation = $childrenAccommodation;
+
+        return $this;
+    }
+
+    /**
+     * @param BedSets $bedSets
+     */
+    public function setBedSets($bedSets)
+    {
+        $this->availableBedSets = $bedSets;
+    }
+
+    /**
+     * @return BedSets
+     */
+    public function getBedSets()
+    {
+        return $this->availableBedSets;
     }
 }

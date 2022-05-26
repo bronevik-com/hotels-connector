@@ -84,6 +84,11 @@ class OrderServiceAccommodation extends OrderService
      */
     public $guests;
 
+
+    /**
+     * @var ChildrenAccommodation|null
+     */
+    public $children;
     /**
      * Комментарии
      * An important information about accommodation
@@ -188,6 +193,14 @@ class OrderServiceAccommodation extends OrderService
      */
     public $paymentTerms;
 
+    /**
+     * Предпочитаемые кровати
+     * Preferred Beds
+     *
+     * @var BedSet|null
+     */
+    public $preferredBedSet;
+
     public function __construct()
     {
         parent::__construct();
@@ -197,6 +210,7 @@ class OrderServiceAccommodation extends OrderService
         $this->dailyPrices   = new DailyPrices();
         $this->meals         = new AvailableMeals();
         $this->guests        = new Guests();
+        $this->children      = new ChildrenAccommodation();
     }
 
     /**
@@ -574,4 +588,38 @@ class OrderServiceAccommodation extends OrderService
     {
         $this->guests = $guests;
     }
+
+    /**
+     * @return ChildrenAccommodation|null
+     */
+    public function getChildrenAccommodation()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @param ChildrenAccommodation|null $children
+     */
+    public function setChildrenAccommodation($children)
+    {
+        $this->children = $children;
+    }
+
+    /**
+     * @return BedSet|null
+     */
+    public function getPreferredBedSet()
+    {
+        return $this->preferredBedSet;
+    }
+
+    /**
+     * @param BedSet|null $preferredBedSet
+     */
+    public function setPreferredBedSet($preferredBedSet)
+    {
+        $this->preferredBedSet = $preferredBedSet;
+    }
+
+
 }

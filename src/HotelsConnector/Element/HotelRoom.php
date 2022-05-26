@@ -64,7 +64,7 @@ class HotelRoom
      *
      * @var BedSets
      */
-    public $bedSets;
+    public $availableBedSets;
 
     /**
      * Часть здания, в которой находится номер.
@@ -101,8 +101,8 @@ class HotelRoom
 
     public function __construct()
     {
-        $this->bedSets     = new BedSets();
-        $this->windowViews = new WindowViews();
+        $this->availableBedSets = new BedSets();
+        $this->windowViews      = new WindowViews();
         $this->photos      = new Photos();
     }
 
@@ -191,7 +191,7 @@ class HotelRoom
      */
     public function setBedSets($bedSets)
     {
-        $this->bedSets = $bedSets;
+        $this->availableBedSets = $bedSets;
     }
 
     /**
@@ -199,7 +199,7 @@ class HotelRoom
      */
     public function getBedSets()
     {
-        return $this->bedSets;
+        return $this->availableBedSets;
     }
 
     /**

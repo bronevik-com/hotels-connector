@@ -188,7 +188,10 @@ class ClassMaps extends Enum
         'Taxes'                                  => Element\Taxes::class,
         'TimeRange'                              => Element\TimeRange::class,
         'EditServiceHourPrice'                   => Element\EditServiceHourPrice::class,
-        'EditMeal'                               => Element\EditMeal::class
+        'EditMeal'                               => Element\EditMeal::class,
+        'Child'                                  => Element\Child::class,
+        'ChildAccommodation'                     => Element\ChildAccommodation::class,
+        'ChildrenAccommodation'                  => Element\ChildrenAccommodation::class
 
     ];
 
@@ -224,5 +227,8 @@ class ClassMaps extends Enum
         'Service'                            => Element\Service::class,
         'ServiceAccommodation'               => Element\ServiceAccommodation::class,
         'ServiceExtraField'                  => Element\ServiceExtraField::class,
+        'Child'                              => Element\Child::class,
+        'ChildAccommodation'                 => Element\ChildAccommodation::class,
+        'ChildrenAccommodation'              => Element\ChildrenAccommodation::class,
     ];
 }
