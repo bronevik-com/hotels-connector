@@ -24,7 +24,6 @@
         - [Управление содержимым ответа](#Управление-содержимым-ответа)
         - [Объект отельного предложения](#Отельное-предложение)
     - [Получение информации об отелях](#Получение-информации-об-отелях)
-    - [Получение информации о предложении отеля](#Получение-информации-о-предложении-отеля)
     - [Заказ бронирования проживания и операции с заказами](#Заказ-бронирования-проживания-и-операции-с-заказами)
         - [Создание заказа](#Создание-заказа)
         - [Создание заказа с данными банковской карты](#Создание-заказа-с-данными-банковской-карты)
@@ -163,7 +162,7 @@ $countries = $connector->getCountries();
 <?php
 
 /** @var Bronevik\HotelsConnector\Element\Countries $countries */
-foreach ($countries as $country) {
+foreach ($countries->getCountry() as $country) {
     $country->getId();   // 1
     $country->getName(); // Россия
 
@@ -282,6 +281,15 @@ $criteria[] = $criterion;
 // Фильтр предложений по количеству гостей
 $criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
 $criterion->setAdults(2);
+$criteria[] = $criterion;
+
+// Фильтр предложений по количеству гостей с детьми
+$criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$criterion->setAdults(1); // Количество взрослых обязательно
+$child = new HotelsConnector\Element\Child();
+$child->setAge(5);
+$child->setCount(1);
+$criterion->addChild($child);
 $criteria[] = $criterion;
 
 // Фильтр предложений по возможности моментального подтверждения бронирования (онлайн)
@@ -417,6 +425,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
     $hotelWithOffers->getVATPercent();         // Процент НДС (например, 20)
     $hotelWithOffers->getHasTaxes();           // Наличие в отеле дополнительных сборов (например, false)
     $hotelWithOffers->getType();               // Тип отеля (например, hotel)
+    $hotelWithOffers->isOnline();              // Работает ли отель онлайн
 
     // Информация для гостя
     $informationForGuest = $hotelWithOffers->getInformationForGuest();
@@ -506,14 +515,15 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         $hotelDetails     = $priceDetails->getHotel();  // Детализация отельной стоимости
         $additionalPrices = $clientDetails->getClientCurrency()->getExtra()  // Дополнительные цены
 
-        $clientDetails->getVatIncluded(); // Включен ли НДС в клиентскую стоимость
-        $clientDetails->getCommission();  // Информация о комиссии
-        $clientDetails->getGross();       // Брутто-стоимость
-        $clientDetails->getNet();         // Нетто-стоимость
+        $clientDetails->getVatIncluded();   // Включен ли НДС в клиентскую стоимость
+        $clientDetails->getClientCurrency() // Цены в валюте клиента  
+        $clientDetails->getCommission();    // Информация о комиссии
+        $clientDetails->getGross();         // Брутто-стоимость
+        $clientDetails->getNet();           // Нетто-стоимость
 
         /**
          * @var Bronevik\HotelsConnector\Element\ClientPriceDetails $clientDetails
-         * getGross, getNet, getCommission возвращают объект DetailedPrice, который содержит в себе:
+         * getClientCurrency, getGross, getNet, getCommission возвращают объект DetailedPrice, который содержит в себе:
          */
         $clientDetails->getGross()->getCurrency();  // Валюта
         $clientDetails->getGross()->getPrice();     // Стоимость
@@ -636,6 +646,31 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
             $policy->getType();
             $policy->getValue();
         }
+        
+        //Информация о детях
+        if ($offer->getChildrenAccommodation()) {
+            foreach ($offer->getChildrenAccommodation()->getChildren() as $childAccommodation) {
+                $childAccommodation->getAge();           // Возраст
+                $childAccommodation->getCount();         // Количество детей данного возраста
+                $childAccommodation->isIncluded();       // Дети включены в услугу
+                $childAccommodation->getAccommodation(); // Тип размещения в номере
+            }
+        }
+        
+        // размещения кроватей в номере
+        /** @var Bronevik\HotelsConnector\Element\BedSets $bedSets */
+        $bedSets = $offer->getBedSets();
+
+        // Массив вариантов комбинаций кроватей
+        /** @var Bronevik\HotelsConnector\Element\BedSet $bedSet */
+        foreach ($bedSets->getBedSet() as $bedSet) {
+            // Вариант размещения кроватей
+            /** @var Bronevik\HotelsConnector\Element\Bed $bed */
+            foreach ($bedSet->getBed() as $bed) {
+                $bed->getType();   // Тип размещения в номере
+                $bed->getAmount(); // Количество кроватей
+            }
+        }
     }
 }
 ```
@@ -698,18 +733,7 @@ foreach ($hotelsWithInfo as $hotelWithInfo) {
 
         // размещения кроватей в номере
         /** @var Bronevik\HotelsConnector\Element\BedSets $bedSets */
-        $bedSets = $hotelRoom->getBedSets();
-
-        // Массив вариантов комбинаций кроватей
-        /** @var Bronevik\HotelsConnector\Element\BedSet $bedSet */
-        foreach ($bedSets->getBedSet() as $bedSet) {
-            // Вариант размещения кроватей
-            /** @var Bronevik\HotelsConnector\Element\Bed $bed */
-            foreach ($bedSet->getBed() as $bed) {
-                $bed->getType();   // Тип размещения в номере
-                $bed->getAmount(); // Количество кроватей
-            }
-        }
+        $bedSets = $hotelRoom->getBedSets(); // Далее аналогично ответу SearchHotelOffers
 
         /** @var Bronevik\HotelsConnector\Element\WindowViews $windowViews */
         $windowViews = $hotelRoom->getWindowViews();
@@ -746,7 +770,25 @@ $orderRequest->setComment('Гости приедут в районе 18 часо
 $accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
 $accommodation->setOfferCode('T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=');
 $accommodation->setComment('Гостям потребуется высокоскоростное подключение к Интернет.');
-$accommodation->addGuests('Валентин');
+$guest = new Bronevik\HotelsConnector\Element\Guest();
+$guest->setFirstName('Спанч');
+$guest->setLastName('Боб');
+$accommodation->guests->add($guest);
+
+// Добавление детей
+$child = new \Bronevik\HotelsConnector\Element\Child();
+$child->setAge(3);
+$child->setCount(2);
+$accommodation->guests->addChild($child);
+
+//Добавление предпочитаемого набора кроватей
+$bed = new HotelsConnector\Element\Bed();
+$bed->setAmount(1);                                     //Установить количество кроватей
+$bed->setType(HotelsConnector\Enum\BedTypes::DOUBLE);   //Установить тип кроватей
+$preferredBedSet = new HotelsConnector\Element\BedSet();
+$preferredBedSet->addBed($bed);
+$accommodation->setPreferredBedSet($preferredBedSet);
+
 $accommodation->addMeals(2);            // Добавить питание в услугу
 $accommodation->addMeals(34);           // Если нужно несколько услуг питания
 $accommodation->setCheckinHour(10);     // Установить час заезда
@@ -765,8 +807,16 @@ $orderRequest->addServices($accommodation);
 $accommodation = new Bronevik\HotelsConnector\Element\ServiceAccommodation;
 $accommodation->setOfferCode('T1I3MTYjI2RvdWJsZSMxMDY0IzIwMTYtMDEtMjIjMjAxNi0wMS0yNCMyLDE=');
 $accommodation->setComment('Не представлять напитки из минибара.');
-$accommodation->addGuests('Николай');
-$accommodation->addGuests('Эльдар');
+
+$guestNikolay = new \Bronevik\HotelsConnector\Element\Guest();
+$guestNikolay->setFirstName('Николай');
+$guestNikolay->setLastName('Петрович');
+
+$guestEldar = new \Bronevik\HotelsConnector\Element\Guest();
+$guestEldar->setFirstName('Эльдар');
+$guestEldar->setLastName('Джарахов');
+$accommodation->guests->add($guestNikolay);
+$accommodation->guests->add($guestEldar);
 $orderRequest->addServices($accommodation);
 
 // Отправка заказа
@@ -861,6 +911,24 @@ foreach ($order->getServices()->service as $service) {
     $service->getCancellationPolicies(); // аналогично как и для SearchHotelOffers
     $service->getMeals();                // аналогично как и для SearchHotelOffers
     $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
+    
+    //Информация о детях аналогично как и для SearchHotelOffers
+    if ($service->getChildrenAccommodation()) {
+        foreach ($service->getChildrenAccommodation()->getChildren() as $childAccommodation) {
+            $childAccommodation->getAge();           // Возраст
+            $childAccommodation->getCount();         // Количество детей данного возраста
+            $childAccommodation->isIncluded();       // Дети включены в услугу
+            $childAccommodation->getAccommodation(); // Тип размещения в номере
+        }
+    }
+    
+    // Предпочитаемые кровати
+    if ($service->getPreferredBedSet()) {
+        foreach ($service->getPreferredBedSet()->getBed() as $bed) {
+            $bed->getAmount(); // Количество кроватей
+            $bed->getType();   // Тип размещения
+        }
+    }
 }
 ```
 
@@ -901,6 +969,11 @@ $guest = new Bronevik\HotelsConnector\Element\Guest();
 $guest->setFirstName('Спанч');
 $guest->setLastName('Боб');
 $accommodation->guests->add($guest);
+// Добавление детей
+$child = new \Bronevik\HotelsConnector\Element\Child();
+$child->setAge(3);
+$child->setCount(2);
+$accommodation->guests->addChild($child);
 $accommodation->addMeals(2);            // Добавить питание в услугу
 $accommodation->addMeals(34);           // Если нужно несколько услуг питания
 $accommodation->setCheckinHour(10);     // Установить час заезда
@@ -1078,7 +1151,14 @@ foreach ($changelogRecords as $changelogRecord) {
     /** @var Bronevik\HotelsConnector\Element\Change $change */
     foreach ($changes->change as $change) {
         $change->getElement();  // Название элемента
-        $change->getNewValue(); // Его новое значение
+        $value = $change->getNewValue(); // Его новое значение
+        
+        //Информации о проживающих
+        if ($value instanceof HotelsConnector\Element\GuestsChangeValue) {
+            $guests = $value->getGuests();
+            $guests->getChildren(); // Информация о взрослых
+            $guests->getGuest(); // Информация о Детях
+        }
     }
 }
 
@@ -1316,6 +1396,9 @@ foreach ($order->getServices()->service as $service) {
     $service->getCancellationPolicies(); // аналогично как и для SearchHotelOffers
     $service->getMeals();                // аналогично как и для SearchHotelOffers
     $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
+    
+    //Информация о детях аналогично CreateOrder
+    //Информация о предпочитаемых кроватях аналогично CreateOrder
 }
 ```
 
@@ -1441,6 +1524,9 @@ foreach ($order->getServices()->service as $service) {
     $service->getCancellationPolicies(); // аналогично как и для SearchHotelOffers
     $service->getMeals();                // аналогично как и для SearchHotelOffers
     $service->getOfferPolicies();        // аналогично как и для SearchHotelOffers
+    
+    //Информация о детях аналогично CreateOrder
+    //Информация о предпочитаемых кроватях аналогично CreateOrder
 }
 ```
 
@@ -1689,10 +1775,11 @@ foreach ($hotelsWithCheapestOffers as $hotelWithCheapestOffer) {
     $hotelDetails     = $priceDetails->getHotel();  // Детализация отельной стоимости
     $additionalPrices = $priceDetails->getExtra();  // Дополнительные цены
 
-    $clientDetails->getVatIncluded(); // Включен ли НДС в клиентскую стоимость
-    $clientDetails->getCommission();  // Информация о комиссии
-    $clientDetails->getGross();       // Брутто-стоимость
-    $clientDetails->getNet();         // Нетто-стоимость
+    $clientDetails->getVatIncluded();   // Включен ли НДС в клиентскую стоимость
+    $clientDetails->getClientCurrency() // Цены в валюте клиента   
+    $clientDetails->getCommission();    // Информация о комиссии
+    $clientDetails->getGross();         // Брутто-стоимость
+    $clientDetails->getNet();           // Нетто-стоимость
 
     /** @var Bronevik\HotelsConnector\Element\AvailableAmenities */
     $availableAmenities = $hotelWithCheapestOffer->getAmenities();
@@ -1761,6 +1848,19 @@ foreach ($hotelsWithCheapestOffers as $hotelWithCheapestOffer) {
 
     /** @var Bronevik\HotelsConnector\Element\HotelOfferCancellationPolicy[] $cancellationPolicies */
     $cancellationPolicies = $hotelOffer->getCancellationPolicies();
+    
+    //Информация о детях
+    if ($hotelOffer->getChildrenAccommodation()) {
+        foreach ($hotelOffer->getChildrenAccommodation()->getChildren() as $childAccommodation) {
+            $childAccommodation->getAge();           // Возраст
+            $childAccommodation->getCount();         // Количество детей данного возраста
+            $childAccommodation->isIncluded();       // Дети включены в услугу
+            $childAccommodation->getAccommodation(); // Тип размещения в номере
+        }
+    }
+    
+    // Варианты комбинаций кроватей
+    $bedSets = $hotelOffer->getBedSets();  // Далее аналогично ответу SearchHotelOffers
 }
 ```
 

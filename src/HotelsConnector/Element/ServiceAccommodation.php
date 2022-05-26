@@ -60,6 +60,14 @@ class ServiceAccommodation extends Service
      */
     public $meals = [];
 
+    /**
+     * Предпочитаемые кровати
+     * Preferred Beds
+     *
+     * @var BedSet|null
+     */
+    public $preferredBedSet;
+
     public function __construct()
     {
         $this->guests = new Guests();
@@ -184,4 +192,21 @@ class ServiceAccommodation extends Service
     {
         $this->guests = $guests;
     }
+
+    /**
+     * @return BedSet|null
+     */
+    public function getPreferredBedSet()
+    {
+        return $this->preferredBedSet;
+    }
+
+    /**
+     * @param BedSet|null $preferredBedSet
+     */
+    public function setPreferredBedSet($preferredBedSet)
+    {
+        $this->preferredBedSet = $preferredBedSet;
+    }
+
 }
