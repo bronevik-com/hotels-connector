@@ -8,14 +8,14 @@ class Taxes
     /**
      * @var Tax[]
      */
-    public $taxes = [];
+    public $tax = [];
 
     /**
      * @return Tax[]
      */
     public function getTaxes()
     {
-        return $this->taxes;
+        return $this->tax;
     }
 
 
@@ -24,7 +24,7 @@ class Taxes
      */
     public function addTax($tax)
     {
-        $this->taxes[] = $tax;
+        $this->tax[] = $tax;
     }
 
     /**
@@ -32,6 +32,6 @@ class Taxes
      */
     public function hasTaxes()
     {
-        return count($this->taxes) > 0;
+        return count($this->tax) > 0;
     }
 }
