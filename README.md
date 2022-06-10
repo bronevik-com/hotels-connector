@@ -540,7 +540,7 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
 
         /** @var Bronevik\HotelsConnector\Element\Tax $tax */
         // Дополнительные сборы при заселении
-        foreach ($offer->getTaxes()->taxes as $tax) {
+        foreach ($offer->getTaxes()->tax as $tax) {
             $tax->getCurrency(); // Валюта оплаты
             $tax->getComment();  // Комментарий
             $tax->getType();     // Тип сбора
