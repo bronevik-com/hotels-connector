@@ -2,6 +2,8 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\VatPercents;
+
 class AvailableMeal
 {
     /**
@@ -33,6 +35,7 @@ class AvailableMeal
      * VAT percentage rate.
      *
      * @var int
+     * @see VatPercents
      */
     public $VATPercent;
 
