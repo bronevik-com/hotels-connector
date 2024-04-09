@@ -2,6 +2,8 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\VatPercents;
+
 /**
  * Отели с предложениями
  * The hotels with offers
@@ -21,6 +23,7 @@ class HotelWithOffers extends Hotel
      * The VAT amount
      *
      * @var float
+     * @see VatPercents
      */
     public $VATPercent;
 
@@ -64,6 +67,7 @@ class HotelWithOffers extends Hotel
 
     /**
      * @return float
+     * @see VatPercents
      */
     public function getVATPercent()
     {

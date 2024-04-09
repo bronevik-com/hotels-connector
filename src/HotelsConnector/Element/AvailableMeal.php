@@ -33,6 +33,7 @@ class AvailableMeal
      * VAT percentage rate.
      *
      * @var int
+     * @see VatPercents
      */
     public $VATPercent;
 
@@ -94,6 +95,7 @@ class AvailableMeal
 
     /**
      * @return int
+     * @see VatPercents
      */
     public function getVATPercent()
     {
