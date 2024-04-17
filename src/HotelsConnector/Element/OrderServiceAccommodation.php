@@ -142,6 +142,7 @@ class OrderServiceAccommodation extends OrderService
      * VAT percentage rate
      *
      * @var int
+     * @see VatPercents
      */
     public $VATPercent;
 
@@ -471,6 +472,7 @@ class OrderServiceAccommodation extends OrderService
 
     /**
      * @return int
+     * @see VatPercents
      */
     public function getVATPercent()
     {
