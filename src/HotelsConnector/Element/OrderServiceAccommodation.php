@@ -2,6 +2,8 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\VatPercents;
+
 class OrderServiceAccommodation extends OrderService
 {
     /**
@@ -137,6 +139,7 @@ class OrderServiceAccommodation extends OrderService
      * VAT percentage rate
      *
      * @var int
+     * @see VatPercents
      */
     public $VATPercent;
 
