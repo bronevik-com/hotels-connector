@@ -11,4 +11,5 @@ class CorrectionTypes extends Enum
      const ARRIVAL_DATE   = "arrivalDate";
      const DEPARTURE_DATE = "departureDate";
      const SELLING_PRICE  = "sellingPrice";
+     const ROOM_TYPE      = "roomType";
 }
