@@ -3,6 +3,8 @@
 
 namespace Bronevik\HotelsConnector\Element;
 
+use Bronevik\HotelsConnector\Enum\RoomTypes;
+
 class UpdateService
 {
     /**
@@ -84,6 +86,16 @@ class UpdateService
      * @var Guests | null
      */
     public $guests;
+
+    /**
+     * Желаемый тип размещения
+     * Desired type of placement
+     *
+     * @see RoomTypes
+     *
+     * @var string | null
+     */
+    public $roomType;
 
     public function __construct()
     {
@@ -250,5 +262,25 @@ class UpdateService
     public function setGuests($guests)
     {
         $this->guests = $guests;
+    }
+
+    /**
+     * @see RoomTypes
+     *
+     * @return string | null
+     */
+    public function getRoomType()
+    {
+        return $this->roomType;
+    }
+
+    /**
+     * @see RoomTypes
+     *
+     * @param string | null $roomType
+     */
+    public function setRoomType($roomType)
+    {
+        $this->roomType = $roomType;
     }
 }

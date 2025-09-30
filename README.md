@@ -1298,6 +1298,27 @@ $orderServices = $connector->getHotelOfferPricing($services, $currency);
     $response = $connector->updateService($serviceId, $updateService);
 ```
 
+Запрос для коррекции типа размещения:
+
+```php
+<?php
+    $serviceId = 1; // Id услуги
+    $updateService = new \Bronevik\HotelsConnector\Element\UpdateService();
+    $updateService->setRoomType(\Bronevik\HotelsConnector\Enum\RoomTypes::DOUBLE); // Коррекция типа размещения
+    $guests = new HotelsConnector\Element\Guests();
+    $guest1 = new HotelsConnector\Element\Guest();
+    $guest1->setFirstName('FirstName1');
+    $guest1->setLastName('LastName1');
+    $guests->add($guest1);
+    $guest2 = new HotelsConnector\Element\Guest();
+    $guest2->setFirstName('FirstName2');
+    $guest2->setLastName('LastName2');
+    $guests->add($guest2);
+    $updateService->setGuests($guests); // Информация о гостях
+    
+    $response = $connector->updateService($serviceId, $updateService);
+```
+
 Запрос для коррекции цены продажи:
 
 ```php
