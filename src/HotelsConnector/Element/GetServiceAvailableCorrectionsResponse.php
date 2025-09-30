@@ -14,7 +14,7 @@ class GetServiceAvailableCorrectionsResponse extends BaseResponse
     public $service;
 
     /**
-     * @retrun EditService
+     * @return EditService
      */
     public function getEditService()
     {

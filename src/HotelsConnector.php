@@ -730,6 +730,8 @@ class HotelsConnector
      * @param string[] $availableCorrectionTypes
      *
      * @throws SoapFault
+     *
+     * @return Element\GetServiceAvailableCorrectionsResponse
      */
     public function getServiceAvailableCorrections(
         $serviceId,
