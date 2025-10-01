@@ -93,6 +93,14 @@ class CorrectionAvailability
     public $referenceId;
 
     /**
+     * Доступна ли коррекция типа размещения
+     * Is type of placement available
+     *
+     * @var boolean | null
+     */
+    public $roomType;
+
+    /**
      * @param bool | null $isCorrectionAvailable
      */
     public function setIsCorrectionAvailable($isCorrectionAvailable)
@@ -266,5 +274,21 @@ class CorrectionAvailability
     public function setAvailableCorrectionNumber($availableCorrectionNumber)
     {
         $this->availableCorrectionNumber = $availableCorrectionNumber;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getRoomType()
+    {
+        return $this->roomType;
+    }
+
+    /**
+     * @param bool|null $roomType
+     */
+    public function setRoomType($roomType)
+    {
+        $this->roomType = $roomType;
     }
 }
