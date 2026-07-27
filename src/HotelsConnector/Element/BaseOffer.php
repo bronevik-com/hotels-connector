@@ -65,6 +65,14 @@ class BaseOffer
     public $roomType;
 
     /**
+     * Информация о размещении взрослых гостей
+     * Information about adult guests accommodation
+     *
+     * @var AdultAccommodation
+     */
+    public $adultAccommodation;
+
+    /**
      * Является ли номер номером с подселением
      * Specifies whether the room is dorm or private
      *
@@ -248,6 +256,22 @@ class BaseOffer
     public function getRoomType()
     {
         return $this->roomType;
+    }
+
+    /**
+     * @param AdultAccommodation $adultAccommodation
+     */
+    public function setAdultAccommodation($adultAccommodation)
+    {
+        $this->adultAccommodation = $adultAccommodation;
+    }
+
+    /**
+     * @return AdultAccommodation
+     */
+    public function getAdultAccommodation()
+    {
+        return $this->adultAccommodation;
     }
 
     /**

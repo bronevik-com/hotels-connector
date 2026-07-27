@@ -97,6 +97,14 @@ class UpdateService
      */
     public $roomType;
 
+    /**
+     * Информация о размещении взрослых гостей
+     * Information about adult guests accommodation
+     *
+     * @var AdultAccommodation | null
+     */
+    public $adultAccommodation;
+
     public function __construct()
     {
         $this->addMeals    = new MealIds();
@@ -282,5 +290,21 @@ class UpdateService
     public function setRoomType($roomType)
     {
         $this->roomType = $roomType;
+    }
+
+    /**
+     * @return AdultAccommodation | null
+     */
+    public function getAdultAccommodation()
+    {
+        return $this->adultAccommodation;
+    }
+
+    /**
+     * @param AdultAccommodation | null $adultAccommodation
+     */
+    public function setAdultAccommodation($adultAccommodation)
+    {
+        $this->adultAccommodation = $adultAccommodation;
     }
 }

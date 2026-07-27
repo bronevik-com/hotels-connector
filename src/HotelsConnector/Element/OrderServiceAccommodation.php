@@ -61,6 +61,14 @@ class OrderServiceAccommodation extends OrderService
     public $roomType;
 
     /**
+     * Информация о размещении взрослых гостей
+     * Information about adult guests accommodation
+     *
+     * @var AdultAccommodation
+     */
+    public $adultAccommodation;
+
+    /**
      * Дата и время заезда
      * The check-in date and time
      *
@@ -324,6 +332,22 @@ class OrderServiceAccommodation extends OrderService
     public function getRoomType()
     {
         return $this->roomType;
+    }
+
+    /**
+     * @param AdultAccommodation $adultAccommodation
+     */
+    public function setAdultAccommodation($adultAccommodation)
+    {
+        $this->adultAccommodation = $adultAccommodation;
+    }
+
+    /**
+     * @return AdultAccommodation
+     */
+    public function getAdultAccommodation()
+    {
+        return $this->adultAccommodation;
     }
 
     /**
@@ -622,6 +646,4 @@ class OrderServiceAccommodation extends OrderService
     {
         $this->preferredBedSet = $preferredBedSet;
     }
-
-
 }
