@@ -10,6 +10,7 @@ class ClassMaps extends Enum
         'AddElements'                            => Element\AddElements::class,
         'AdditionalInfo'                         => Element\AdditionalInfo::class,
         'Amenity'                                => Element\Amenity::class,
+        'AdultAccommodation'                     => Element\AdultAccommodation::class,
         'AvailableAmenities'                     => Element\AvailableAmenities::class,
         'AvailableAmenity'                       => Element\AvailableAmenity::class,
         'AvailableMeal'                          => Element\AvailableMeal::class,
@@ -196,6 +197,7 @@ class ClassMaps extends Enum
     ];
 
     const CLASSMAP_FOR_SECURE_ENDPOINT = [
+        'AdultAccommodation'                 => Element\AdultAccommodation::class,
         'AvailableMeal'                      => Element\AvailableMeal::class,
         'BaseRequest'                        => Element\BaseRequest::class,
         'BaseResponse'                       => Element\BaseResponse::class,

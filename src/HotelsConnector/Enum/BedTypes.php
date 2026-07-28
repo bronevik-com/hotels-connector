@@ -24,4 +24,9 @@ class BedTypes extends Enum
      * Bunk bed
      */
     const BUNK_BED = 'bunk-bed';
+    /**
+     * Дополнительное место
+     * Extra bed
+     */
+    const EXTRA_BED = 'extra-bed';
 }

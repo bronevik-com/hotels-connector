@@ -138,7 +138,7 @@ echo $connector->ping('Привет, Броневичок!'); // Привет, �
 
 ## Документация по работе с SOAP сервером без использования этого коннектора
 
-Документация в формате PDF: https://hotels-api.bronevik.com/v2.5.0/api.pdf
+Документация в формате PDF: https://hotels-api.bronevik.com/v2.5.2/api.pdf
 
 Следует упомянуть, что при вызове метода `SearchHotelOffersRequest` параметр `currency` является обязательным и сейчас
 у него только одно возможное значение: `rub`. Без заполнения этого параметра сервис вернёт сообщение об ошибке.
@@ -787,6 +787,12 @@ $bed->setAmount(1);                                     //Установить �
 $bed->setType(HotelsConnector\Enum\BedTypes::DOUBLE);   //Установить тип кроватей
 $preferredBedSet = new HotelsConnector\Element\BedSet();
 $preferredBedSet->addBed($bed);
+
+$extraBed = new HotelsConnector\Element\Bed();
+$extraBed->setAmount(1);
+$extraBed->setType(HotelsConnector\Enum\BedTypes::EXTRA_BED);
+$preferredBedSet->addBed($extraBed);
+
 $accommodation->setPreferredBedSet($preferredBedSet);
 
 $accommodation->addMeals(2);            // Добавить питание в услугу
@@ -864,6 +870,12 @@ foreach ($order->getServices()->service as $service) {
     $service->getGuaranteeType();    // Тип гарантии
     $service->getGuests();           // Гости услуги
     $service->getPaymentTerms()      // Условия оплаты
+
+    // информация о размещении взрослых гостей
+    /** @var Bronevik\HotelsConnector\Element\AdultAccommodation $adultAccommodation */
+    $adultAccommodation = $service->getAdultAccommodation();
+    $adultAccommodation->getMainAdults();  // Количество взрослых гостей на основных местах
+    $adultAccommodation->getExtraAdults(); // Количество взрослых гостей на дополнительных местах
    
     // информация о тарифе
     /** @var Bronevik\HotelsConnector\Element\RateType $rateType */
@@ -1319,6 +1331,9 @@ $orderServices = $connector->getHotelOfferPricing($services, $currency);
     $response = $connector->updateService($serviceId, $updateService);
 ```
 
+Коррекция количества взрослых гостей на основных и дополнительных местах через `adultAccommodation`
+в API v2.5.2 пока что не поддерживается.
+
 Запрос для коррекции цены продажи:
 
 ```php
@@ -1444,6 +1459,7 @@ foreach ($order->getServices()->service as $service) {
     $updateService->setCheckinHour(15); // Коррекция часа заезда
     $updateService->setCheckoutHour(21); // Коррекция часа выезда
     $updateService->setComment('Комментарий'); // Коррекция комментария к услуге
+    $updateService->setRoomType(\Bronevik\HotelsConnector\Enum\RoomTypes::DOUBLE); // Коррекция типа размещения
     
     $response = $connector->getServicePricing($serviceId, $updateService);
 ```
