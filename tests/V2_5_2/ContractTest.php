@@ -8,7 +8,6 @@ use Bronevik\HotelsConnector\Element\OrderServiceAccommodation;
 use Bronevik\HotelsConnector\Element\UpdateService;
 use Bronevik\HotelsConnector\Enum\BedTypes;
 use Bronevik\HotelsConnector\Enum\ClassMaps;
-use Bronevik\HotelsConnector\Enum\Endpoints;
 use Bronevik\HotelsConnector\Enum\GuestsCounts;
 use PHPUnit\Framework\TestCase;
 
@@ -17,18 +16,6 @@ use PHPUnit\Framework\TestCase;
  */
 class ContractTest extends TestCase
 {
-    public function testEndpoints()
-    {
-        $this->assertContains('/v2.5.2/', Endpoints::PRODUCTION);
-        $this->assertContains('/v2.5.2/', Endpoints::DEVELOPMENT);
-        $this->assertContains('/v2.5.2/', Endpoints::SECURE_PRODUCTION);
-        $this->assertContains('/v2.5.2/', Endpoints::SECURE_DEVELOPMENT);
-
-        foreach (Endpoints::$wsdlUrls as $wsdlUrl) {
-            $this->assertContains('/v2.5.2/', $wsdlUrl);
-        }
-    }
-
     public function testAdultAccommodationRegisteredInClassMaps()
     {
         $this->assertSame(

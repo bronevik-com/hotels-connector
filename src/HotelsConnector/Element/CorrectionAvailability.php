@@ -6,6 +6,13 @@ namespace Bronevik\HotelsConnector\Element;
 class CorrectionAvailability
 {
     /**
+     * Доступность коррекции количества взрослых гостей.
+     *
+     * @var bool|null
+     */
+    public $adultGuestCount;
+
+    /**
      * Доступное количество коррекций
      * Available number of corrections
      *
@@ -291,4 +298,20 @@ class CorrectionAvailability
     {
         $this->roomType = $roomType;
     }
+    /**
+     * @return bool|null
+     */
+    public function getAdultGuestCount()
+    {
+        return $this->adultGuestCount;
+    }
+
+    /**
+     * @param bool|null $adultGuestCount
+     */
+    public function setAdultGuestCount($adultGuestCount)
+    {
+        $this->adultGuestCount = $adultGuestCount;
+    }
+
 }

@@ -103,19 +103,19 @@ $connector->setLanguage(Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 Для `endpoint` возможны два значения:
 
 1. `\Bronevik\HotelsConnector\Enum\Endpoints::DEVELOPMENT` - для разработки, запросы отправляются на тестовый сервер.
-1. `\Bronevik\HotelsConnector\Enum\Endpoints::PRODUCTION` - для использования в бою.
+2. `\Bronevik\HotelsConnector\Enum\Endpoints::PRODUCTION` - для использования в бою.
 
 Для `secureEndpoint` возможны два значения:
 
 1. `\Bronevik\HotelsConnector\Enum\Endpoints::SECURE_DEVELOPMENT` - для разработки, запросы отправляются на тестовый сервер.
-1. `\Bronevik\HotelsConnector\Enum\Endpoints::SECURE_PRODUCTION` - для использования в бою.
+2. `\Bronevik\HotelsConnector\Enum\Endpoints::SECURE_PRODUCTION` - для использования в бою.
 
 Флаг `debugMode`, установленный в `true`, позволяет использовать следующие методы:
 
 1. `$connector->getLastResponse()` для получения содержимого последнего ответа сервера.
-1. `$connector->getLastResponseHeaders()` для получения HTTP-заголовков последнего ответа сервера.
-1. `$connector->getLastRequest()` для получения содержимого последнего запроса сервера.
-1. `$connector->getLastRequestHeaders()` для получения HTTP-заголовков последнего запроса сервера.
+2. `$connector->getLastResponseHeaders()` для получения HTTP-заголовков последнего ответа сервера.
+3. `$connector->getLastRequest()` для получения содержимого последнего запроса сервера.
+4. `$connector->getLastRequestHeaders()` для получения HTTP-заголовков последнего запроса сервера.
 
 В метод `setCredentials()` передаются:
 
@@ -136,12 +136,18 @@ $connector->setLanguage(Bronevik\HotelsConnector\Enum\Languages::RUSSIAN);
 echo $connector->ping('Привет, Броневичок!'); // Привет, Броневичок!
 ```
 
+> API 2.6.0 содержит несовместимые изменения: `roomType` в предложениях и услугах,
+> `paymentTerms`, старые `taxes` и дополнительные поля услуг `extraField` удалены из соответствующих
+> структур WSDL. Старые методы библиотеки сохранены для совместимости кода, но эти поля не передаются
+> и не возвращаются API 2.6.0. Дополнительные начисления доступны в `charges`, а информация
+> для гостя — в `offerInformationForGuest`. В поисковых запросах необходимо передавать
+> критерий `SearchOfferCriterionNumberOfGuests`.
+
 ## Документация по работе с SOAP сервером без использования этого коннектора
 
-Документация в формате PDF: https://hotels-api.bronevik.com/v2.5.2/api.pdf
+Документация в формате PDF: https://hotels-api.bronevik.com/v2.6.0/api.pdf
 
-Следует упомянуть, что при вызове метода `SearchHotelOffersRequest` параметр `currency` является обязательным и сейчас
-у него только одно возможное значение: `rub`. Без заполнения этого параметра сервис вернёт сообщение об ошибке.
+В `SearchHotelOffersRequest` параметр `currency` обязателен.
 
 ## Документация по работе с клиентом и примеры
 
@@ -254,13 +260,16 @@ foreach ($meals->meal as $meal) {
 
 ```php
 <?php
-$currency = \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB
+$currency        = \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB;
+$guestsCriterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$guestsCriterion->setAdults(2);
 /** @var Bronevik\HotelsConnector\Element\Hotels $hotelsWithOffers */
 $hotelsWithOffers = $connector->searchHotelOffers(
-    '2016-01-22', // дата заезда
-    '2016-01-24', // дата выезда,
-    $currency,    // Валюта
-    1             // Id города
+    '2016-01-22',      // дата заезда
+    '2016-01-24',      // дата выезда,
+    $currency,         // Валюта
+    1,                 // Id города
+    [$guestsCriterion] // обязательный критерий количества гостей
 );
 ```
 
@@ -296,13 +305,9 @@ $criteria[] = $criterion;
 $criterion  = new Bronevik\HotelsConnector\Element\SearchOfferCriterionOnlyOnline();
 $criteria[] = $criterion;
 
-// фильтр по названию отеля
-$criterion  = new Bronevik\HotelsConnector\Element\SearchOfferCriterionHotelName();
-$criterion->setName('Название отеля');
-$criteria[] = $criterion;
-
-// фильтр предложений по включенному завтраку
-$criterion  = new Bronevik\HotelsConnector\Element\SearchOfferCriterionBreakfastIncluded();
+// Фильтр по включённым в стоимость типам питания (достаточно одного совпадения)
+$criterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionMeal();
+$criterion->addMeals(1); // ID типа питания из getMeals
 $criteria[] = $criterion;
 
 // фильтр предложений по способу оплаты
@@ -312,7 +317,7 @@ $criterion->addPaymentRecipient(Bronevik\HotelsConnector\Enum\PaymentRecipients:
 $criterion->addPaymentRecipient(Bronevik\HotelsConnector\Enum\PaymentRecipients::AGENCY); // безналичный расчёт
 $criteria[] = $criterion;
 
-$currency = \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB
+$currency = \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB;
 
 /** @var Bronevik\HotelsConnector\Element\Hotels $hotelsWithOffers */
 $hotelsWithOffers = $connector->searchHotelOffers(
@@ -334,17 +339,19 @@ $hotelsWithOffers = $connector->searchHotelOffers(
  * Можно указать до 100 отелей
  * @var int[]
 */
-$hotelIds = [1, 2, 3];
-$currency = \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB
+$hotelIds        = [1, 2, 3];
+$currency        = \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB;
+$guestsCriterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$guestsCriterion->setAdults(2);
 
 /** @var Bronevik\HotelsConnector\Element\Hotels $hotelsWithOffers */
 $hotelsWithOffers = $connector->searchHotelOffers(
-    '2016-01-22', // дата заезда
-    '2016-01-24', // дата выезда
-    $currency,    // Валюта
-    null,         // Id города
-    [],           // массив фильтров
-    $hotelIds     // ids отелей
+    '2016-01-22',       // дата заезда
+    '2016-01-24',       // дата выезда
+    $currency,          // Валюта
+    null,               // Id города
+    [$guestsCriterion], // обязательный критерий количества гостей
+    $hotelIds           // ids отелей
 );
 ```
 
@@ -363,17 +370,19 @@ $geolocation->latitude  = $latitude;
 $geolocation->longitude = $longitude;
 $geolocation->radius    = $radius;
 
-$currency = \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB
+$currency        = \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB;
+$guestsCriterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$guestsCriterion->setAdults(2);
 
 /** @var Bronevik\HotelsConnector\Element\Hotels $hotelsWithOffers */
 $hotelsWithOffers = $connector->searchHotelOffers(
-    '2016-01-22', // дата заезда
-    '2016-01-24', // дата выезда
-    $currency,    // Валюта  
-    null,         // Id города
-    [],           // массив фильтров
-    [],           // ids отелей
-    [],           // skipElements
+    '2016-01-22',       // дата заезда
+    '2016-01-24',       // дата выезда
+    $currency,          // Валюта  
+    null,               // Id города
+    [$guestsCriterion], // обязательный критерий количества гостей
+    [],                 // ids отелей
+    [],                 // skipElements
     $geolocation
 );
 ```
@@ -391,17 +400,19 @@ $skipElements = [
 ];
 
 // Все доступные для пропуска элементы для SearchHotelOffers - \Bronevik\HotelsConnector\Enum\SkipElementTypes::$availableSkipElementsForSearchHotelOffers
-$currency = \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB;
+$currency        = \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB;
+$guestsCriterion = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$guestsCriterion->setAdults(2);
 
 /** @var Bronevik\HotelsConnector\Element\Hotels $hotelsWithOffers */
 $hotelsWithOffers = $connector->searchHotelOffers(
-    '2016-01-22', // дата заезда
-    '2016-01-24', // дата выезда
-    $currency,    // Валюта
-    1,            // Id города
-    [],           // массив фильтров
-    [],           // ids отелей
-    $skipElements // элементы для пропуска
+    '2016-01-22',       // дата заезда
+    '2016-01-24',       // дата выезда
+    $currency,          // Валюта
+    1,                  // Id города
+    [$guestsCriterion], // обязательный критерий количества гостей
+    [],                 // ids отелей
+    $skipElements       // элементы для пропуска
 );
 ```
 
@@ -467,15 +478,15 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
 	/** @var Bronevik\HotelsConnector\Element\Image $photo */
     foreach ($descriptionDetails->getPhotos()->photo as $photo) {
         $photo->getGuid(); // 73c7c9b97a36ac0d970990937d842417
-        $photo->getUrl();  // //dev.bronevik.tech/static/photo/g/250x250a/73c7c9b97a36ac0d970990937d842417
+        $photo->getUrl();  // dev.bronevik.tech/static/photo/g/250x250a/73c7c9b97a36ac0d970990937d842417
     }
 
     /** @var Bronevik\HotelsConnector\Element\AvailableAmenity $amenity */
     foreach ($descriptionDetails->getAvailableAmenities()->availableAmenity as $amenity) {
-        $amenity->getId(); // 1
+        $amenity->getId();       // 1
         $amenity->getIncluded(); // false
-        $amenity->getPrice(); // 125.00 
-        $amenity->getCurrency()// Валюта - RUB
+        $amenity->getPrice();    // 125.00 
+        $amenity->getCurrency()  // Валюта - RUB
     }
 
     // предложения
@@ -488,6 +499,18 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         $offer->getNonRefundable();         // Является ли предложение невозвратным (например, false)
         $offer->getCurrency();              // Валюта оплаты (например, RUB)
         $offer->getImmediateConfirmation(); // Возможно ли немедленное подтверждение (например, true)
+        $offer->getOfferInformationForGuest(); // Дополнительная информация для гостя, может быть null
+
+        $charges = $offer->getCharges(); // Дополнительные начисления, могут отсутствовать
+        if ($charges !== null) {
+            foreach ($charges->getCharges() as $charge) {
+                $charge->getName();        // Название начисления
+                $charge->getAmount();      // Сумма
+                $charge->getCurrency();    // Валюта
+                $charge->getIncluded();    // Включено ли начисление в стоимость предложения
+                $charge->getDescription(); // Дополнительное описание, может быть null
+            }
+        }
         $offer->getFreeRooms();             // Количество свободных номеров (например, 5)
         $offer->getRoomId();                // Id номера (например, 24)
         $offer->getRoomType();              // Тип размещения (например, single)
@@ -505,10 +528,10 @@ foreach ($hotelsWithOffers->getHotel() as $hotelWithOffers) {
         $rateType->getRateDescription(); // Описание тарифа
 
         /**
-          * Детализация стоимости 
-          * 
-          * @var Bronevik\HotelsConnector\Element\PriceDetails $priceDetails
-          */
+        * Детализация стоимости 
+        * 
+        * @var Bronevik\HotelsConnector\Element\PriceDetails $priceDetails
+        */
         $priceDetails = $offer->getPriceDetails();
         $priceDetails->getVatApplicable();              // Применим ли к отелю НДС
         $clientDetails    = $priceDetails->getClient(); // Детализация клиентской стоимости
@@ -869,7 +892,6 @@ foreach ($order->getServices()->service as $service) {
     $service->getVATPercent();       // Ставка НДС
     $service->getGuaranteeType();    // Тип гарантии
     $service->getGuests();           // Гости услуги
-    $service->getPaymentTerms()      // Условия оплаты
 
     // информация о размещении взрослых гостей
     /** @var Bronevik\HotelsConnector\Element\AdultAccommodation $adultAccommodation */
@@ -1316,7 +1338,7 @@ $orderServices = $connector->getHotelOfferPricing($services, $currency);
 <?php
     $serviceId = 1; // Id услуги
     $updateService = new \Bronevik\HotelsConnector\Element\UpdateService();
-    $updateService->setRoomType(\Bronevik\HotelsConnector\Enum\RoomTypes::DOUBLE); // Коррекция типа размещения
+    $updateService->setAdultGuestCount(2); // Коррекция количества взрослых гостей
     $guests = new HotelsConnector\Element\Guests();
     $guest1 = new HotelsConnector\Element\Guest();
     $guest1->setFirstName('FirstName1');
@@ -1331,8 +1353,8 @@ $orderServices = $connector->getHotelOfferPricing($services, $currency);
     $response = $connector->updateService($serviceId, $updateService);
 ```
 
-Коррекция количества взрослых гостей на основных и дополнительных местах через `adultAccommodation`
-в API v2.5.2 пока что не поддерживается.
+В API 2.6.0 количество взрослых гостей корректируется через `setAdultGuestCount()`;
+коррекция `roomType` и `adultAccommodation` не поддерживается.
 
 Запрос для коррекции цены продажи:
 
@@ -1384,7 +1406,6 @@ foreach ($order->getServices()->service as $service) {
     $service->getVATPercent();       // Ставка НДС
     $service->getGuaranteeType();    // Тип гарантии
     $service->getGuests();           // Гости услуги
-    $service->getPaymentTerms()      // Условия оплаты
    
     // информация о тарифе
     /** @var Bronevik\HotelsConnector\Element\RateType $rateType */
@@ -1459,7 +1480,7 @@ foreach ($order->getServices()->service as $service) {
     $updateService->setCheckinHour(15); // Коррекция часа заезда
     $updateService->setCheckoutHour(21); // Коррекция часа выезда
     $updateService->setComment('Комментарий'); // Коррекция комментария к услуге
-    $updateService->setRoomType(\Bronevik\HotelsConnector\Enum\RoomTypes::DOUBLE); // Коррекция типа размещения
+    $updateService->setAdultGuestCount(2); // Коррекция количества взрослых гостей
     
     $response = $connector->getServicePricing($serviceId, $updateService);
 ```
@@ -1513,7 +1534,6 @@ foreach ($order->getServices()->service as $service) {
     $service->getVATPercent();       // Ставка НДС
     $service->getGuaranteeType();    // Тип гарантии
     $service->getGuests();           // Гости услуги
-    $service->getPaymentTerms()      // Условия оплаты
    
     // информация о тарифе
     /** @var Bronevik\HotelsConnector\Element\RateType $rateType */

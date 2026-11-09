@@ -5,6 +5,20 @@ namespace Bronevik\HotelsConnector\Element;
 class HotelOffer extends BaseOffer
 {
     /**
+     * Дополнительные начисления.
+     *
+     * @var Charges|null
+     */
+    public $charges;
+
+    /**
+     * Информация для гостя о предложении.
+     *
+     * @var string|null
+     */
+    public $offerInformationForGuest;
+
+    /**
      * Код предложения
      * The offer code
      *
@@ -228,4 +242,36 @@ class HotelOffer extends BaseOffer
     {
         $this->taxes = $taxes;
     }
+    /**
+     * @return Charges|null
+     */
+    public function getCharges()
+    {
+        return $this->charges;
+    }
+
+    /**
+     * @param Charges|null $charges
+     */
+    public function setCharges($charges)
+    {
+        $this->charges = $charges;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOfferInformationForGuest()
+    {
+        return $this->offerInformationForGuest;
+    }
+
+    /**
+     * @param string|null $offerInformationForGuest
+     */
+    public function setOfferInformationForGuest($offerInformationForGuest)
+    {
+        $this->offerInformationForGuest = $offerInformationForGuest;
+    }
+
 }
