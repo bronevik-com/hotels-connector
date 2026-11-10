@@ -5,6 +5,20 @@ namespace Bronevik\HotelsConnector\Element;
 class OrderServiceAccommodation extends OrderService
 {
     /**
+     * Дополнительные начисления.
+     *
+     * @var Charges|null
+     */
+    public $charges;
+
+    /**
+     * Информация для гостя о предложении.
+     *
+     * @var string|null
+     */
+    public $offerInformationForGuest;
+
+    /**
      * Договор, на который оформлено бронирование
      * The information about contract of booking
      *
@@ -645,5 +659,36 @@ class OrderServiceAccommodation extends OrderService
     public function setPreferredBedSet($preferredBedSet)
     {
         $this->preferredBedSet = $preferredBedSet;
+    }
+    /**
+     * @return Charges|null
+     */
+    public function getCharges()
+    {
+        return $this->charges;
+    }
+
+    /**
+     * @param Charges|null $charges
+     */
+    public function setCharges($charges)
+    {
+        $this->charges = $charges;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOfferInformationForGuest()
+    {
+        return $this->offerInformationForGuest;
+    }
+
+    /**
+     * @param string|null $offerInformationForGuest
+     */
+    public function setOfferInformationForGuest($offerInformationForGuest)
+    {
+        $this->offerInformationForGuest = $offerInformationForGuest;
     }
 }

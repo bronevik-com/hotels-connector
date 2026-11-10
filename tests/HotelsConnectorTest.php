@@ -59,6 +59,7 @@ use Bronevik\HotelsConnector\Element\SearchHotelAvailabilityRequest;
 use Bronevik\HotelsConnector\Element\SearchHotelAvailabilityResponse;
 use Bronevik\HotelsConnector\Element\SearchHotelOffersRequest;
 use Bronevik\HotelsConnector\Element\SearchHotelOffersResponse;
+use Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests;
 use Bronevik\HotelsConnector\Element\SearchOfferCriterionOnlyOnline;
 use Bronevik\HotelsConnector\Element\SearchOrderCriterionGuest;
 use Bronevik\HotelsConnector\Element\SearchOrdersRequest;
@@ -333,12 +334,17 @@ class HotelsConnectorTest extends TestCase
         $cityId       = 1;
         $hotels       = [new HotelWithCheapestOffer()];
 
+        $numberOfGuests = new SearchOfferCriterionNumberOfGuests();
+        $numberOfGuests->setAdults(2);
+        $searchCriteria = [$numberOfGuests];
+
         $request               = new SearchHotelAvailabilityRequest();
         $request->currency     = CurrencyCodes::RUB;
         $request->checkInDate  = $checkinDate;
         $request->checkOutDate = $checkOutDate;
         $request->cityId       = $cityId;
         $request->addElements  = [];
+        $request->searchCriteria = $searchCriteria;
         $request->hotelIds     = [];
 
         $response                = new SearchHotelAvailabilityResponse();
@@ -353,7 +359,11 @@ class HotelsConnectorTest extends TestCase
             $checkinDate,
             $checkOutDate,
             \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB,
-            $cityId
+            $cityId,
+            [],
+            null,
+            [],
+            $searchCriteria
         );
 
         // Assert
@@ -372,11 +382,16 @@ class HotelsConnectorTest extends TestCase
         $hotelIds     = [1, 2];
         $hotels       = [new HotelWithCheapestOffer()];
 
+        $numberOfGuests = new SearchOfferCriterionNumberOfGuests();
+        $numberOfGuests->setAdults(2);
+        $searchCriteria = [$numberOfGuests];
+
         $request               = new SearchHotelAvailabilityRequest();
         $request->currency     = CurrencyCodes::RUB;
         $request->checkInDate  = $checkinDate;
         $request->checkOutDate = $checkOutDate;
         $request->addElements  = [];
+        $request->searchCriteria = $searchCriteria;
         $request->hotelIds     = $hotelIds;
 
         $response                = new SearchHotelAvailabilityResponse();
@@ -392,7 +407,10 @@ class HotelsConnectorTest extends TestCase
             $checkOutDate,
             \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB,
             $cityId,
-            $hotelIds
+            $hotelIds,
+            null,
+            [],
+            $searchCriteria
         );
 
         // Assert
@@ -410,7 +428,9 @@ class HotelsConnectorTest extends TestCase
         $cityId         = null;
         $geolocation    = new GeoLocation();
         $addElements    = ['addElement'];
-        $searchCriteria = [new SearchOfferCriterionOnlyOnline()];
+        $numberOfGuests = new SearchOfferCriterionNumberOfGuests();
+        $numberOfGuests->setAdults(2);
+        $searchCriteria = [new SearchOfferCriterionOnlyOnline(), $numberOfGuests];
         $hotels         = [new HotelWithCheapestOffer()];
 
         $request                 = new SearchHotelAvailabilityRequest();

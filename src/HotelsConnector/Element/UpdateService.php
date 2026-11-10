@@ -8,6 +8,13 @@ use Bronevik\HotelsConnector\Enum\RoomTypes;
 class UpdateService
 {
     /**
+     * Количество взрослых гостей после коррекции.
+     *
+     * @var int|null
+     */
+    public $adultGuestCount;
+
+    /**
      * Номер услуги в системе клиента
      * Service number in the client's system
      *
@@ -306,5 +313,20 @@ class UpdateService
     public function setAdultAccommodation($adultAccommodation)
     {
         $this->adultAccommodation = $adultAccommodation;
+    }
+    /**
+     * @return int|null
+     */
+    public function getAdultGuestCount()
+    {
+        return $this->adultGuestCount;
+    }
+
+    /**
+     * @param int|null $adultGuestCount
+     */
+    public function setAdultGuestCount($adultGuestCount)
+    {
+        $this->adultGuestCount = $adultGuestCount;
     }
 }

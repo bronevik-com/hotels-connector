@@ -6,6 +6,20 @@ namespace Bronevik\HotelsConnector\Element;
 class Guest
 {
     /**
+     * Пол гостя.
+     *
+     * @var string|null
+     */
+    public $gender;
+
+    /**
+     * Гражданство гостя.
+     *
+     * @var string|null
+     */
+    public $citizenship;
+
+    /**
      * Имя гостя
      * Guest Name
      *
@@ -51,5 +65,36 @@ class Guest
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+    }
+    /**
+     * @return string|null
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param string|null $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCitizenship()
+    {
+        return $this->citizenship;
+    }
+
+    /**
+     * @param string|null $citizenship
+     */
+    public function setCitizenship($citizenship)
+    {
+        $this->citizenship = $citizenship;
     }
 }

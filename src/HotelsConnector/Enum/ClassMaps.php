@@ -28,6 +28,8 @@ class ClassMaps extends Enum
         'CancellationPolicy'                     => Element\CancellationPolicy::class,
         'CancelledService'                       => Element\CancelledService::class,
         'CancelledServices'                      => Element\CancelledServices::class,
+        'Charge'                                 => Element\Charge::class,
+        'Charges'                                => Element\Charges::class,
         'CategoryCertificate'                    => Element\CategoryCertificate::class,
         'Change'                                 => Element\Change::class,
         'ChangeList'                             => Element\ChangeList::class,
@@ -118,6 +120,7 @@ class ClassMaps extends Enum
         'SearchOfferCriterionGuaranteeTypes'     => Element\SearchOfferCriterionGuaranteeTypes::class,
         'SearchOfferCriterionHotelCategory'      => Element\SearchOfferCriterionHotelCategory::class,
         'SearchOfferCriterionHotelName'          => Element\SearchOfferCriterionHotelName::class,
+        'SearchOfferCriterionMeal'               => Element\SearchOfferCriterionMeal::class,
         'SearchOfferCriterionNumberOfGuests'     => Element\SearchOfferCriterionNumberOfGuests::class,
         'SearchOfferCriterionOnlyOnline'         => Element\SearchOfferCriterionOnlyOnline::class,
         'SearchOfferCriterionPaymentRecipient'   => Element\SearchOfferCriterionPaymentRecipient::class,
@@ -197,6 +200,8 @@ class ClassMaps extends Enum
     ];
 
     const CLASSMAP_FOR_SECURE_ENDPOINT = [
+        'Charge'                             => Element\Charge::class,
+        'Charges'                            => Element\Charges::class,
         'AdultAccommodation'                 => Element\AdultAccommodation::class,
         'AvailableMeal'                      => Element\AvailableMeal::class,
         'BaseRequest'                        => Element\BaseRequest::class,
@@ -213,6 +218,8 @@ class ClassMaps extends Enum
         'DailyPrices'                        => Element\DailyPrices::class,
         'DetailedPrice'                      => Element\DetailedPrice::class,
         'FaultDetail'                        => Element\FaultDetail::class,
+        'Guest'                              => Element\Guest::class,
+        'Guests'                             => Element\Guests::class,
         'GuestContacts'                      => Element\GuestContacts::class,
         'GuestInfo'                          => Element\GuestInfo::class,
         'HotelOfferCancellationPolicy'       => Element\HotelOfferCancellationPolicy::class,
@@ -222,6 +229,7 @@ class ClassMaps extends Enum
         'OfferPolicies'                      => Element\OfferPolicies::class,
         'OfferPolicy'                        => Element\OfferPolicy::class,
         'Order'                              => Element\Order::class,
+        'OrderServices'                      => Element\OrderServices::class,
         'OrderService'                       => Element\OrderService::class,
         'OrderServiceAccommodation'          => Element\OrderServiceAccommodation::class,
         'PriceDetails'                       => Element\PriceDetails::class,
