@@ -154,5 +154,4 @@ class Child
     {
         $this->citizenship = $citizenship;
     }
-
 }

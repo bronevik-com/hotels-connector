@@ -97,5 +97,4 @@ class Guest
     {
         $this->citizenship = $citizenship;
     }
-
 }

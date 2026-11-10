@@ -208,5 +208,4 @@ class ServiceAccommodation extends Service
     {
         $this->preferredBedSet = $preferredBedSet;
     }
-
 }

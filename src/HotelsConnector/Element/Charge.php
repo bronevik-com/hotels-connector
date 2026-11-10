@@ -118,5 +118,4 @@ class Charge
     {
         $this->description = $description;
     }
-
 }

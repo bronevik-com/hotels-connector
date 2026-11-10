@@ -273,5 +273,4 @@ class HotelOffer extends BaseOffer
     {
         $this->offerInformationForGuest = $offerInformationForGuest;
     }
-
 }

@@ -691,5 +691,4 @@ class OrderServiceAccommodation extends OrderService
     {
         $this->offerInformationForGuest = $offerInformationForGuest;
     }
-
 }

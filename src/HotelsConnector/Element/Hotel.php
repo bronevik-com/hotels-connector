@@ -438,5 +438,4 @@ class Hotel
     {
         $this->isHotelOnline = $isHotelOnline;
     }
-
 }

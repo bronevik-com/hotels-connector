@@ -313,5 +313,4 @@ class CorrectionAvailability
     {
         $this->adultGuestCount = $adultGuestCount;
     }
-
 }

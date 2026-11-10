@@ -329,5 +329,4 @@ class UpdateService
     {
         $this->adultGuestCount = $adultGuestCount;
     }
-
 }

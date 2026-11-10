@@ -1687,12 +1687,19 @@ $checkinDate  = '2019-08-01'; // дата заезда
 $checkoutDate = '2019-08-02'; // дата выезда
 $cityId       = 1;            // идентификатор города
 
+$numberOfGuests = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$numberOfGuests->setAdults(2);
+
 /** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
 $hotelsWithCheapestOffers = $connector->searchHotelAvailability(
     $checkinDate,
     $checkoutDate,
     \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB,
-    $cityId
+    $cityId,
+    [],
+    null,
+    [],
+    [$numberOfGuests]
 );
 ```
 
@@ -1705,13 +1712,19 @@ $checkinDate  = '2019-08-01'; // дата заезда
 $checkoutDate = '2019-08-02'; // дата выезда
 $hotelIds     = [1, 2, 3];    // идентификаторы отелей (до 100 шт)
 
+$numberOfGuests = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$numberOfGuests->setAdults(2);
+
 /** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
 $hotelsWithCheapestOffers = $connector->searchHotelAvailability(
     $checkinDate,
     $checkoutDate,
     \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB,
     null,
-    $hotelIds
+    $hotelIds,
+    null,
+    [],
+    [$numberOfGuests]
 );
 ```
 
@@ -1733,6 +1746,9 @@ $geolocation->radius    = $radius;
 $checkinDate  = '2019-08-01'; // дата заезда
 $checkoutDate = '2019-08-02'; // дата выезда
 
+$numberOfGuests = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$numberOfGuests->setAdults(2);
+
 /** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
 $hotelsWithCheapestOffers = $connector->searchHotelAvailability(
     $checkinDate,
@@ -1740,7 +1756,9 @@ $hotelsWithCheapestOffers = $connector->searchHotelAvailability(
     \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB,
     null,
     [],
-    $geolocation
+    $geolocation,
+    [],
+    [$numberOfGuests]
 );
 ```
 
@@ -1754,6 +1772,10 @@ $checkoutDate = '2019-08-02'; // дата выезда
 $cityId       = 1;            // идентификатор города
 $criteria     = [];           // массив критериев
 
+$numberOfGuests = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$numberOfGuests->setAdults(2);
+
+$criteria[] = $numberOfGuests;
 $criteria[] = new Bronevik\HotelsConnector\Element\SearchOfferCriterionOnlyOnline();
 /**
  * Более подробную информацию о критериях смотрите в методе searchHotelOffers
@@ -1789,6 +1811,9 @@ $addElements  = [];           // массив с названиями нужны
 $addElements[] = Bronevik\HotelsConnector\Enum\AddElementsTypes::HOTEL_AMENITIES;
 $addElements[] = Bronevik\HotelsConnector\Enum\AddElementsTypes::GEO;
 
+$numberOfGuests = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$numberOfGuests->setAdults(2);
+
 /** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
 $hotelsWithCheapestOffers = $connector->searchHotelAvailability(
     $checkinDate,
@@ -1797,7 +1822,8 @@ $hotelsWithCheapestOffers = $connector->searchHotelAvailability(
     $cityId,
     [],
     null,
-    $addElements
+    $addElements,
+    [$numberOfGuests]
 );
 ```
 
@@ -1810,12 +1836,19 @@ $checkinDate  = '2019-08-01'; // дата заезда
 $checkoutDate = '2019-08-02'; // дата выезда
 $cityId       = 1;            // идентификатор города
 
+$numberOfGuests = new Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests();
+$numberOfGuests->setAdults(2);
+
 /** @var Bronevik\HotelsConnector\Element\HotelWithCheapestOffer[] $hotelsWithCheapestOffers */
 $hotelsWithCheapestOffers = $connector->searchHotelAvailability(
     $checkinDate,
     $checkoutDate,
     \Bronevik\HotelsConnector\Enum\CurrencyCodes::RUB,
-    $cityId
+    $cityId,
+    [],
+    null,
+    [],
+    [$numberOfGuests]
 );
 
 foreach ($hotelsWithCheapestOffers as $hotelWithCheapestOffer) {

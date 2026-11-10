@@ -96,5 +96,4 @@ class SearchAvailabilityHotelOffer extends BaseOffer
     {
         $this->offerInformationForGuest = $offerInformationForGuest;
     }
-
 }
