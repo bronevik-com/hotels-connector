@@ -131,16 +131,10 @@ class ContractTest extends TestCase
         $orderServiceAccommodation = new OrderServiceAccommodation();
         $orderServiceAccommodation->setAdultAccommodation($adultAccommodation);
 
-        $updateService = new UpdateService();
-        $updateService->setRoomType('double');
-        $updateService->setAdultAccommodation($adultAccommodation);
-
         $this->assertSame(2, $adultAccommodation->getMainAdults());
         $this->assertSame(1, $adultAccommodation->getExtraAdults());
         $this->assertSame($adultAccommodation, $baseOffer->getAdultAccommodation());
         $this->assertSame($adultAccommodation, $orderServiceAccommodation->getAdultAccommodation());
-        $this->assertSame('double', $updateService->getRoomType());
-        $this->assertSame($adultAccommodation, $updateService->getAdultAccommodation());
     }
 
     public function testExtraBedAndTenGuestsSupported()

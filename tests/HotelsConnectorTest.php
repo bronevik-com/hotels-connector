@@ -467,27 +467,6 @@ class HotelsConnectorTest extends TestCase
     }
 
     /**
-     * @dataProvider missingGuestCriterionProvider
-     */
-    public function testSearchHotelAvailabilityRejectsMissingGuestCriterion(array $searchCriteria)
-    {
-        $baseClient = $this->createMock(SoapClient::class);
-        $baseClient->expects($this->never())->method('__call');
-        $connector = $this->getHotelsConnector($baseClient);
-
-        $this->expectException(\InvalidArgumentException::class);
-        $connector->searchHotelAvailability('2019-12-30', '2019-12-31', CurrencyCodes::RUB, 1, [], null, [], $searchCriteria);
-    }
-
-    public function missingGuestCriterionProvider()
-    {
-        return [
-            [[]],
-            [[new SearchOfferCriterionOnlyOnline()]],
-        ];
-    }
-
-    /**
      * @throws SoapFault
      */
     public function testGetCheckinCheckoutPricing()

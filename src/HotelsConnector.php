@@ -6,7 +6,6 @@ use Bronevik\HotelsConnector\Element as Element;
 use Bronevik\HotelsConnector\Enum\ClassMaps;
 use Bronevik\HotelsConnector\Enum\Endpoints;
 use Bronevik\HotelsConnector\Enum\Operations;
-use InvalidArgumentException;
 use SoapClient;
 use SoapFault;
 
@@ -694,7 +693,6 @@ class HotelsConnector
      * @param Element\SearchOfferCriterion[] $searchCriteria
      *
      * @return Element\HotelWithCheapestOffer[]
-     * @throws InvalidArgumentException
      * @throws SoapFault
      */
     public function searchHotelAvailability(
@@ -707,18 +705,6 @@ class HotelsConnector
         array $addElements = [],
         array $searchCriteria = []
     ) {
-        $hasNumberOfGuests = false;
-        foreach ($searchCriteria as $criterion) {
-            if ($criterion instanceof Element\SearchOfferCriterionNumberOfGuests) {
-                $hasNumberOfGuests = true;
-                break;
-            }
-        }
-
-        if (!$hasNumberOfGuests) {
-            throw new InvalidArgumentException('SearchOfferCriterionNumberOfGuests is required.');
-        }
-
         $request = new Element\SearchHotelAvailabilityRequest();
         $this->fillRequest($request);
 
