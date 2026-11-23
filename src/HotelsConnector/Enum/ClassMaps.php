@@ -195,6 +195,7 @@ class ClassMaps extends Enum
         'EditMeal'                               => Element\EditMeal::class,
         'Child'                                  => Element\Child::class,
         'ChildAccommodation'                     => Element\ChildAccommodation::class,
+        'Children'                               => Element\Children::class,
         'ChildrenAccommodation'                  => Element\ChildrenAccommodation::class
 
     ];
@@ -239,6 +240,7 @@ class ClassMaps extends Enum
         'ServiceExtraField'                  => Element\ServiceExtraField::class,
         'Child'                              => Element\Child::class,
         'ChildAccommodation'                 => Element\ChildAccommodation::class,
+        'Children'                           => Element\Children::class,
         'ChildrenAccommodation'              => Element\ChildrenAccommodation::class,
     ];
 }

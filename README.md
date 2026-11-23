@@ -143,6 +143,10 @@ echo $connector->ping('Привет, Броневичок!'); // Привет, �
 > для гостя — в `offerInformationForGuest`. В поисковых запросах необходимо передавать
 > критерий `SearchOfferCriterionNumberOfGuests`.
 
+Для добавления детей в `Guests` и `SearchOfferCriterionNumberOfGuests` используйте `addChild()`.
+Метод `getChildren()` возвращает список детей. При прямом доступе к свойствам список находится
+в `children->child`, а `children` без детей имеет значение `null`.
+
 ## Документация по работе с SOAP сервером без использования этого коннектора
 
 Документация в формате PDF: https://hotels-api.bronevik.com/v2.6.0/api.pdf
