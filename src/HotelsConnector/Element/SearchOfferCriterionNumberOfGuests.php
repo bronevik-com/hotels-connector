@@ -23,9 +23,9 @@ class SearchOfferCriterionNumberOfGuests extends SearchOfferCriterion
      * Дети.
      * Children.
      *
-     * @var Child[]
+     * @var Children|null
      */
-    public $children = [];
+    public $children;
 
     /**
      * @param int $adults
@@ -48,7 +48,7 @@ class SearchOfferCriterionNumberOfGuests extends SearchOfferCriterion
      */
     public function hasChildren()
     {
-        return count($this->children) > 0;
+        return !empty($this->children->child);
     }
 
     /**
@@ -56,7 +56,7 @@ class SearchOfferCriterionNumberOfGuests extends SearchOfferCriterion
      */
     public function getChildren()
     {
-        return $this->children;
+        return $this->children === null ? [] : $this->children->child;
     }
 
     /**
@@ -66,6 +66,10 @@ class SearchOfferCriterionNumberOfGuests extends SearchOfferCriterion
      */
     public function addChild($child)
     {
-        $this->children[] = $child;
+        if ($this->children === null) {
+            $this->children = new Children();
+        }
+
+        $this->children->child[] = $child;
     }
 }

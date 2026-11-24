@@ -7,12 +7,15 @@ use Bronevik\HotelsConnector\Element\BaseOffer;
 use Bronevik\HotelsConnector\Element\Charge;
 use Bronevik\HotelsConnector\Element\Charges;
 use Bronevik\HotelsConnector\Element\Child;
+use Bronevik\HotelsConnector\Element\Children;
 use Bronevik\HotelsConnector\Element\CorrectionAvailability;
 use Bronevik\HotelsConnector\Element\Guest;
+use Bronevik\HotelsConnector\Element\Guests;
 use Bronevik\HotelsConnector\Element\HotelOffer;
 use Bronevik\HotelsConnector\Element\OrderServiceAccommodation;
 use Bronevik\HotelsConnector\Element\SearchAvailabilityHotelOffer;
 use Bronevik\HotelsConnector\Element\SearchOfferCriterionMeal;
+use Bronevik\HotelsConnector\Element\SearchOfferCriterionNumberOfGuests;
 use Bronevik\HotelsConnector\Element\UpdateService;
 use Bronevik\HotelsConnector\Enum\BedTypes;
 use Bronevik\HotelsConnector\Enum\ClassMaps;
@@ -41,9 +44,30 @@ class ContractTest extends TestCase
         foreach ([ClassMaps::CLASSMAP_FOR_BASE_ENDPOINT, ClassMaps::CLASSMAP_FOR_SECURE_ENDPOINT] as $classMap) {
             $this->assertSame(Charge::class, $classMap['Charge']);
             $this->assertSame(Charges::class, $classMap['Charges']);
+            $this->assertSame(Children::class, $classMap['Children']);
             $this->assertSame(Guest::class, $classMap['Guest']);
         }
         $this->assertSame(SearchOfferCriterionMeal::class, ClassMaps::CLASSMAP_FOR_BASE_ENDPOINT['SearchOfferCriterionMeal']);
+    }
+
+    public function testChildrenUseAnOptionalContainer()
+    {
+        $firstChild = (new Child())->setAge(5)->setCount(1);
+        $secondChild = (new Child())->setAge(8)->setCount(2);
+
+        foreach ([new Guests(), new SearchOfferCriterionNumberOfGuests()] as $element) {
+            $this->assertNull($element->children);
+            $this->assertFalse($element->hasChildren());
+            $this->assertSame([], $element->getChildren());
+
+            $element->addChild($firstChild);
+            $element->addChild($secondChild);
+
+            $this->assertInstanceOf(Children::class, $element->children);
+            $this->assertSame([$firstChild, $secondChild], $element->children->child);
+            $this->assertTrue($element->hasChildren());
+            $this->assertSame([$firstChild, $secondChild], $element->getChildren());
+        }
     }
 
     public function testChargesAndOfferInformation()

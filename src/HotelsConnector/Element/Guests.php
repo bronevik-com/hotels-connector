@@ -17,9 +17,9 @@ class Guests
      * Дети.
      * Children.
      *
-     * @var Child[]
+     * @var Children|null
      */
-    public $children = [];
+    public $children;
 
     /**
      * @param Guest $guest
@@ -57,7 +57,7 @@ class Guests
      */
     public function hasChildren()
     {
-        return count($this->children) > 0;
+        return !empty($this->children->child);
     }
 
     /**
@@ -65,7 +65,7 @@ class Guests
      */
     public function getChildren()
     {
-        return $this->children;
+        return $this->children === null ? [] : $this->children->child;
     }
 
     /**
@@ -75,6 +75,10 @@ class Guests
      */
     public function addChild($child)
     {
-        $this->children[] = $child;
+        if ($this->children === null) {
+            $this->children = new Children();
+        }
+
+        $this->children->child[] = $child;
     }
 }
